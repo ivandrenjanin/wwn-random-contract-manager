@@ -1,6 +1,6 @@
 {
   "name": "wwn-random-contract-manager",
-  "version": "1.2.1",
+  "version": "0.0.0",
   "description": "A FoundryVTT Module for random contract generation",
   "private": true,
   "type": "module",

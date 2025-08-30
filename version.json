@@ -6,9 +6,9 @@
         "maximum": 12
     },
     "module": {
-        "major": 1,
-        "minor": 2,
-        "patch": 1
+        "major": 0,
+        "minor": 0,
+        "patch": 0
     },
     "metadata": {
         "description": "A FoundryVTT Module for random contract generation",

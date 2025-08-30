@@ -36,9 +36,9 @@ jobs:
         with:
           files: "dist/module.json"
         env:
-          version: ${{steps.get_version.outputs.version-without-v}}
-          manifest: https://github.com/${{github.repository}}/releases/latest/download/module.json
-          download: https://github.com/${{github.repository}}/releases/download/${{steps.get_version.outputs.version}}/wwn-random-contract-manager.zip
+          version: ${{ steps.get_version.outputs.version-without-v }}
+          manifest: https://github.com/${{ github.repository }}/releases/latest/download/module.json
+          download: https://github.com/${{ github.repository }}/releases/download/${{ steps.get_version.outputs.version }}/wwn-random-contract-manager.zip
 
       - name: Zip files
         working-directory: ./dist
@@ -48,11 +48,12 @@ jobs:
         id: create_version_release
         uses: ncipollo/release-action@v1
         with:
-          allowUpdates: true # Set this to false if you want to prevent updating existing releases
+          allowUpdates: true
           artifacts: "./dist/module.json, ./dist/wwn-random-contract-manager.zip"
-          body: "${{ github.event.release.body }}"
+          body: "Automated release for ${{ steps.get_version.outputs.version }}"
           draft: true
           generateReleaseNotes: true
-          name: ${{ github.event.release.name }}
-          tag: ${{ github.event.release.tag_name }}
+          name: ${{ steps.get_version.outputs.version }}
+          tag: ${{ steps.get_version.outputs.version }}
           token: ${{ secrets.GITHUB_TOKEN }}
+

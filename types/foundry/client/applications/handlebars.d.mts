@@ -11,7 +11,10 @@ import { NumberInputConfig, SelectInputConfig } from "./forms/fields.mjs";
  * @param id An ID to register the partial with.
  * @returns A Promise which resolves to the compiled Handlebars template
  */
-export function getTemplate(path: string, id?: string): Promise<Handlebars.TemplateDelegate>;
+export function getTemplate(
+    path: string,
+    id?: string,
+): Promise<Handlebars.TemplateDelegate>;
 
 /**
  * Load and cache a set of templates by providing an Array of paths
@@ -38,7 +41,9 @@ export function getTemplate(path: string, id?: string): Promise<Handlebars.Templ
  * {{> foo }}
  * ```
  */
-export function loadTemplates(paths: string[] | Record<string, string>): Promise<Handlebars.TemplateDelegate[]>;
+export function loadTemplates(
+    paths: string[] | Record<string, string>,
+): Promise<Handlebars.TemplateDelegate[]>;
 
 /**
  * Get and render a template using provided data and handle the returned HTML
@@ -136,7 +141,11 @@ export function editor(
  * {{ifThen true "It is true" "It is false"}}
  * ```
  */
-export function ifThen(criteria: boolean, ifTrue: string, ifFalse: string): string;
+export function ifThen(
+    criteria: boolean,
+    ifTrue: string,
+    ifFalse: string,
+): string;
 
 /**
  * Translate a provided string key by using the loaded dictionary of localization strings.
@@ -181,12 +190,17 @@ export function numberFormat(
  * {{numberInput value name="numberField" step=1 min=0 max=10}}
  * ```
  */
-export function numberInput(value: number, options: NumberInputConfig): Handlebars.SafeString;
+export function numberInput(
+    value: number,
+    options: NumberInputConfig,
+): Handlebars.SafeString;
 
 /**
  * Create an object from a sequence of `key=value` pairs.
  */
-export function object(options: Handlebars.HelperOptions): Record<string, unknown>;
+export function object(
+    options: Handlebars.HelperOptions,
+): Record<string, unknown>;
 
 /**
  * A helper to create a set of radio checkbox input elements in a named set.
@@ -303,11 +317,17 @@ export function selectOptions(
  * @param field The DataField instance to convert to an input
  * @param options Helper options
  */
-export function formInput(field: DataField, options: { hash: object }): Handlebars.SafeString;
+export function formInput(
+    field: DataField,
+    options: { hash: object },
+): Handlebars.SafeString;
 
 /**
  * Convert a DataField instance into an HTML input fragment.
  * @param field The DataField instance to convert to an input
  * @param options Helper options
  */
-export function formGroup(field: DataField, options: { hash: object }): Handlebars.SafeString;
+export function formGroup(
+    field: DataField,
+    options: { hash: object },
+): Handlebars.SafeString;

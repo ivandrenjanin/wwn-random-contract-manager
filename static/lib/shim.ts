@@ -85,7 +85,7 @@ Hooks.once("init", () => {
             let original = null;
             const wrapper =
                 // eslint-disable-next-line eqeqeq
-                chain ?? (type.toUpperCase?.() != "OVERRIDE" && type != 3)
+                (chain ?? (type.toUpperCase?.() != "OVERRIDE" && type != 3))
                     ? function (...args) {
                           return fn.call(
                               this,

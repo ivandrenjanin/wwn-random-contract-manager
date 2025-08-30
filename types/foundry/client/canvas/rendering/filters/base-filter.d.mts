@@ -3,7 +3,9 @@ import BaseShaderMixin from "../mixins/base-shader-mixin.mjs";
 /**
  * An abstract filter which provides a framework for reusable definition
  */
-export default abstract class AbstractBaseFilter extends BaseShaderMixin(PIXI.Filter) {
+export default abstract class AbstractBaseFilter extends BaseShaderMixin(
+    PIXI.Filter,
+) {
     /**
      * The default uniforms used by the filter
      */

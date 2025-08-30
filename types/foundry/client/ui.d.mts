@@ -8,7 +8,10 @@ import * as appv1 from "./appv1/_module.mjs";
 import Macro from "./documents/macro.mjs";
 
 /* eslint-disable prefer-const */
-export let activeWindow: appv1.api.Application | applications.api.ApplicationV2 | null;
+export let activeWindow:
+    | appv1.api.Application
+    | applications.api.ApplicationV2
+    | null;
 
 export const actors: applications.sidebar.tabs.ActorDirectory;
 

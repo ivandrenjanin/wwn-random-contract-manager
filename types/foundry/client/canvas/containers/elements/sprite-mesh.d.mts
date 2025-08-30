@@ -51,7 +51,12 @@ export default class SpriteMesh extends PIXI.Container {
     /**
      * Cached tint value so we can tell when the tint is changed.
      */
-    protected _cachedTint: [red: number, green: number, blue: number, alpha: number];
+    protected _cachedTint: [
+        red: number,
+        green: number,
+        blue: number,
+        alpha: number,
+    ];
 
     /**
      * The texture trimmed ID.

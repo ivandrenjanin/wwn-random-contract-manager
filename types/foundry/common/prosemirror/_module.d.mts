@@ -3,7 +3,13 @@
 import * as collab from "prosemirror-collab";
 import { keymap } from "prosemirror-keymap";
 import { DOMSerializer, Schema } from "prosemirror-model";
-import { AllSelection, EditorState, Plugin, PluginKey, TextSelection } from "prosemirror-state";
+import {
+    AllSelection,
+    EditorState,
+    Plugin,
+    PluginKey,
+    TextSelection,
+} from "prosemirror-state";
 import { Step } from "prosemirror-transform";
 import { EditorView } from "prosemirror-view";
 import ProseMirrorClickHandler from "./click-handler.mjs";

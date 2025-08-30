@@ -24,7 +24,10 @@ export default class CachedContainer extends PIXI.Container {
     /**
      * A map of render textures, linked to their render function and an optional RGBA clear color.
      */
-    protected _renderPaths: Map<PIXI.RenderTexture, { renderFunction: Function; clearColor: number[] }>;
+    protected _renderPaths: Map<
+        PIXI.RenderTexture,
+        { renderFunction: Function; clearColor: number[] }
+    >;
 
     /**
      * An RGBA array used to define the clear color of the RenderTexture
@@ -72,14 +75,20 @@ export default class CachedContainer extends PIXI.Container {
      * @param options.clearColor     An optional clear color to clear the RT before rendering into it.
      * @returns A reference to the created render texture.
      */
-    createRenderTexture(options?: { renderFunction?: Function; clearColor?: number[] }): PIXI.RenderTexture;
+    createRenderTexture(options?: {
+        renderFunction?: Function;
+        clearColor?: number[];
+    }): PIXI.RenderTexture;
 
     /**
      * Remove a previously created render texture.
      * @param renderTexture The render texture to remove.
      * @param destroy       Should the render texture be destroyed?
      */
-    removeRenderTexture(renderTexture: PIXI.RenderTexture, destroy?: boolean): void;
+    removeRenderTexture(
+        renderTexture: PIXI.RenderTexture,
+        destroy?: boolean,
+    ): void;
 
     /**
      * Clear the cached container, removing its current contents.
@@ -104,5 +113,8 @@ export default class CachedContainer extends PIXI.Container {
      * @param renderer The active canvas renderer.
      * @param rt       The render texture to resize.
      */
-    static resizeRenderTexture(renderer: PIXI.Renderer, rt: PIXI.RenderTexture): void;
+    static resizeRenderTexture(
+        renderer: PIXI.Renderer,
+        rt: PIXI.RenderTexture,
+    ): void;
 }

@@ -1,11 +1,18 @@
-import { CompendiumDocumentType, CompendiumUUID } from "@client/utils/helpers.mjs";
+import {
+    CompendiumDocumentType,
+    CompendiumUUID,
+} from "@client/utils/helpers.mjs";
 import {
     DatabaseAction,
     DatabaseCreateOperation,
     DatabaseOperation,
     DatabaseUpdateOperation,
 } from "@common/abstract/_module.mjs";
-import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath } from "@common/constants.mjs";
+import {
+    DocumentOwnershipLevel,
+    DocumentOwnershipString,
+    ImageFilePath,
+} from "@common/constants.mjs";
 import Collection from "@common/utils/collection.mjs";
 import { ApplicationRenderOptions } from "../../applications/_types.mjs";
 import { CompendiumDocument, User } from "../_module.mjs";
@@ -19,7 +26,10 @@ import DocumentCollection from "../abstract/document-collection.mjs";
 export default abstract class CompendiumCollection<
     TDocument extends CompendiumDocument = CompendiumDocument,
 > extends DocumentCollection<TDocument> {
-    constructor(metadata: CompendiumMetadata<TDocument>, options?: ApplicationRenderOptions);
+    constructor(
+        metadata: CompendiumMetadata<TDocument>,
+        options?: ApplicationRenderOptions,
+    );
 
     /** The compendium metadata which defines the compendium content and location */
     metadata: CompendiumMetadata<TDocument>;
@@ -69,7 +79,10 @@ export default abstract class CompendiumCollection<
     /** A convenience reference to the label which should be used as the title for the Compendium pack. */
     get title(): string;
 
-    override get(key: string, options?: Record<string, unknown>): TDocument | undefined;
+    override get(
+        key: string,
+        options?: Record<string, unknown>,
+    ): TDocument | undefined;
 
     override set(id: string, document: TDocument): this;
 
@@ -187,7 +200,9 @@ export default abstract class CompendiumCollection<
     ): void;
 }
 
-export interface CompendiumMetadata<T extends CompendiumDocument = CompendiumDocument> {
+export interface CompendiumMetadata<
+    T extends CompendiumDocument = CompendiumDocument,
+> {
     readonly type: T["documentName"];
     id: string;
     name: string;

@@ -82,7 +82,10 @@ export default class Localization {
      * }
      * ```
      */
-    static localizeDataModel(model: typeof DataModel, options?: { prefixes?: string[]; prefixPath?: string }): void;
+    static localizeDataModel(
+        model: typeof DataModel,
+        options?: { prefixes?: string[]; prefixPath?: string },
+    ): void;
 
     /**
    * Localize the "label" and "hint" properties for all fields in a data schema.
@@ -133,7 +136,10 @@ export default class Localization {
      * const stringId = "MY_TEST_STRING"; // "Your name is {name}"
      * game.i18n.format("MY_TEST_STRING", {name: "Andrew"}); // Produces "Your name is Andrew"
      */
-    format(stringId: string, data?: Record<string, Maybe<string | number | boolean>>): string;
+    format(
+        stringId: string,
+        data?: Record<string, Maybe<string | number | boolean>>,
+    ): string;
 
     /**
      * Retrieve list formatter configured to the world's language setting.
@@ -141,7 +147,12 @@ export default class Localization {
      * @param options.style The list formatter style, either "long", "short", or "narrow".
      * @param options.type The list formatter type, either "conjunction", "disjunction", or "unit".
      */
-    getListFormatter(options?: { style?: Intl.ListFormatStyle; type?: Intl.ListFormatType }): Intl.ListFormat;
+    getListFormatter(options?: {
+        style?: Intl.ListFormatStyle;
+        type?: Intl.ListFormatType;
+    }): Intl.ListFormat;
 }
 
-type TranslationDictionaryValue = string | { [key: string]: TranslationDictionaryValue };
+type TranslationDictionaryValue =
+    | string
+    | { [key: string]: TranslationDictionaryValue };

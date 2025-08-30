@@ -29,14 +29,18 @@ export default class VideoHelper {
      * @param mesh The rendered mesh
      * @returns The source HTML element
      */
-    getSourceElement(mesh: PIXI.Sprite | SpriteMesh): HTMLImageElement | HTMLVideoElement | null;
+    getSourceElement(
+        mesh: PIXI.Sprite | SpriteMesh,
+    ): HTMLImageElement | HTMLVideoElement | null;
 
     /**
      * Get the video element source corresponding to a Sprite or SpriteMesh.
      * @param object The PIXI source
      * @returns The source video element or null
      */
-    getVideoSource(object: PIXI.Sprite | SpriteMesh | PIXI.Texture): HTMLVideoElement | null;
+    getVideoSource(
+        object: PIXI.Sprite | SpriteMesh | PIXI.Texture,
+    ): HTMLVideoElement | null;
 
     /**
      * Clone a video texture so that it can be played independently of the original base texture.
@@ -92,7 +96,10 @@ export default class VideoHelper {
      * @return The created and cached base64 thumbnail image, or a placeholder image if the canvas is
      *         disabled and no thumbnail can be generated.
      */
-    createThumbnail(src: string, options: CreateThumbnailOptions): Promise<string>;
+    createThumbnail(
+        src: string,
+        options: CreateThumbnailOptions,
+    ): Promise<string>;
 }
 
 interface VideoPlayOptions {

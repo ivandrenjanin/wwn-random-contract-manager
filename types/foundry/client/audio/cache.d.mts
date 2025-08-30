@@ -4,7 +4,10 @@ import { AudioBufferCacheEntry } from "./_types.mjs";
  * A specialized cache used for audio buffers.
  * This is an LRU cache which expires buffers from the cache once the maximum cache size is exceeded.
  */
-export default class AudioBufferCache extends Map<string, AudioBufferCacheEntry> {
+export default class AudioBufferCache extends Map<
+    string,
+    AudioBufferCacheEntry
+> {
     /**
      * Construct an AudioBufferCache providing a maximum disk size beyond which entries are expired.
      * @param cacheSize The maximum cache size in bytes. 1GB by default.

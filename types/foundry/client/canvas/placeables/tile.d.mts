@@ -15,7 +15,10 @@ export default class Tile<
 > extends PlaceableObject<TDocument> {
     static override embeddedName: "Tile";
 
-    static override RENDER_FLAGS: Record<string, { propagate?: string[]; alias?: boolean }>;
+    static override RENDER_FLAGS: Record<
+        string,
+        { propagate?: string[]; alias?: boolean }
+    >;
 
     /* -------------------------------------------- */
     /*  Attributes                                  */
@@ -123,17 +126,26 @@ export default class Tile<
 
     override activateListeners(): void;
 
-    protected override _canConfigure(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canConfigure(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
     protected override _onClickLeft2(event: PIXI.FederatedPointerEvent): void;
 
-    protected override _onDragLeftStart(event: PIXI.FederatedPointerEvent): void;
+    protected override _onDragLeftStart(
+        event: PIXI.FederatedPointerEvent,
+    ): void;
 
     protected override _onDragLeftMove(event: PIXI.FederatedPointerEvent): void;
 
-    protected override _onDragLeftDrop(event: PIXI.FederatedPointerEvent): Promise<this["document"][]>;
+    protected override _onDragLeftDrop(
+        event: PIXI.FederatedPointerEvent,
+    ): Promise<this["document"][]>;
 
-    protected override _onDragLeftCancel(event: PIXI.FederatedPointerEvent): void;
+    protected override _onDragLeftCancel(
+        event: PIXI.FederatedPointerEvent,
+    ): void;
 
     /* -------------------------------------------- */
     /*  Resize Handling                             */
@@ -185,8 +197,9 @@ export default class Tile<
     static createPreview(data: DeepPartial<foundry.documents.TileSource>): Tile;
 }
 
-export default interface Tile<TDocument extends TileDocument<Scene | null> = TileDocument<Scene | null>>
-    extends PlaceableObject<TDocument> {
+export default interface Tile<
+    TDocument extends TileDocument<Scene | null> = TileDocument<Scene | null>,
+> extends PlaceableObject<TDocument> {
     get layer(): TilesLayer<this>;
 }
 

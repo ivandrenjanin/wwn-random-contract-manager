@@ -12,10 +12,15 @@ import { ChatMessageCreateOperation } from "@common/documents/chat-message.mjs";
 import BaseCombat from "@common/documents/combat.mjs";
 import { Combatant, TokenDocument, User } from "./_module.mjs";
 import { CombatTurnEventContext } from "./_types.mjs";
-import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
+import {
+    ClientDocument,
+    ClientDocumentStatic,
+} from "./abstract/client-document.mjs";
 
 type BaseCombatStatic = typeof BaseCombat;
-interface ClientBaseCombatStatic extends BaseCombatStatic, ClientDocumentStatic {}
+interface ClientBaseCombatStatic
+    extends BaseCombatStatic,
+        ClientDocumentStatic {}
 
 declare const ClientBaseCombat: {
     new (...args: any): BaseCombat & ClientDocument<null>;
@@ -91,7 +96,12 @@ export default class Combat extends ClientBaseCombat {
      * @param toTurn The to-turn
      * @returns The time delta
      */
-    getTimeDelta(fromRound: number, fromTurn: number | null, toRound: number, toTurn: number | null): number;
+    getTimeDelta(
+        fromRound: number,
+        fromTurn: number | null,
+        toRound: number,
+        toTurn: number | null,
+    ): number;
 
     /** Begin the combat encounter, advancing to round 1 and turn 1 */
     startCombat(): Promise<this>;
@@ -128,7 +138,10 @@ export default class Combat extends ClientBaseCombat {
      * @param options.messageOptions Additional options with which to customize created Chat Messages
      * @return A promise which resolves to the updated Combat entity once updates are complete.
      */
-    rollInitiative(ids: string | string[], options?: RollInitiativeOptions): Promise<this>;
+    rollInitiative(
+        ids: string | string[],
+        options?: RollInitiativeOptions,
+    ): Promise<this>;
 
     /**
      * Roll initiative for all combatants which have not already rolled
@@ -188,13 +201,19 @@ export default class Combat extends ClientBaseCombat {
      * Clear the movement history of the Combatants' Tokens.
      * @param combatants The combatants whose movement history is cleared
      */
-    clearMovementHistories(combatants?: Iterable<Combatant<this>>): Promise<void>;
+    clearMovementHistories(
+        combatants?: Iterable<Combatant<this>>,
+    ): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Event Handlers                              */
     /* -------------------------------------------- */
 
-    protected override _onCreate(data: this["_source"], options: DatabaseCreateCallbackOptions, userId: string): void;
+    protected override _onCreate(
+        data: this["_source"],
+        options: DatabaseCreateCallbackOptions,
+        userId: string,
+    ): void;
 
     protected override _onUpdate(
         changed: DeepPartial<this["_source"]>,
@@ -202,7 +221,10 @@ export default class Combat extends ClientBaseCombat {
         userId: string,
     ): void;
 
-    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
+    protected override _onDelete(
+        options: DatabaseDeleteCallbackOptions,
+        userId: string,
+    ): void;
 
     /* -------------------------------------------- */
     /*  Combatant Management Workflows              */
@@ -284,7 +306,9 @@ export default class Combat extends ClientBaseCombat {
      * The default implementation clears the movement history always.
      * @param combatant The Combatant that exited the Combat
      */
-    protected _clearMovementHistoryOnExit(combatant: Combatant<this>): Promise<void>;
+    protected _clearMovementHistoryOnExit(
+        combatant: Combatant<this>,
+    ): Promise<void>;
 
     /**
      * Get the current history state of the Combat encounter.
@@ -362,7 +386,11 @@ export default class Combat extends ClientBaseCombat {
      * @param user The User that deleted the Tokens
      * @internal
      */
-    static _onDeleteTokens(tokens: TokenDocument[], operation: DatabaseDeleteCallbackOptions, user: User): void;
+    static _onDeleteTokens(
+        tokens: TokenDocument[],
+        operation: DatabaseDeleteCallbackOptions,
+        user: User,
+    ): void;
 }
 
 export default interface Combat extends ClientBaseCombat {

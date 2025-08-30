@@ -1,4 +1,8 @@
-import { AmbientLightDocument, Scene, User } from "@client/documents/_module.mjs";
+import {
+    AmbientLightDocument,
+    Scene,
+    User,
+} from "@client/documents/_module.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseDeleteCallbackOptions,
@@ -13,7 +17,8 @@ import { LightSourceData } from "../sources/base-light-source.mjs";
 import PlaceableObject from "./placeable-object.mjs";
 
 export default class AmbientLight<
-    TDocument extends AmbientLightDocument<Scene | null> = AmbientLightDocument<Scene | null>,
+    TDocument extends
+        AmbientLightDocument<Scene | null> = AmbientLightDocument<Scene | null>,
 > extends PlaceableObject<TDocument> {
     static override embeddedName: "AmbientLight";
 
@@ -141,7 +146,10 @@ export default class AmbientLight<
         userId: string,
     ): void;
 
-    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
+    protected override _onDelete(
+        options: DatabaseDeleteCallbackOptions,
+        userId: string,
+    ): void;
 
     /* -------------------------------------------- */
     /*  Mouse Interaction Handlers                  */
@@ -149,7 +157,10 @@ export default class AmbientLight<
 
     protected override _canHUD(user: User, event: PIXI.FederatedEvent): boolean;
 
-    protected override _canConfigure(user: User, event: PIXI.FederatedEvent): boolean;
+    protected override _canConfigure(
+        user: User,
+        event: PIXI.FederatedEvent,
+    ): boolean;
 
     protected override _onClickRight(event: PIXI.FederatedEvent): void;
 
@@ -161,7 +172,8 @@ export default class AmbientLight<
 }
 
 export default interface AmbientLight<
-    TDocument extends AmbientLightDocument<Scene | null> = AmbientLightDocument<Scene | null>,
+    TDocument extends
+        AmbientLightDocument<Scene | null> = AmbientLightDocument<Scene | null>,
 > extends PlaceableObject<TDocument> {
     get layer(): LightingLayer<this>;
 }

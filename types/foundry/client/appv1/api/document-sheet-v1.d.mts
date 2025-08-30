@@ -1,9 +1,16 @@
-import ProseMirrorEditor, { EditorCreateOptions } from "@client/applications/ux/prosemirror-editor.mjs";
+import ProseMirrorEditor, {
+    EditorCreateOptions,
+} from "@client/applications/ux/prosemirror-editor.mjs";
 import User from "@client/documents/user.mjs";
 import Document from "@common/abstract/document.mjs";
 import HTMLSecret from "../../applications/html-secret.mjs";
-import { AppV1RenderOptions, ApplicationV1HeaderButton } from "./application-v1.mjs";
-import FormApplication, { FormApplicationOptions } from "./form-application-v1.mjs";
+import {
+    AppV1RenderOptions,
+    ApplicationV1HeaderButton,
+} from "./application-v1.mjs";
+import FormApplication, {
+    FormApplicationOptions,
+} from "./form-application-v1.mjs";
 
 export interface DocumentSheetV1Options extends FormApplicationOptions {
     /** The default permissions required to view this Document sheet. */
@@ -38,7 +45,9 @@ export default class DocumentSheet<
 
     override close(options?: { force?: boolean | undefined }): Promise<void>;
 
-    override getData(options?: Partial<TOptions>): DocumentSheetData<TDocument> | Promise<DocumentSheetData<TDocument>>;
+    override getData(
+        options?: Partial<TOptions>,
+    ): DocumentSheetData<TDocument> | Promise<DocumentSheetData<TDocument>>;
 
     protected override _activateCoreListeners(html: JQuery): void;
 
@@ -50,7 +59,9 @@ export default class DocumentSheet<
 
     override render(force?: boolean, options?: AppV1RenderOptions): this;
 
-    protected override _renderOuter(options: AppV1RenderOptions): Promise<JQuery>;
+    protected override _renderOuter(
+        options: AppV1RenderOptions,
+    ): Promise<JQuery>;
 
     /** Create an ID link button in the document sheet header which displays the document ID and copies to clipboard */
     protected _createDocumentIdLink(html: JQuery): void;
@@ -83,12 +94,20 @@ export default class DocumentSheet<
      * @param content The new content.
      * @returns The updated Document.
      */
-    protected _updateSecret(secret: HTMLElement, content: string): Promise<TDocument>;
+    protected _updateSecret(
+        secret: HTMLElement,
+        content: string,
+    ): Promise<TDocument>;
 
-    protected override _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
+    protected override _updateObject(
+        event: Event,
+        formData: Record<string, unknown>,
+    ): Promise<void>;
 }
 
-export interface DocumentSheetData<TDocument extends foundry.abstract.Document = foundry.abstract.Document> {
+export interface DocumentSheetData<
+    TDocument extends foundry.abstract.Document = foundry.abstract.Document,
+> {
     cssClass: string;
     editable: boolean;
     document: TDocument;

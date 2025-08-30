@@ -1,5 +1,9 @@
 import { Point } from "@common/_types.mjs";
-import { ClockwiseSweepPolygonConfig, EdgeType, PolygonRay } from "./_types.mjs";
+import {
+    ClockwiseSweepPolygonConfig,
+    EdgeType,
+    PolygonRay,
+} from "./_types.mjs";
 import { Edge, PolygonVertex } from "./edges/_module.mjs";
 import Ray from "./shapes/ray.mjs";
 import PointSourcePolygon from "./shapes/source-polygon.mjs";
@@ -38,7 +42,10 @@ declare class ClockwiseSweepPolygon extends PointSourcePolygon<ClockwiseSweepPol
     /*  Initialization                              */
     /* -------------------------------------------- */
 
-    override initialize(origin: Point, config: ClockwiseSweepPolygonConfig): void;
+    override initialize(
+        origin: Point,
+        config: ClockwiseSweepPolygonConfig,
+    ): void;
 
     /**
      * Determine the edge types and their manner of inclusion for this polygon instance.
@@ -111,7 +118,10 @@ declare class ClockwiseSweepPolygon extends PointSourcePolygon<ClockwiseSweepPol
     /*  Collision Testing                           */
     /* -------------------------------------------- */
 
-    protected override _testCollision(ray: Ray, mode: string): boolean | PolygonVertex | PolygonVertex[] | null;
+    protected override _testCollision(
+        ray: Ray,
+        mode: string,
+    ): boolean | PolygonVertex | PolygonVertex[] | null;
 
     /* -------------------------------------------- */
     /*  Visualization                               */

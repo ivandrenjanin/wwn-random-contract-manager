@@ -8,7 +8,9 @@ import Combat from "../combat.mjs";
  * @see {@link Combat} The Combat entity
  * @see {@link CombatTracker} The CombatTracker sidebar directory
  */
-export default class CombatEncounters<TCombat extends Combat> extends WorldCollection<TCombat> {
+export default class CombatEncounters<
+    TCombat extends Combat,
+> extends WorldCollection<TCombat> {
     static override documentName: "Combat";
 
     /** Provide the settings object which configures the Combat entity */

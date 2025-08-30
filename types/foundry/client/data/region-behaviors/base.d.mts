@@ -20,7 +20,13 @@ export default abstract class RegionBehaviorType<
      * @param options.events The event names to restrict to.
      * @param options.initial The initial set of events that should be default for the field
      */
-    protected static _createEventsField({ events, initial }?: { events: string[]; initial: string[] }): EventsField;
+    protected static _createEventsField({
+        events,
+        initial,
+    }?: {
+        events: string[];
+        initial: string[];
+    }): EventsField;
 
     /**
      * A RegionBehaviorType may register to always receive certain events by providing a record of handler functions.
@@ -59,7 +65,10 @@ export default abstract class RegionBehaviorType<
      */
     protected _getTerrainEffects(
         token: TokenDocument,
-        segment: Pick<TokenMovementWaypoint, "width" | "height" | "shape" | "action"> & { preview: boolean },
+        segment: Pick<
+            TokenMovementWaypoint,
+            "width" | "height" | "shape" | "action"
+        > & { preview: boolean },
     ): object[];
 }
 
@@ -71,4 +80,6 @@ type EventBehaviorStaticHandler = <TBehaviorType extends RegionBehaviorType>(
 
 type RegionEventType = (typeof REGION_EVENTS)[keyof typeof REGION_EVENTS];
 
-export type EventsField = fields.SetField<fields.StringField<RegionEventType, RegionEventType, true, false, false>>;
+export type EventsField = fields.SetField<
+    fields.StringField<RegionEventType, RegionEventType, true, false, false>
+>;

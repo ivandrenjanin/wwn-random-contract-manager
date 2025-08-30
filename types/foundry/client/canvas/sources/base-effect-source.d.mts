@@ -2,7 +2,9 @@ import { ElevatedPoint } from "@common/_types.mjs";
 import Collection from "@common/utils/collection.mjs";
 import PlaceableObject from "../placeables/placeable-object.mjs";
 
-export interface BaseEffectSourceOptions<TObject extends PlaceableObject | null> {
+export interface BaseEffectSourceOptions<
+    TObject extends PlaceableObject | null,
+> {
     /** An optional PlaceableObject which is responsible for this source */
     object?: TObject;
     /** A unique ID for this source. This will be set automatically if an object is provided, otherwise is required. */
@@ -33,7 +35,9 @@ export interface BaseEffectSourceData {
  * source.destroy();                         // Destroy the point source
  * ```
  */
-export default abstract class BaseEffectSource<TObject extends PlaceableObject | null = PlaceableObject | null> {
+export default abstract class BaseEffectSource<
+    TObject extends PlaceableObject | null = PlaceableObject | null,
+> {
     /**
      * An effect source is constructed by providing configuration options.
      * @param options Options which modify the base effect source instance
@@ -119,7 +123,10 @@ export default abstract class BaseEffectSource<TObject extends PlaceableObject |
      * @param data      Provided data for configuration
      * @param [options.reset]   Should source data be reset to default values before applying changes?
      */
-    initialize(data?: Partial<BaseEffectSourceData>, options?: { reset?: boolean }): this;
+    initialize(
+        data?: Partial<BaseEffectSourceData>,
+        options?: { reset?: boolean },
+    ): this;
 
     /**
      * Subclass specific data initialization steps.

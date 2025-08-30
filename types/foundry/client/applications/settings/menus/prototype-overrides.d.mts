@@ -1,4 +1,7 @@
-import { ApplicationConfiguration, ApplicationRenderContext } from "@client/applications/_types.mjs";
+import {
+    ApplicationConfiguration,
+    ApplicationRenderContext,
+} from "@client/applications/_types.mjs";
 import {
     ApplicationV2,
     HandlebarsApplicationMixin,
@@ -9,7 +12,9 @@ import {
 /**
  * A submenu for managing user overrides of PrototypeTokens
  */
-export default class PrototypeOverridesConfig extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class PrototypeOverridesConfig extends HandlebarsApplicationMixin(
+    ApplicationV2,
+) {
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;

@@ -106,8 +106,14 @@ export default class Notifications {
      * @returns The registered notification
      * @see {@link notify}
      */
-    info(message: string | object, options: ProgressNotificationOptions): Readonly<ProgressNotification>;
-    info(message: string | object, options?: NotificationOptions): Readonly<Notification>;
+    info(
+        message: string | object,
+        options: ProgressNotificationOptions,
+    ): Readonly<ProgressNotification>;
+    info(
+        message: string | object,
+        options?: NotificationOptions,
+    ): Readonly<Notification>;
 
     /**
      * Display a notification with the "warning" type.
@@ -116,7 +122,10 @@ export default class Notifications {
      * @returns The registered notification
      * @see {@link notify}
      */
-    warn(message: string | object, options?: NotificationOptions): Readonly<Notification>;
+    warn(
+        message: string | object,
+        options?: NotificationOptions,
+    ): Readonly<Notification>;
 
     /**
      * Display a notification with the "error" type.
@@ -125,7 +134,10 @@ export default class Notifications {
      * @returns The registered notification
      * @see {@link notify}
      */
-    error(message: string | object, options?: NotificationOptions): Readonly<Notification>;
+    error(
+        message: string | object,
+        options?: NotificationOptions,
+    ): Readonly<Notification>;
 
     /**
      * Display a notification with the "success" type.
@@ -134,7 +146,10 @@ export default class Notifications {
      * @returns The registered notification
      * @see {@link notify}
      */
-    success(message: string | object, options?: NotificationOptions): Readonly<Notification>;
+    success(
+        message: string | object,
+        options?: NotificationOptions,
+    ): Readonly<Notification>;
 
     /**
      * Update the progress of the notification.

@@ -39,7 +39,14 @@ export default class MeasuredTemplate<
         redraw: { propagate: ["refresh"] };
         refresh: { propagate: ["refreshState", "refreshShape"]; alias: true };
         refreshState: object;
-        refreshShape: { propagate: ["refreshPosition", "refreshGrid", "refreshText", "refreshTemplate"] };
+        refreshShape: {
+            propagate: [
+                "refreshPosition",
+                "refreshGrid",
+                "refreshText",
+                "refreshTemplate",
+            ];
+        };
         refreshTemplate: object;
         refreshPosition: { propagate: ["refreshGrid"] };
         refreshGrid: object;
@@ -111,13 +118,21 @@ export default class MeasuredTemplate<
     static getCircleShape(distance: number): PIXI.Circle;
 
     /** Get a Conical area of effect given a direction, angle, and distance */
-    static getConeShape(distance: number, direction: number, angle: number): PIXI.Polygon;
+    static getConeShape(
+        distance: number,
+        direction: number,
+        angle: number,
+    ): PIXI.Polygon;
 
     /** Get a Rectangular area of effect given a width and height */
     static getRectShape(distance: number, direction: number): PIXI.Rectangle;
 
     /** Get a rotated Rectangular area of effect given a width, height, and direction */
-    static getRayShape(distance: number, direction: number, width: number): PIXI.Polygon;
+    static getRayShape(
+        distance: number,
+        direction: number,
+        width: number,
+    ): PIXI.Polygon;
 
     /** Update the displayed ruler tooltip text */
     protected _refreshRulerText(): void;
@@ -151,21 +166,39 @@ export default class MeasuredTemplate<
     /*  Interactivity                               */
     /* -------------------------------------------- */
 
-    protected override _canControl(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canControl(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
-    protected override _canHUD(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canHUD(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
-    protected override _canConfigure(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canConfigure(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
-    protected override _canView(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canView(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
     protected override _onClickRight(event: PIXI.FederatedPointerEvent): void;
 }
 
-export default interface MeasuredTemplate<TDocument extends MeasuredTemplateDocument = MeasuredTemplateDocument>
-    extends PlaceableObject<TDocument> {
+export default interface MeasuredTemplate<
+    TDocument extends MeasuredTemplateDocument = MeasuredTemplateDocument,
+> extends PlaceableObject<TDocument> {
     get layer(): TemplateLayer<this>;
 }
 
-export type TemplateShape = Extract<PlaceableShape, PIXI.Circle | PIXI.Polygon | PIXI.Rectangle>;
-export type TemplateRenderFlags = { [K in keyof typeof MeasuredTemplate.RENDER_FLAGS]?: boolean };
+export type TemplateShape = Extract<
+    PlaceableShape,
+    PIXI.Circle | PIXI.Polygon | PIXI.Rectangle
+>;
+export type TemplateRenderFlags = {
+    [K in keyof typeof MeasuredTemplate.RENDER_FLAGS]?: boolean;
+};

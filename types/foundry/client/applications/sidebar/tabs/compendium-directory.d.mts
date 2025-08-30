@@ -1,9 +1,18 @@
-import { ApplicationConfiguration, ApplicationRenderContext } from "@client/applications/_types.mjs";
+import {
+    ApplicationConfiguration,
+    ApplicationRenderContext,
+} from "@client/applications/_types.mjs";
 import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
 import { CompendiumDocument } from "@client/documents/_module.mjs";
-import CompendiumCollection, { CompendiumIndexData } from "@client/documents/collections/compendium-collection.mjs";
+import CompendiumCollection, {
+    CompendiumIndexData,
+} from "@client/documents/collections/compendium-collection.mjs";
 import { DropCanvasData } from "@client/helpers/hooks.mjs";
-import { HandlebarsApplicationMixin, HandlebarsRenderOptions, HandlebarsTemplatePart } from "../../api/_module.mjs";
+import {
+    HandlebarsApplicationMixin,
+    HandlebarsRenderOptions,
+    HandlebarsTemplatePart,
+} from "../../api/_module.mjs";
 import AbstractSidebarTab from "../sidebar-tab.mjs";
 
 export interface CompendiumPackDirectoryContext {
@@ -29,7 +38,9 @@ export interface CompendiumPackDirectoryContext {
     css: string;
 }
 
-export default class CompendiumDirectory extends HandlebarsApplicationMixin(AbstractSidebarTab) {
+export default class CompendiumDirectory extends HandlebarsApplicationMixin(
+    AbstractSidebarTab,
+) {
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;
@@ -69,9 +80,14 @@ export default class CompendiumDirectory extends HandlebarsApplicationMixin(Abst
         options: HandlebarsRenderOptions,
     ): Promise<void>;
 
-    protected override _onRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
+    protected override _onRender(
+        context: ApplicationRenderContext,
+        options: HandlebarsRenderOptions,
+    ): Promise<void>;
 
-    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<ApplicationRenderContext>;
+    protected override _prepareContext(
+        options: HandlebarsRenderOptions,
+    ): Promise<ApplicationRenderContext>;
 
     protected override _preparePartContext(
         partId: string,
@@ -90,13 +106,18 @@ export default class CompendiumDirectory extends HandlebarsApplicationMixin(Abst
     /**
      * Prepare render context for the header part.
      */
-    protected _prepareHeaderContext(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
+    protected _prepareHeaderContext(
+        context: ApplicationRenderContext,
+        options: HandlebarsRenderOptions,
+    ): Promise<void>;
 
     /**
      * Prepare render context for an individual compendium pack.
      * @param pack The compendium pack.
      */
-    protected _preparePackContext(pack: CompendiumCollection): CompendiumPackDirectoryContext;
+    protected _preparePackContext(
+        pack: CompendiumCollection,
+    ): CompendiumPackDirectoryContext;
 
     protected override _preSyncPartState(
         partId: string,
@@ -134,7 +155,10 @@ export default class CompendiumDirectory extends HandlebarsApplicationMixin(Abst
      * @param event The triggering event.
      * @param target The action target.
      */
-    protected _onCreateEntry(event: PointerEvent, target: HTMLElement): Promise<void>;
+    protected _onCreateEntry(
+        event: PointerEvent,
+        target: HTMLElement,
+    ): Promise<void>;
 
     /**
      * Handle creating a new folder in this directory.
@@ -153,14 +177,19 @@ export default class CompendiumDirectory extends HandlebarsApplicationMixin(Abst
      * Handle duplicating a compendium.
      * @param li The compendium target element.
      */
-    protected _onDuplicateCompendium(li: HTMLElement): Promise<CompendiumCollection | void>;
+    protected _onDuplicateCompendium(
+        li: HTMLElement,
+    ): Promise<CompendiumCollection | void>;
 
     /**
      * Handle toggling a compendium type filter.
      * @param event The triggering event.
      * @param type The compendium type to filter by. If omitted, clear all filters.
      */
-    protected _onToggleCompendiumFilterType(event: PointerEvent, type?: string): Promise<this>;
+    protected _onToggleCompendiumFilterType(
+        event: PointerEvent,
+        type?: string,
+    ): Promise<this>;
 
     /**
      * Handle toggling a folder's expanded state.
@@ -186,7 +215,12 @@ export default class CompendiumDirectory extends HandlebarsApplicationMixin(Abst
      * @param element The candidate entry element.
      * @param options Additional options for subclass-specific behavior.
      */
-    protected _onMatchSearchEntry(query: string, packs: Set<string>, element: HTMLElement, options?: object): void;
+    protected _onMatchSearchEntry(
+        query: string,
+        packs: Set<string>,
+        element: HTMLElement,
+        options?: object,
+    ): void;
 
     /**
      * Handle directory searching and filtering.
@@ -195,7 +229,12 @@ export default class CompendiumDirectory extends HandlebarsApplicationMixin(Abst
      * @param rgx The regular expression query that should be matched against.
      * @param html The container to filter entries from.
      */
-    protected _onSearchFilter(event: KeyboardEvent, query: string, rgx: RegExp, html: HTMLElement): void;
+    protected _onSearchFilter(
+        event: KeyboardEvent,
+        query: string,
+        rgx: RegExp,
+        html: HTMLElement,
+    ): void;
 
     /**
      * Identify entries in the collection which match a provided search query.
@@ -255,19 +294,27 @@ export default class CompendiumDirectory extends HandlebarsApplicationMixin(Abst
      * @param pack The compendium pack.
      * @param folder The target folder ID.
      */
-    protected _entryBelongsToFolder(pack: CompendiumCollection, folder: string | undefined): boolean;
+    protected _entryBelongsToFolder(
+        pack: CompendiumCollection,
+        folder: string | undefined,
+    ): boolean;
 
     /**
      * Get the pack instance from its dropped data.
      * @param data The drag data.
      */
-    protected _getDroppedEntryFromData(data: DropCanvasData): Promise<CompendiumCollection>;
+    protected _getDroppedEntryFromData(
+        data: DropCanvasData,
+    ): Promise<CompendiumCollection>;
 
     /**
      * Get drag data for a compendium in this directory.
      * @param collection The pack's collection ID.
      */
-    protected _getEntryDragData(collection: string): { collection: string; type: "Compendium" };
+    protected _getEntryDragData(collection: string): {
+        collection: string;
+        type: "Compendium";
+    };
 
     /**
      * Get drag data for a folder in this directory.
@@ -280,14 +327,20 @@ export default class CompendiumDirectory extends HandlebarsApplicationMixin(Abst
      * @param target The drop target element.
      * @param data The drop data.
      */
-    protected _handleDroppedEntry(target: HTMLElement, data: DropCanvasData): Promise<void>;
+    protected _handleDroppedEntry(
+        target: HTMLElement,
+        data: DropCanvasData,
+    ): Promise<void>;
 
     /**
      * Handle dropping a folder onto the directory.
      * @param target The drop target element.
      * @param data The drop data.
      */
-    protected _handleDroppedFolder(target: HTMLElement, data: DropCanvasData): Promise<void>;
+    protected _handleDroppedFolder(
+        target: HTMLElement,
+        data: DropCanvasData,
+    ): Promise<void>;
 
     /**
      * Highlight folders as drop targets when a drag event enters or exits their area.
@@ -311,6 +364,10 @@ export default class CompendiumDirectory extends HandlebarsApplicationMixin(Abst
      */
     protected _sortRelative(
         pack: CompendiumIndexData | CompendiumDocument,
-        sortData: { sortKey: string; sortBefore: boolean; updateData: Record<string, unknown> },
+        sortData: {
+            sortKey: string;
+            sortBefore: boolean;
+            updateData: Record<string, unknown>;
+        },
     ): void;
 }

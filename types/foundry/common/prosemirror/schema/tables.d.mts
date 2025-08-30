@@ -112,7 +112,9 @@ export const tableCellComplex: {
     parseDOM: [
         {
             tag: "td";
-            getAttrs: (el: HTMLElement) => boolean | { colspan: number; rowspan: number };
+            getAttrs: (
+                el: HTMLElement,
+            ) => boolean | { colspan: number; rowspan: number };
         },
     ];
     toDOM: (node: Node) => ["td", object, 0];

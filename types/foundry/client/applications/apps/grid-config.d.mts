@@ -10,7 +10,8 @@ import {
 } from "../api/_module.mjs";
 import SceneConfig from "../sheets/scene-config.mjs";
 
-interface GridConfigContext<TScene extends Scene = Scene> extends DocumentSheetRenderContext {
+interface GridConfigContext<TScene extends Scene = Scene>
+    extends DocumentSheetRenderContext {
     scene: TScene;
     gridTypes: Record<string, string>;
     scale: number;
@@ -19,7 +20,9 @@ interface GridConfigContext<TScene extends Scene = Scene> extends DocumentSheetR
 }
 
 /** A tool for fine-tuning the grid in a Scene */
-export default class GridConfig<TScene extends Scene = Scene> extends HandlebarsApplicationMixin(DocumentSheetV2) {
+export default class GridConfig<
+    TScene extends Scene = Scene,
+> extends HandlebarsApplicationMixin(DocumentSheetV2) {
     constructor(options: DocumentSheetConfiguration);
 
     static override DEFAULT_OPTIONS: DeepPartial<DocumentSheetConfiguration>;
@@ -29,5 +32,7 @@ export default class GridConfig<TScene extends Scene = Scene> extends Handlebars
     /** Track the Scene Configuration sheet reference. */
     sheet: SceneConfig<TScene>;
 
-    override _prepareContext(options: HandlebarsRenderOptions): Promise<GridConfigContext<TScene>>;
+    override _prepareContext(
+        options: HandlebarsRenderOptions,
+    ): Promise<GridConfigContext<TScene>>;
 }

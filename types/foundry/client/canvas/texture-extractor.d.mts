@@ -11,7 +11,12 @@ export default class TextureExtractor {
      */
     constructor(
         renderer: PIXI.Renderer,
-        config?: { format?: PIXI.FORMATS; controlHash?: boolean; callerName?: string; debug?: boolean },
+        config?: {
+            format?: PIXI.FORMATS;
+            controlHash?: boolean;
+            callerName?: string;
+            debug?: boolean;
+        },
     );
 
     /**
@@ -54,7 +59,14 @@ export default class TextureExtractor {
      */
     extract(
         options?: TexturePixelsExtractionOptions,
-    ): { pixels: Uint8ClampedArray | undefined; width: number; height: number; out?: ArrayBuffer } | undefined;
+    ):
+        | {
+              pixels: Uint8ClampedArray | undefined;
+              width: number;
+              height: number;
+              out?: ArrayBuffer;
+          }
+        | undefined;
     /**
      *
      * @param options Options which configure base64 extraction behavior

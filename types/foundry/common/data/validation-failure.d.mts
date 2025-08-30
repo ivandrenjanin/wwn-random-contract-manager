@@ -82,7 +82,10 @@ export class DataModelValidationError extends Error {
      * @param failure    The failure that triggered this error or an error message
      * @param [params]   Additional Error constructor parameters
      */
-    constructor(failure: DataModelValidationFailure | string, params?: ErrorOptions);
+    constructor(
+        failure: DataModelValidationFailure | string,
+        params?: ErrorOptions,
+    );
 
     /**
      * Retrieve the root failure that caused this error, or a specific sub-failure via a path.

@@ -1,4 +1,7 @@
-import { ApplicationConfiguration, ApplicationRenderOptions } from "../_types.mjs";
+import {
+    ApplicationConfiguration,
+    ApplicationRenderOptions,
+} from "../_types.mjs";
 import ApplicationV2 from "./application.mjs";
 
 export default class DialogV2<
@@ -7,7 +10,9 @@ export default class DialogV2<
 > extends ApplicationV2<TConfig, TRenderOptions> {
     static override DEFAULT_OPTIONS: DeepPartial<DialogV2Configuration>;
 
-    override _initializeApplicationOptions(options: DeepPartial<TConfig>): TConfig;
+    override _initializeApplicationOptions(
+        options: DeepPartial<TConfig>,
+    ): TConfig;
 
     protected override _renderHTML(): Promise<HTMLFormElement>;
 
@@ -22,13 +27,19 @@ export default class DialogV2<
      * @param target The button that was clicked or the default button
      * @param event The triggering event
      */
-    protected _onSubmit(target: HTMLButtonElement, event: PointerEvent | SubmitEvent): Promise<DialogV2>;
+    protected _onSubmit(
+        target: HTMLButtonElement,
+        event: PointerEvent | SubmitEvent,
+    ): Promise<DialogV2>;
 
     protected override _onFirstRender(): Promise<void>;
 
     protected override _attachFrameListeners(): void;
 
-    protected override _replaceHTML(result: unknown, content: HTMLFormElement): void;
+    protected override _replaceHTML(
+        result: unknown,
+        content: HTMLFormElement,
+    ): void;
 
     /**
      * Handle keypresses within the dialog
@@ -40,7 +51,10 @@ export default class DialogV2<
      * @param event The originating click event.
      * @param target The button element that was clicked
      */
-    protected static _onClickButton(event: PointerEvent, target: HTMLButtonElement): void;
+    protected static _onClickButton(
+        event: PointerEvent,
+        target: HTMLButtonElement,
+    ): void;
 
     /**
      * A utility helper to generate a dialog with yes and no buttons.
@@ -59,7 +73,9 @@ export default class DialogV2<
     }: {
         yes?: Partial<DialogV2Button>;
         no?: Partial<DialogV2Button>;
-    } & DeepPartial<DialogV2Configuration & DialogV2WaitOptions>): Promise<boolean>;
+    } & DeepPartial<
+        DialogV2Configuration & DialogV2WaitOptions
+    >): Promise<boolean>;
 
     /**
      * A utility helper to generate a dialog with a single confirmation button.
@@ -71,7 +87,9 @@ export default class DialogV2<
     static prompt({
         ok,
         ...options
-    }: { ok: Partial<DialogV2Button> } & DeepPartial<DialogV2Configuration & DialogV2WaitOptions>): Promise<unknown>;
+    }: { ok: Partial<DialogV2Button> } & DeepPartial<
+        DialogV2Configuration & DialogV2WaitOptions
+    >): Promise<unknown>;
 
     /**
      * Spawn a dialog and wait for it to be dismissed or submitted.
@@ -163,7 +181,10 @@ export type DialogV2ButtonCallback = (
  * @param event The render event.
  * @param dialog The dialog element.
  */
-export type DialogV2RenderCallback = (event: Event, dialog: HTMLDialogElement) => void;
+export type DialogV2RenderCallback = (
+    event: Event,
+    dialog: HTMLDialogElement,
+) => void;
 
 /**
  * @param event The close event

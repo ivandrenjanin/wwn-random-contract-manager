@@ -10,7 +10,10 @@ export interface CompendiumArtInfo {
 }
 
 /** A mapping of compendium pack IDs to Document IDs to art information. */
-export type CompendiumArtMapping = Record<string, Record<string, CompendiumArtInfo>>;
+export type CompendiumArtMapping = Record<
+    string,
+    Record<string, CompendiumArtInfo>
+>;
 
 export interface CompendiumArtDescriptor {
     /** The ID of the package providing the art. */

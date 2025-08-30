@@ -1,9 +1,15 @@
-import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
+import {
+    DatabaseDeleteCallbackOptions,
+    DatabaseUpdateCallbackOptions,
+} from "@common/abstract/_types.mjs";
 import { UserPermission } from "@common/constants.mjs";
 import Token from "../canvas/placeables/token.mjs";
 import UserTargets from "../canvas/placeables/tokens/targets.mjs";
 import { BaseUser, Macro, TokenDocument, UserUUID } from "./_module.mjs";
-import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
+import {
+    ClientDocument,
+    ClientDocumentStatic,
+} from "./abstract/client-document.mjs";
 
 type BaseUserStatic = typeof BaseUser;
 interface ClientBaseUserStatic extends BaseUserStatic, ClientDocumentStatic {}
@@ -100,7 +106,10 @@ export default class User extends ClientBaseUser {
      * @param permission The permission name from USER_PERMISSIONS
      * @param allowed    Whether to allow or restrict the permission
      */
-    assignPermission(permission: UserPermission, allowed: boolean): Promise<this | undefined>;
+    assignPermission(
+        permission: UserPermission,
+        allowed: boolean,
+    ): Promise<this | undefined>;
 
     /**
      * Submit User activity data to the server for broadcast to other players.
@@ -137,7 +146,11 @@ export default class User extends ClientBaseUser {
      * @param queryOptions.timeout The timeout in milliseconds
      * @returns The query result
      */
-    query(queryName: string, queryData: object, queryOptions?: { timeout?: number }): Promise<unknown>;
+    query(
+        queryName: string,
+        queryData: object,
+        queryOptions?: { timeout?: number },
+    ): Promise<unknown>;
 
     /* -------------------------------------------- */
     /*  Event Handlers                              */
@@ -149,7 +162,10 @@ export default class User extends ClientBaseUser {
         userId: string,
     ): void;
 
-    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
+    protected override _onDelete(
+        options: DatabaseDeleteCallbackOptions,
+        userId: string,
+    ): void;
 }
 
 export default interface User {

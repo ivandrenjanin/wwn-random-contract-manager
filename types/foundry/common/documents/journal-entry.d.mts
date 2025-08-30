@@ -1,9 +1,16 @@
-import { Document, DocumentMetadata, EmbeddedCollection } from "../abstract/_module.mjs";
+import {
+    Document,
+    DocumentMetadata,
+    EmbeddedCollection,
+} from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseFolder, BaseJournalEntryPage } from "./_module.mjs";
 
 /** The JournalEntry document model. */
-export default class BaseJournalEntry extends Document<null, JournalEntrySchema> {
+export default class BaseJournalEntry extends Document<
+    null,
+    JournalEntrySchema
+> {
     static override get metadata(): JournalEntryMetadata;
 
     static override defineSchema(): JournalEntrySchema;
@@ -39,7 +46,9 @@ type JournalEntrySchema = {
     /** The name of this JournalEntry */
     name: fields.StringField<string, string, true, false, false>;
     /** The pages contained within this JournalEntry document */
-    pages: fields.EmbeddedCollectionField<BaseJournalEntryPage<BaseJournalEntry>>;
+    pages: fields.EmbeddedCollectionField<
+        BaseJournalEntryPage<BaseJournalEntry>
+    >;
     /** The _id of a Folder which contains this JournalEntry */
     folder: fields.ForeignDocumentField<BaseFolder>;
     /** The numeric sort value which orders this JournalEntry relative to its siblings */

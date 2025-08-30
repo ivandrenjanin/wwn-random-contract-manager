@@ -1,5 +1,11 @@
 import Document from "@common/abstract/document.mjs";
-import { DOMOutputSpec, Mark, MarkType, Node, NodeType } from "prosemirror-model";
+import {
+    DOMOutputSpec,
+    Mark,
+    MarkType,
+    Node,
+    NodeType,
+} from "prosemirror-model";
 import { EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
 
@@ -68,8 +74,18 @@ interface ProseMirrorDropDownConfig {
     entries: ProseMirrorDropDownEntry[];
 }
 
-export type ProseMirrorCommand = (state: EditorState, dispatch: Function, view: EditorView) => boolean;
-export type MenuToggleBlockWrapCommand = (node: NodeType, attrs?: object) => ProseMirrorCommand;
+export type ProseMirrorCommand = (
+    state: EditorState,
+    dispatch: Function,
+    view: EditorView,
+) => boolean;
+export type MenuToggleBlockWrapCommand = (
+    node: NodeType,
+    attrs?: object,
+) => ProseMirrorCommand;
 export type ProseMirrorNodeOutput = (node: Node) => DOMOutputSpec;
-export type ProseMirrorMarkOutput = (mark: Mark, inline: boolean) => DOMOutputSpec;
+export type ProseMirrorMarkOutput = (
+    mark: Mark,
+    inline: boolean,
+) => DOMOutputSpec;
 export type ProseMirrorSliceTransformer = (node: Node) => Node | void;

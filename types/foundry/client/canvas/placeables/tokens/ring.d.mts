@@ -48,7 +48,10 @@ export default class TokenRing {
     /**
      * Rings and background textures UVs and center offset.
      */
-    static texturesData: Record<string, { UVs: Float32Array; center: { x: number; y: number } }>;
+    static texturesData: Record<
+        string,
+        { UVs: Float32Array; center: { x: number; y: number } }
+    >;
 
     /**
      * The token ring shader class definition.
@@ -82,7 +85,10 @@ export default class TokenRing {
      * @param name Name of the texture we want to get UVs.
      * @param scaleCorrection The scale correction applied to UVs.
      */
-    static getTextureUVs(name: string, scaleCorrection?: number): Float32Array | void;
+    static getTextureUVs(
+        name: string,
+        scaleCorrection?: number,
+    ): Float32Array | void;
 
     /**
      * Get ring and background names for a given size.
@@ -177,7 +183,10 @@ export default class TokenRing {
      * @param color Color to flash.
      * @param animationOptions Options to customize the animation.
      */
-    flashColor(color: Color, animationOptions?: CanvasAnimationOptions): Promise<boolean | void>;
+    flashColor(
+        color: Color,
+        animationOptions?: CanvasAnimationOptions,
+    ): Promise<boolean | void>;
 
     /**
      * Create an easing function that spikes in the center. Ideal duration is around 1600ms.

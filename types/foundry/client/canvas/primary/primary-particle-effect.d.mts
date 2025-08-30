@@ -4,7 +4,9 @@ import { CanvasTransformMixin } from "./primary-canvas-object.mjs";
  * A configurable particle effect meant to be used in the PrimaryCanvasGroup.
  * You must provide a full configuration object.
  */
-export default class PrimaryParticleEffect extends CanvasTransformMixin(PIXI.Container) {
+export default class PrimaryParticleEffect extends CanvasTransformMixin(
+    PIXI.Container,
+) {
     constructor(config?: object);
 
     /**

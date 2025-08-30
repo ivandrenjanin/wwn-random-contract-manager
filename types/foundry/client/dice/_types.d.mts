@@ -86,4 +86,9 @@ export interface DiceRollParseNode extends ModifiersRollParseNode {
     faces: string | number | ParentheticalRollParseNode;
 }
 
-export type RollParseArg = null | number | string | RollParseNode | RollParseArg[];
+export type RollParseArg =
+    | null
+    | number
+    | string
+    | RollParseNode
+    | RollParseArg[];

@@ -1,4 +1,10 @@
-import { WallDirection, WallDoorState, WallDoorType, WallMovementType, WallSenseType } from "@common/constants.mjs";
+import {
+    WallDirection,
+    WallDoorState,
+    WallDoorType,
+    WallMovementType,
+    WallSenseType,
+} from "@common/constants.mjs";
 import { Document, DocumentMetadata } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import BaseScene from "./scene.mjs";
@@ -11,7 +17,9 @@ import BaseScene from "./scene.mjs";
  * @param data    Initial data from which to construct the Wall
  * @param context Construction context options
  */
-export default class BaseWall<TParent extends BaseScene | null> extends Document<TParent, WallSchema> {
+export default class BaseWall<
+    TParent extends BaseScene | null,
+> extends Document<TParent, WallSchema> {
     /* -------------------------------------------- */
     /*  Model Configuration                         */
     /* -------------------------------------------- */
@@ -46,7 +54,13 @@ type WallSchema = {
     /** The illumination restriction type of this wall */
     light: fields.NumberField<WallSenseType, WallSenseType, true, true, true>;
     /** The movement restriction type of this wall */
-    move: fields.NumberField<WallMovementType, WallMovementType, true, true, true>;
+    move: fields.NumberField<
+        WallMovementType,
+        WallMovementType,
+        true,
+        true,
+        true
+    >;
     /** The visual restriction type of this wall */
     sight: fields.NumberField<WallSenseType, WallSenseType, true, true, true>;
     /** The auditory restriction type of this wall */

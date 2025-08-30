@@ -2,7 +2,10 @@ import { ElevatedPoint } from "@common/_types.mjs";
 import { PointSourcePolygonConfig } from "../geometry/_module.mjs";
 import Edge from "../geometry/edges/edge.mjs";
 import { PlaceableObject } from "../placeables/_module.mjs";
-import BaseEffectSource, { BaseEffectSourceData, BaseEffectSourceOptions } from "./base-effect-source.mjs";
+import BaseEffectSource, {
+    BaseEffectSourceData,
+    BaseEffectSourceOptions,
+} from "./base-effect-source.mjs";
 
 export interface PointEffectSourceData {
     /** The radius of the source */

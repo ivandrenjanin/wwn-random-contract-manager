@@ -4,7 +4,9 @@ import CanvasGroupMixin from "./canvas-group-mixin.mjs";
 /**
  * A container group which contains the primary canvas group and the effects canvas group.
  */
-export default class EnvironmentCanvasGroup extends CanvasGroupMixin(PIXI.Container) {
+export default class EnvironmentCanvasGroup extends CanvasGroupMixin(
+    PIXI.Container,
+) {
     static override groupName: "environment";
 
     /**

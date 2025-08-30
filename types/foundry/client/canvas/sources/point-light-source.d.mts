@@ -1,16 +1,23 @@
 import { CanvasVisibilityTestConfiguration } from "@client/_module.mjs";
 import { PointSourcePolygonConfig } from "../geometry/_types.mjs";
-import { AmbientLight, PlaceableObject, Token } from "../placeables/_module.mjs";
+import {
+    AmbientLight,
+    PlaceableObject,
+    Token,
+} from "../placeables/_module.mjs";
 import BaseLightSource from "./base-light-source.mjs";
 import { PointEffectSource } from "./point-effect-source.mjs";
 
 declare const PointEffectBaseLightSource: {
-    new <TObject extends Token | AmbientLight | null>(...args: any): BaseLightSource<TObject> & PointEffectSource;
+    new <TObject extends Token | AmbientLight | null>(
+        ...args: any
+    ): BaseLightSource<TObject> & PointEffectSource;
 } & Omit<typeof BaseLightSource, "new"> &
     typeof PointEffectSource;
 
-interface PointEffectBaseLightSource<TObject extends AmbientLight | Token | null>
-    extends InstanceType<typeof PointEffectBaseLightSource<TObject>> {}
+interface PointEffectBaseLightSource<
+    TObject extends AmbientLight | Token | null,
+> extends InstanceType<typeof PointEffectBaseLightSource<TObject>> {}
 
 /**
  * A specialized subclass of the BaseLightSource which renders a source of light as a point-based effect.
@@ -43,7 +50,10 @@ export default class PointLightSource<
      * @param config The visibility test configuration
      * @returns Is the target object visible to this source?
      */
-    testVisibility({ tests, object }: CanvasVisibilityTestConfiguration): boolean;
+    testVisibility({
+        tests,
+        object,
+    }: CanvasVisibilityTestConfiguration): boolean;
 
     /**
      * Can this LightSource theoretically detect a certain object based on its properties?

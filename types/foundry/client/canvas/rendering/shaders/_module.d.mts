@@ -20,26 +20,56 @@ export { BlackHoleDarknessShader } from "./lighting/effects/black-hole.mjs";
 export { ChromaColorationShader } from "./lighting/effects/chroma.mjs";
 export { EmanationColorationShader } from "./lighting/effects/emanation.mjs";
 export { EnergyFieldColorationShader } from "./lighting/effects/energy-field.mjs";
-export { FairyLightColorationShader, FairyLightIlluminationShader } from "./lighting/effects/fairy-light.mjs";
-export { FlameColorationShader, FlameIlluminationShader } from "./lighting/effects/flame.mjs";
+export {
+    FairyLightColorationShader,
+    FairyLightIlluminationShader,
+} from "./lighting/effects/fairy-light.mjs";
+export {
+    FlameColorationShader,
+    FlameIlluminationShader,
+} from "./lighting/effects/flame.mjs";
 export { FogColorationShader } from "./lighting/effects/fog.mjs";
 export { ForceGridColorationShader } from "./lighting/effects/force-grid.mjs";
-export { GhostLightColorationShader, GhostLightIlluminationShader } from "./lighting/effects/ghost-light.mjs";
+export {
+    GhostLightColorationShader,
+    GhostLightIlluminationShader,
+} from "./lighting/effects/ghost-light.mjs";
 export { HexaDomeColorationShader } from "./lighting/effects/hexa-dome.mjs";
 export { LightDomeColorationShader } from "./lighting/effects/light-dome.mjs";
 export { MagicalGloomDarknessShader } from "./lighting/effects/magical-gloom.mjs";
-export { PulseColorationShader, PulseIlluminationShader } from "./lighting/effects/pulse.mjs";
+export {
+    PulseColorationShader,
+    PulseIlluminationShader,
+} from "./lighting/effects/pulse.mjs";
 export { RadialRainbowColorationShader } from "./lighting/effects/radial-rainbow.mjs";
 export { RevolvingColorationShader } from "./lighting/effects/revolving-light.mjs";
 export { RoilingDarknessShader } from "./lighting/effects/roiling-mass.mjs";
-export { SirenColorationShader, SirenIlluminationShader } from "./lighting/effects/siren-light.mjs";
-export { SmokePatchColorationShader, SmokePatchIlluminationShader } from "./lighting/effects/smoke-patch.mjs";
+export {
+    SirenColorationShader,
+    SirenIlluminationShader,
+} from "./lighting/effects/siren-light.mjs";
+export {
+    SmokePatchColorationShader,
+    SmokePatchIlluminationShader,
+} from "./lighting/effects/smoke-patch.mjs";
 export { StarLightColorationShader } from "./lighting/effects/star-light.mjs";
-export { SunburstColorationShader, SunburstIlluminationShader } from "./lighting/effects/sunburst.mjs";
+export {
+    SunburstColorationShader,
+    SunburstIlluminationShader,
+} from "./lighting/effects/sunburst.mjs";
 export { SwirlingRainbowColorationShader } from "./lighting/effects/swirling-rainbow.mjs";
-export { TorchColorationShader, TorchIlluminationShader } from "./lighting/effects/torch.mjs";
-export { VortexColorationShader, VortexIlluminationShader } from "./lighting/effects/vortex.mjs";
-export { WaveColorationShader, WaveIlluminationShader } from "./lighting/effects/wave.mjs";
+export {
+    TorchColorationShader,
+    TorchIlluminationShader,
+} from "./lighting/effects/torch.mjs";
+export {
+    VortexColorationShader,
+    VortexIlluminationShader,
+} from "./lighting/effects/vortex.mjs";
+export {
+    WaveColorationShader,
+    WaveIlluminationShader,
+} from "./lighting/effects/wave.mjs";
 
 // Vision
 export { default as BackgroundVisionShader } from "./vision/background-vision.mjs";
@@ -49,7 +79,10 @@ export { default as IlluminationVisionShader } from "./vision/illumination-visio
 
 // Vision effects
 export { AmplificationBackgroundVisionShader } from "./vision/effects/amplification.mjs";
-export { WaveBackgroundVisionShader, WaveColorationVisionShader } from "./vision/effects/wave.mjs";
+export {
+    WaveBackgroundVisionShader,
+    WaveColorationVisionShader,
+} from "./vision/effects/wave.mjs";
 
 // Weather
 export { default as AbstractWeatherShader } from "./weather/base-weather.mjs";

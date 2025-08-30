@@ -100,5 +100,7 @@ export class RegionPolygonTree extends RegionPolygonTreeNode {
     /**
      * Create the tree from a Clipper polygon tree.
      */
-    static _fromClipperPolyTree(clipperPolyTree: ClipperLib.PolyTree): RegionPolygonTree;
+    static _fromClipperPolyTree(
+        clipperPolyTree: ClipperLib.PolyTree,
+    ): RegionPolygonTree;
 }

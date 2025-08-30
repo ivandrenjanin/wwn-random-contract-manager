@@ -1,10 +1,16 @@
-import type { ApplicationFormConfiguration, ApplicationRenderContext, ApplicationRenderOptions } from "../_types.d.mts";
+import type {
+    ApplicationFormConfiguration,
+    ApplicationRenderContext,
+    ApplicationRenderOptions,
+} from "../_types.d.mts";
 import type ApplicationV2 from "./application.d.mts";
 
 /** Augment an Application class with [Handlebars](https://handlebarsjs.com) template rendering behavior. */
 /* eslint-disable @typescript-eslint/no-unused-expressions, no-unused-expressions */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types @typescript-eslint/no-explicit-any
-export default function HandlebarsApplicationMixin<TBase extends AbstractConstructorOf<ApplicationV2<any>>>(
+export default function HandlebarsApplicationMixin<
+    TBase extends AbstractConstructorOf<ApplicationV2<any>>,
+>(
     BaseApplication: TBase,
 ): ConstructorOf<HandlebarsApplication> & HandlebarsApplicationStatic & TBase;
 
@@ -14,10 +20,14 @@ export class HandlebarsApplication extends ApplicationV2 {
     /** A record of all rendered template parts. */
     get parts(): Record<string, HTMLElement>;
 
-    protected override _configureRenderOptions(options: HandlebarsRenderOptions): void;
+    protected override _configureRenderOptions(
+        options: HandlebarsRenderOptions,
+    ): void;
 
     /** Allow subclasses to dynamically configure render parts. */
-    protected _configureRenderParts(options: HandlebarsRenderOptions): Record<string, HandlebarsTemplatePart>;
+    protected _configureRenderParts(
+        options: HandlebarsRenderOptions,
+    ): Record<string, HandlebarsTemplatePart>;
 
     /**
      * Render each configured application part using Handlebars templates.
@@ -80,7 +90,12 @@ export class HandlebarsApplication extends ApplicationV2 {
      * @param priorElement            The prior rendered HTML element for the part
      * @param state                   A state object which is used to synchronize after replacement
      */
-    protected _syncPartState(partId: string, newElement: HTMLElement, priorElement: HTMLElement, state: object): void;
+    protected _syncPartState(
+        partId: string,
+        newElement: HTMLElement,
+        priorElement: HTMLElement,
+        state: object,
+    ): void;
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers                */
@@ -92,7 +107,11 @@ export class HandlebarsApplication extends ApplicationV2 {
      * @param htmlElement  The rendered HTML element for the part
      * @param options       Rendering options passed to the render method
      */
-    protected _attachPartListeners(partId: string, htmlElement: HTMLElement, options: HandlebarsRenderOptions): void;
+    protected _attachPartListeners(
+        partId: string,
+        htmlElement: HTMLElement,
+        options: HandlebarsRenderOptions,
+    ): void;
 }
 
 declare interface HandlebarsApplicationStatic {

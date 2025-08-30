@@ -1,4 +1,7 @@
-import { SettingConfig, TrackedAttributesDescription } from "@client/_types.mjs";
+import {
+    SettingConfig,
+    TrackedAttributesDescription,
+} from "@client/_types.mjs";
 import { TurnMarkerData } from "@client/canvas/placeables/tokens/_module.mjs";
 import CombatConfiguration from "@client/data/combat-config.mjs";
 import { ApplicationConfiguration, FormFooterButton } from "../_types.mjs";
@@ -22,10 +25,14 @@ export interface CombatTrackerContext {
 }
 
 /** The Application responsible for configuring the CombatTracker and its contents. */
-export default class CombatTrackerConfig extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class CombatTrackerConfig extends HandlebarsApplicationMixin(
+    ApplicationV2,
+) {
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;
 
-    override _prepareContext(options: HandlebarsRenderOptions): Promise<CombatTrackerContext>;
+    override _prepareContext(
+        options: HandlebarsRenderOptions,
+    ): Promise<CombatTrackerContext>;
 }

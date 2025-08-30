@@ -24,5 +24,8 @@ export default class Playlists extends WorldCollection<Playlist> {
      * @param scene The Scene entity being updated
      * @param data  The incremental update data
      */
-    protected _onChangeScene(scene: Scene, data: Record<string, unknown>): Promise<void>;
+    protected _onChangeScene(
+        scene: Scene,
+        data: Record<string, unknown>,
+    ): Promise<void>;
 }

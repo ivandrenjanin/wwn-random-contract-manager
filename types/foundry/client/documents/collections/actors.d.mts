@@ -1,4 +1,6 @@
-import WorldCollection, { FromCompendiumOptions } from "../abstract/world-collection.mjs";
+import WorldCollection, {
+    FromCompendiumOptions,
+} from "../abstract/world-collection.mjs";
 import Actor from "../actor.mjs";
 
 /**
@@ -14,7 +16,9 @@ import Actor from "../actor.mjs";
  * let actor = game.actors.get(actorId);
  * ```
  */
-export default class Actors<TDocument extends Actor<null>> extends WorldCollection<TDocument> {
+export default class Actors<
+    TDocument extends Actor<null>,
+> extends WorldCollection<TDocument> {
     /**
      * A mapping of synthetic Token Actors which are currently active within the viewed Scene.
      * Each Actor is referenced by the Token.id.

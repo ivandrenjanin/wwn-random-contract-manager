@@ -8,7 +8,8 @@ import PlaceableObject from "./placeable-object.mjs";
  * Each Drawing is a placeable object in the DrawingsLayer.
  */
 export default class Drawing<
-    TDocument extends DrawingDocument<Scene | null> = DrawingDocument<Scene | null>,
+    TDocument extends
+        DrawingDocument<Scene | null> = DrawingDocument<Scene | null>,
 > extends PlaceableObject<TDocument> {
     constructor(document: TDocument);
 
@@ -90,7 +91,17 @@ export default class Drawing<
     ): void;
 
     /** Refresh the boundary frame which outlines the Drawing shape */
-    protected _refreshFrame({ x, y, width, height }: { x: number; y: number; width: number; height: number }): void;
+    protected _refreshFrame({
+        x,
+        y,
+        width,
+        height,
+    }: {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+    }): void;
 
     /** Add a new polygon point to the drawing, ensuring it differs from the last one */
     protected _addPoint(position: number, temporary?: boolean): void;
@@ -102,13 +113,18 @@ export default class Drawing<
 
     protected override _onRelease(options?: object): void;
 
-    override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
+    override _onDelete(
+        options: DatabaseDeleteCallbackOptions,
+        userId: string,
+    ): void;
 
     /** Handle text entry in an active text tool */
     protected _onDrawingTextKeydown(event: KeyboardEvent): void;
 }
 
-export default interface Drawing<TDocument extends DrawingDocument<Scene | null> = DrawingDocument<Scene | null>>
-    extends PlaceableObject<TDocument> {
+export default interface Drawing<
+    TDocument extends
+        DrawingDocument<Scene | null> = DrawingDocument<Scene | null>,
+> extends PlaceableObject<TDocument> {
     get layer(): DrawingsLayer<this>;
 }

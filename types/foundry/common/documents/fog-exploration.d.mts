@@ -1,5 +1,9 @@
 import { ImageFilePath } from "@common/constants.mjs";
-import { DatabaseUpdateCallbackOptions, Document, DocumentMetadata } from "../abstract/_module.mjs";
+import {
+    DatabaseUpdateCallbackOptions,
+    Document,
+    DocumentMetadata,
+} from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseScene, BaseUser } from "./_module.mjs";
 
@@ -11,7 +15,10 @@ import { BaseScene, BaseUser } from "./_module.mjs";
  * @param data    Initial data from which to construct the FogExploration
  * @param context Construction context options
  */
-export default class BaseFogExploration extends Document<null, FogExplorationSchema> {
+export default class BaseFogExploration extends Document<
+    null,
+    FogExplorationSchema
+> {
     static override get metadata(): FogExplorationMetadata;
 
     static override defineSchema(): FogExplorationSchema;
@@ -53,4 +60,5 @@ type FogExplorationSchema = {
     flags: fields.DocumentFlagsField;
 };
 
-export type FogExplorationSource = fields.SourceFromSchema<FogExplorationSchema>;
+export type FogExplorationSource =
+    fields.SourceFromSchema<FogExplorationSchema>;

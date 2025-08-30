@@ -43,7 +43,11 @@ export default class ClientIssues {
      * @param options.decrement Decrement the counter rather than incrementing it.
      * @internal
      */
-    _countDocumentSubType(cls: typeof Document, source: object, options?: { decrement?: boolean }): void;
+    _countDocumentSubType(
+        cls: typeof Document,
+        source: object,
+        options?: { decrement?: boolean },
+    ): void;
 
     /**
      * Track a validation failure that occurred in a WorldCollection.

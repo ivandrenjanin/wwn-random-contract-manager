@@ -7,7 +7,5 @@
         "declarationDir": "./",
         "rootDir": "./"
     },
-    "include": [
-        "**/*.d.ts"
-    ]
+    "include": ["**/*.d.ts"]
 }

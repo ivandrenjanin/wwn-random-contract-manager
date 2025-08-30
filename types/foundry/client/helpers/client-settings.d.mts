@@ -6,7 +6,8 @@ import Setting from "@client/documents/setting.mjs";
 import { RollMode } from "@common/constants.mjs";
 import Collection from "@common/utils/collection.mjs";
 
-export interface ClientSettingsStorage extends Map<"client" | "world" | "user", Storage | WorldSettings> {
+export interface ClientSettingsStorage
+    extends Map<"client" | "world" | "user", Storage | WorldSettings> {
     get(key: "client"): Storage;
     get(key: "world"): WorldSettings;
     get(key: "user"): WorldSettings;
@@ -21,7 +22,10 @@ export default class ClientSettings {
     settings: ClientSettingsMap;
 
     /** Registered settings menus which trigger secondary applications */
-    menus: Map<string, { type: ConstructorOf<Application> | ConstructorOf<ApplicationV2> }>;
+    menus: Map<
+        string,
+        { type: ConstructorOf<Application> | ConstructorOf<ApplicationV2> }
+    >;
 
     /**
      * The storage interfaces used for persisting settings
@@ -109,11 +113,17 @@ export default class ClientSettings {
      * @param module    The module namespace under which the setting is registered
      * @param key       The setting key to retrieve
      */
-    get(module: "core", key: "compendiumConfiguration"): Record<string, { private: boolean; locked: boolean }>;
+    get(
+        module: "core",
+        key: "compendiumConfiguration",
+    ): Record<string, { private: boolean; locked: boolean }>;
     get(module: "core", key: "fontSize"): number;
     get(module: "core", key: "noCanvas"): boolean;
     get(module: "core", key: "rollMode"): RollMode;
-    get(module: "core", key: "uiConfig"): { colorScheme: { applications: string; interface: string } };
+    get(
+        module: "core",
+        key: "uiConfig",
+    ): { colorScheme: { applications: string; interface: string } };
     get(module: string, key: string): unknown;
 
     /**
@@ -126,8 +136,13 @@ export default class ClientSettings {
 }
 
 interface SettingRegistration<
-    TChoices extends Record<string, unknown> | undefined = Record<string, unknown> | undefined,
-> extends Omit<SettingConfig<TChoices>, "config" | "key" | "namespace" | "scope"> {
+    TChoices extends Record<string, unknown> | undefined =
+        | Record<string, unknown>
+        | undefined,
+> extends Omit<
+        SettingConfig<TChoices>,
+        "config" | "key" | "namespace" | "scope"
+    > {
     config?: boolean;
     scope?: "client" | "world";
 }
@@ -138,11 +153,18 @@ interface ClientSettingsMap extends Map<string, SettingConfig> {
         default: {
             resource: string;
             skipDefeated: boolean;
-            turnMarker: { enabled: boolean; animation: string; src: string; disposition: boolean };
+            turnMarker: {
+                enabled: boolean;
+                animation: string;
+                src: string;
+                disposition: boolean;
+            };
         };
     };
     get(key: "core.dynamicTokenRing"): SettingConfig & { default: string };
-    get(key: "core.dynamicTokenRingFitMode"): SettingConfig & { default: "grid" | "subject" };
+    get(
+        key: "core.dynamicTokenRingFitMode",
+    ): SettingConfig & { default: "grid" | "subject" };
     get(key: "core.notesDisplayToggle"): SettingConfig & { default: boolean };
     get(key: "core.tokenAutoRotate"): SettingConfig & { default: boolean };
     get(key: string): SettingConfig | undefined;

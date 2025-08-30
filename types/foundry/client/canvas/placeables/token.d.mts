@@ -17,14 +17,23 @@ import PolygonVertex from "../geometry/edges/vertex.mjs";
 import { TokenLayer } from "../layers/_module.mjs";
 import { PlaceablesLayerPointerEvent } from "../layers/base/placeables-layer.mjs";
 import PrimarySpriteMesh from "../primary/primary-sprite-mesh.mjs";
-import { PointLightSource, PointVisionSource, VisionSourceData } from "../sources/_module.mjs";
+import {
+    PointLightSource,
+    PointVisionSource,
+    VisionSourceData,
+} from "../sources/_module.mjs";
 import { LightSourceData } from "../sources/base-light-source.mjs";
 import PlaceableObject, { PlaceableShape } from "./placeable-object.mjs";
-import Region, { RegionMovementSegment, RegionMovementWaypoint } from "./region.mjs";
+import Region, {
+    RegionMovementSegment,
+    RegionMovementWaypoint,
+} from "./region.mjs";
 import { BaseTokenRuler } from "./tokens/_module.mjs";
 
 /** A Token is an implementation of PlaceableObject that represents an Actor within a viewed Scene on the game canvas. */
-export default class Token<TDocument extends TokenDocument = TokenDocument> extends PlaceableObject<TDocument> {
+export default class Token<
+    TDocument extends TokenDocument = TokenDocument,
+> extends PlaceableObject<TDocument> {
     constructor(document: TDocument);
 
     static override embeddedName: "Token";
@@ -157,7 +166,10 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
     get center(): PIXI.Point;
 
     /** The Token's central position, adjusted in each direction by one or zero pixels to offset it relative to walls. */
-    getMovementAdjustedPoint(point: Point, options?: { offsetX: number; offsetY: number }): Point;
+    getMovementAdjustedPoint(
+        point: Point,
+        options?: { offsetX: number; offsetY: number },
+    ): Point;
 
     /** The HTML source element for the primary Tile texture */
     get sourceElement(): HTMLImageElement | HTMLVideoElement;
@@ -376,7 +388,11 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
      * @param bar The Bar container
      * @param data Resource data for this bar
      */
-    protected _drawBar(number: number, bar: PIXI.Graphics, data: TokenResourceData): void;
+    protected _drawBar(
+        number: number,
+        bar: PIXI.Graphics,
+        data: TokenResourceData,
+    ): void;
 
     /** Return the text which should be displayed in a token's tooltip field */
     protected _getTooltipText(): string;
@@ -394,10 +410,16 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
     protected _drawEffects(): Promise<void>;
 
     /** Draw a status effect icon */
-    protected _drawEffect(src: string, tint: ColorSource | null): Promise<PIXI.Sprite | void>;
+    protected _drawEffect(
+        src: string,
+        tint: ColorSource | null,
+    ): Promise<PIXI.Sprite | void>;
 
     /** Draw the overlay effect icon */
-    protected _drawOverlay(src: string, tint: number | null): Promise<PIXI.Sprite>;
+    protected _drawOverlay(
+        src: string,
+        tint: number | null,
+    ): Promise<PIXI.Sprite>;
 
     /** Refresh the display of status effects, adjusting their position for the token width and height. */
     protected _refreshEffects(): void;
@@ -446,7 +468,10 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
      * @param [options.ontick]             A on-tick callback
      * @returns    A promise which resolves once the animation has finished or stopped
      */
-    animate(to: Partial<TokenAnimationData>, options?: TokenAnimationOptions): Promise<void>;
+    animate(
+        to: Partial<TokenAnimationData>,
+        options?: TokenAnimationOptions,
+    ): Promise<void>;
 
     /**
      * Get the duration of the animation.
@@ -483,7 +508,10 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
      * @param changed    The animation data that changed
      * @param context    The animation context
      */
-    protected _onAnimationUpdate(changed: Partial<TokenAnimationData>, context: TokenAnimationContext): void;
+    protected _onAnimationUpdate(
+        changed: Partial<TokenAnimationData>,
+        context: TokenAnimationContext,
+    ): void;
 
     /**
      * Terminate the animations of this particular Token, if exists.
@@ -508,16 +536,28 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
      *                                     * all: returns a sorted array of PolygonVertex instances
      *                                     * closest: returns a PolygonVertex instance or null
      */
-    checkCollision(destination: Point, { type, mode }: { type?: WallRestrictionType; mode: "closest" }): PolygonVertex;
-    checkCollision(destination: Point, { type, mode }: { type?: WallRestrictionType; mode: "any" }): boolean;
-    checkCollision(destination: Point, { type, mode }: { type?: WallRestrictionType; mode: "all" }): PolygonVertex[];
+    checkCollision(
+        destination: Point,
+        { type, mode }: { type?: WallRestrictionType; mode: "closest" },
+    ): PolygonVertex;
+    checkCollision(
+        destination: Point,
+        { type, mode }: { type?: WallRestrictionType; mode: "any" },
+    ): boolean;
+    checkCollision(
+        destination: Point,
+        { type, mode }: { type?: WallRestrictionType; mode: "all" },
+    ): PolygonVertex[];
     checkCollision(
         destination: Point,
         { type, mode }?: { type?: WallRestrictionType; mode?: undefined },
     ): PolygonVertex[];
     checkCollision(
         destination: Point,
-        { type, mode }?: { type?: WallRestrictionType; mode?: "any" | "all" | "closest" },
+        {
+            type,
+            mode,
+        }?: { type?: WallRestrictionType; mode?: "any" | "all" | "closest" },
     ): boolean | PolygonVertex | PolygonVertex[];
 
     /**
@@ -555,7 +595,10 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
      */
     testInsideRegion(
         region: Region,
-        position: Point | (Point & { elevation: number }) | { elevation: number },
+        position:
+            | Point
+            | (Point & { elevation: number })
+            | { elevation: number },
     ): boolean;
 
     /**
@@ -597,7 +640,11 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
      */
     setTarget(
         targeted?: boolean,
-        context?: { user?: User | null; releaseOthers?: boolean; groupSelection?: boolean },
+        context?: {
+            user?: User | null;
+            releaseOthers?: boolean;
+            groupSelection?: boolean;
+        },
     ): void;
 
     /** The external radius of the token in pixels. */
@@ -668,7 +715,10 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
      */
     _removeAllFilterEffects(): void;
 
-    protected override _onControl(options?: { releaseOthers?: boolean; pan?: boolean }): void;
+    protected override _onControl(options?: {
+        releaseOthers?: boolean;
+        pan?: boolean;
+    }): void;
 
     protected override _onRelease(options?: object): void;
 
@@ -685,28 +735,50 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
      */
     get _isRulerActive(): boolean;
 
-    protected override _canControl(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canControl(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
-    protected override _canHUD(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canHUD(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
-    protected override _canConfigure(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canConfigure(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
-    protected override _canHover(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canHover(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
-    protected override _canView(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canView(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
-    protected override _canDrag(user: User, event?: PIXI.FederatedEvent): boolean;
+    protected override _canDrag(
+        user: User,
+        event?: PIXI.FederatedEvent,
+    ): boolean;
 
     protected override _onHoverIn(
         event: PIXI.FederatedPointerEvent,
         { hoverOutOthers }?: { hoverOutOthers?: boolean },
     ): boolean | void;
 
-    protected override _onHoverOut(event: PIXI.FederatedPointerEvent): boolean | void;
+    protected override _onHoverOut(
+        event: PIXI.FederatedPointerEvent,
+    ): boolean | void;
 
     protected override _onClickLeft(event: TokenPointerEvent<this>): void;
 
-    protected override _propagateLeftClick(event: PIXI.FederatedPointerEvent): boolean;
+    protected override _propagateLeftClick(
+        event: PIXI.FederatedPointerEvent,
+    ): boolean;
 
     protected override _onClickLeft2(event: PIXI.FederatedPointerEvent): void;
 
@@ -714,18 +786,24 @@ export default class Token<TDocument extends TokenDocument = TokenDocument> exte
 
     protected override _onDragLeftStart(event: TokenPointerEvent<this>): void;
 
-    protected override _prepareDragLeftDropUpdates(event: PIXI.FederatedEvent): Record<string, unknown>[] | null;
+    protected override _prepareDragLeftDropUpdates(
+        event: PIXI.FederatedEvent,
+    ): Record<string, unknown>[] | null;
 
     protected override _onDragLeftMove(event: TokenPointerEvent<this>): void;
 
     protected override _onDragEnd(): void;
 }
 
-export default interface Token<TDocument extends TokenDocument = TokenDocument> extends PlaceableObject<TDocument> {
+export default interface Token<TDocument extends TokenDocument = TokenDocument>
+    extends PlaceableObject<TDocument> {
     get layer(): TokenLayer<this>;
 }
 
-type TokenShape = Extract<PlaceableShape, PIXI.Circle | PIXI.Polygon | PIXI.Rectangle>;
+type TokenShape = Extract<
+    PlaceableShape,
+    PIXI.Circle | PIXI.Polygon | PIXI.Rectangle
+>;
 
 interface TokenResourceData {
     attribute: string;
@@ -735,7 +813,8 @@ interface TokenResourceData {
     editable: boolean;
 }
 
-interface TokenPointerEvent<T extends Token> extends PlaceablesLayerPointerEvent<T> {
+interface TokenPointerEvent<T extends Token>
+    extends PlaceablesLayerPointerEvent<T> {
     interactionData: PlaceablesLayerPointerEvent<T>["interactionData"] & {
         clones?: T[];
     };

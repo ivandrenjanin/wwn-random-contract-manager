@@ -18,7 +18,11 @@ export class EventEmitter {
      * @param options Options which configure the event listener
      * @param options.once Should the event only be responded to once and then removed
      */
-    addEventListener(type: string, listener: EmittedEventListener, options?: { once?: boolean }): void;
+    addEventListener(
+        type: string,
+        listener: EmittedEventListener,
+        options?: { once?: boolean },
+    ): void;
 
     /**
      * Remove an event listener for a certain type of event.

@@ -27,5 +27,9 @@ export default class HTMLEnrichedContentElement extends HTMLElement {
      * @param oldValue The old value: null indicates the attribute was not present.
      * @param newValue The new value: null indicates the attribute is removed.
      */
-    attributeChangedCallback(attrName: string, oldValue: string | null, newValue: string | null): void;
+    attributeChangedCallback(
+        attrName: string,
+        oldValue: string | null,
+        newValue: string | null,
+    ): void;
 }

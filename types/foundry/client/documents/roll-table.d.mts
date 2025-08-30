@@ -1,22 +1,37 @@
 import DocumentSheetV2 from "@client/applications/api/document-sheet.mjs";
-import { DatabaseCreateOperation, DatabaseDeleteOperation } from "@common/abstract/_types.mjs";
+import {
+    DatabaseCreateOperation,
+    DatabaseDeleteOperation,
+} from "@common/abstract/_types.mjs";
 import Document from "@common/abstract/document.mjs";
 import EmbeddedCollection from "@common/abstract/embedded-collection.mjs";
 import { RollMode } from "@common/constants.mjs";
 import { ChatMessageCreateOperation } from "@common/documents/chat-message.mjs";
 import Roll from "../dice/roll.mjs";
-import { BaseRollTable, ChatMessage, Folder, RollTableSource, TableResult } from "./_module.mjs";
-import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
+import {
+    BaseRollTable,
+    ChatMessage,
+    Folder,
+    RollTableSource,
+    TableResult,
+} from "./_module.mjs";
+import {
+    ClientDocument,
+    ClientDocumentStatic,
+} from "./abstract/client-document.mjs";
 import CompendiumCollection from "./collections/compendium-collection.mjs";
 
 type BaseRollTableStatic = typeof BaseRollTable;
-interface ClientBaseRollTableStatic extends BaseRollTableStatic, ClientDocumentStatic {}
+interface ClientBaseRollTableStatic
+    extends BaseRollTableStatic,
+        ClientDocumentStatic {}
 
 declare const ClientBaseRollTable: {
     new (...args: any): BaseRollTable & ClientDocument<null>;
 } & ClientBaseRollTableStatic;
 
-interface ClientBaseRollTable extends InstanceType<typeof ClientBaseRollTable> {}
+interface ClientBaseRollTable
+    extends InstanceType<typeof ClientBaseRollTable> {}
 
 /**
  * The client-side RollTable document which extends the common BaseRollTable abstraction.
@@ -94,7 +109,12 @@ export default class RollTable extends ClientBaseRollTable {
             recursive,
             displayChat,
             rollMode,
-        }?: { roll?: Roll | null; recursive?: boolean; displayChat?: boolean; rollMode?: RollMode | null },
+        }?: {
+            roll?: Roll | null;
+            recursive?: boolean;
+            displayChat?: boolean;
+            rollMode?: RollMode | null;
+        },
     ): Promise<RollTableDraw<this>>;
 
     /** Normalize the probabilities of rolling each item in the RollTable based on their assigned weights */
@@ -172,7 +192,10 @@ export default class RollTable extends ClientBaseRollTable {
      * @param folder  The Folder entity from which to create a roll table
      * @param operation Additional options passed to the RollTable.create method
      */
-    static fromFolder(folder: Folder, operation?: DatabaseCreateOperation<null>): Promise<RollTable | undefined>;
+    static fromFolder(
+        folder: Folder,
+        operation?: DatabaseCreateOperation<null>,
+    ): Promise<RollTable | undefined>;
 }
 
 export default interface RollTable extends ClientBaseRollTable {

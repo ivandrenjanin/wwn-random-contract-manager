@@ -1,12 +1,28 @@
-import { TokenConstrainMovementPathOptions, TokenMovementActionConfig } from "@client/_types.mjs";
+import {
+    TokenConstrainMovementPathOptions,
+    TokenMovementActionConfig,
+} from "@client/_types.mjs";
 import { TerrainData } from "@client/data/terrain-data.mjs";
 import Roll from "@client/dice/roll.mjs";
 import { ElevatedPoint, TokenPosition } from "@common/_types.mjs";
 import DataModel from "@common/abstract/data.mjs";
-import { RegionMovementSegmentType, TokenShapeType } from "@common/constants.mjs";
+import {
+    RegionMovementSegmentType,
+    TokenShapeType,
+} from "@common/constants.mjs";
 import { EffectDurationData } from "@common/documents/active-effect.mjs";
-import { GridMeasurePathCostFunction3D, GridOffset3D } from "@common/grid/_types.mjs";
-import { Combat, Combatant, RegionDocument, TableResult, TokenDocument, User } from "./_module.mjs";
+import {
+    GridMeasurePathCostFunction3D,
+    GridOffset3D,
+} from "@common/grid/_types.mjs";
+import {
+    Combat,
+    Combatant,
+    RegionDocument,
+    TableResult,
+    TokenDocument,
+    User,
+} from "./_module.mjs";
 
 /**
  * The data that is planned to be imported for the adventure, categorized into new documents that will be created and
@@ -27,7 +43,10 @@ export interface AdventureImportData {
  * A callback function that is invoked and awaited during import data preparation before the adventure import proceeds.
  * This can be used to perform custom pre-processing on the import data.
  */
-export type AdventurePreImportCallback = (data: AdventureImportData, options: AdventureImportOptions) => Promise<void>;
+export type AdventurePreImportCallback = (
+    data: AdventureImportData,
+    options: AdventureImportOptions,
+) => Promise<void>;
 
 /**
  * Options which customize how the adventure import process is orchestrated.
@@ -140,7 +159,8 @@ export interface RegionTokenEnterExitEventData {
     movement: TokenMovementOperation | null;
 }
 
-export type RegionTokenEnterExitEvent = RegionEvent<RegionTokenEnterExitEventData>;
+export type RegionTokenEnterExitEvent =
+    RegionEvent<RegionTokenEnterExitEventData>;
 export type RegionTokenEnterEvent = RegionTokenEnterExitEvent;
 export type RegionTokenExitEvent = RegionTokenEnterExitEvent;
 export type RegionTokenMoveEventData = {
@@ -412,7 +432,10 @@ export interface TokenMeasuredMovementWaypoint {
 }
 
 export interface TokenMovementWaypoint
-    extends Omit<TokenMeasuredMovementWaypoint, "terrain" | "intermediate" | "userId" | "movementId" | "cost"> {}
+    extends Omit<
+        TokenMeasuredMovementWaypoint,
+        "terrain" | "intermediate" | "userId" | "movementId" | "cost"
+    > {}
 
 export type TokenMovementSegmentData = Pick<
     TokenMeasuredMovementWaypoint,
@@ -468,11 +491,14 @@ export interface TokenMeasureMovementPathOptions {
     preview?: boolean;
 }
 
-export type TokenMovementCostFunction = GridMeasurePathCostFunction3D<TokenMovementSegmentData>;
+export type TokenMovementCostFunction =
+    GridMeasurePathCostFunction3D<TokenMovementSegmentData>;
 
 export type TokenMovementCostAggregator = (
     /** The results of the cost function calls */
-    results: Array<DeepReadonly<{ from: GridOffset3D; to: GridOffset3D; cost: number }>>,
+    results: Array<
+        DeepReadonly<{ from: GridOffset3D; to: GridOffset3D; cost: number }>
+    >,
     distance: number,
     segment: DeepReadonly<TokenMovementSegmentData>,
 ) => number;
@@ -536,7 +562,10 @@ export interface TokenGetCompleteMovementPathWaypoint {
 }
 
 export interface TokenCompleteMovementWaypoint
-    extends Omit<TokenMeasuredMovementWaypoint, "userId" | "movementId" | "cost"> {}
+    extends Omit<
+        TokenMeasuredMovementWaypoint,
+        "userId" | "movementId" | "cost"
+    > {}
 
 export interface TokenSegmentizeMovementWaypoint {
     /**
@@ -662,7 +691,12 @@ export interface TokenMovementHistoryData {
      */
     diagonals: number;
 }
-export type TokenMovementMethod = "api" | "config" | "dragging" | "keyboard" | "undo";
+export type TokenMovementMethod =
+    | "api"
+    | "config"
+    | "dragging"
+    | "keyboard"
+    | "undo";
 export type TokenMovementState = "completed" | "paused" | "pending" | "stopped";
 
 export interface TokenMovementData {
@@ -694,7 +728,10 @@ export interface TokenMovementData {
     method: TokenMovementMethod;
 
     /** The options to constrain movement */
-    constrainOptions: Omit<TokenConstrainMovementPathOptions, "preview" | "history">;
+    constrainOptions: Omit<
+        TokenConstrainMovementPathOptions,
+        "preview" | "history"
+    >;
 
     /** Automatically rotate the token in the direction of movement? */
     autoRotate: boolean;
@@ -712,7 +749,8 @@ export interface TokenMovementData {
     updateOptions: object;
 }
 
-export interface TokenMovementOperation extends Omit<TokenMovementData, "user" | "state" | "updateOptions"> {}
+export interface TokenMovementOperation
+    extends Omit<TokenMovementData, "user" | "state" | "updateOptions"> {}
 
 export interface TokenMovementContinuationData {
     /** The movement ID */

@@ -18,7 +18,10 @@ export default class VisibilityFilter extends AbstractBaseMaskFilter {
         hasOverlayTexture: boolean;
     };
 
-    static override create(initialUniforms?: {}, options?: {}): VisibilityFilter;
+    static override create(
+        initialUniforms?: {},
+        options?: {},
+    ): VisibilityFilter;
 
     static override fragmentShader(options?: object): string;
 

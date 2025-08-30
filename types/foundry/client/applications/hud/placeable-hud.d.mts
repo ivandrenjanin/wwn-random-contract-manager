@@ -33,13 +33,22 @@ export default abstract class BasePlaceableHUD extends ApplicationV2<
     /*  Rendering                                   */
     /* -------------------------------------------- */
 
-    protected override _prepareContext(options: ApplicationRenderOptions): Promise<PlaceableHUDContext>;
+    protected override _prepareContext(
+        options: ApplicationRenderOptions,
+    ): Promise<PlaceableHUDContext>;
 
-    protected override _updatePosition(position: ApplicationPosition): ApplicationPosition;
+    protected override _updatePosition(
+        position: ApplicationPosition,
+    ): ApplicationPosition;
 
-    protected override _onRender(context: object, options: ApplicationRenderOptions): Promise<void>;
+    protected override _onRender(
+        context: object,
+        options: ApplicationRenderOptions,
+    ): Promise<void>;
 
-    protected override _preClose(options: ApplicationClosingOptions): Promise<void>;
+    protected override _preClose(
+        options: ApplicationClosingOptions,
+    ): Promise<void>;
 
     /**
      * Insert the application HTML element into the DOM.
@@ -63,7 +72,11 @@ export default abstract class BasePlaceableHUD extends ApplicationV2<
     /* -------------------------------------------- */
 
     /** Handle submission of the BasePlaceableHUD form. */
-    protected _onSubmit(event: SubmitEvent, form: HTMLFormElement, formData: FormDataExtended): Promise<void>;
+    protected _onSubmit(
+        event: SubmitEvent,
+        form: HTMLFormElement,
+        formData: FormDataExtended,
+    ): Promise<void>;
 
     /**
      * Parse an attribute bar input string into a new value for the attribute field.

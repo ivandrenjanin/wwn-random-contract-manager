@@ -4,7 +4,9 @@ import { CompendiumArtDescriptor, CompendiumArtInfo } from "../_types.mjs";
  * A class responsible for managing package-provided art and applying it to Documents in compendium packs.
  */
 export default class CompendiumArt extends Map<string, CompendiumArtInfo> {
-    constructor(entries: readonly (readonly [string, CompendiumArtInfo])[] | null);
+    constructor(
+        entries: readonly (readonly [string, CompendiumArtInfo])[] | null,
+    );
 
     /** The key for the package manifest flag used to store the mapping information. */
     FLAG: "compendiumArtMappings";

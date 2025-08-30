@@ -1,4 +1,7 @@
-import { DatabaseUpdateOperation, DataModelConstructionContext } from "@common/abstract/_types.mjs";
+import {
+    DatabaseUpdateOperation,
+    DataModelConstructionContext,
+} from "@common/abstract/_types.mjs";
 import {
     DocumentOwnershipLevel,
     DocumentOwnershipString,
@@ -39,10 +42,15 @@ export interface DarknessActivation {
  * A reusable document structure for the internal data used to render the appearance of a light source.
  * This is re-used by both the AmbientLightData and TokenData classes.
  */
-export class LightData<TParent extends DataModel | null> extends DataModel<TParent, LightDataSchema> {
+export class LightData<TParent extends DataModel | null> extends DataModel<
+    TParent,
+    LightDataSchema
+> {
     static override defineSchema(): LightDataSchema;
 
-    static override migrateData<TSource extends Record<string, JSONValue>>(source: TSource): TSource;
+    static override migrateData<TSource extends Record<string, JSONValue>>(
+        source: TSource,
+    ): TSource;
 }
 
 export interface LightData<TParent extends DataModel | null>
@@ -90,7 +98,10 @@ type LightDataSchema = {
 };
 
 /** A data model intended to be used as an inner EmbeddedDataField which defines a geometric shape. */
-export class ShapeData<TParent extends DataModel | null> extends DataModel<TParent, ShapeDataSchema> {
+export class ShapeData<TParent extends DataModel | null> extends DataModel<
+    TParent,
+    ShapeDataSchema
+> {
     static override defineSchema(): ShapeDataSchema;
 
     /** The primitive shape types which are supported */
@@ -113,7 +124,13 @@ type ShapeDataSchema = {
      * For circles, the x/y coordinates are the center of the circle.
      * For polygons, the x/y coordinates are the first point of the polygon.
      */
-    type: fields.StringField<ValueOf<typeof ShapeData.TYPES>, ValueOf<typeof ShapeData.TYPES>, true, false, true>;
+    type: fields.StringField<
+        ValueOf<typeof ShapeData.TYPES>,
+        ValueOf<typeof ShapeData.TYPES>,
+        true,
+        false,
+        true
+    >;
     /** For rectangles, the pixel width of the shape. */
     width: fields.NumberField;
     /** For rectangles, the pixel height of the shape. */
@@ -125,7 +142,9 @@ type ShapeDataSchema = {
 };
 
 /** A data model intended to be used as an inner EmbeddedDataField which defines a geometric shape. */
-export class BaseShapeData<TSchema extends BaseShapeDataSchema> extends DataModel<DataModel | null, TSchema> {
+export class BaseShapeData<
+    TSchema extends BaseShapeDataSchema,
+> extends DataModel<DataModel | null, TSchema> {
     static override defineSchema(): BaseShapeDataSchema;
 
     /** The type of this shape. */
@@ -143,8 +162,9 @@ export class BaseShapeData<TSchema extends BaseShapeDataSchema> extends DataMode
     elevation?: { bottom: number | null; top: number | null };
 }
 
-interface BaseShapeData<TSchema extends BaseShapeDataSchema = BaseShapeDataSchema>
-    extends DataModel<DataModel | null, TSchema>,
+interface BaseShapeData<
+    TSchema extends BaseShapeDataSchema = BaseShapeDataSchema,
+> extends DataModel<DataModel | null, TSchema>,
         fields.ModelPropsFromSchema<BaseShapeDataSchema> {}
 
 type BaseShapeDataSchema = {
@@ -164,7 +184,10 @@ export class RectangleShapeData extends BaseShapeData<RectangleShapeDataSchema> 
 interface RectangleShapeData
     extends BaseShapeData<RectangleShapeDataSchema>,
         fields.ModelPropsFromSchema<RectangleShapeDataSchema> {
-    readonly _source: Omit<fields.SourceFromSchema<RectangleShapeDataSchema>, "type"> & { type: "rectangle" };
+    readonly _source: Omit<
+        fields.SourceFromSchema<RectangleShapeDataSchema>,
+        "type"
+    > & { type: "rectangle" };
     type: "rectangle";
 }
 
@@ -191,7 +214,10 @@ export class CircleShapeData extends BaseShapeData<CircleShapeDataSchema> {
 interface CircleShapeData
     extends BaseShapeData<CircleShapeDataSchema>,
         fields.ModelPropsFromSchema<CircleShapeDataSchema> {
-    readonly _source: Omit<fields.SourceFromSchema<CircleShapeDataSchema>, "type"> & { type: "circle" };
+    readonly _source: Omit<
+        fields.SourceFromSchema<CircleShapeDataSchema>,
+        "type"
+    > & { type: "circle" };
     type: "circle";
 }
 
@@ -214,7 +240,10 @@ export class EllipseShapeData extends BaseShapeData<EllipseShapeDataSchema> {
 interface EllipseShapeData
     extends BaseShapeData<EllipseShapeDataSchema>,
         fields.ModelPropsFromSchema<EllipseShapeDataSchema> {
-    readonly _source: Omit<fields.SourceFromSchema<EllipseShapeDataSchema>, "type"> & { type: "ellipse" };
+    readonly _source: Omit<
+        fields.SourceFromSchema<EllipseShapeDataSchema>,
+        "type"
+    > & { type: "ellipse" };
     type: "ellipse";
 }
 
@@ -241,13 +270,18 @@ export class PolygonShapeData extends BaseShapeData<PolygonShapeDataSchema> {
 interface PolygonShapeData
     extends BaseShapeData<PolygonShapeDataSchema>,
         fields.ModelPropsFromSchema<PolygonShapeDataSchema> {
-    readonly _source: Omit<fields.SourceFromSchema<PolygonShapeDataSchema>, "type"> & { type: "polygon" };
+    readonly _source: Omit<
+        fields.SourceFromSchema<PolygonShapeDataSchema>,
+        "type"
+    > & { type: "polygon" };
     type: "polygon";
 }
 
 type PolygonShapeDataSchema = BaseShapeDataSchema & {
     /** The points of the polygon ([x0, y0, x1, y1, ...]). The polygon must not be self-intersecting. */
-    points: fields.ArrayField<fields.NumberField<number, number, true, false, false>>;
+    points: fields.ArrayField<
+        fields.NumberField<number, number, true, false, false>
+    >;
 };
 
 /** A {@link fields.SchemaField} subclass used to represent texture data. */
@@ -257,7 +291,12 @@ export class TextureData extends fields.SchemaField<TextureDataSchema> {
      * @param srcOptions Additional options for the src field
      */
     constructor(
-        options?: DataFieldOptions<fields.SourceFromSchema<TextureDataSchema>, true, false, true>,
+        options?: DataFieldOptions<
+            fields.SourceFromSchema<TextureDataSchema>,
+            true,
+            false,
+            true
+        >,
         srcOptions?: {
             categories?: ("IMAGE" | "VIDEO")[];
             initial?: "IMAGE" | "VIDEO" | null;
@@ -269,7 +308,13 @@ export class TextureData extends fields.SchemaField<TextureDataSchema> {
 
 type TextureDataSchema = {
     /** The URL of the texture source. */
-    src: fields.FilePathField<ImageFilePath | VideoFilePath, ImageFilePath | VideoFilePath, true, true, true>;
+    src: fields.FilePathField<
+        ImageFilePath | VideoFilePath,
+        ImageFilePath | VideoFilePath,
+        true,
+        true,
+        true
+    >;
     /** The X coordinate of the texture anchor. */
     anchorX: fields.NumberField<number, number, true, false, true>;
     /** The Y coordinate of the texture anchor. */
@@ -293,11 +338,13 @@ type TextureDataSchema = {
     alphaThreshold: fields.AlphaField<true, false, true>;
 };
 
-export class PrototypeToken<TParent extends documents.BaseActor | null> extends DataModel<
-    TParent,
-    PrototypeTokenSchema
-> {
-    constructor(data: DeepPartial<PrototypeTokenSource>, options?: DataModelConstructionContext<TParent>);
+export class PrototypeToken<
+    TParent extends documents.BaseActor | null,
+> extends DataModel<TParent, PrototypeTokenSchema> {
+    constructor(
+        data: DeepPartial<PrototypeTokenSource>,
+        options?: DataModelConstructionContext<TParent>,
+    );
 
     static override defineSchema(): PrototypeTokenSchema;
 
@@ -317,7 +364,9 @@ export class PrototypeToken<TParent extends documents.BaseActor | null> extends 
      */
     update(
         data: Record<string, unknown>,
-        operation?: Partial<Omit<DatabaseUpdateOperation<null>, "parent" | "pack">>,
+        operation?: Partial<
+            Omit<DatabaseUpdateOperation<null>, "parent" | "pack">
+        >,
     ): Promise<this | undefined>;
 
     /**
@@ -361,13 +410,23 @@ export interface PrototypeToken<TParent extends documents.BaseActor | null>
 
 type PrototypeTokenSchema = Omit<
     TokenSchema,
-    "_id" | "name" | "actorId" | "delta" | "x" | "y" | "elevation" | "effects" | "overlayEffect" | "hidden"
+    | "_id"
+    | "name"
+    | "actorId"
+    | "delta"
+    | "x"
+    | "y"
+    | "elevation"
+    | "effects"
+    | "overlayEffect"
+    | "hidden"
 > & {
     name: fields.StringField<string, string, true, false, true>;
     randomImg: fields.BooleanField;
 };
 
-export type PrototypeTokenSource = fields.SourceFromSchema<PrototypeTokenSchema>;
+export type PrototypeTokenSource =
+    fields.SourceFromSchema<PrototypeTokenSchema>;
 
 /**
  * A minimal data model used to represent a tombstone entry inside an {@link EmbeddedCollectionDelta}.
@@ -378,24 +437,24 @@ export type PrototypeTokenSource = fields.SourceFromSchema<PrototypeTokenSchema>
  * @property [_stats]   An object of creation and access information.
  */
 export class TombstoneData<
-    TParent extends documents.BaseActorDelta<documents.BaseToken<documents.BaseScene | null> | null> | null,
+    TParent extends
+        documents.BaseActorDelta<documents.BaseToken<documents.BaseScene | null> | null> | null,
 > extends DataModel<TParent, TombstoneDataSchema> {
     static override defineSchema(): TombstoneDataSchema;
 }
 
 export interface TombstoneData<
-    TParent extends documents.BaseActorDelta<documents.BaseToken<documents.BaseScene | null> | null> | null,
+    TParent extends
+        documents.BaseActorDelta<documents.BaseToken<documents.BaseScene | null> | null> | null,
 > extends DataModel<TParent, TombstoneDataSchema>,
         fields.SourceFromSchema<TombstoneDataSchema> {
     readonly _source: TombstoneSource;
 }
 
-export type TombstoneSource<TDocumentId extends string | null = string | null> = Omit<
-    fields.SourceFromSchema<TombstoneDataSchema>,
-    "_id"
-> & {
-    _id: TDocumentId;
-};
+export type TombstoneSource<TDocumentId extends string | null = string | null> =
+    Omit<fields.SourceFromSchema<TombstoneDataSchema>, "_id"> & {
+        _id: TDocumentId;
+    };
 
 export type TombstoneDataSchema = {
     _id: fields.DocumentIdField;

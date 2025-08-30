@@ -1,6 +1,14 @@
 import Roll from "@client/dice/roll.mjs";
-import { DatabaseCreateCallbackOptions, DatabaseCreateOperation } from "@common/abstract/_types.mjs";
-import { AudioFilePath, ChatMessageStyle, DocumentOwnershipLevel, RollMode } from "@common/constants.mjs";
+import {
+    DatabaseCreateCallbackOptions,
+    DatabaseCreateOperation,
+} from "@common/abstract/_types.mjs";
+import {
+    AudioFilePath,
+    ChatMessageStyle,
+    DocumentOwnershipLevel,
+    RollMode,
+} from "@common/constants.mjs";
 import { DocumentFlags } from "@common/data/_module.mjs";
 import { Document, DocumentMetadata } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
@@ -13,10 +21,9 @@ import BaseUser from "./user.mjs";
  * @param data    Initial data from which to construct the document.
  * @property data The constructed data object for the document.
  */
-export default class BaseChatMessage<TUser extends BaseUser | null = BaseUser | null> extends Document<
-    null,
-    ChatMessageSchema
-> {
+export default class BaseChatMessage<
+    TUser extends BaseUser | null = BaseUser | null,
+> extends Document<null, ChatMessageSchema> {
     static override get metadata(): ChatMessageMetadata;
 
     static override defineSchema(): ChatMessageSchema;
@@ -36,11 +43,24 @@ declare type ChatMessageSchema = {
     /** The _id which uniquely identifies this ChatMessage document */
     _id: fields.DocumentIdField;
     /** An ChatMessage subtype which configures the system data model applied */
-    type: fields.DocumentTypeField<string, string, true, false, true, BaseChatMessage>;
+    type: fields.DocumentTypeField<
+        string,
+        string,
+        true,
+        false,
+        true,
+        BaseChatMessage
+    >;
     /** The system data object */
     system: fields.TypeDataField;
     /** The message style from CONST.CHAT_MESSAGE_STYLES */
-    style: fields.NumberField<ChatMessageStyle, ChatMessageStyle, true, true, true>;
+    style: fields.NumberField<
+        ChatMessageStyle,
+        ChatMessageStyle,
+        true,
+        true,
+        true
+    >;
     /** The _id of the User document who generated this message */
     author: fields.ForeignDocumentField<BaseUser, true, false, true>;
     /** The timestamp at which point this message was generated */
@@ -96,11 +116,13 @@ interface ChatMessageMetadata extends DocumentMetadata {
     isPrimary: true;
 }
 
-export interface ChatMessageCreateOperation extends DatabaseCreateOperation<null> {
+export interface ChatMessageCreateOperation
+    extends DatabaseCreateOperation<null> {
     rollMode?: RollMode | "roll";
 }
 
-export interface ChatMessageCreateCallbackOptions extends DatabaseCreateCallbackOptions {
+export interface ChatMessageCreateCallbackOptions
+    extends DatabaseCreateCallbackOptions {
     rollMode?: RollMode | "roll";
 }
 

@@ -2,7 +2,11 @@ import { Macro, RollTable } from "@client/documents/_module.mjs";
 import { DocumentUUID } from "@client/utils/_module.mjs";
 import Document from "@common/abstract/document.mjs";
 import { ApplicationConfiguration } from "../_types.mjs";
-import { ApplicationV2, HandlebarsApplicationMixin, HandlebarsTemplatePart } from "../api/_module.mjs";
+import {
+    ApplicationV2,
+    HandlebarsApplicationMixin,
+    HandlebarsTemplatePart,
+} from "../api/_module.mjs";
 import { ContextMenuEntry } from "../ux/context-menu.mjs";
 
 interface HotbarSlotData {
@@ -22,7 +26,9 @@ interface HotbarSlotData {
  * The number keys 1 through 0 activate numbered hotbar slots.
  * @alias Hotbar
  */
-export default class Hotbar<TMacro extends Macro = Macro> extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class Hotbar<
+    TMacro extends Macro = Macro,
+> extends HandlebarsApplicationMixin(ApplicationV2) {
     static override DEFAULT_OPTIONS: ApplicationConfiguration;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;
@@ -75,12 +81,16 @@ export default class Hotbar<TMacro extends Macro = Macro> extends HandlebarsAppl
      * @param table The RollTable document
      * @returns A created Macro document to add to the bar
      */
-    protected _createRollTableRollMacro(table: RollTable): Promise<TMacro | undefined>;
+    protected _createRollTableRollMacro(
+        table: RollTable,
+    ): Promise<TMacro | undefined>;
 
     /**
      * Create a Macro document which can be used to toggle display of a Journal Entry.
      * @param doc A Document which should be toggled
      * @returns A created Macro document to add to the bar
      */
-    protected _createDocumentSheetToggle(doc: Document): Promise<TMacro | undefined>;
+    protected _createDocumentSheetToggle(
+        doc: Document,
+    ): Promise<TMacro | undefined>;
 }

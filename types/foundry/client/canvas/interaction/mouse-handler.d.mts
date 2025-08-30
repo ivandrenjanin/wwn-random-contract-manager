@@ -56,7 +56,11 @@ export default class MouseInteractionManager {
         layer: PIXI.Container,
         permissions?: object,
         callbacks?: object,
-        options?: { target?: string; dragResistance?: number; application?: PIXI.Application },
+        options?: {
+            target?: string;
+            dragResistance?: number;
+            application?: PIXI.Application;
+        },
     );
 
     /**
@@ -193,7 +197,11 @@ export default class MouseInteractionManager {
      * @returns A boolean which may indicate that the event was handled by the callback. Events which do not specify a
      *         callback are assumed to have been handled as no-op.
      */
-    callback(action: string, event: Event | PIXI.FederatedEvent, ...args: unknown[]): boolean;
+    callback(
+        action: string,
+        event: Event | PIXI.FederatedEvent,
+        ...args: unknown[]
+    ): boolean;
 
     /**
      * A reference to the possible interaction states which can be observed

@@ -42,5 +42,10 @@ export default class ControlIcon extends PIXI.Container {
     /**
      * Incremental refresh for ControlIcon appearance.
      */
-    refresh(options?: { visible?: boolean; iconColor?: number; borderColor?: number; borderVisible?: boolean }): this;
+    refresh(options?: {
+        visible?: boolean;
+        iconColor?: number;
+        borderColor?: number;
+        borderVisible?: boolean;
+    }): this;
 }

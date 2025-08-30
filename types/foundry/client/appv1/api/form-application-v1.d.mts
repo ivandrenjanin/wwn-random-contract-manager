@@ -1,7 +1,10 @@
 import { EditorCreateOptions } from "@client/applications/ux/prosemirror-editor.mjs";
 import { Plugin } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
-import Application, { AppV1RenderOptions, ApplicationV1Options } from "./application-v1.mjs";
+import Application, {
+    AppV1RenderOptions,
+    ApplicationV1Options,
+} from "./application-v1.mjs";
 
 /**
  * An abstract pattern for defining an Application responsible for updating some object using an HTML form
@@ -47,11 +50,19 @@ export default abstract class FormApplication<
     /** Is the Form Application currently editable? */
     get isEditable(): boolean;
 
-    getData(options?: Partial<TOptions>): FormApplicationData<TObject> | Promise<FormApplicationData<TObject>>;
+    getData(
+        options?: Partial<TOptions>,
+    ): FormApplicationData<TObject> | Promise<FormApplicationData<TObject>>;
 
-    protected override _render(force?: boolean, options?: AppV1RenderOptions): Promise<void>;
+    protected override _render(
+        force?: boolean,
+        options?: AppV1RenderOptions,
+    ): Promise<void>;
 
-    protected override _renderInner(data: FormApplicationData<TObject>, options: AppV1RenderOptions): Promise<JQuery>;
+    protected override _renderInner(
+        data: FormApplicationData<TObject>,
+        options: AppV1RenderOptions,
+    ): Promise<JQuery>;
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers                */
@@ -81,14 +92,19 @@ export default abstract class FormApplication<
      * @param [preventRender] Prevent the application from re-rendering as a result of form submission
      * @returns A promise which resolves to the validated update data
      */
-    protected _onSubmit(event: Event, options?: OnSubmitFormOptions): Promise<Record<string, unknown> | false>;
+    protected _onSubmit(
+        event: Event,
+        options?: OnSubmitFormOptions,
+    ): Promise<Record<string, unknown> | false>;
 
     /**
      * Get an object of update data used to update the form's target object
      * @param updateData Additional data that should be merged with the form data
      * @return The prepared update data
      */
-    protected _getSubmitData(updateData?: Record<string, unknown>): Record<string, unknown>;
+    protected _getSubmitData(
+        updateData?: Record<string, unknown>,
+    ): Record<string, unknown>;
 
     /**
      * Handle changes to an input element, submitting the form if options.submitOnChange is true.
@@ -109,7 +125,10 @@ export default abstract class FormApplication<
      * @param formData  The object of validated form data with which to update the object
      * @returns         A Promise which resolves once the update operation has completed
      */
-    protected abstract _updateObject(event: Event, formData: Record<string, unknown>): Promise<unknown>;
+    protected abstract _updateObject(
+        event: Event,
+        formData: Record<string, unknown>,
+    ): Promise<unknown>;
 
     /* -------------------------------------------- */
     /*  TinyMCE Editor                              */
@@ -133,7 +152,13 @@ export default abstract class FormApplication<
      * @param [remove] Remove the editor after saving its content
      * @param [preventRender] Prevent normal re-rendering of the sheet after saving
      */
-    saveEditor(name: string, { remove, preventRender }?: { remove?: boolean; preventRender?: boolean }): Promise<void>;
+    saveEditor(
+        name: string,
+        {
+            remove,
+            preventRender,
+        }?: { remove?: boolean; preventRender?: boolean },
+    ): Promise<void>;
 
     /** Activate a TinyMCE editor instance present within the form */
     protected _activateEditor(div: JQuery | HTMLElement): void;
@@ -144,7 +169,10 @@ export default abstract class FormApplication<
      * @param [options]              Additional options to configure the plugins.
      * @param [options.remove=true]  Whether the editor should destroy itself on save.
      */
-    protected _configureProseMirrorPlugins(name: string, options?: { remove?: boolean }): Record<string, Plugin>;
+    protected _configureProseMirrorPlugins(
+        name: string,
+        options?: { remove?: boolean },
+    ): Record<string, Plugin>;
 
     /**
      * Submit the contents of a Form Application, processing its content as defined by the Application

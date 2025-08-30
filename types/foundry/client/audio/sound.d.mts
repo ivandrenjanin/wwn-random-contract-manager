@@ -16,7 +16,10 @@ export default class Sound extends EventEmitter {
      * @param options.context      A non-default audio context within which the sound should play
      * @param options.forceBuffer  Force use of an AudioBufferSourceNode even if the audio duration is long
      */
-    constructor(src: string, options?: { context?: AudioContext; forceBuffer?: boolean });
+    constructor(
+        src: string,
+        options?: { context?: AudioContext; forceBuffer?: boolean },
+    );
 
     /**
      * The sequence of container loading states.
@@ -169,7 +172,10 @@ export default class Sound extends EventEmitter {
      * @param options.autoplayOptions Playback options passed to Sound#play, if autoplay
      * @returns A Promise which resolves to the Sound once it is loaded
      */
-    load(options?: { autoplay?: boolean; autoplayOptions?: SoundPlaybackOptions }): Promise<this>;
+    load(options?: {
+        autoplay?: boolean;
+        autoplayOptions?: SoundPlaybackOptions;
+    }): Promise<this>;
 
     /**
      * An inner method which handles loading so that it can be de-duplicated under a single shared Promise resolution.
@@ -234,7 +240,11 @@ export default class Sound extends EventEmitter {
      */
     fade(
         volume: number,
-        options?: { duration?: number; from?: number; type?: "linear" | "exponential" },
+        options?: {
+            duration?: number;
+            from?: number;
+            type?: "linear" | "exponential";
+        },
     ): Promise<void>;
 
     /**

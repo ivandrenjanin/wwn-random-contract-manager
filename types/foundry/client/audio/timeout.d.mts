@@ -67,5 +67,8 @@ export default class AudioTimeout {
      * @param options Additional options which modify timeout behavior
      * @returns A promise which resolves as a returned value of the callback or void
      */
-    static wait(delayMS: number, options?: AudioTimeoutOptions): Promise<unknown>;
+    static wait(
+        delayMS: number,
+        options?: AudioTimeoutOptions,
+    ): Promise<unknown>;
 }

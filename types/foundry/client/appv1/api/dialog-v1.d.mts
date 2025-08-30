@@ -1,4 +1,7 @@
-import Application, { AppV1RenderOptions, ApplicationV1Options } from "./application-v1.mjs";
+import Application, {
+    AppV1RenderOptions,
+    ApplicationV1Options,
+} from "./application-v1.mjs";
 
 /**
  * Create a modal dialog window displaying a title, a message, and a set of buttons which trigger callback functions.
@@ -111,7 +114,10 @@ export default class Dialog extends Application {
      */
     protected submit(button: object, event?: PointerEvent): void;
 
-    override close(options?: { force: boolean; jQuery?: boolean }): Promise<void>;
+    override close(options?: {
+        force: boolean;
+        jQuery?: boolean;
+    }): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Factory Methods                             */

@@ -34,7 +34,10 @@ export interface DataModelValidationOptions {
 }
 
 interface DataModelConstructionContext<TParent extends DataModel | null>
-    extends Pick<DataModelValidationOptions, "strict" | "fallback" | "dropInvalidEmbedded"> {
+    extends Pick<
+        DataModelValidationOptions,
+        "strict" | "fallback" | "dropInvalidEmbedded"
+    > {
     /** A parent DataModel instance to which this DataModel belongs */
     parent?: TParent;
     /** Allow partial source data, ignoring absent fields? */
@@ -100,7 +103,10 @@ export interface DatabaseCreateOperation<TParent extends Document | null> {
 }
 
 export interface DatabaseCreateCallbackOptions
-    extends Omit<Partial<DatabaseCreateOperation<null>>, "action" | "data" | "pack" | "parent" | "noHook"> {}
+    extends Omit<
+        Partial<DatabaseCreateOperation<null>>,
+        "action" | "data" | "pack" | "parent" | "noHook"
+    > {}
 
 export interface DatabaseUpdateOperation<TParent extends Document | null> {
     action: "update";

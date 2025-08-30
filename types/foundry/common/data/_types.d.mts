@@ -1,4 +1,8 @@
-import { CustomFormGroup, CustomFormInput, FormSelectOption } from "@client/applications/forms/fields.mjs";
+import {
+    CustomFormGroup,
+    CustomFormInput,
+    FormSelectOption,
+} from "@client/applications/forms/fields.mjs";
 import { DocumentUUID } from "@client/utils/_module.mjs";
 import { DocumentType, FileCategory, FilePath } from "@common/constants.mjs";
 import {
@@ -22,7 +26,10 @@ import { DataModelValidationFailure } from "./validation-failure.mjs";
  *
  * An Error may be thrown which provides a custom error message explaining the reason the value is invalid.
  */
-type DataFieldValidator = (value: unknown, options: DataFieldValidationOptions) => boolean | void;
+type DataFieldValidator = (
+    value: unknown,
+    options: DataFieldValidationOptions,
+) => boolean | void;
 
 export interface DataFieldOptions<
     TSourceProp,
@@ -43,13 +50,27 @@ export interface DataFieldOptions<
     initial?: THasInitial extends true
         ?
               | TSourceProp
-              | ((data: Record<string, unknown>) => MaybeSchemaProp<TSourceProp, TRequired, TNullable, THasInitial>)
+              | ((
+                    data: Record<string, unknown>,
+                ) => MaybeSchemaProp<
+                    TSourceProp,
+                    TRequired,
+                    TNullable,
+                    THasInitial
+                >)
               | null
         : THasInitial extends false
           ? undefined
           :
                 | TSourceProp
-                | ((data: Record<string, unknown>) => MaybeSchemaProp<TSourceProp, TRequired, TNullable, THasInitial>)
+                | ((
+                      data: Record<string, unknown>,
+                  ) => MaybeSchemaProp<
+                      TSourceProp,
+                      TRequired,
+                      TNullable,
+                      THasInitial
+                  >)
                 | null
                 | undefined;
 
@@ -197,7 +218,13 @@ interface StringFieldInputConfig {
     elementType?: "input" | "textarea" | "prose-mirror" | "code-mirror";
 }
 
-type CodeMirrorLanguage = "javascript" | "json" | "html" | "markdown" | "" | "plain";
+type CodeMirrorLanguage =
+    | "javascript"
+    | "json"
+    | "html"
+    | "markdown"
+    | ""
+    | "plain";
 
 interface CodeMirrorInputConfig {
     /** The value's language */
@@ -276,7 +303,10 @@ interface StringFieldOptions<
 
 interface ChoiceInputConfig {
     options: FormSelectOption[];
-    choices: Record<string | number, any> | any[] | (() => Record<string | number, any> | any[]);
+    choices:
+        | Record<string | number, any>
+        | any[]
+        | (() => Record<string | number, any> | any[]);
     labelAttr?: string;
     valueAttr?: string;
 }
@@ -298,8 +328,11 @@ export interface ObjectFieldOptions<
     THasInitial extends boolean = true,
 > extends DataFieldOptions<TSourceProp, TRequired, TNullable, THasInitial> {}
 
-interface DocumentUUIDFieldOptions<TRequired extends boolean, TNullable extends boolean, THasInitial extends boolean>
-    extends StringFieldOptions<DocumentUUID, TRequired, TNullable, THasInitial> {
+interface DocumentUUIDFieldOptions<
+    TRequired extends boolean,
+    TNullable extends boolean,
+    THasInitial extends boolean,
+> extends StringFieldOptions<DocumentUUID, TRequired, TNullable, THasInitial> {
     /** A specific document type in {@link CONST.ALL_DOCUMENT_TYPES} required by this field */
     type?: DocumentType;
     /** Does this field require (or prohibit) embedded documents? */

@@ -1,7 +1,11 @@
 import { CanvasDimensions } from "@client/_types.mjs";
 import { Point } from "@common/_types.mjs";
 import { CanvasPerformanceMode } from "@common/constants.mjs";
-import { GridlessGrid, HexagonalGrid, SquareGrid } from "@common/grid/_module.mjs";
+import {
+    GridlessGrid,
+    HexagonalGrid,
+    SquareGrid,
+} from "@common/grid/_module.mjs";
 import {
     AmbientLightDocument,
     MeasuredTemplateDocument,
@@ -35,17 +39,26 @@ import {
     WallsLayer,
 } from "./layers/_module.mjs";
 import { FogManager, PerceptionManager } from "./perception/_module.mjs";
-import { AmbientLight, MeasuredTemplate, Region, Token } from "./placeables/_module.mjs";
+import {
+    AmbientLight,
+    MeasuredTemplate,
+    Region,
+    Token,
+} from "./placeables/_module.mjs";
 
 export default class Canvas<
     TScene extends Scene = Scene,
-    TAmbientLight extends AmbientLight<AmbientLightDocument<TScene>> = AmbientLight<AmbientLightDocument<TScene>>,
-    TMeasuredTemplate extends MeasuredTemplate<MeasuredTemplateDocument<TScene>> = MeasuredTemplate<
+    TAmbientLight extends AmbientLight<
+        AmbientLightDocument<TScene>
+    > = AmbientLight<AmbientLightDocument<TScene>>,
+    TMeasuredTemplate extends MeasuredTemplate<
         MeasuredTemplateDocument<TScene>
-    >,
+    > = MeasuredTemplate<MeasuredTemplateDocument<TScene>>,
     TToken extends Token<TokenDocument<TScene>> = Token<TokenDocument<TScene>>,
     TEffectsCanvasGroup extends EffectsCanvasGroup = EffectsCanvasGroup,
-    TRegion extends Region<RegionDocument<TScene>> = Region<RegionDocument<TScene>>,
+    TRegion extends Region<RegionDocument<TScene>> = Region<
+        RegionDocument<TScene>
+    >,
     TRuler extends Ruler = Ruler,
 > {
     /** A flag to indicate whether a new Scene is currently being drawn. */
@@ -91,10 +104,19 @@ export default class Canvas<
      * Textures registered here will be automatically loaded as part of the TextureLoader.loadSceneTextures workflow.
      * Textures which need to be loaded should be configured during the "canvasInit" hook.
      */
-    sceneTextures: { background?: PIXI.Texture; foreground?: PIXI.Texture; fogOverlay?: PIXI.Texture };
+    sceneTextures: {
+        background?: PIXI.Texture;
+        foreground?: PIXI.Texture;
+        fogOverlay?: PIXI.Texture;
+    };
 
     /** Record framerate performance data. */
-    fps: { average: number; values: number[]; render: number; element: HTMLElement | null };
+    fps: {
+        average: number;
+        values: number[];
+        render: number;
+        element: HTMLElement | null;
+    };
 
     /** The singleton interaction manager instance which handles mouse interaction on the Canvas. */
     mouseInteractionManager: MouseInteractionManager;
@@ -305,7 +327,15 @@ export default class Canvas<
      * @param y     The y-coordinate of the pan destination
      * @param scale The zoom level (max of CONFIG.Canvas.maxZoom) of the action
      */
-    pan({ x, y, scale }?: { x?: number | null; y?: number | null; scale?: number | null }): void;
+    pan({
+        x,
+        y,
+        scale,
+    }?: {
+        x?: number | null;
+        y?: number | null;
+        scale?: number | null;
+    }): void;
 
     /**
      * Animate panning the canvas to a certain destination coordinate and zoom scale
@@ -320,7 +350,12 @@ export default class Canvas<
      * @param [view.speed]        The speed of animation in pixels per second; overrides duration if set
      * @returns A Promise which resolves once the animation has been completed
      */
-    animatePan(view?: { x?: number; y?: number; scale?: number; duration?: number }): Promise<void>;
+    animatePan(view?: {
+        x?: number;
+        y?: number;
+        scale?: number;
+        duration?: number;
+    }): Promise<void>;
 
     /**
      * Recenter the canvas
@@ -339,7 +374,15 @@ export default class Canvas<
      * @param scale The requested scale
      * @return The allowed scale
      */
-    protected _constrainView({ x, y, scale }: { x: number; y: number; scale: number }): {
+    protected _constrainView({
+        x,
+        y,
+        scale,
+    }: {
+        x: number;
+        y: number;
+        scale: number;
+    }): {
         x: number;
         y: number;
         scale: number;
@@ -361,7 +404,10 @@ export default class Canvas<
      * @param blurStrength The desired blur strength to use for this filter
      * @param blurQuality The desired quality to use for this filter
      */
-    createBlurFilter(blurStrength?: number, blurQuality?: number): PIXI.BlurFilter;
+    createBlurFilter(
+        blurStrength?: number,
+        blurQuality?: number,
+    ): PIXI.BlurFilter;
 
     /**
      * Add a filter to the blur filter list. The filter must have the blur property
@@ -404,7 +450,10 @@ export default class Canvas<
      * @param displayObject   The display object to clean.
      * @param [destroy]       If textures should be destroyed.
      */
-    static clearContainer(displayObject: PIXI.DisplayObject, destroy?: boolean): void;
+    static clearContainer(
+        displayObject: PIXI.DisplayObject,
+        destroy?: boolean,
+    ): void;
 
     /**
      * Get a texture with the required configuration and clear color.
@@ -412,7 +461,10 @@ export default class Canvas<
      * @param [options.clearColor]           The clear color to use for this texture. Transparent by default.
      * @param [options.textureConfiguration] The render texture configuration.
      */
-    static getRenderTexture(options?: { clearColor?: number[]; textureConfiguration?: object }): PIXI.RenderTexture;
+    static getRenderTexture(options?: {
+        clearColor?: number[];
+        textureConfiguration?: object;
+    }): PIXI.RenderTexture;
 
     /**
      * Pan the canvas view when the cursor position gets close to the edge of the frame

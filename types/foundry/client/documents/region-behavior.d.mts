@@ -1,13 +1,20 @@
 import { DocumentConstructionContext } from "@common/_types.mjs";
 import type { RegionBehaviorSource } from "@common/documents/region-behavior.mjs";
 import BaseRegionBehavior from "@common/documents/region-behavior.mjs";
-import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
+import {
+    ClientDocument,
+    ClientDocumentStatic,
+} from "./abstract/client-document.mjs";
 import RegionDocument, { RegionEvent } from "./region.mjs";
 
-interface CanvasBaseRegionBehaviorStatic extends Omit<typeof BaseRegionBehavior, "new">, ClientDocumentStatic {}
+interface CanvasBaseRegionBehaviorStatic
+    extends Omit<typeof BaseRegionBehavior, "new">,
+        ClientDocumentStatic {}
 
 declare const ClientBaseRegionBehavior: {
-    new <TParent extends RegionDocument | null>(...args: any): BaseRegionBehavior<TParent> & ClientDocument<TParent>;
+    new <TParent extends RegionDocument | null>(
+        ...args: any
+    ): BaseRegionBehavior<TParent> & ClientDocument<TParent>;
 } & CanvasBaseRegionBehaviorStatic;
 
 interface ClientBaseRegionBehavior<TParent extends RegionDocument | null>
@@ -22,7 +29,10 @@ export default class RegionBehavior<
      * @param data    Initial data from which to construct the RegionBehavior
      * @param context      Construction context options
      */
-    constructor(data: DeepPartial<RegionBehaviorSource>, context: DocumentConstructionContext<TParent>);
+    constructor(
+        data: DeepPartial<RegionBehaviorSource>,
+        context: DocumentConstructionContext<TParent>,
+    );
 
     /** A convenience reference to the RegionDocument which contains this RegionBehavior. */
     get region(): TParent;

@@ -1,5 +1,8 @@
 import { ChatBubbles } from "@client/canvas/animation/_module.mjs";
-import type { ApplicationConfiguration, ApplicationRenderOptions } from "../_types.mjs";
+import type {
+    ApplicationConfiguration,
+    ApplicationRenderOptions,
+} from "../_types.mjs";
 import type ApplicationV2 from "../api/application.mjs";
 import type DrawingHUD from "./drawing-hud.mjs";
 import type TileHUD from "./tile-hud.mjs";
@@ -23,11 +26,21 @@ export default class HeadsUpDisplayContainer extends ApplicationV2 {
     /** Chat Bubbles */
     bubbles: ChatBubbles;
 
-    override _renderHTML(context: object, options: ApplicationRenderOptions): Promise<string>;
+    override _renderHTML(
+        context: object,
+        options: ApplicationRenderOptions,
+    ): Promise<string>;
 
-    override _replaceHTML(result: string, content: HTMLElement, options: ApplicationRenderOptions): void;
+    override _replaceHTML(
+        result: string,
+        content: HTMLElement,
+        options: ApplicationRenderOptions,
+    ): void;
 
-    override _onRender(context: object, options: ApplicationRenderOptions): Promise<void>;
+    override _onRender(
+        context: object,
+        options: ApplicationRenderOptions,
+    ): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Public API                                  */

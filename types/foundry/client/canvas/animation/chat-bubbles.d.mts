@@ -45,7 +45,11 @@ export default class ChatBubbles {
      * @param options Options which affect the bubble appearance
      * @returns A promise which resolves with the created bubble HTML, or null
      */
-    broadcast(token: TokenDocument, message: string, options?: ChatBubbleOptions): Promise<JQuery | null>;
+    broadcast(
+        token: TokenDocument,
+        message: string,
+        options?: ChatBubbleOptions,
+    ): Promise<JQuery | null>;
 
     /**
      * Speak a message as a particular Token, displaying it as a chat bubble
@@ -54,5 +58,9 @@ export default class ChatBubbles {
      * @param options Options which affect the bubble appearance
      * @returns A Promise which resolves to the created bubble HTML element, or null
      */
-    say(token: Token, message: string, options?: ChatBubbleOptions | undefined): Promise<JQuery | null>;
+    say(
+        token: Token,
+        message: string,
+        options?: ChatBubbleOptions | undefined,
+    ): Promise<JQuery | null>;
 }

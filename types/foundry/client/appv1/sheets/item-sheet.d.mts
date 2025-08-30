@@ -1,5 +1,8 @@
 import Item from "@client/documents/item.mjs";
-import DocumentSheet, { DocumentSheetData, DocumentSheetV1Options } from "../api/document-sheet-v1.mjs";
+import DocumentSheet, {
+    DocumentSheetData,
+    DocumentSheetV1Options,
+} from "../api/document-sheet-v1.mjs";
 
 /**
  * The default Item Sheet
@@ -12,10 +15,10 @@ import DocumentSheet, { DocumentSheetData, DocumentSheetV1Options } from "../api
  * @param item      The Item instance being displayed within the sheet.
  * @param [options] Additional options which modify the rendering of the item.
  */
-export default class ItemSheet<TItem extends Item, TOptions extends DocumentSheetV1Options> extends DocumentSheet<
-    TItem,
-    TOptions
-> {
+export default class ItemSheet<
+    TItem extends Item,
+    TOptions extends DocumentSheetV1Options,
+> extends DocumentSheet<TItem, TOptions> {
     constructor(item: TItem, options?: Partial<TOptions>);
 
     static override get defaultOptions(): DocumentSheetV1Options;
@@ -39,7 +42,8 @@ export default class ItemSheet<TItem extends Item, TOptions extends DocumentShee
     override activateListeners(html: JQuery): void;
 }
 
-export interface ItemSheetData<TItem extends Item> extends DocumentSheetData<TItem> {
+export interface ItemSheetData<TItem extends Item>
+    extends DocumentSheetData<TItem> {
     item: TItem;
     data: object;
 }

@@ -21,14 +21,21 @@ export default class TokenRuler extends BaseTokenRuler {
      * Called in {@link TokenRuler#draw}.
      * @returns The thickness in pixels and the color
      */
-    protected _configureOutline(): { thickness: number; color: PIXI.ColorSource };
+    protected _configureOutline(): {
+        thickness: number;
+        color: PIXI.ColorSource;
+    };
 
     /**
      * Configure the properties of the dash line.
      * Called in {@link TokenRuler#draw}.
      * @returns The dash in pixels, the gap in pixels, and the speed in pixels per second
      */
-    protected _configureDashLine(): { dash: number; gap: number; speed: number };
+    protected _configureDashLine(): {
+        dash: number;
+        gap: number;
+        speed: number;
+    };
 
     override draw(): Promise<void>;
 
@@ -41,7 +48,10 @@ export default class TokenRuler extends BaseTokenRuler {
     /**
      * Get the context used to render a ruler waypoint label.
      */
-    protected _getWaypointLabelContext(waypoint: DeepReadonly<TokenRulerWaypoint>, state: object): object | void;
+    protected _getWaypointLabelContext(
+        waypoint: DeepReadonly<TokenRulerWaypoint>,
+        state: object,
+    ): object | void;
 
     /**
      * Get the style of the waypoint at the given waypoint.
@@ -73,7 +83,14 @@ export default class TokenRuler extends BaseTokenRuler {
      *          grid space is not highlighted.
      */
     protected _getGridHighlightStyle(
-        waypoint: DeepReadonly<Omit<TokenRulerWaypoint, "index" | "center" | "size" | "ray">>,
+        waypoint: DeepReadonly<
+            Omit<TokenRulerWaypoint, "index" | "center" | "size" | "ray">
+        >,
         offset: DeepReadonly<GridOffset3D>,
-    ): { color?: PIXI.ColorSource; alpha?: number; texture?: PIXI.Texture; matrix?: PIXI.Matrix | null };
+    ): {
+        color?: PIXI.ColorSource;
+        alpha?: number;
+        texture?: PIXI.Texture;
+        matrix?: PIXI.Matrix | null;
+    };
 }

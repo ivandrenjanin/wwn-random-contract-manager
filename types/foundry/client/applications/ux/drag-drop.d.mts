@@ -1,4 +1,10 @@
-type DragAction = "dragstart" | "dragover" | "drop" | "dragenter" | "dragleave" | "dragend";
+type DragAction =
+    | "dragstart"
+    | "dragover"
+    | "drop"
+    | "dragenter"
+    | "dragleave"
+    | "dragend";
 
 interface DragDropConfiguration {
     /** The CSS selector used to target draggable elements. */
@@ -60,7 +66,10 @@ export default class DragDrop {
      * @param event   The drag event being handled
      * @param action  The action being attempted
      */
-    callback(event: DragEvent, action: DragAction): ((event: DragEvent) => void) | void;
+    callback(
+        event: DragEvent,
+        action: DragAction,
+    ): ((event: DragEvent) => void) | void;
 
     /**
      * Test whether the current user has permission to perform a step of the workflow
@@ -120,7 +129,11 @@ export default class DragDrop {
      * @param width
      * @param height
      */
-    static createDragImage(img: HTMLImageElement, width: number, height: number): HTMLDivElement;
+    static createDragImage(
+        img: HTMLImageElement,
+        width: number,
+        height: number,
+    ): HTMLDivElement;
 
     /* -------------------------------------------- */
     /*  Factory Methods                             */

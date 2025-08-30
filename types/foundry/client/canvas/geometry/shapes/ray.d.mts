@@ -41,7 +41,12 @@ export default class Ray {
      */
     readonly normAngle: number;
 
-    static fromAngle(x: number, y: number, radians: number, distance: number): Ray;
+    static fromAngle(
+        x: number,
+        y: number,
+        radians: number,
+        distance: number,
+    ): Ray;
 
     static fromArrays(A: [], B: []): Ray;
 

@@ -10,9 +10,16 @@ export namespace TinyMCE {
         style_formats: AllowedFormat[];
     }
 
-    type AllowedFormat = Separator | FormatReference | StyleFormat | NestedFormatting;
+    type AllowedFormat =
+        | Separator
+        | FormatReference
+        | StyleFormat
+        | NestedFormatting;
 
-    type StyleFormat = BlockStyleFormat | InlineStyleFormat | SelectorStyleFormat;
+    type StyleFormat =
+        | BlockStyleFormat
+        | InlineStyleFormat
+        | SelectorStyleFormat;
 
     interface Separator {
         title: string;
@@ -43,13 +50,18 @@ export namespace TinyMCE {
 
     type ApplyFormat = BlockFormat | InlineFormat | SelectorFormat;
 
-    type RemoveFormat = RemoveBlockFormat | RemoveInlineFormat | RemoveSelectorFormat;
+    type RemoveFormat =
+        | RemoveBlockFormat
+        | RemoveInlineFormat
+        | RemoveSelectorFormat;
 
     type Format = ApplyFormat | RemoveFormat;
 
     type Formats = Record<string, Format | Format[]>;
 
-    type FormatAttrOrStyleValue = string | ((vars?: FormatVars) => string | null);
+    type FormatAttrOrStyleValue =
+        | string
+        | ((vars?: FormatVars) => string | null);
 
     type FormatVars = Record<string, string | null>;
 
@@ -97,7 +109,12 @@ export namespace TinyMCE {
         styles?: Record<string, FormatAttrOrStyleValue>;
         toggle?: boolean;
         preview?: string | false;
-        onformat?: (elm: Element, fmt: T, vars?: FormatVars, node?: Node | RangeLikeObject | null) => void;
+        onformat?: (
+            elm: Element,
+            fmt: T,
+            vars?: FormatVars,
+            node?: Node | RangeLikeObject | null,
+        ) => void;
         clear_child_styles?: boolean;
         merge_siblings?: boolean;
         merge_with_parents?: boolean;
@@ -114,9 +131,15 @@ export namespace TinyMCE {
         styles?: string[] | Record<string, FormatAttrOrStyleValue>;
     }
 
-    interface RemoveBlockFormat extends Block, CommonRemoveFormat<RemoveBlockFormat> {}
+    interface RemoveBlockFormat
+        extends Block,
+            CommonRemoveFormat<RemoveBlockFormat> {}
 
-    interface RemoveInlineFormat extends Inline, CommonRemoveFormat<RemoveInlineFormat> {}
+    interface RemoveInlineFormat
+        extends Inline,
+            CommonRemoveFormat<RemoveInlineFormat> {}
 
-    interface RemoveSelectorFormat extends Selector, CommonRemoveFormat<RemoveSelectorFormat> {}
+    interface RemoveSelectorFormat
+        extends Selector,
+            CommonRemoveFormat<RemoveSelectorFormat> {}
 }

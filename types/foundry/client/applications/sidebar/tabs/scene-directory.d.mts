@@ -18,7 +18,9 @@ export default class SceneDirectory extends DocumentDirectory<Scene> {
     /*  Rendering                                   */
     /* -------------------------------------------- */
 
-    protected override _canRender(options: HandlebarsRenderOptions): false | void;
+    protected override _canRender(
+        options: HandlebarsRenderOptions,
+    ): false | void;
 
     protected override _getEntryContextOptions(): ContextMenuEntry[];
 

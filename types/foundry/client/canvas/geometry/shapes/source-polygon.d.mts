@@ -44,7 +44,11 @@ export default abstract class PointSourcePolygon<
      * @param origin The origin point to benchmark
      * @param config The polygon configuration to benchmark
      */
-    static benchmark(iterations: number, origin: Point, config: PointSourcePolygonConfig): void;
+    static benchmark(
+        iterations: number,
+        origin: Point,
+        config: PointSourcePolygonConfig,
+    ): void;
 
     /**
      * Compute the polygon given a point origin and radius
@@ -53,11 +57,10 @@ export default abstract class PointSourcePolygon<
      * @param config Configuration options which customize the polygon computation
      * @returns The computed polygon instance
      */
-    static create<C extends PointSourcePolygonConfig, T extends PointSourcePolygon<C>>(
-        this: ConstructorOf<T>,
-        origin: Point,
-        config?: C,
-    ): T;
+    static create<
+        C extends PointSourcePolygonConfig,
+        T extends PointSourcePolygon<C>,
+    >(this: ConstructorOf<T>, origin: Point, config?: C): T;
 
     /**
      * Create a clone of this polygon.
@@ -96,7 +99,10 @@ export default abstract class PointSourcePolygon<
      * @param [intersectionOptions] Options passed to the shape intersection method
      * @returns A new constrained polygon
      */
-    applyConstraint(constraint?: PIXI.Circle | PIXI.Rectangle | PIXI.Polygon, intersectionOptions?: object): this;
+    applyConstraint(
+        constraint?: PIXI.Circle | PIXI.Rectangle | PIXI.Polygon,
+        intersectionOptions?: object,
+    ): this;
 
     override contains(x: number, y: number): boolean;
 
@@ -142,7 +148,9 @@ export default abstract class PointSourcePolygon<
     static testCollision(
         origin: Point,
         destination: Point,
-        config?: PointSourcePolygonConfig & { mode?: "any" | "all" | "closest" },
+        config?: PointSourcePolygonConfig & {
+            mode?: "any" | "all" | "closest";
+        },
     ): boolean | PolygonVertex | PolygonVertex[] | null;
 
     /**
@@ -151,7 +159,10 @@ export default abstract class PointSourcePolygon<
      * @param mode The collision mode being tested
      * @returns The collision test result
      */
-    protected abstract _testCollision(ray: Ray, mode: string): boolean | PolygonVertex | PolygonVertex[] | null;
+    protected abstract _testCollision(
+        ray: Ray,
+        mode: string,
+    ): boolean | PolygonVertex | PolygonVertex[] | null;
 
     /* -------------------------------------------- */
     /*  Visualization and Debugging                 */
@@ -169,7 +180,9 @@ export default abstract class PointSourcePolygon<
      * @param {PointSourcePolygon} polygon        The computed polygon
      * @returns {PointSourcePolygon}              The augmented polygon
      */
-    static applyThresholdAttenuation<TPolygon extends PointSourcePolygon>(polygon: TPolygon): TPolygon;
+    static applyThresholdAttenuation<TPolygon extends PointSourcePolygon>(
+        polygon: TPolygon,
+    ): TPolygon;
 
     /**
      * Determine if the shape is a complete circle.

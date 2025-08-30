@@ -7,5 +7,8 @@ import DialogV2, { DialogV2Configuration } from "../../api/dialog.mjs";
 export default class FolderExport extends DialogV2 {
     static DEFAULT_OPTIONS: DeepPartial<DialogV2Configuration>;
 
-    protected override _onRender(context: object, options: HandlebarsRenderOptions): Promise<void>;
+    protected override _onRender(
+        context: object,
+        options: HandlebarsRenderOptions,
+    ): Promise<void>;
 }

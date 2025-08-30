@@ -53,7 +53,13 @@ type ServerSettingsSchema = {
     /** Whether to compress static files? True by default */
     compressStatic: fields.BooleanField;
     compressSocket: fields.BooleanField;
-    cssTheme: fields.StringField<"light" | "dark", "light" | "dark", false, false, true>;
+    cssTheme: fields.StringField<
+        "light" | "dark",
+        "light" | "dark",
+        false,
+        false,
+        true
+    >;
     /** The absolute path of the user data directory (obscured) */
     dataPath: fields.StringField;
     deleteNEDB: fields.BooleanField;
@@ -74,7 +80,13 @@ type ServerSettingsSchema = {
     sslCert: fields.StringField<string, string, false, true, false>;
     sslKey: fields.StringField<string, string, false, true, false>;
     telemetry: fields.BooleanField;
-    updateChannel: fields.StringField<SoftwareUpdateChannel, SoftwareUpdateChannel, true, false, true>;
+    updateChannel: fields.StringField<
+        SoftwareUpdateChannel,
+        SoftwareUpdateChannel,
+        true,
+        false,
+        true
+    >;
     upnp: fields.BooleanField;
     upnpLeaseDuration: fields.NumberField;
     world: fields.StringField<string, string, true>;

@@ -19,7 +19,9 @@ interface AVConfigConfiguration extends ApplicationConfiguration {
 /**
  * Audio/Video Conferencing Configuration Sheet
  */
-export default class AVConfig extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class AVConfig extends HandlebarsApplicationMixin(
+    ApplicationV2,
+) {
     constructor(options: DeepPartial<AVConfigConfiguration>);
 
     webrtc: AVMaster;
@@ -30,9 +32,13 @@ export default class AVConfig extends HandlebarsApplicationMixin(ApplicationV2) 
 
     static override TABS: Record<string, ApplicationTabsConfiguration>;
 
-    protected _configureRenderParts(options: HandlebarsRenderOptions): Record<string, HandlebarsTemplatePart>;
+    protected _configureRenderParts(
+        options: HandlebarsRenderOptions,
+    ): Record<string, HandlebarsTemplatePart>;
 
-    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<ApplicationRenderContext>;
+    protected override _prepareContext(
+        options: HandlebarsRenderOptions,
+    ): Promise<ApplicationRenderContext>;
 
     protected override _preparePartContext(
         partId: string,
@@ -40,7 +46,10 @@ export default class AVConfig extends HandlebarsApplicationMixin(ApplicationV2) 
         options: HandlebarsRenderOptions,
     ): Promise<ApplicationRenderContext>;
 
-    protected override _onRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
+    protected override _onRender(
+        context: ApplicationRenderContext,
+        options: HandlebarsRenderOptions,
+    ): Promise<void>;
 }
 
 export {};

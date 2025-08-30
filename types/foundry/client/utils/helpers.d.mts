@@ -27,7 +27,11 @@ export function cleanHTML(raw: string): string;
  * @param filename The filename of the resulting download
  */
 
-export function saveDataToFile(data: string, type: string, filename: string): void;
+export function saveDataToFile(
+    data: string,
+    type: string,
+    filename: string,
+): void;
 
 /**
  * Read text data from a user provided File object
@@ -44,18 +48,34 @@ export function readTextFromFile(file: File): Promise<string>;
  * @param options.invalid Allow retrieving an invalid Document.
  * @returns Returns the Document if it could be found, otherwise null.
  */
-export function fromUuid(uuid: CompendiumUUID, relative?: Maybe<ClientDocument>): Promise<CompendiumDocument | null>;
-export function fromUuid(uuid: ActorUUID, relative?: Maybe<ClientDocument>): Promise<Actor | null>;
-export function fromUuid(uuid: ItemUUID, relative?: Maybe<ClientDocument>): Promise<Item | null>;
-export function fromUuid(uuid: TokenDocumentUUID, relative?: Maybe<ClientDocument>): Promise<TokenDocument | null>;
+export function fromUuid(
+    uuid: CompendiumUUID,
+    relative?: Maybe<ClientDocument>,
+): Promise<CompendiumDocument | null>;
+export function fromUuid(
+    uuid: ActorUUID,
+    relative?: Maybe<ClientDocument>,
+): Promise<Actor | null>;
+export function fromUuid(
+    uuid: ItemUUID,
+    relative?: Maybe<ClientDocument>,
+): Promise<Item | null>;
+export function fromUuid(
+    uuid: TokenDocumentUUID,
+    relative?: Maybe<ClientDocument>,
+): Promise<TokenDocument | null>;
 export function fromUuid<TDocument extends ClientDocument>(
     uuid: string,
     relative?: Maybe<ClientDocument>,
 ): Promise<TDocument | null>;
 
 export type CompendiumDocumentType = (typeof COMPENDIUM_DOCUMENT_TYPES)[number];
-export type CompendiumUUID = `Compendium.${string}.${CompendiumDocumentType}.${string}`;
-export type DocumentUUID = WorldDocumentUUID | CompendiumUUID | TokenDocumentUUID;
+export type CompendiumUUID =
+    `Compendium.${string}.${CompendiumDocumentType}.${string}`;
+export type DocumentUUID =
+    | WorldDocumentUUID
+    | CompendiumUUID
+    | TokenDocumentUUID;
 
 /**
  * Retrieve a Document by its Universally Unique Identifier (uuid) synchronously. If the uuid resolves to a compendium
@@ -86,7 +106,9 @@ export function fromUuidSync<
  * @param documentName The canonical Document name, for example "Actor"
  * @returns The configured Document class implementation
  */
-export function getDocumentClass(documentName: string): typeof Document | undefined;
+export function getDocumentClass(
+    documentName: string,
+): typeof Document | undefined;
 
 /**
  * Given a source object to sort, a target to sort relative to, and an Array of siblings in the container:
@@ -134,4 +156,6 @@ export function timeSince(timeStamp: Date | string): string;
  * A single HTMLElement is returned if the provided string contains only a single top-level element.
  * An HTMLCollection is returned if the provided string contains multiple top-level elements.
  */
-export function parseHTML<THTML extends HTMLCollection | HTMLElement>(htmlString: string): THTML;
+export function parseHTML<THTML extends HTMLCollection | HTMLElement>(
+    htmlString: string,
+): THTML;

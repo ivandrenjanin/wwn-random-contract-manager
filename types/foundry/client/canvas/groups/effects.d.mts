@@ -2,7 +2,11 @@ import { Point } from "@common/_types.mjs";
 import Collection from "@common/utils/collection.mjs";
 import CanvasLayer from "../layers/base/canvas-layer.mjs";
 import { AmbientLight, Token } from "../placeables/_module.mjs";
-import type { GlobalLightSource, PointLightSource, PointVisionSource } from "../sources/_module.mjs";
+import type {
+    GlobalLightSource,
+    PointLightSource,
+    PointVisionSource,
+} from "../sources/_module.mjs";
 import CanvasGroupMixin from "./canvas-group-mixin.mjs";
 
 /**
@@ -13,7 +17,9 @@ import CanvasGroupMixin from "./canvas-group-mixin.mjs";
  * - {@link hookEvents.createEffectsCanvasGroup}
  * - {@link hookEvents.lightingRefresh}
  */
-export default class EffectsCanvasGroup extends CanvasGroupMixin(PIXI.Container) {
+export default class EffectsCanvasGroup extends CanvasGroupMixin(
+    PIXI.Container,
+) {
     constructor();
 
     /** The current global light source */
@@ -92,7 +98,11 @@ export default class EffectsCanvasGroup extends CanvasGroupMixin(PIXI.Container)
      * @param [postProcessingModes=[]] The post-processing modes to apply to this filter.
      * @param [uniforms={}]            The uniforms to update.
      */
-    activatePostProcessingFilters(filterMode: string, postProcessingModes?: string[], uniforms?: object): void;
+    activatePostProcessingFilters(
+        filterMode: string,
+        postProcessingModes?: string[],
+        uniforms?: object,
+    ): void;
 
     /** Reset post-processing modes on all Visual Effects masking filters. */
     resetPostProcessingFilters(): void;
@@ -114,5 +124,8 @@ export default class EffectsCanvasGroup extends CanvasGroupMixin(PIXI.Container)
      * @param duration The desired animation time in milliseconds. Default is 10 seconds
      * @returns A Promise which resolves once the animation is complete
      */
-    animateDarkness(target?: number, { duration }?: { duration?: number }): Promise<void>;
+    animateDarkness(
+        target?: number,
+        { duration }?: { duration?: number },
+    ): Promise<void>;
 }

@@ -25,7 +25,8 @@ export default function TokenApplicationMixin<
     },
 >(Base: TBase) {
     abstract class TokenApplication extends HandlebarsApplicationMixin(Base) {
-        static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration> = {};
+        static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration> =
+            {};
 
         static override PARTS: Record<string, HandlebarsTemplatePart> = {};
 
@@ -106,7 +107,9 @@ export default function TokenApplicationMixin<
             changes;
         }
 
-        protected override async _prepareContext(options: HandlebarsRenderOptions): Promise<ApplicationRenderContext> {
+        protected override async _prepareContext(
+            options: HandlebarsRenderOptions,
+        ): Promise<ApplicationRenderContext> {
             options;
             return {};
         }
@@ -166,7 +169,10 @@ export default function TokenApplicationMixin<
         /*  Event Listeners and Handlers                */
         /* -------------------------------------------- */
 
-        protected override _onChangeForm(formConfig: ApplicationFormConfiguration, event: Event): void {
+        protected override _onChangeForm(
+            formConfig: ApplicationFormConfiguration,
+            event: Event,
+        ): void {
             formConfig;
             event;
         }

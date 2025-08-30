@@ -4,13 +4,27 @@ import {
     DatabaseDeleteCallbackOptions,
 } from "@common/abstract/_types.mjs";
 import Document from "@common/abstract/document.mjs";
-import { Actor, BaseFolder, BaseUser, Item, JournalEntry, Macro, RollTable, Scene } from "./_module.mjs";
-import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
+import {
+    Actor,
+    BaseFolder,
+    BaseUser,
+    Item,
+    JournalEntry,
+    Macro,
+    RollTable,
+    Scene,
+} from "./_module.mjs";
+import {
+    ClientDocument,
+    ClientDocumentStatic,
+} from "./abstract/client-document.mjs";
 import WorldCollection from "./abstract/world-collection.mjs";
 import CompendiumCollection from "./collections/compendium-collection.mjs";
 
 type BaseFolderStatic = typeof BaseFolder;
-interface ClientBaseFolderStatic extends BaseFolderStatic, ClientDocumentStatic {}
+interface ClientBaseFolderStatic
+    extends BaseFolderStatic,
+        ClientDocumentStatic {}
 
 declare const ClientBaseFolder: {
     new (...args: any): BaseFolder & ClientDocument<null>;
@@ -24,7 +38,9 @@ interface ClientBaseFolder extends InstanceType<typeof ClientBaseFolder> {}
  * @see {@link Folders}                     The world-level collection of Folder documents
  * @see {@link FolderConfig}                The Folder configuration application
  */
-export default class Folder<TDocument extends EnfolderableDocument = EnfolderableDocument> extends ClientBaseFolder {
+export default class Folder<
+    TDocument extends EnfolderableDocument = EnfolderableDocument,
+> extends ClientBaseFolder {
     /** The depth of this folder in its sidebar tree */
     depth: number;
 
@@ -112,9 +128,15 @@ export default class Folder<TDocument extends EnfolderableDocument = Enfolderabl
      * @param options Additional options passed to the Dialog.prompt method
      * @return A Promise which resolves or rejects once the dialog has been submitted or closed
      */
-    exportDialog(pack: string, options?: Record<string, unknown>): Promise<void>;
+    exportDialog(
+        pack: string,
+        options?: Record<string, unknown>,
+    ): Promise<void>;
 
-    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
+    protected override _onDelete(
+        options: DatabaseDeleteCallbackOptions,
+        userId: string,
+    ): void;
 
     /**
      * Get the Folder documents which are sub-folders of the current folder, either direct children or recursively.
@@ -130,6 +152,12 @@ export default class Folder<TDocument extends EnfolderableDocument = Enfolderabl
     getParentFolders(): Folder<TDocument>[];
 }
 
-export type EnfolderableDocument = Actor<null> | Item<null> | Macro | Scene | JournalEntry | RollTable;
+export type EnfolderableDocument =
+    | Actor<null>
+    | Item<null>
+    | Macro
+    | Scene
+    | JournalEntry
+    | RollTable;
 
 export {};

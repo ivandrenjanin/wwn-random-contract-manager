@@ -23,7 +23,10 @@ export default class TextureLoader {
      * @param [resolution=1] Resolution of the texture data output.
      * @returns The texture data if the texture is valid, else undefined.
      */
-    static getTextureAlphaData(texture: PIXI.Texture, resolution?: number): TextureAlphaData | undefined;
+    static getTextureAlphaData(
+        texture: PIXI.Texture,
+        resolution?: number,
+    ): TextureAlphaData | undefined;
 
     /**
      * Load all the textures which are required for a particular Scene
@@ -35,7 +38,11 @@ export default class TextureLoader {
      */
     static loadSceneTextures(
         scene: Scene,
-        options?: { expireCache?: boolean; additionalSources?: string[]; maxConcurrent?: number },
+        options?: {
+            expireCache?: boolean;
+            additionalSources?: string[];
+            maxConcurrent?: number;
+        },
     ): Promise<void[]>;
 
     /**
@@ -50,7 +57,12 @@ export default class TextureLoader {
      */
     load(
         sources: string[],
-        options?: { message?: string; expireCache?: boolean; maxConcurrent?: number; displayProgress?: boolean },
+        options?: {
+            message?: string;
+            expireCache?: boolean;
+            maxConcurrent?: number;
+            displayProgress?: boolean;
+        },
     ): Promise<void[]>;
 
     /**
@@ -58,7 +70,9 @@ export default class TextureLoader {
      * @param src The source texture path to load
      * @returns The loaded texture object
      */
-    loadTexture(src: string): Promise<PIXI.BaseTexture | PIXI.Spritesheet | null>;
+    loadTexture(
+        src: string,
+    ): Promise<PIXI.BaseTexture | PIXI.Spritesheet | null>;
 
     /**
      * Use the Fetch API to retrieve a resource and return a Blob instance for it.
@@ -67,7 +81,10 @@ export default class TextureLoader {
      * @param [options.bustCache=false]  Append a cache-busting query parameter to the request.
      * @returns A Blob containing the loaded data
      */
-    static fetchResource(src: string, options?: { bustCache?: boolean }): Promise<Blob>;
+    static fetchResource(
+        src: string,
+        options?: { bustCache?: boolean },
+    ): Promise<Blob>;
 
     /* -------------------------------------------- */
     /*  Cache Controls                              */

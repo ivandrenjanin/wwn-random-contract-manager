@@ -91,7 +91,9 @@ type IterableWeakMapValue<K extends WeakKey = WeakKey, V = unknown> = {
  * A string tree node consists of zero-or-more string keys, and a leaves property that contains any objects that
  * terminate at the current node.
  */
-type StringTreeNode<T> = { [K in string]: Record<string, StringTreeNode<T> | T> };
+type StringTreeNode<T> = {
+    [K in string]: Record<string, StringTreeNode<T> | T>;
+};
 type StringTreeEntryFilter<T> = (entry: T) => boolean;
 
 /**

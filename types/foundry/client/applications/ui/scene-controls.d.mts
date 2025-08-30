@@ -1,6 +1,16 @@
-import type { ApplicationConfiguration, ApplicationPosition, ApplicationRenderOptions } from "../_types.mjs";
-import type { ApplicationV2, HandlebarsApplicationMixin } from "../api/_module.mjs";
-import type { HandlebarsRenderOptions, HandlebarsTemplatePart } from "../api/handlebars-application.mjs";
+import type {
+    ApplicationConfiguration,
+    ApplicationPosition,
+    ApplicationRenderOptions,
+} from "../_types.mjs";
+import type {
+    ApplicationV2,
+    HandlebarsApplicationMixin,
+} from "../api/_module.mjs";
+import type {
+    HandlebarsRenderOptions,
+    HandlebarsTemplatePart,
+} from "../api/handlebars-application.mjs";
 
 /** The data structure for a single tool in the {@link SceneControl#tools} record. */
 export interface SceneControlTool {
@@ -106,19 +116,34 @@ export default class SceneControls extends HandlebarsApplicationMixin(
      * Activate a new control layer or tool.
      * This method is advantageous to use because it minimizes the amount of re-rendering necessary.
      */
-    activate(options?: Pick<SceneControlsRenderOptions, "event" | "control" | "tool" | "toggles">): Promise<void>;
+    activate(
+        options?: Pick<
+            SceneControlsRenderOptions,
+            "event" | "control" | "tool" | "toggles"
+        >,
+    ): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Rendering Methods                           */
     /* -------------------------------------------- */
 
-    protected override _configureRenderOptions(options: Partial<ApplicationRenderOptions>): ApplicationRenderOptions;
+    protected override _configureRenderOptions(
+        options: Partial<ApplicationRenderOptions>,
+    ): ApplicationRenderOptions;
 
-    protected override _preRender(context: object, options: ApplicationRenderOptions): Promise<void>;
+    protected override _preRender(
+        context: object,
+        options: ApplicationRenderOptions,
+    ): Promise<void>;
 
-    protected override _prepareContext(options: ApplicationRenderOptions): Promise<object>;
+    protected override _prepareContext(
+        options: ApplicationRenderOptions,
+    ): Promise<object>;
 
-    protected override _onRender(context: object, options: ApplicationRenderOptions): Promise<void>;
+    protected override _onRender(
+        context: object,
+        options: ApplicationRenderOptions,
+    ): Promise<void>;
 
     /**
      * Update the class of the notes layer icon to reflect whether there are visible notes or not.
@@ -126,15 +151,22 @@ export default class SceneControls extends HandlebarsApplicationMixin(
      */
     _updateNotesIcon(): void;
 
-    override setPosition(position?: Partial<ApplicationPosition>): ApplicationPosition;
+    override setPosition(
+        position?: Partial<ApplicationPosition>,
+    ): ApplicationPosition;
 
     /* -------------------------------------------- */
     /*  Toolclip Definitions                        */
     /* -------------------------------------------- */
 
     /** Reusable toolclip items. */
-    static COMMON_TOOLCLIP_ITEMS: Record<string, { heading: string; reference: string }>;
+    static COMMON_TOOLCLIP_ITEMS: Record<
+        string,
+        { heading: string; reference: string }
+    >;
 
     /** A helper function used to prepare an array of toolclip items. */
-    static buildToolclipItems(items: (ToolclipConfigurationItem | string | null)[]): ToolclipConfigurationItem[];
+    static buildToolclipItems(
+        items: (ToolclipConfigurationItem | string | null)[],
+    ): ToolclipConfigurationItem[];
 }

@@ -30,7 +30,9 @@ export interface CategoryBrowserConfiguration extends ApplicationConfiguration {
  * An abstract class responsible for displaying a 2-pane Application that allows for entries to be grouped and filtered
  * by category.
  */
-export default abstract class CategoryBrowser extends HandlebarsApplicationMixin(ApplicationV2) {
+export default abstract class CategoryBrowser extends HandlebarsApplicationMixin(
+    ApplicationV2,
+) {
     static override DEFAULT_OPTIONS: DeepPartial<CategoryBrowserConfiguration>;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;
@@ -44,7 +46,9 @@ export default abstract class CategoryBrowser extends HandlebarsApplicationMixin
         options: DeepPartial<CategoryBrowserConfiguration>,
     ): CategoryBrowserConfiguration;
 
-    protected override _configureRenderParts(options: HandlebarsRenderOptions): Record<string, HandlebarsTemplatePart>;
+    protected override _configureRenderParts(
+        options: HandlebarsRenderOptions,
+    ): Record<string, HandlebarsTemplatePart>;
 
     /**
      * Perform a text search without a KeyboardEvent.
@@ -53,7 +57,9 @@ export default abstract class CategoryBrowser extends HandlebarsApplicationMixin
 
     override render(options: HandlebarsRenderOptions): Promise<this>;
 
-    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<ApplicationRenderContext>;
+    protected override _prepareContext(
+        options: HandlebarsRenderOptions,
+    ): Promise<ApplicationRenderContext>;
 
     /**
      * Prepare the structure of category data which is rendered in this configuration form.
@@ -76,11 +82,16 @@ export default abstract class CategoryBrowser extends HandlebarsApplicationMixin
         b: { label: string; [key: string]: unknown },
     ): number;
 
-    protected override _getTabsConfig(group: string): ApplicationTabsConfiguration | null;
+    protected override _getTabsConfig(
+        group: string,
+    ): ApplicationTabsConfiguration | null;
 
     protected override _tearDown(options: ApplicationClosingOptions): void;
 
-    protected override _onRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
+    protected override _onRender(
+        context: ApplicationRenderContext,
+        options: HandlebarsRenderOptions,
+    ): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers                */
@@ -89,5 +100,10 @@ export default abstract class CategoryBrowser extends HandlebarsApplicationMixin
     /**
      * Handle search inputs.
      */
-    protected _onSearchFilter(_event: KeyboardEvent, query: string, rgx?: RegExp, content?: HTMLElement | null): void;
+    protected _onSearchFilter(
+        _event: KeyboardEvent,
+        query: string,
+        rgx?: RegExp,
+        content?: HTMLElement | null,
+    ): void;
 }

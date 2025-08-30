@@ -118,7 +118,10 @@ export default abstract class BaseRuler extends RenderFlagsObject {
      * @param point        The (unsnapped) waypoint
      * @param options.snap Snap the added waypoint?
      */
-    protected _addDragWaypoint(point: Point, options?: { snap?: boolean }): void;
+    protected _addDragWaypoint(
+        point: Point,
+        options?: { snap?: boolean },
+    ): void;
 
     /**
      * Remove the second to last waypoint.
@@ -132,7 +135,10 @@ export default abstract class BaseRuler extends RenderFlagsObject {
      *                        `CONFIG.Canvas.elevationSnappingPrecision`? If false, rounds to multiples of the grid
      *                        distance.
      */
-    protected _changeDragElevation(delta: number, options?: { precise?: boolean }): void;
+    protected _changeDragElevation(
+        delta: number,
+        options?: { precise?: boolean },
+    ): void;
 
     /**
      * Handle the beginning of a new Ruler measurement workflow.

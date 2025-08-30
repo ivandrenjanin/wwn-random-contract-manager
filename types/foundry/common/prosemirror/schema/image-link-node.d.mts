@@ -23,5 +23,10 @@ export default class ImageLinkNode extends SchemaDefinition {
      * @param event The click event.
      * @param node  The Node instance.
      */
-    static onClick(view: EditorView, pos: number, event: PointerEvent, node: Node): boolean;
+    static onClick(
+        view: EditorView,
+        pos: number,
+        event: PointerEvent,
+        node: Node,
+    ): boolean;
 }

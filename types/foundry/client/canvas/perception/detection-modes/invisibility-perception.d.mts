@@ -11,5 +11,8 @@ import DetectionMode from "../detection-mode.mjs";
 export default class DetectionModeInvisibility extends DetectionMode {
     static override getDetectionFilter(): PIXI.Filter;
 
-    protected override _canDetect(visionSource: PointVisionSource<Token>, target: PlaceableObject): boolean;
+    protected override _canDetect(
+        visionSource: PointVisionSource<Token>,
+        target: PlaceableObject,
+    ): boolean;
 }

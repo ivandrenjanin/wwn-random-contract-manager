@@ -1,19 +1,32 @@
 import { RegionPolygonTree } from "@client/data/region-shapes/polygon-tree.mjs";
 import { RegionShape } from "@client/data/region-shapes/shape.mjs";
 import EmbeddedCollection from "@common/abstract/embedded-collection.mjs";
-import Region, { RegionMovementSegment, RegionMovementWaypoint } from "../canvas/placeables/region.mjs";
+import Region, {
+    RegionMovementSegment,
+    RegionMovementWaypoint,
+} from "../canvas/placeables/region.mjs";
 import { BaseRegion, RegionBehavior, Scene, User } from "./_module.mjs";
-import { CanvasDocument, CanvasDocumentStatic } from "./abstract/canvas-document.mjs";
+import {
+    CanvasDocument,
+    CanvasDocumentStatic,
+} from "./abstract/canvas-document.mjs";
 
-interface CanvasBaseRegionStatic extends Omit<typeof BaseRegion, "new">, CanvasDocumentStatic {}
+interface CanvasBaseRegionStatic
+    extends Omit<typeof BaseRegion, "new">,
+        CanvasDocumentStatic {}
 
 declare const CanvasBaseRegion: {
-    new <TParent extends Scene | null>(...args: any): BaseRegion<TParent> & CanvasDocument<TParent>;
+    new <TParent extends Scene | null>(
+        ...args: any
+    ): BaseRegion<TParent> & CanvasDocument<TParent>;
 } & CanvasBaseRegionStatic;
 
-interface CanvasBaseRegion<TParent extends Scene | null> extends InstanceType<typeof CanvasBaseRegion<TParent>> {}
+interface CanvasBaseRegion<TParent extends Scene | null>
+    extends InstanceType<typeof CanvasBaseRegion<TParent>> {}
 
-export default class RegionDocument<TParent extends Scene | null = Scene | null> extends CanvasBaseRegion<TParent> {
+export default class RegionDocument<
+    TParent extends Scene | null = Scene | null,
+> extends CanvasBaseRegion<TParent> {
     /* -------------------------------------------- */
     /*  Properties                                  */
     /* -------------------------------------------- */
@@ -76,13 +89,18 @@ export default class RegionDocument<TParent extends Scene | null = Scene | null>
     _updateTokens(options?: { deleted?: boolean }): Promise<boolean>;
 }
 
-export default interface RegionDocument<TParent extends Scene | null = Scene | null> extends CanvasBaseRegion<TParent> {
+export default interface RegionDocument<
+    TParent extends Scene | null = Scene | null,
+> extends CanvasBaseRegion<TParent> {
     get object(): Region<this>;
 
     readonly behaviors: EmbeddedCollection<RegionBehavior<this>>;
 }
 
-export interface BaseRegionEvent<TDocument extends RegionDocument = RegionDocument, TUser extends User = User> {
+export interface BaseRegionEvent<
+    TDocument extends RegionDocument = RegionDocument,
+    TUser extends User = User,
+> {
     /** The name of the event */
     name: string;
     /** The data of the event */
@@ -93,8 +111,10 @@ export interface BaseRegionEvent<TDocument extends RegionDocument = RegionDocume
     user: TUser;
 }
 
-export interface BehaviorStatusRegionEvent<TDocument extends RegionDocument = RegionDocument, TUser extends User = User>
-    extends BaseRegionEvent<TDocument, TUser> {
+export interface BehaviorStatusRegionEvent<
+    TDocument extends RegionDocument = RegionDocument,
+    TUser extends User = User,
+> extends BaseRegionEvent<TDocument, TUser> {
     name: "behaviorStatus";
     data: {
         active: boolean;
@@ -102,25 +122,35 @@ export interface BehaviorStatusRegionEvent<TDocument extends RegionDocument = Re
     };
 }
 
-export interface CombatRegionEvent<TDocument extends RegionDocument = RegionDocument, TUser extends User = User>
-    extends BaseRegionEvent<TDocument, TUser> {
-    name: "tokenRoundStart" | "tokenRoundEnd" | "tokenTurnStart" | "tokenTurnEnd";
+export interface CombatRegionEvent<
+    TDocument extends RegionDocument = RegionDocument,
+    TUser extends User = User,
+> extends BaseRegionEvent<TDocument, TUser> {
+    name:
+        | "tokenRoundStart"
+        | "tokenRoundEnd"
+        | "tokenTurnStart"
+        | "tokenTurnEnd";
     data: {
         token: SetElement<TDocument["tokens"]>;
         combatant: SetElement<TDocument["tokens"]>["combatant"];
     };
 }
 
-export interface TokenBasicMoveRegionEvent<TDocument extends RegionDocument = RegionDocument, TUser extends User = User>
-    extends BaseRegionEvent<TDocument, TUser> {
+export interface TokenBasicMoveRegionEvent<
+    TDocument extends RegionDocument = RegionDocument,
+    TUser extends User = User,
+> extends BaseRegionEvent<TDocument, TUser> {
     name: "tokenEnter" | "tokenExit";
     data: {
         token: SetElement<TDocument["tokens"]>;
     };
 }
 
-export interface TokenMoveRegionEvent<TDocument extends RegionDocument = RegionDocument, TUser extends User = User>
-    extends BaseRegionEvent<TDocument, TUser> {
+export interface TokenMoveRegionEvent<
+    TDocument extends RegionDocument = RegionDocument,
+    TUser extends User = User,
+> extends BaseRegionEvent<TDocument, TUser> {
     name: "tokenPreMove" | "tokenMove" | "tokenMoveIn" | "tokenMoveOut";
     data: {
         destination: RegionMovementWaypoint;
@@ -132,13 +162,18 @@ export interface TokenMoveRegionEvent<TDocument extends RegionDocument = RegionD
     };
 }
 
-export interface RegionBoundaryRegionEvent<TDocument extends RegionDocument = RegionDocument, TUser extends User = User>
-    extends BaseRegionEvent<TDocument, TUser> {
+export interface RegionBoundaryRegionEvent<
+    TDocument extends RegionDocument = RegionDocument,
+    TUser extends User = User,
+> extends BaseRegionEvent<TDocument, TUser> {
     name: "regionBoundary";
     data: object;
 }
 
-export type RegionEvent<TDocument extends RegionDocument = RegionDocument, TUser extends User = User> =
+export type RegionEvent<
+    TDocument extends RegionDocument = RegionDocument,
+    TUser extends User = User,
+> =
     | BehaviorStatusRegionEvent<TDocument, TUser>
     | CombatRegionEvent<TDocument, TUser>
     | TokenMoveRegionEvent<TDocument, TUser>

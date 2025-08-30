@@ -8,7 +8,11 @@ export default class SmoothNoise {
      * @param options.scale An adjustment factor for the input x values which place them on an appropriate range.
      * @param options.maxReferences The number of pre-generated random numbers to generate.
      */
-    constructor(options?: { amplitude?: number; scale?: number; maxReferences?: number });
+    constructor(options?: {
+        amplitude?: number;
+        scale?: number;
+        maxReferences?: number;
+    });
 
     /**
      * Amplitude of the generated noise output

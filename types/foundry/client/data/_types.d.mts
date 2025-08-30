@@ -20,7 +20,8 @@ export interface CombatConfigurationData {
     };
 }
 
-export interface CalendarConfig extends ModelPropsFromSchema<CalendarDataSchema> {}
+export interface CalendarConfig
+    extends ModelPropsFromSchema<CalendarDataSchema> {}
 
 /** A definition of a year within a calendar. */
 export type CalendarConfigYears = CalendarConfig["years"];
@@ -94,4 +95,8 @@ export interface TimeComponents {
     leapYear: boolean;
 }
 
-export type TimeFormatter = (calendar: CalendarData, components: TimeComponents, options: object) => string;
+export type TimeFormatter = (
+    calendar: CalendarData,
+    components: TimeComponents,
+    options: object,
+) => string;

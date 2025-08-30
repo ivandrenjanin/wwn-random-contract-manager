@@ -52,7 +52,13 @@ export default class ImageHelper {
      */
     static compositeCanvasTexture(
         object: PIXI.DisplayObject,
-        options?: { width?: number; height?: number; tx?: number; ty?: number; center?: boolean },
+        options?: {
+            width?: number;
+            height?: number;
+            tx?: number;
+            ty?: number;
+            center?: boolean;
+        },
     ): PIXI.Texture;
 
     /**
@@ -63,7 +69,10 @@ export default class ImageHelper {
      * @param [options.quality] JPEG or WEBP compression from 0 to 1. Default is 0.92.
      * @returns A base64 png string of the texture
      */
-    static textureToImage(texture: PIXI.Texture, options?: { format: string; quality: number }): Promise<string>;
+    static textureToImage(
+        texture: PIXI.Texture,
+        options?: { format: string; quality: number },
+    ): Promise<string>;
 
     /**
      * Asynchronously convert a DisplayObject container to base64 using Canvas#toBlob and FileReader
@@ -72,7 +81,11 @@ export default class ImageHelper {
      * @param quality   A number between 0 and 1 for image quality if image/jpeg or image/webp
      * @returns A processed base64 string
      */
-    static pixiToBase64(target: PIXI.DisplayObject, type: string, quality: number): Promise<string>;
+    static pixiToBase64(
+        target: PIXI.DisplayObject,
+        type: string,
+        quality: number,
+    ): Promise<string>;
 
     /**
      * Asynchronously convert a canvas element to base64.
@@ -81,7 +94,11 @@ export default class ImageHelper {
      * @param quality
      * @returns The base64 string of the canvas.
      */
-    static canvasToBase64(canvas: HTMLCanvasElement, type: string, quality?: number): Promise<string>;
+    static canvasToBase64(
+        canvas: HTMLCanvasElement,
+        type: string,
+        quality?: number,
+    ): Promise<string>;
 
     /**
      * Upload a base64 image string to a persisted data storage location

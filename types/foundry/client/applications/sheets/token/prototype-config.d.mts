@@ -23,7 +23,9 @@ import TokenApplicationMixin from "./mixin.mjs";
  * @extends ApplicationV2
  * @mixes TokenApplication
  */
-export default class PrototypeTokenConfig extends TokenApplicationMixin(ApplicationV2) {
+export default class PrototypeTokenConfig extends TokenApplicationMixin(
+    ApplicationV2,
+) {
     constructor(options?: DeepPartial<ApplicationConfiguration>);
 
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
@@ -51,9 +53,13 @@ export default class PrototypeTokenConfig extends TokenApplicationMixin(Applicat
 
     protected override _initializeTokenPreview(): Promise<void>;
 
-    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<DocumentSheetRenderContext>;
+    protected override _prepareContext(
+        options: HandlebarsRenderOptions,
+    ): Promise<DocumentSheetRenderContext>;
 
-    protected override _configureRenderOptions(options: HandlebarsRenderOptions): void;
+    protected override _configureRenderOptions(
+        options: HandlebarsRenderOptions,
+    ): void;
 
     protected override _prepareButtons(): FormFooterButton[];
 

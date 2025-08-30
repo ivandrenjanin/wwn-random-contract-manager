@@ -6,7 +6,11 @@ import {
     ApplicationTabsConfiguration,
     FormFooterButton,
 } from "../_types.mjs";
-import { HandlebarsApplicationMixin, HandlebarsRenderOptions, HandlebarsTemplatePart } from "../api/_module.mjs";
+import {
+    HandlebarsApplicationMixin,
+    HandlebarsRenderOptions,
+    HandlebarsTemplatePart,
+} from "../api/_module.mjs";
 import ApplicationV2 from "../api/application.mjs";
 
 export type FilePickerSource = "data" | "public" | "s3";
@@ -94,7 +98,9 @@ interface FilePickerContext {
  * The FilePicker application renders contents of the server-side public directory.
  * This app allows for navigating and uploading files to the public path.
  */
-export default class FilePicker extends HandlebarsApplicationMixin(ApplicationV2<FilePickerConfiguration>) {
+export default class FilePicker extends HandlebarsApplicationMixin(
+    ApplicationV2<FilePickerConfiguration>,
+) {
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;
@@ -102,7 +108,17 @@ export default class FilePicker extends HandlebarsApplicationMixin(ApplicationV2
     static override TABS: Record<string, ApplicationTabsConfiguration>;
 
     /** The allowed values for the type of this FilePicker instance. */
-    static FILE_TYPES: ["any", "audio", "folder", "font", "graphics", "image", "imagevideo", "text", "video"];
+    static FILE_TYPES: [
+        "any",
+        "audio",
+        "folder",
+        "font",
+        "graphics",
+        "image",
+        "imagevideo",
+        "text",
+        "video",
+    ];
 
     /** Record the last-browsed directory path so that re-opening a different FilePicker instance uses the same target */
     static LAST_BROWSED_DIRECTORY: string;
@@ -149,7 +165,12 @@ export default class FilePicker extends HandlebarsApplicationMixin(ApplicationV2
     displayMode: FilerPickerDisplayMode;
 
     /** The file sources available for browsing */
-    sources: Partial<Record<FilePickerSource, { target: string; bucket?: string; buckets?: string[] }>>;
+    sources: Partial<
+        Record<
+            FilePickerSource,
+            { target: string; bucket?: string; buckets?: string[] }
+        >
+    >;
 
     activeSource: FilePickerSource;
 
@@ -197,7 +218,11 @@ export default class FilePicker extends HandlebarsApplicationMixin(ApplicationV2
     static browse(
         source: FilePickerSource,
         target: string,
-        options?: { bucket?: string; extensions?: string[]; wildcard?: boolean },
+        options?: {
+            bucket?: string;
+            extensions?: string[];
+            wildcard?: boolean;
+        },
     ): Promise<FilePickerManageFilesResult>;
 
     /**
@@ -281,19 +306,31 @@ export default class FilePicker extends HandlebarsApplicationMixin(ApplicationV2
 
     override render(options?: Partial<HandlebarsRenderOptions>): Promise<this>;
 
-    override _prepareContext(options: HandlebarsRenderOptions): Promise<FilePickerContext>;
+    override _prepareContext(
+        options: HandlebarsRenderOptions,
+    ): Promise<FilePickerContext>;
 
-    protected override _prepareTabs(group: string): Record<string, ApplicationTab>;
+    protected override _prepareTabs(
+        group: string,
+    ): Record<string, ApplicationTab>;
 
     override changeTab(
         tab: string,
         group: string,
-        options?: { event?: Event; navElement?: HTMLElement; force?: boolean; updatePosition?: boolean },
+        options?: {
+            event?: Event;
+            navElement?: HTMLElement;
+            force?: boolean;
+            updatePosition?: boolean;
+        },
     ): void;
 
     protected override _tearDown(options: ApplicationClosingOptions): void;
 
-    protected override _onRender(context: FilePickerContext, options: HandlebarsRenderOptions): Promise<void>;
+    protected override _onRender(
+        context: FilePickerContext,
+        options: HandlebarsRenderOptions,
+    ): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers                */
@@ -312,7 +349,12 @@ export default class FilePicker extends HandlebarsApplicationMixin(ApplicationV2
      * @param rgx
      * @param html
      */
-    protected _onSearchFilter(event: KeyboardEvent, query: string, rgx: RegExp, html: HTMLElement): void;
+    protected _onSearchFilter(
+        event: KeyboardEvent,
+        query: string,
+        rgx: RegExp,
+        html: HTMLElement,
+    ): void;
 
     /* -------------------------------------------- */
     /*  Factory Methods                             */

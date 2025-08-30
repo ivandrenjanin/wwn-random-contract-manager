@@ -26,7 +26,9 @@ export default class BatchRenderer extends PIXI.BatchRenderer {
     /**
      * The update function provided by the sampler and that is called just before a flush.
      */
-    protected _preRenderBatch: (batchRenderer: BatchRenderer) => void | undefined;
+    protected _preRenderBatch: (
+        batchRenderer: BatchRenderer,
+    ) => void | undefined;
 
     /**
      * Get the uniforms bound to this abstract batch renderer.
@@ -40,7 +42,11 @@ export default class BatchRenderer extends PIXI.BatchRenderer {
 
     set reservedTextureUnits(val: number);
 
-    override setShaderGenerator(options?: { vertex?: string; fragment?: string; uniforms?: string }): void;
+    override setShaderGenerator(options?: {
+        vertex?: string;
+        fragment?: string;
+        uniforms?: string;
+    }): void;
 
     shaderGenerator: BatchShaderGenerator;
 

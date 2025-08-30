@@ -33,7 +33,10 @@ export default abstract class Document<
     /** A set of localization prefix paths which are used by this Document model. */
     static LOCALIZATION_PREFIXES: string[];
 
-    protected override _configure(options?: { pack?: string | null; parentCollection?: string | null }): void;
+    protected override _configure(options?: {
+        pack?: string | null;
+        parentCollection?: string | null;
+    }): void;
 
     /**
      * An immutable reverse-reference to the name of the collection that this Document exists in on its parent, if any.
@@ -43,11 +46,16 @@ export default abstract class Document<
     /** An immutable reference to a containing Compendium collection to which this Document belongs. */
     readonly pack: string | null;
 
-    readonly collections: Readonly<Record<string, EmbeddedCollection<Document<this>>>>;
+    readonly collections: Readonly<
+        Record<string, EmbeddedCollection<Document<this>>>
+    >;
 
     protected override _initialize(options?: Record<string, unknown>): void;
 
-    static override _initializationOrder(): Generator<[string, DataField], void>;
+    static override _initializationOrder(): Generator<
+        [string, DataField],
+        void
+    >;
 
     /* -------------------------------------------- */
     /*  Model Configuration                         */
@@ -151,7 +159,11 @@ export default abstract class Document<
      * @param [data] Data involved in the attempted action
      * @return Does the User have permission?
      */
-    canUserModify(user: BaseUser, action: UserAction, data?: Record<string, unknown>): boolean;
+    canUserModify(
+        user: BaseUser,
+        action: UserAction,
+        data?: Record<string, unknown>,
+    ): boolean;
 
     /* ---------------------------------------- */
     /*  Model Methods                           */
@@ -166,7 +178,10 @@ export default abstract class Document<
      * @param context.keepId Keep the original Document ID? Otherwise the ID will become undefined
      * @returns The cloned Document instance
      */
-    override clone(data?: Record<string, unknown>, context?: DocumentCloneContext): this;
+    override clone(
+        data?: Record<string, unknown>,
+        context?: DocumentCloneContext,
+    ): this;
 
     /**
      * For Documents which include game system data, migrate the system data object to conform to its latest data model.
@@ -340,7 +355,9 @@ export default abstract class Document<
     ): Promise<TDocument[]>;
     static create<TDocument extends Document>(
         this: ConstructorOf<TDocument>,
-        data: PreCreate<TDocument["_source"]> | PreCreate<TDocument["_source"]>[],
+        data:
+            | PreCreate<TDocument["_source"]>
+            | PreCreate<TDocument["_source"]>[],
         operation?: Partial<DatabaseCreateOperation<TDocument["parent"]>>,
     ): Promise<TDocument[] | TDocument | undefined>;
 
@@ -353,7 +370,9 @@ export default abstract class Document<
      */
     update(
         data: Record<string, unknown>,
-        operation?: Partial<Omit<DatabaseUpdateOperation<null>, "parent" | "pack">>,
+        operation?: Partial<
+            Omit<DatabaseUpdateOperation<null>, "parent" | "pack">
+        >,
     ): Promise<this | undefined>;
 
     /**
@@ -362,7 +381,11 @@ export default abstract class Document<
      * @param operation Options which customize the deletion workflow
      * @return The deleted Document
      */
-    delete(operation?: Partial<Omit<DatabaseDeleteOperation<null>, "parent" | "pack">>): Promise<this | undefined>;
+    delete(
+        operation?: Partial<
+            Omit<DatabaseDeleteOperation<null>, "parent" | "pack">
+        >,
+    ): Promise<this | undefined>;
 
     /**
      * Get a World-level Document of this type by its id.
@@ -403,7 +426,9 @@ export default abstract class Document<
      * @param embeddedName The name of the embedded Document type
      * @return The Collection instance of embedded Documents of the requested type
      */
-    getEmbeddedCollection(embeddedName: string): EmbeddedCollection<Document<Document>>;
+    getEmbeddedCollection(
+        embeddedName: string,
+    ): EmbeddedCollection<Document<Document>>;
 
     /**
      * Get an embedded document by it's id from a named collection in the parent document.
@@ -413,9 +438,21 @@ export default abstract class Document<
      * @param [options.strict=false] Throw an Error if the requested id does not exist. See Collection#get
      * @return The retrieved embedded Document instance, or undefined
      */
-    getEmbeddedDocument(embeddedName: string, id: string, { strict }: { strict: true }): Document;
-    getEmbeddedDocument(embeddedName: string, id: string, { strict }: { strict: false }): Document | undefined;
-    getEmbeddedDocument(embeddedName: string, id: string, { strict }?: { strict?: boolean }): Document | undefined;
+    getEmbeddedDocument(
+        embeddedName: string,
+        id: string,
+        { strict }: { strict: true },
+    ): Document;
+    getEmbeddedDocument(
+        embeddedName: string,
+        id: string,
+        { strict }: { strict: false },
+    ): Document | undefined;
+    getEmbeddedDocument(
+        embeddedName: string,
+        id: string,
+        { strict }?: { strict?: boolean },
+    ): Document | undefined;
 
     /**
      * Create multiple embedded Document instances within this parent Document using provided input data.
@@ -463,7 +500,9 @@ export default abstract class Document<
      * Iterate over all embedded Documents that are hierarchical children of this Document.
      * @param [_parentPath] A parent field path already traversed
      */
-    traverseEmbeddedDocuments(_parentPath: string): Generator<[string, Document], void>;
+    traverseEmbeddedDocuments(
+        _parentPath: string,
+    ): Generator<[string, Document], void>;
 
     /* -------------------------------------------- */
     /*  Flag Operations                             */
@@ -532,7 +571,11 @@ export default abstract class Document<
      * @param data    The initial data object provided to the document creation request
      * @param options Additional options which modify the creation request
      */
-    protected _onCreate(data: this["_source"], options: DatabaseCreateCallbackOptions, userId: string): void;
+    protected _onCreate(
+        data: this["_source"],
+        options: DatabaseCreateCallbackOptions,
+        userId: string,
+    ): void;
 
     /**
      * Pre-process a creation operation, potentially altering its instructions or input data. Pre-operation events only
@@ -654,7 +697,10 @@ export default abstract class Document<
      * @param user    The User requesting the document deletion
      * @returns A return value of false indicates the deletion operation should be cancelled.
      */
-    protected _preDelete(options: DatabaseDeleteCallbackOptions, user: BaseUser): Promise<boolean | void>;
+    protected _preDelete(
+        options: DatabaseDeleteCallbackOptions,
+        user: BaseUser,
+    ): Promise<boolean | void>;
 
     /**
      * Perform follow-up operations after a Document of this type is deleted.
@@ -662,7 +708,10 @@ export default abstract class Document<
      * @param options Additional options which modify the deletion request
      * @param userId The ID of the User requesting the document deletion
      */
-    protected _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
+    protected _onDelete(
+        options: DatabaseDeleteCallbackOptions,
+        userId: string,
+    ): void;
 
     /**
      * Pre-process a deletion operation, potentially altering its instructions or input data. Pre-operation events only
@@ -706,7 +755,10 @@ export default abstract class Document<
     override toObject(source?: boolean): this["_source"];
 }
 
-type MetadataPermission = UserRoleName | UserPermission | ((...args: unknown[]) => boolean);
+type MetadataPermission =
+    | UserRoleName
+    | UserPermission
+    | ((...args: unknown[]) => boolean);
 
 export interface DocumentMetadata {
     name: string;
@@ -729,8 +781,13 @@ export interface DocumentMetadata {
 type _Document = Document<_Document | null>;
 
 declare global {
-    type PreCreate<T extends SourceFromSchema<DataSchema>> = T extends { type: string }
-        ? Omit<DeepPartial<T>, "type"> & { _id?: Maybe<string>; type: T["type"] }
+    type PreCreate<T extends SourceFromSchema<DataSchema>> = T extends {
+        type: string;
+    }
+        ? Omit<DeepPartial<T>, "type"> & {
+              _id?: Maybe<string>;
+              type: T["type"];
+          }
         : DeepPartial<T>;
 
     type EmbeddedDocumentUpdateData = {
@@ -744,12 +801,14 @@ declare global {
         };
     }
 
-    interface DocumentCloneContext extends Omit<DocumentConstructionContext<null>, "parent"> {
+    interface DocumentCloneContext
+        extends Omit<DocumentConstructionContext<null>, "parent"> {
         save?: boolean;
         keepId?: boolean;
     }
 
-    interface DocumentSourceUpdateContext extends Omit<DatabaseUpdateOperation<null>, "parent"> {
+    interface DocumentSourceUpdateContext
+        extends Omit<DatabaseUpdateOperation<null>, "parent"> {
         dryRun?: boolean;
         fallback?: boolean;
     }

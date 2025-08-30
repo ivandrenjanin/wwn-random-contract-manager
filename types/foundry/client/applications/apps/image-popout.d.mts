@@ -1,5 +1,8 @@
 import Document from "@common/abstract/document.mjs";
-import { ApplicationConfiguration, ApplicationRenderContext } from "../_types.mjs";
+import {
+    ApplicationConfiguration,
+    ApplicationRenderContext,
+} from "../_types.mjs";
 import {
     ApplicationV2,
     HandlebarsApplicationMixin,
@@ -60,7 +63,9 @@ interface ShareImageConfig {
  * ip.shareImage();
  * ```
  */
-export default class ImagePopout extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class ImagePopout extends HandlebarsApplicationMixin(
+    ApplicationV2,
+) {
     constructor(options: DeepPartial<ImagePopoutConfiguration>);
 
     static override DEFAULT_OPTIONS: DeepPartial<ImagePopoutConfiguration>;
@@ -83,7 +88,9 @@ export default class ImagePopout extends HandlebarsApplicationMixin(ApplicationV
         options: DeepPartial<ImagePopoutConfiguration>,
     ): ImagePopoutConfiguration;
 
-    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<ApplicationRenderContext>;
+    protected override _prepareContext(
+        options: HandlebarsRenderOptions,
+    ): Promise<ApplicationRenderContext>;
 
     protected override _preFirstRender(
         context: ApplicationRenderContext,

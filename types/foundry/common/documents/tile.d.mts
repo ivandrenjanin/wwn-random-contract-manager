@@ -12,7 +12,9 @@ import { BaseScene } from "./_module.mjs";
  * @param data    Initial data from which to construct the Tile
  * @param context Construction context options
  */
-export default class BaseTile<TParent extends BaseScene | null> extends Document<TParent, TileSchema> {
+export default class BaseTile<
+    TParent extends BaseScene | null,
+> extends Document<TParent, TileSchema> {
     /* -------------------------------------------- */
     /*  Model Configuration                         */
     /* -------------------------------------------- */
@@ -71,7 +73,13 @@ type TileSchema = {
 
 type TileOcclusionSchema = {
     /** The occlusion mode from CONST.TILE_OCCLUSION_MODES */
-    mode: fields.NumberField<TileOcclusionMode, TileOcclusionMode, false, true, true>;
+    mode: fields.NumberField<
+        TileOcclusionMode,
+        TileOcclusionMode,
+        false,
+        true,
+        true
+    >;
     /** The occlusion alpha between 0 and 1 */
     alpha: fields.AlphaField;
     /** An optional radius of occlusion used for RADIAL mode */

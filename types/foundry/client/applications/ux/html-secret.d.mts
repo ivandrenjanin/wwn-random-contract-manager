@@ -15,7 +15,10 @@ export interface HTMLSecretConfiguration {
          * @param content The content block containing the updated secret element.
          * @returns The updated Document.
          */
-        update: (secret: HTMLElement, content: string) => Promise<ClientDocument>;
+        update: (
+            secret: HTMLElement,
+            content: string,
+        ) => Promise<ClientDocument>;
     };
 }
 
@@ -57,5 +60,7 @@ export default class HTMLSecret {
      * @param event The triggering click event.
      * @returns The Document whose content was modified.
      */
-    protected _onToggleSecret(event: MouseEvent): Promise<ClientDocument | void>;
+    protected _onToggleSecret(
+        event: MouseEvent,
+    ): Promise<ClientDocument | void>;
 }

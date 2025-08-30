@@ -1,4 +1,9 @@
-import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, VideoFilePath } from "@common/constants.mjs";
+import {
+    DocumentOwnershipLevel,
+    DocumentOwnershipString,
+    ImageFilePath,
+    VideoFilePath,
+} from "@common/constants.mjs";
 import * as abstract from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseCard, BaseFolder, BaseUser } from "./_module.mjs";
@@ -42,7 +47,15 @@ interface CardsMetadata extends abstract.DocumentMetadata {
     name: "Cards";
     collection: "cards";
     indexed: true;
-    compendiumIndexFields: ["_id", "name", "description", "img", "type", "sort", "folder"];
+    compendiumIndexFields: [
+        "_id",
+        "name",
+        "description",
+        "img",
+        "type",
+        "sort",
+        "folder",
+    ];
     embedded: { Card: "cards" };
     label: "DOCUMENT.Cards";
     labelPlural: "DOCUMENT.CardsPlural";

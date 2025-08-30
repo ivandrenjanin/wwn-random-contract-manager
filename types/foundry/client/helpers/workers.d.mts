@@ -55,7 +55,11 @@ export class AsyncWorker extends Worker {
      *                 See https://developer.mozilla.org/en-US/docs/Glossary/Transferable_objects
      * @returns A Promise which resolves with the returned result of the function once complete.
      */
-    executeFunction(functionName: string, args?: unknown[], transfer?: object[]): Promise<unknown>;
+    executeFunction(
+        functionName: string,
+        args?: unknown[],
+        transfer?: object[],
+    ): Promise<unknown>;
 }
 
 /**
@@ -69,7 +73,11 @@ export class WorkerManager extends Map<string, AsyncWorker> {
     /**
      * Supported worker task actions
      */
-    static WORKER_TASK_ACTIONS: Readonly<{ INIT: "init"; LOAD: "load"; EXECUTE: "execute" }>;
+    static WORKER_TASK_ACTIONS: Readonly<{
+        INIT: "init";
+        LOAD: "load";
+        EXECUTE: "execute";
+    }>;
 
     /* -------------------------------------------- */
     /*  Worker Management                           */
@@ -81,7 +89,10 @@ export class WorkerManager extends Map<string, AsyncWorker> {
      * @param config Worker configuration parameters passed to the AsyncWorker constructor
      * @returns The created AsyncWorker which is ready to accept tasks
      */
-    createWorker(name: string, config?: AsyncWorkerOptions): Promise<AsyncWorker>;
+    createWorker(
+        name: string,
+        config?: AsyncWorkerOptions,
+    ): Promise<AsyncWorker>;
 
     /**
      * Retire a current Worker, terminating it immediately.

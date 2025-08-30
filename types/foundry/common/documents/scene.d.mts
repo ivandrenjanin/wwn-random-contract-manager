@@ -1,6 +1,10 @@
 import { DatabaseOperation } from "@common/abstract/_types.mjs";
 import { GridType, ImageFilePath, VideoFilePath } from "@common/constants.mjs";
-import { Document, DocumentMetadata, EmbeddedCollection } from "../abstract/_module.mjs";
+import {
+    Document,
+    DocumentMetadata,
+    EmbeddedCollection,
+} from "../abstract/_module.mjs";
 import * as data from "../data/data.mjs";
 import * as fields from "../data/fields.mjs";
 import * as documents from "./_module.mjs";
@@ -16,7 +20,9 @@ export default class BaseScene extends Document<null, SceneSchema> {
     static override defineSchema(): SceneSchema;
 }
 
-export default interface BaseScene extends Document<null, SceneSchema>, fields.ModelPropsFromSchema<SceneSchema> {
+export default interface BaseScene
+    extends Document<null, SceneSchema>,
+        fields.ModelPropsFromSchema<SceneSchema> {
     get documentName(): SceneMetadata["name"];
 
     readonly drawings: EmbeddedCollection<documents.BaseDrawing<this>>;
@@ -24,7 +30,9 @@ export default interface BaseScene extends Document<null, SceneSchema>, fields.M
     readonly notes: EmbeddedCollection<documents.BaseNote<this>>;
     readonly regions: EmbeddedCollection<documents.BaseRegion<this>>;
     readonly sounds: EmbeddedCollection<documents.BaseAmbientSound<this>>;
-    readonly templates: EmbeddedCollection<documents.BaseMeasuredTemplate<this>>;
+    readonly templates: EmbeddedCollection<
+        documents.BaseMeasuredTemplate<this>
+    >;
     readonly tokens: EmbeddedCollection<documents.BaseToken<this>>;
     readonly tiles: EmbeddedCollection<documents.BaseTile<this>>;
     readonly walls: EmbeddedCollection<documents.BaseWall<this>>;
@@ -118,15 +126,21 @@ type SceneSchema = {
     /** A collection of embedded Token objects. */
     tokens: fields.EmbeddedCollectionField<documents.BaseToken<BaseScene>>;
     /** A collection of embedded AmbientLight objects. */
-    lights: fields.EmbeddedCollectionField<documents.BaseAmbientLight<BaseScene>>;
+    lights: fields.EmbeddedCollectionField<
+        documents.BaseAmbientLight<BaseScene>
+    >;
     /** A collection of embedded Note objects. */
     notes: fields.EmbeddedCollectionField<documents.BaseNote<BaseScene>>;
     /** A collection of embedded Region objects */
     regions: fields.EmbeddedCollectionField<documents.BaseRegion<BaseScene>>;
     /** A collection of embedded AmbientSound objects. */
-    sounds: fields.EmbeddedCollectionField<documents.BaseAmbientSound<BaseScene>>;
+    sounds: fields.EmbeddedCollectionField<
+        documents.BaseAmbientSound<BaseScene>
+    >;
     /** A collection of embedded MeasuredTemplate objects. */
-    templates: fields.EmbeddedCollectionField<documents.BaseMeasuredTemplate<BaseScene>>;
+    templates: fields.EmbeddedCollectionField<
+        documents.BaseMeasuredTemplate<BaseScene>
+    >;
     /** A collection of embedded Tile objects. */
     tiles: fields.EmbeddedCollectionField<documents.BaseTile<BaseScene>>;
     /** A collection of embedded Wall objects. */
@@ -218,10 +232,11 @@ type EnvironmentDataSchema = {
 export type SceneSource = fields.SourceFromSchema<SceneSchema>;
 
 declare global {
-    export type SceneEmbeddedOperation<TParent extends BaseScene> = DatabaseOperation<TParent> & {
-        /** Is the operation undoing a previous operation, only used by embedded Documents within a Scene */
-        isUndo?: boolean;
-    };
+    export type SceneEmbeddedOperation<TParent extends BaseScene> =
+        DatabaseOperation<TParent> & {
+            /** Is the operation undoing a previous operation, only used by embedded Documents within a Scene */
+            isUndo?: boolean;
+        };
 
     export interface GetDimensionsParams {
         gridDistance: number;
@@ -233,5 +248,6 @@ declare global {
         width: number;
     }
 
-    export type EnvironmentDataSource = fields.SourceFromSchema<EnvironmentSchema>;
+    export type EnvironmentDataSource =
+        fields.SourceFromSchema<EnvironmentSchema>;
 }

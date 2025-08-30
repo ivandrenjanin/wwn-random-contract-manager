@@ -31,5 +31,7 @@ export default class HTMLHueSelectorSlider extends AbstractFormInputElement<numb
     /**
      * Create a HTMLHueSelectorSlider using provided configuration data.
      */
-    static create(config: FormInputConfig<HexColorString>): HTMLHueSelectorSlider;
+    static create(
+        config: FormInputConfig<HexColorString>,
+    ): HTMLHueSelectorSlider;
 }

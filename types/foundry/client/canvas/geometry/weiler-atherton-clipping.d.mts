@@ -21,7 +21,12 @@ export default class WeilerAthertonClipper {
      * @param clipType   Type of clip to use
      * @param clipOpts   Object passed to the clippingObject methods toPolygon and pointsBetween
      */
-    constructor(polygon: PIXI.Polygon, clipObject: PIXI.Rectangle | PIXI.Circle, clipType: number, clipOpts: object);
+    constructor(
+        polygon: PIXI.Polygon,
+        clipObject: PIXI.Rectangle | PIXI.Circle,
+        clipType: number,
+        clipOpts: object,
+    );
 
     /**
      * The supported clip types.
@@ -75,7 +80,11 @@ export default class WeilerAthertonClipper {
      * @param clipObject Object to clip against the polygon
      * @param clipOpts   Options passed to the clipping object methods toPolygon and pointsBetween
      */
-    static union(polygon: PIXI.Polygon, clipObject: PIXI.Rectangle | PIXI.Circle, clipOpts?: object): PIXI.Polygon[];
+    static union(
+        polygon: PIXI.Polygon,
+        clipObject: PIXI.Rectangle | PIXI.Circle,
+        clipOpts?: object,
+    ): PIXI.Polygon[];
 
     /**
      * Intersect a polygon and clipObject using the Weiler Atherton algorithm.
@@ -121,4 +130,5 @@ export default class WeilerAthertonClipper {
     ): PIXI.Polygon[];
 }
 
-type WAClipperType = (typeof WeilerAthertonClipper)[keyof typeof WeilerAthertonClipper];
+type WAClipperType =
+    (typeof WeilerAthertonClipper)[keyof typeof WeilerAthertonClipper];

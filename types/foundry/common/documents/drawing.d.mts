@@ -1,4 +1,9 @@
-import { DocumentOwnershipLevel, DocumentOwnershipString, DrawingFillType, ImageFilePath } from "@common/constants.mjs";
+import {
+    DocumentOwnershipLevel,
+    DocumentOwnershipString,
+    DrawingFillType,
+    ImageFilePath,
+} from "@common/constants.mjs";
 import * as abstract from "../abstract/_module.mjs";
 import * as data from "../data/data.mjs";
 import * as fields from "../data/fields.mjs";
@@ -12,7 +17,9 @@ import { BaseScene, BaseUser } from "./_module.mjs";
  * @param data    Initial data from which to construct the Drawing
  * @param context Construction context options
  */
-export default class BaseDrawing<TParent extends BaseScene | null> extends abstract.Document<TParent, DrawingSchema> {
+export default class BaseDrawing<
+    TParent extends BaseScene | null,
+> extends abstract.Document<TParent, DrawingSchema> {
     /* ---------------------------------------- */
     /*  Model Configuration                     */
     /* ---------------------------------------- */
@@ -60,7 +67,9 @@ type DrawingSchema = {
     /** The _id of the user who created the drawing */
     author: fields.ForeignDocumentField<BaseUser, true, false, true>;
     /** The geometric shape of the drawing */
-    shape: fields.EmbeddedDataField<data.ShapeData<BaseDrawing<BaseScene | null>>>;
+    shape: fields.EmbeddedDataField<
+        data.ShapeData<BaseDrawing<BaseScene | null>>
+    >;
     /** The x-coordinate position of the top-left corner of the drawn shape */
     x: fields.NumberField<number, number, true, false, true>;
     /** The y-coordinate position of the top-left corner of the drawn shape */
@@ -72,7 +81,13 @@ type DrawingSchema = {
     /** An amount of bezier smoothing applied, between 0 and 1 */
     bezierFactor: fields.AlphaField;
     /** The fill type of the drawing shape, a value from CONST.DRAWING_FILL_TYPES */
-    fillType: fields.NumberField<DrawingFillType, DrawingFillType, true, true, true>;
+    fillType: fields.NumberField<
+        DrawingFillType,
+        DrawingFillType,
+        true,
+        true,
+        true
+    >;
     /** An optional color string with which to fill the drawing geometry */
     fillColor: fields.ColorField;
     /** The opacity of the fill applied to the drawing geometry */

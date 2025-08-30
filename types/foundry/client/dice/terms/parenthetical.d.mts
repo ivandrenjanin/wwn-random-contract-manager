@@ -4,8 +4,24 @@ import { Evaluated } from "./term.mjs";
 
 /** A type of RollTerm used to enclose a parenthetical expression to be recursively evaluated. */
 export default class ParentheticalTerm extends RollTerm<ParentheticalTermData> {
-    constructor({ term, roll, options }: { term: string; roll?: Roll; options?: Record<string, unknown> });
-    constructor({ term, roll, options }: { term?: string; roll: Roll; options?: Record<string, unknown> });
+    constructor({
+        term,
+        roll,
+        options,
+    }: {
+        term: string;
+        roll?: Roll;
+        options?: Record<string, unknown>;
+    });
+    constructor({
+        term,
+        roll,
+        options,
+    }: {
+        term?: string;
+        roll: Roll;
+        options?: Record<string, unknown>;
+    });
 
     /** The original provided string term used to construct the parenthetical */
     term: string;
@@ -74,7 +90,10 @@ export default class ParentheticalTerm extends RollTerm<ParentheticalTermData> {
      * t = ParentheticalTerm.fromTerms([d6, plus, bonus]);
      * t.formula; // (4d6 + 4)
      */
-    static fromTerms(terms: RollTerm[], options?: Record<string, unknown>): ParentheticalTerm;
+    static fromTerms(
+        terms: RollTerm[],
+        options?: Record<string, unknown>,
+    ): ParentheticalTerm;
 }
 
 export interface ParentheticalTermData extends RollTermData {

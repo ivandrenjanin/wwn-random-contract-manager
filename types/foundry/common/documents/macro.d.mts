@@ -1,5 +1,9 @@
 import { ImageFilePath, MacroScope, MacroType } from "@common/constants.mjs";
-import { Document, DocumentMetadata, MetadataPermission } from "../abstract/_module.mjs";
+import {
+    Document,
+    DocumentMetadata,
+    MetadataPermission,
+} from "../abstract/_module.mjs";
 import { DatabaseCreateCallbackOptions } from "../abstract/_types.mjs";
 import * as fields from "../data/fields.mjs";
 import BaseUser from "./user.mjs";
@@ -28,7 +32,11 @@ export default class BaseMacro extends Document<null, MacroSchema> {
     /*  Model Methods                               */
     /* -------------------------------------------- */
 
-    override testUserPermission(user: BaseUser, permission: unknown, options?: { exact?: boolean }): boolean;
+    override testUserPermission(
+        user: BaseUser,
+        permission: unknown,
+        options?: { exact?: boolean },
+    ): boolean;
 
     /* -------------------------------------------- */
     /*  Database Event Handlers                     */
@@ -41,7 +49,9 @@ export default class BaseMacro extends Document<null, MacroSchema> {
     ): Promise<boolean | void>;
 }
 
-export default interface BaseMacro extends Document<null, MacroSchema>, fields.ModelPropsFromSchema<MacroSchema> {
+export default interface BaseMacro
+    extends Document<null, MacroSchema>,
+        fields.ModelPropsFromSchema<MacroSchema> {
     get documentName(): MacroMetadata["name"];
 }
 

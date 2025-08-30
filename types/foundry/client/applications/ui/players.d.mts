@@ -1,7 +1,9 @@
 import User from "@client/documents/user.mjs";
 import { ApplicationConfiguration } from "../_module.mjs";
 import ApplicationV2 from "../api/application.mjs";
-import HandlebarsApplicationMixin, { HandlebarsTemplatePart } from "../api/handlebars-application.mjs";
+import HandlebarsApplicationMixin, {
+    HandlebarsTemplatePart,
+} from "../api/handlebars-application.mjs";
 import { ContextMenuEntry } from "../ux/context-menu.mjs";
 
 /**
@@ -32,7 +34,10 @@ export default class Players extends HandlebarsApplicationMixin(ApplicationV2) {
     /*  Rendering                                   */
     /* -------------------------------------------- */
 
-    protected override _prepareContext(): Promise<{ active: object[]; inactive: object[] }>;
+    protected override _prepareContext(): Promise<{
+        active: object[];
+        inactive: object[];
+    }>;
 
     /**
      * Format the display of a user's name using their name, pronouns (if defined), and character name (if defined).

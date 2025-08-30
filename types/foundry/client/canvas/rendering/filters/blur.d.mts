@@ -9,7 +9,13 @@ export class AlphaBlurFilterPass extends PIXI.Filter {
      * @param resolution Resolution of the filter.
      * @param kernelSize Number of kernels to use. More kernels = Higher quality = Lower Perf.
      */
-    constructor(horizontal: boolean, strength?: number, quality?: number, resolution?: number, kernelSize?: number);
+    constructor(
+        horizontal: boolean,
+        strength?: number,
+        quality?: number,
+        resolution?: number,
+        kernelSize?: number,
+    );
 
     /**
      * If the pass is horizontal (true) or vertical (false).
@@ -73,7 +79,10 @@ export class AlphaBlurFilterPass extends PIXI.Filter {
      * @param horizontal If the vertex should handle horizontal or vertical pass.
      * @returns The dynamic blur part.
      */
-    static generateBlurVertSource(kernelSize: number, horizontal: boolean): string;
+    static generateBlurVertSource(
+        kernelSize: number,
+        horizontal: boolean,
+    ): string;
 
     override apply(
         filterManager: PIXI.FilterSystem,
@@ -94,7 +103,12 @@ export default class AlphaBlurFilter extends PIXI.Filter {
      * @param {number} [resolution=PIXI.Filter.defaultResolution]  Resolution of the filter.
      * @param {number} [kernelSize=5]   Number of kernels to use. More kernels = Higher quality = Lower Perf.
      */
-    constructor(strength?: number, quality?: number, resolution?: number, kernelSize?: number);
+    constructor(
+        strength?: number,
+        quality?: number,
+        resolution?: number,
+        kernelSize?: number,
+    );
 
     override apply(
         filterManager: PIXI.FilterSystem,

@@ -8,21 +8,33 @@ import {
 } from "@common/abstract/_types.mjs";
 import Document from "@common/abstract/document.mjs";
 import { RollMode } from "@common/constants.mjs";
-import BaseChatMessage, { ChatMessageSource, ChatSpeakerData } from "@common/documents/chat-message.mjs";
+import BaseChatMessage, {
+    ChatMessageSource,
+    ChatSpeakerData,
+} from "@common/documents/chat-message.mjs";
 import { Actor, BaseUser, Scene, TokenDocument, User } from "./_module.mjs";
-import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
+import {
+    ClientDocument,
+    ClientDocumentStatic,
+} from "./abstract/client-document.mjs";
 
-interface ClientBaseChatMessageStatic extends Omit<typeof BaseChatMessage, "new">, ClientDocumentStatic {}
+interface ClientBaseChatMessageStatic
+    extends Omit<typeof BaseChatMessage, "new">,
+        ClientDocumentStatic {}
 
 declare const ClientBaseChatMessage: {
-    new <TUser extends User | null>(...args: any): BaseChatMessage<TUser> & ClientDocument<null>;
+    new <TUser extends User | null>(
+        ...args: any
+    ): BaseChatMessage<TUser> & ClientDocument<null>;
 } & ClientBaseChatMessageStatic;
 
 /**
  * The client-side ChatMessage document which extends the common BaseChatMessage abstraction.
  * Each ChatMessage document contains ChatMessageData which defines its data schema.
  */
-declare class ChatMessage<TUser extends User | null = User | null> extends ClientBaseChatMessage<TUser> {
+declare class ChatMessage<
+    TUser extends User | null = User | null,
+> extends ClientBaseChatMessage<TUser> {
     rolls: Rolled<Roll>[];
 
     /** Is this ChatMessage currently displayed in the sidebar ChatLog? */
@@ -131,7 +143,10 @@ declare class ChatMessage<TUser extends User | null = User | null> extends Clien
      * @param options.canDelete Render a delete button. By default, this is true for GM users.
      * @param options.canClose Render a close button for dismissing chat card notifications.
      */
-    renderHTML(options?: { canDelete?: boolean; canClose?: boolean }): Promise<HTMLElement>;
+    renderHTML(options?: {
+        canDelete?: boolean;
+        canClose?: boolean;
+    }): Promise<HTMLElement>;
 
     /* -------------------------------------------- */
     /*  Event Handlers                              */
@@ -143,7 +158,11 @@ declare class ChatMessage<TUser extends User | null = User | null> extends Clien
         user: BaseUser,
     ): Promise<boolean | void>;
 
-    protected override _onCreate(data: this["_source"], options: DatabaseCreateCallbackOptions, userId: string): void;
+    protected override _onCreate(
+        data: this["_source"],
+        options: DatabaseCreateCallbackOptions,
+        userId: string,
+    ): void;
 
     protected override _onUpdate(
         changed: DeepPartial<this["_source"]>,
@@ -151,7 +170,10 @@ declare class ChatMessage<TUser extends User | null = User | null> extends Clien
         userId: string,
     ): void;
 
-    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
+    protected override _onDelete(
+        options: DatabaseDeleteCallbackOptions,
+        userId: string,
+    ): void;
 
     /* -------------------------------------------- */
     /*  Importing and Exporting                     */
@@ -164,30 +186,40 @@ declare class ChatMessage<TUser extends User | null = User | null> extends Clien
 declare namespace ChatMessage {
     function create<TDocument extends Document>(
         this: ConstructorOf<TDocument>,
-        data: DeepPartial<TDocument["_source"] & { rolls: (string | RollJSON)[] }>,
+        data: DeepPartial<
+            TDocument["_source"] & { rolls: (string | RollJSON)[] }
+        >,
         operation?: Partial<ChatMessageCreateOperation>,
     ): Promise<TDocument | undefined>;
     function create<TDocument extends Document>(
         this: ConstructorOf<TDocument>,
-        data: DeepPartial<TDocument["_source"] & { rolls: (string | RollJSON)[] }>[],
+        data: DeepPartial<
+            TDocument["_source"] & { rolls: (string | RollJSON)[] }
+        >[],
         operation?: Partial<ChatMessageCreateOperation>,
     ): Promise<TDocument[]>;
     function create<TDocument extends Document>(
         this: ConstructorOf<TDocument>,
         data:
-            | DeepPartial<TDocument["_source"] & { rolls: (string | RollJSON)[] }>
-            | DeepPartial<TDocument["_source"] & { rolls: (string | RollJSON)[] }>[],
+            | DeepPartial<
+                  TDocument["_source"] & { rolls: (string | RollJSON)[] }
+              >
+            | DeepPartial<
+                  TDocument["_source"] & { rolls: (string | RollJSON)[] }
+              >[],
         operation?: Partial<ChatMessageCreateOperation>,
     ): Promise<TDocument[] | TDocument | undefined>;
 }
 
 export default ChatMessage;
 
-export interface MessageConstructionContext extends DocumentConstructionContext<null> {
+export interface MessageConstructionContext
+    extends DocumentConstructionContext<null> {
     rollMode?: RollMode | "roll";
 }
 
-export interface ChatMessageCreateOperation extends DatabaseCreateOperation<null> {
+export interface ChatMessageCreateOperation
+    extends DatabaseCreateOperation<null> {
     rollMode?: RollMode | "roll";
 }
 

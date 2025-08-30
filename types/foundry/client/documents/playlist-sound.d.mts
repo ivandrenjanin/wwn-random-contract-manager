@@ -1,14 +1,24 @@
 import ApplicationV2 from "@client/applications/api/application.mjs";
 import Application from "@client/appv1/api/application-v1.mjs";
 import Sound from "@client/audio/sound.mjs";
-import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_module.mjs";
+import {
+    DatabaseDeleteCallbackOptions,
+    DatabaseUpdateCallbackOptions,
+} from "@common/abstract/_module.mjs";
 import { BasePlaylistSound, BaseUser, Playlist } from "./_module.mjs";
-import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
+import {
+    ClientDocument,
+    ClientDocumentStatic,
+} from "./abstract/client-document.mjs";
 
-interface CanvasBasePlaylistSoundStatic extends Omit<typeof BasePlaylistSound, "new">, ClientDocumentStatic {}
+interface CanvasBasePlaylistSoundStatic
+    extends Omit<typeof BasePlaylistSound, "new">,
+        ClientDocumentStatic {}
 
 declare const ClientBasePlaylistSound: {
-    new <TParent extends Playlist | null>(...args: any): BasePlaylistSound<TParent> & ClientDocument<TParent>;
+    new <TParent extends Playlist | null>(
+        ...args: any
+    ): BasePlaylistSound<TParent> & ClientDocument<TParent>;
 } & CanvasBasePlaylistSoundStatic;
 
 interface ClientBasePlaylistSound<TParent extends Playlist | null>
@@ -80,7 +90,9 @@ export default class PlaylistSound<
 
     override toAnchor(options?: { classes?: string[] }): HTMLAnchorElement;
 
-    protected override _onClickDocumentLink(event: PointerEvent): Application | Promise<ApplicationV2>;
+    protected override _onClickDocumentLink(
+        event: PointerEvent,
+    ): Application | Promise<ApplicationV2>;
 
     /* -------------------------------------------- */
     /*  Event Handlers                              */
@@ -98,7 +110,10 @@ export default class PlaylistSound<
         userId: string,
     ): void;
 
-    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
+    protected override _onDelete(
+        options: DatabaseDeleteCallbackOptions,
+        userId: string,
+    ): void;
 
     /**
      * Special handling that occurs when playback of a PlaylistSound is started.

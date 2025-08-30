@@ -9,7 +9,9 @@ import { PointEffectSource } from "./point-effect-source.mjs";
 import { RenderedEffectLayerConfig } from "./rendered-effect-source.mjs";
 
 declare const PointEffectBaseLightSource: {
-    new <TObject extends AmbientLight>(...args: any): BaseLightSource<TObject> & PointEffectSource;
+    new <TObject extends AmbientLight>(
+        ...args: any
+    ): BaseLightSource<TObject> & PointEffectSource;
 } & Omit<typeof BaseLightSource, "new"> &
     typeof PointEffectSource;
 
@@ -19,7 +21,9 @@ interface PointEffectBaseLightSource<TObject extends AmbientLight>
 /**
  * A specialized subclass of the BaseLightSource which renders a source of darkness as a point-based effect.
  */
-export default class PointDarknessSource<TObject extends AmbientLight> extends PointEffectBaseLightSource<TObject> {
+export default class PointDarknessSource<
+    TObject extends AmbientLight,
+> extends PointEffectBaseLightSource<TObject> {
     static override sourceType: "darkness";
 
     static override effectsCollection: "darknessSources";

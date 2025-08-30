@@ -75,7 +75,10 @@ export default class Collection<K extends string, V> {
      * c.get("d", {strict: true}); // throws Error
      */
     get<T extends V = V>(key: Maybe<string>, { strict }: { strict: true }): T;
-    get<T extends V = V>(key: string, { strict }?: CollectionGetOptions): T | undefined;
+    get<T extends V = V>(
+        key: string,
+        { strict }?: CollectionGetOptions,
+    ): T | undefined;
 
     /**
      * Get an entry from the Collection by name.

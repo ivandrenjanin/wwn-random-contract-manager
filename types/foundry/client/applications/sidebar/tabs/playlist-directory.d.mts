@@ -1,5 +1,8 @@
 import { ApplicationRenderContext } from "@client/applications/_types.mjs";
-import { HandlebarsRenderOptions, HandlebarsTemplatePart } from "@client/applications/api/handlebars-application.mjs";
+import {
+    HandlebarsRenderOptions,
+    HandlebarsTemplatePart,
+} from "@client/applications/api/handlebars-application.mjs";
 import HTMLRangePickerElement from "@client/applications/elements/range-picker.mjs";
 import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
 import Folder from "@client/documents/folder.mjs";
@@ -7,9 +10,12 @@ import PlaylistSound from "@client/documents/playlist-sound.mjs";
 import Playlist from "@client/documents/playlist.mjs";
 import { PlaylistMode } from "@common/constants.mjs";
 import { NumberField } from "@common/data/fields.mjs";
-import DocumentDirectory, { DocumentDirectoryConfiguration } from "../document-directory.mjs";
+import DocumentDirectory, {
+    DocumentDirectoryConfiguration,
+} from "../document-directory.mjs";
 
-export interface PlaylistDirectoryRenderContext extends ApplicationRenderContext {
+export interface PlaylistDirectoryRenderContext
+    extends ApplicationRenderContext {
     /** Volume control context. */
     controls: {
         expanded: boolean;
@@ -120,7 +126,10 @@ export default class PlaylistDirectory extends DocumentDirectory<Playlist> {
     /**
      * Playlist mode button descriptors.
      */
-    static PLAYLIST_MODES: Record<PlaylistMode, PlaylistDirectoryControlContext>;
+    static PLAYLIST_MODES: Record<
+        PlaylistMode,
+        PlaylistDirectoryControlContext
+    >;
 
     protected static override _entryPartial: string;
 
@@ -136,7 +145,11 @@ export default class PlaylistDirectory extends DocumentDirectory<Playlist> {
     /**
      * Cache the set of Playlist and PlaylistSound documents that are displayed as playing when the directory is rendered.
      */
-    protected _playing: { context: PlaylistSoundRenderContext[]; playlists: Playlist[]; sounds: PlaylistSound[] };
+    protected _playing: {
+        context: PlaylistSoundRenderContext[];
+        playlists: Playlist[];
+        sounds: PlaylistSound[];
+    };
 
     /**
      * Whether the global volume controls are currently expanded.
@@ -186,14 +199,20 @@ export default class PlaylistDirectory extends DocumentDirectory<Playlist> {
      * @param root The root render context.
      * @param node The tree node being prepared.
      */
-    protected _prepareTreeContext(root: PlaylistDirectoryRenderContext, node: object): PlaylistDirectoryTreeContext;
+    protected _prepareTreeContext(
+        root: PlaylistDirectoryRenderContext,
+        node: object,
+    ): PlaylistDirectoryTreeContext;
 
     /**
      * Prepare render context for a playlist.
      * @param root The root render context.
      * @param playlist The Playlist document.
      */
-    protected _preparePlaylistContext(root: PlaylistDirectoryRenderContext, playlist: Playlist): PlaylistRenderContext;
+    protected _preparePlaylistContext(
+        root: PlaylistDirectoryRenderContext,
+        playlist: Playlist,
+    ): PlaylistRenderContext;
 
     protected override _preparePartContext(
         partId: string,
@@ -229,7 +248,10 @@ export default class PlaylistDirectory extends DocumentDirectory<Playlist> {
 
     protected override _attachFrameListeners(): void;
 
-    protected override _onClickEntry(event: PointerEvent, target: HTMLElement): Promise<void>;
+    protected override _onClickEntry(
+        event: PointerEvent,
+        target: HTMLElement,
+    ): Promise<void>;
 
     /**
      * Handle modifying a global volume slider.
@@ -266,7 +288,11 @@ export default class PlaylistDirectory extends DocumentDirectory<Playlist> {
         autoExpandIds: Set<string>,
     ): void;
 
-    protected override _matchSearchFolders(query: RegExp, folderIds: Set<string>, autoExpandIds: Set<string>): void;
+    protected override _matchSearchFolders(
+        query: RegExp,
+        folderIds: Set<string>,
+        autoExpandIds: Set<string>,
+    ): void;
 
     /* -------------------------------------------- */
     /*  Drag & Drop                                 */

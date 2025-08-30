@@ -19,8 +19,12 @@ interface CameraPopoutConfiguration extends ApplicationConfiguration {
  * @extends {ApplicationV2<CameraPopoutConfiguration, HandlebarsRenderOptions>}
  * @mixes HandlebarsApplication
  */
-export default class CameraPopout extends HandlebarsApplicationMixin(ApplicationV2) {
-    constructor(options?: DeepPartial<ApplicationConfiguration> & { user: User });
+export default class CameraPopout extends HandlebarsApplicationMixin(
+    ApplicationV2,
+) {
+    constructor(
+        options?: DeepPartial<ApplicationConfiguration> & { user: User },
+    );
 
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
@@ -40,24 +44,33 @@ export default class CameraPopout extends HandlebarsApplicationMixin(Application
     /* -------------------------------------------- */
 
     /** @inheritDoc */
-    _initializeApplicationOptions(options: DeepPartial<ApplicationConfiguration>): ApplicationConfiguration;
+    _initializeApplicationOptions(
+        options: DeepPartial<ApplicationConfiguration>,
+    ): ApplicationConfiguration;
 
     protected override _onFirstRender(
         context: ApplicationRenderContext,
         options: HandlebarsRenderOptions,
     ): Promise<void>;
 
-    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<ApplicationRenderContext>;
+    protected override _prepareContext(
+        options: HandlebarsRenderOptions,
+    ): Promise<ApplicationRenderContext>;
 
     /* -------------------------------------------- */
     /*  Positioning                                 */
     /* -------------------------------------------- */
 
-    override setPosition(position?: Partial<ApplicationPosition>): ApplicationPosition;
+    override setPosition(
+        position?: Partial<ApplicationPosition>,
+    ): ApplicationPosition;
 
     /* -------------------------------------------- */
     /*  Event Listeners & Handlers                  */
     /* -------------------------------------------- */
 
-    protected override _onClickAction(event: PointerEvent, target: HTMLElement): void | Promise<void>;
+    protected override _onClickAction(
+        event: PointerEvent,
+        target: HTMLElement,
+    ): void | Promise<void>;
 }

@@ -11,7 +11,9 @@ import BaseScene from "./scene.mjs";
  * @param data    Initial data from which to construct the AmbientSound
  * @param context Construction context options
  */
-export default class BaseAmbientSound<TParent extends BaseScene | null> extends Document<TParent, AmbientSoundSchema> {
+export default class BaseAmbientSound<
+    TParent extends BaseScene | null,
+> extends Document<TParent, AmbientSoundSchema> {
     static override get metadata(): AmbientSoundMetadata;
 
     static defineSchema(): AmbientSoundSchema;

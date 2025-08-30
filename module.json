@@ -8,14 +8,9 @@
         "verified": 12,
         "maximum": 12
     },
-    "esmodules": [
-        "vendor.mjs",
-        "wwn-random-contract-manager.mjs"
-    ],
+    "esmodules": ["vendor.mjs", "wwn-random-contract-manager.mjs"],
     "scripts": [],
-    "styles": [
-        "styles/wwn-random-contract-manager.css"
-    ],
+    "styles": ["styles/wwn-random-contract-manager.css"],
     "packs": [
         {
             "name": "module-roll-tables",

@@ -12,5 +12,10 @@ export default class AlertPing extends PulsePing {
      */
     constructor(origin: Point, options?: PulsePingOptions);
 
-    protected override _drawShape(g: PIXI.Graphics, color: number, alpha: number, size: number): void;
+    protected override _drawShape(
+        g: PIXI.Graphics,
+        color: number,
+        alpha: number,
+        size: number,
+    ): void;
 }

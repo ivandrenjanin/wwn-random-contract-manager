@@ -22,11 +22,16 @@ import { DocumentOwnershipLevel } from "@common/constants.mjs";
 import { BaseUser } from "../_module.mjs";
 import CompendiumCollection from "../collections/compendium-collection.mjs";
 
-export default function ClientDocumentMixin<TParent extends Document | null, TDocument extends Document<TParent>>(
+export default function ClientDocumentMixin<
+    TParent extends Document | null,
+    TDocument extends Document<TParent>,
+>(
     Base: ConstructorOf<TDocument>,
 ): ConstructorOf<ClientDocument<TParent> & TDocument>;
 
-export class ClientDocument<TParent extends Document | null = Document | null> extends Document<TParent> {
+export class ClientDocument<
+    TParent extends Document | null = Document | null,
+> extends Document<TParent> {
     readonly apps: Record<string, Application | ApplicationV2>;
 
     static override name: string;
@@ -163,13 +168,18 @@ export class ClientDocument<TParent extends Document | null = Document | null> e
      * @returns {string}
      * @internal
      */
-    _createDocumentLink(eventData: object, options?: { relativeTo: ClientDocument; label?: string }): string;
+    _createDocumentLink(
+        eventData: object,
+        options?: { relativeTo: ClientDocument; label?: string },
+    ): string;
 
     /**
      * Handle clicking on a content link for this document.
      * @param event The triggering click event.
      */
-    protected _onClickDocumentLink(event: PointerEvent): this["sheet"] | Promise<this["sheet"]> | null;
+    protected _onClickDocumentLink(
+        event: PointerEvent,
+    ): this["sheet"] | Promise<this["sheet"]> | null;
 
     /* -------------------------------------------- */
     /*  Event Handlers                              */
@@ -181,7 +191,11 @@ export class ClientDocument<TParent extends Document | null = Document | null> e
         user: BaseUser,
     ): Promise<boolean | void>;
 
-    protected override _onCreate(data: this["_source"], options: DatabaseCreateCallbackOptions, userId: string): void;
+    protected override _onCreate(
+        data: this["_source"],
+        options: DatabaseCreateCallbackOptions,
+        userId: string,
+    ): void;
 
     protected override _preUpdate(
         changes: Record<string, unknown>,
@@ -195,9 +209,15 @@ export class ClientDocument<TParent extends Document | null = Document | null> e
         userId: string,
     ): void;
 
-    protected override _preDelete(options: DatabaseDeleteCallbackOptions, user: BaseUser): Promise<boolean | void>;
+    protected override _preDelete(
+        options: DatabaseDeleteCallbackOptions,
+        user: BaseUser,
+    ): Promise<boolean | void>;
 
-    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
+    protected override _onDelete(
+        options: DatabaseDeleteCallbackOptions,
+        userId: string,
+    ): void;
 
     /* -------------------------------------------- */
     /*  Descendant Document Events                  */
@@ -212,7 +232,12 @@ export class ClientDocument<TParent extends Document | null = Document | null> e
      *                   this one.
      * @internal
      */
-    _dispatchDescendantDocumentEvents(event: string, collection: string, args: unknown[], _parent?: Document): void;
+    _dispatchDescendantDocumentEvents(
+        event: string,
+        collection: string,
+        args: unknown[],
+        _parent?: Document,
+    ): void;
 
     /**
      * Actions taken after descendant documents have been created, but before changes are applied to the client data.
@@ -332,7 +357,11 @@ export class ClientDocument<TParent extends Document | null = Document | null> e
      * @param context.parent A parent document within which the created Document should belong
      * @param context.pack A compendium pack within which the Document should be created
      */
-    static defaultName(context?: { type?: string | null; parent?: Document | null; pack?: string | null }): string;
+    static defaultName(context?: {
+        type?: string | null;
+        parent?: Document | null;
+        pack?: string | null;
+    }): string;
 
     /* -------------------------------------------- */
     /*  Importing and Exporting                     */
@@ -368,7 +397,10 @@ export class ClientDocument<TParent extends Document | null = Document | null> e
      * @param operation Document deletion options.
      * @returns A Promise that resolves to the deleted Document
      */
-    deleteDialog(options?: object, operation?: DatabaseDeleteOperation<TParent>): Promise<this | undefined>;
+    deleteDialog(
+        options?: object,
+        operation?: DatabaseDeleteOperation<TParent>,
+    ): Promise<this | undefined>;
 
     /**
      * Export document data to a JSON file which can be saved by the client and later imported into a different session.
@@ -420,7 +452,9 @@ export class ClientDocument<TParent extends Document | null = Document | null> e
     fromImport<T extends typeof Document>(
         this: T,
         source: object,
-        context?: DocumentConstructionContext<Document | null> & { strict?: boolean },
+        context?: DocumentConstructionContext<Document | null> & {
+            strict?: boolean;
+        },
     ): Promise<InstanceType<T>>;
 
     /**
@@ -538,7 +572,11 @@ export interface ClientDocumentStatic {
      * @param context.parent A parent document within which the created Document should belong
      * @param context.pack A compendium pack within which the Document should be created
      */
-    defaultName(context?: { type?: string | null; parent?: Document | null; pack?: string | null }): string;
+    defaultName(context?: {
+        type?: string | null;
+        parent?: Document | null;
+        pack?: string | null;
+    }): string;
 
     /* -------------------------------------------- */
     /*  Importing and Exporting                     */
@@ -568,5 +606,9 @@ export interface ClientDocumentStatic {
         },
     ): Promise<T | null>;
 
-    fromDropData<T extends ClientDocument>(this: ConstructorOf<T>, data: object, options?: object): Promise<T | null>;
+    fromDropData<T extends ClientDocument>(
+        this: ConstructorOf<T>,
+        data: object,
+        options?: object,
+    ): Promise<T | null>;
 }

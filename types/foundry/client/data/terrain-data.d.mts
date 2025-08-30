@@ -9,7 +9,9 @@ import { TokenMeasureMovementPathOptions } from "../_types.mjs";
 /**
  * The base TerrainData.
  */
-export abstract class BaseTerrainData<TSchema extends DataSchema = DataSchema> extends DataModel<null, TSchema> {
+export abstract class BaseTerrainData<
+    TSchema extends DataSchema = DataSchema,
+> extends DataModel<null, TSchema> {
     /**
      * Create the terrain data from the given array of terrain effects.
      * The type of the terrain effects and data is system-defined.
@@ -54,7 +56,9 @@ export abstract class BaseTerrainData<TSchema extends DataSchema = DataSchema> e
 export class TerrainData extends BaseTerrainData {
     static override defineSchema(): TerrainDataSchema;
 
-    static override resolveTerrainEffects(effects: Partial<TerrainDataSource>[]): TerrainData;
+    static override resolveTerrainEffects(
+        effects: Partial<TerrainDataSource>[],
+    ): TerrainData;
 
     static override getMovementCostFunction(
         token: TokenDocument,
@@ -66,7 +70,9 @@ export class TerrainData extends BaseTerrainData {
     override equals(other: BaseTerrainData): boolean;
 }
 
-export interface TerrainData extends BaseTerrainData, fields.ModelPropsFromSchema<TerrainDataSchema> {}
+export interface TerrainData
+    extends BaseTerrainData,
+        fields.ModelPropsFromSchema<TerrainDataSchema> {}
 
 type TerrainDataSchema = {
     /** The difficulty of the terrain (the movement cost multiplier) */

@@ -6,7 +6,11 @@ export const em: {
 };
 
 export const strong: {
-    parseDOM: [{ tag: "strong" }, { tag: "b" }, { style: "font-weight"; getAttrs: (weight: string) => boolean }];
+    parseDOM: [
+        { tag: "strong" },
+        { tag: "b" },
+        { style: "font-weight"; getAttrs: (weight: string) => boolean },
+    ];
     toDOM: () => ["strong", 0];
 };
 
@@ -21,7 +25,11 @@ export const underline: {
 };
 
 export const strikethrough: {
-    parseDOM: [{ tag: "s" }, { tag: "del" }, { style: "text-decoration=line-through" }];
+    parseDOM: [
+        { tag: "s" },
+        { tag: "del" },
+        { style: "text-decoration=line-through" },
+    ];
     toDOM: () => ["s", 0];
 };
 
@@ -36,7 +44,9 @@ export const subscript: {
 };
 
 export const span: {
-    parseDOM: [{ tag: "span"; getAttrs: (el: HTMLElement) => object | boolean }];
+    parseDOM: [
+        { tag: "span"; getAttrs: (el: HTMLElement) => object | boolean },
+    ];
     toDOM: () => ["span", 0];
 };
 
@@ -44,6 +54,11 @@ export const font: {
     attrs: {
         family: {};
     };
-    parseDOM: [{ style: "font-family"; getAttrs: (family: string) => Record<string, string> }];
+    parseDOM: [
+        {
+            style: "font-family";
+            getAttrs: (family: string) => Record<string, string>;
+        },
+    ];
     toDOM: (node: Node) => ["span", { style: `font-family: ${string}` }];
 };

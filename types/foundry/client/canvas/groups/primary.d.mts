@@ -18,7 +18,9 @@ import CanvasGroupMixin from "./canvas-group-mixin.mjs";
  * @mixes CanvasGroupMixin
  * @category Canvas
  */
-export default class PrimaryCanvasGroup extends CanvasGroupMixin(CachedContainer) {
+export default class PrimaryCanvasGroup extends CanvasGroupMixin(
+    CachedContainer,
+) {
     constructor(sprite: SpriteMesh);
 
     /**

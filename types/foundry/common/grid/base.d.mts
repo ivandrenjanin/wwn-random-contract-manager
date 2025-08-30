@@ -73,7 +73,14 @@ export abstract class BaseGrid {
         sceneWidth: number,
         sceneHeight: number,
         padding: number,
-    ): { width: number; height: number; x: number; y: number; rows: number; columns: number };
+    ): {
+        width: number;
+        height: number;
+        x: number;
+        y: number;
+        rows: number;
+        columns: number;
+    };
 
     /**
      * Returns the offset of the grid space corresponding to the given coordinates.
@@ -99,7 +106,9 @@ export abstract class BaseGrid {
      * @param   bounds    The bounds
      * @returns           The offset range as [i0, j0, i1, j1]
      */
-    abstract getOffsetRange(bounds: Rectangle): [number, number, number, number];
+    abstract getOffsetRange(
+        bounds: Rectangle,
+    ): [number, number, number, number];
 
     /**
      * Returns the offsets of the grid spaces adjacent to the one corresponding to the given coordinates.
@@ -117,8 +126,14 @@ export abstract class BaseGrid {
      * @param    coords1    The first coordinates
      * @param    coords2    The second coordinates
      */
-    abstract testAdjacency(coords1: GridCoordinates2D, coords2: GridCoordinates2D): boolean;
-    abstract testAdjacency(coords1: GridCoordinates3D, coords2: GridCoordinates3D): boolean;
+    abstract testAdjacency(
+        coords1: GridCoordinates2D,
+        coords2: GridCoordinates2D,
+    ): boolean;
+    abstract testAdjacency(
+        coords1: GridCoordinates3D,
+        coords2: GridCoordinates3D,
+    ): boolean;
 
     /**
      * Returns the offset of the grid space corresponding to the given coordinates
@@ -129,8 +144,14 @@ export abstract class BaseGrid {
      * @param direction The direction (see {@link CONST.MOVEMENT_DIRECTIONS})
      * @returns The offset
      */
-    abstract getShiftedOffset(coords: GridCoordinates2D, direction: MovementDirection): GridOffset2D;
-    abstract getShiftedOffset(coords: GridCoordinates3D, direction: MovementDirection): GridOffset3D;
+    abstract getShiftedOffset(
+        coords: GridCoordinates2D,
+        direction: MovementDirection,
+    ): GridOffset2D;
+    abstract getShiftedOffset(
+        coords: GridCoordinates3D,
+        direction: MovementDirection,
+    ): GridOffset3D;
 
     /**
      * Returns the point shifted by the difference between the grid space corresponding to the given coordinates
@@ -142,7 +163,10 @@ export abstract class BaseGrid {
      * @returns The shifted point
      */
     abstract getShiftedPoint(point: Point, direction: MovementDirection): Point;
-    abstract getShiftedPoint(point: ElevatedPoint, direction: MovementDirection): ElevatedPoint;
+    abstract getShiftedPoint(
+        point: ElevatedPoint,
+        direction: MovementDirection,
+    ): ElevatedPoint;
 
     /**
      * Returns the top-left point of the grid space corresponding to the given coordinates.
@@ -189,8 +213,14 @@ export abstract class BaseGrid {
      * @param behavior The snapping behavior
      * @returns The snapped point
      */
-    abstract getSnappedPoint(point: Point, behavior: GridSnappingBehavior): Point;
-    abstract getSnappedPoint(point: ElevatedPoint, behavior: GridSnappingBehavior): ElevatedPoint;
+    abstract getSnappedPoint(
+        point: Point,
+        behavior: GridSnappingBehavior,
+    ): Point;
+    abstract getSnappedPoint(
+        point: ElevatedPoint,
+        behavior: GridSnappingBehavior,
+    ): ElevatedPoint;
 
     /**
      * Measure a shortest, direct path through the given waypoints.
@@ -201,7 +231,8 @@ export abstract class BaseGrid {
      * @returns                 The measurements a shortest, direct path through the given waypoints.
      */
     measurePath(
-        waypoints: (GridCoordinates2D & Partial<GridMeasurePathWaypointData2D>)[],
+        waypoints: (GridCoordinates2D &
+            Partial<GridMeasurePathWaypointData2D>)[],
         options?: { cost?: GridMeasurePathCostFunction2D },
     ): GridMeasurePathResult;
     measurePath(
@@ -244,7 +275,11 @@ export abstract class BaseGrid {
      * @param   distance     The distance in grid units.
      * @returns              The translated point.
      */
-    abstract getTranslatedPoint(point: Point, direction: number, distance: number): Point;
+    abstract getTranslatedPoint(
+        point: Point,
+        direction: number,
+        distance: number,
+    ): Point;
 
     /**
      * Get the circle polygon given the radius in grid units for this grid.
@@ -266,5 +301,10 @@ export abstract class BaseGrid {
      * @param   angle        The angle in degrees.
      * @returns              The points of the cone polygon.
      */
-    getCone(origin: Point, radius: number, direction: number, angle: number): Point[];
+    getCone(
+        origin: Point,
+        radius: number,
+        direction: number,
+        angle: number,
+    ): Point[];
 }

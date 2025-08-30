@@ -34,62 +34,6 @@ interface PackageJson {
     dependencies: Record<string, string>;
 }
 
-interface ModuleJson {
-    id: string;
-    title: string;
-    description: string;
-    version: string;
-    compatibility: {
-        minimum: number;
-        verified: number;
-        maximum: number;
-    };
-    esmodules: string[];
-    scripts: string[];
-    styles: string[];
-    packs: Array<{
-        name: string;
-        label: string;
-        path: string;
-        type: string;
-    }>;
-    packFolders: string[];
-    relationships: {
-        systems: Array<{
-            id: string;
-            compatibility: {
-                minimum: string;
-                verified: string;
-                maximum: string;
-            };
-        }>;
-        requires: Array<{
-            id: string;
-            type: string;
-        }>;
-    };
-    languages: Array<{
-        lang: string;
-        name: string;
-        path: string;
-    }>;
-    authors: Array<{
-        name: string;
-        url: string;
-        discord: string;
-    }>;
-    socket: boolean;
-    url: string;
-    manifest: string;
-    download: string;
-    license: string;
-    readme: string;
-    bugs: string;
-    changelog: string;
-    library: boolean;
-    media: string[];
-}
-
 class VersionManager {
     private versionConfig: VersionConfig;
     private projectRoot: string;

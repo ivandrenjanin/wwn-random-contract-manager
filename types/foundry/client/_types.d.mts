@@ -1,10 +1,23 @@
-import { DeepReadonly, ElevatedPoint, Point, SocketRequest, SocketResponse, TokenPosition } from "@common/_types.mjs";
+import {
+    DeepReadonly,
+    ElevatedPoint,
+    Point,
+    SocketRequest,
+    SocketResponse,
+    TokenPosition,
+} from "@common/_types.mjs";
 import { DataModel } from "@common/abstract/_module.mjs";
 import { DataField } from "@common/data/fields.mjs";
-import { GridMeasurePathResultWaypoint, GridOffset3D } from "@common/grid/_types.mjs";
+import {
+    GridMeasurePathResultWaypoint,
+    GridOffset3D,
+} from "@common/grid/_types.mjs";
 import { DocumentHTMLEmbedConfig } from "./applications/ux/text-editor.mjs";
 import { AVSettingsData } from "./av/settings.mjs";
-import { CanvasAnimationData, CanvasAnimationEasingFunction } from "./canvas/animation/_types.mjs";
+import {
+    CanvasAnimationData,
+    CanvasAnimationEasingFunction,
+} from "./canvas/animation/_types.mjs";
 import { Ray } from "./canvas/geometry/_module.mjs";
 import { PingData } from "./canvas/interaction/_types.mjs";
 import AmbientLight from "./canvas/placeables/light.mjs";
@@ -427,7 +440,10 @@ export interface TokenConstrainMovementPathOptions {
 }
 
 interface TokenConstrainedMovementWaypoint
-    extends Omit<TokenMeasuredMovementWaypoint, "userId" | "movementId" | "cost"> {}
+    extends Omit<
+        TokenMeasuredMovementWaypoint,
+        "userId" | "movementId" | "cost"
+    > {}
 
 export interface TokenFindMovementPathOptions {
     /**
@@ -473,9 +489,11 @@ export interface TokenFindMovementPathJob {
     cancel: () => void;
 }
 
-export interface TokenGetTerrainMovementPathWaypoint extends Omit<TokenGetCompleteMovementPathWaypoint, "terrain"> {}
+export interface TokenGetTerrainMovementPathWaypoint
+    extends Omit<TokenGetCompleteMovementPathWaypoint, "terrain"> {}
 
-export interface TokenTerrainMovementWaypoint extends Omit<TokenMeasuredMovementWaypoint, "userId" | "cost"> {}
+export interface TokenTerrainMovementWaypoint
+    extends Omit<TokenMeasuredMovementWaypoint, "userId" | "cost"> {}
 
 export interface TokenRulerData {
     /** The waypoints that were already passed by the Token */
@@ -560,16 +578,28 @@ export interface TokenRulerWaypointData {
     next: TokenRulerWaypoint | null;
 }
 
-export interface TokenRulerWaypoint extends TokenMeasuredMovementWaypoint, TokenRulerWaypointData {}
+export interface TokenRulerWaypoint
+    extends TokenMeasuredMovementWaypoint,
+        TokenRulerWaypointData {}
 
 export interface TokenDragContext {
     token: Token;
     clonedToken: Token;
     origin: TokenPosition;
-    destination: Omit<TokenMovementWaypoint, "width" | "height" | "shape" | "action"> &
-        Partial<Pick<TokenMovementWaypoint, "width" | "height" | "shape" | "action">>;
-    waypoints: (Omit<TokenMovementWaypoint, "width" | "height" | "shape" | "action"> &
-        Partial<Pick<TokenMovementWaypoint, "width" | "height" | "shape" | "action">>)[];
+    destination: Omit<
+        TokenMovementWaypoint,
+        "width" | "height" | "shape" | "action"
+    > &
+        Partial<
+            Pick<TokenMovementWaypoint, "width" | "height" | "shape" | "action">
+        >;
+    waypoints: (Omit<
+        TokenMovementWaypoint,
+        "width" | "height" | "shape" | "action"
+    > &
+        Partial<
+            Pick<TokenMovementWaypoint, "width" | "height" | "shape" | "action">
+        >)[];
     foundPath: TokenMovementWaypoint[];
     unreachableWaypoints: TokenMovementWaypoint[];
     hidden: boolean;
@@ -717,7 +747,11 @@ export interface TokenAnimationOptions {
     easing?: CanvasAnimationEasingFunction;
 
     /** An on-tick callback. */
-    ontick?: (elapsedMS: number, animation: CanvasAnimationData, data: TokenAnimationData) => void;
+    ontick?: (
+        elapsedMS: number,
+        animation: CanvasAnimationData,
+        data: TokenAnimationData,
+    ) => void;
 }
 
 export type TokenMovementActionCostFunction = (
@@ -775,7 +809,9 @@ export interface TokenMovementActionConfig {
      * Used by {@link foundry.data.regionBehaviors.ModifyMovementCostRegionBehaviorType}.
      * Derived terrain difficulties are not configurable via the behavior UI.
      */
-    deriveTerrainDifficulty: ((nonDerivedDifficulties: { [action: string]: number }) => number) | null;
+    deriveTerrainDifficulty:
+        | ((nonDerivedDifficulties: { [action: string]: number }) => number)
+        | null;
 
     /** The cost modification function. Default: `() => cost => cost`. */
     getCostFunction: (
@@ -982,7 +1018,10 @@ export interface WorldCompendiumPackConfiguration {
     locked?: boolean;
 }
 
-export type WorldCompendiumConfiguration = Record<string, WorldCompendiumPackConfiguration>;
+export type WorldCompendiumConfiguration = Record<
+    string,
+    WorldCompendiumPackConfiguration
+>;
 
 /* ----------------------------------------- */
 /*  Settings Type Definitions                */
@@ -990,7 +1029,9 @@ export type WorldCompendiumConfiguration = Record<string, WorldCompendiumPackCon
 
 /** A Client Setting */
 export interface SettingConfig<
-    TChoices extends Record<string, unknown> | undefined = Record<string, unknown> | undefined,
+    TChoices extends Record<string, unknown> | undefined =
+        | Record<string, unknown>
+        | undefined,
 > {
     /** A unique machine-readable id for the setting */
     key: string;
@@ -1018,11 +1059,20 @@ export interface SettingConfig<
     /** For string Types, defines the allowable values */
     choices?: TChoices;
     /** For numeric Types, defines the allowable range */
-    range?: this["type"] extends NumberConstructor ? { min: number; max: number; step: number } : never;
+    range?: this["type"] extends NumberConstructor
+        ? { min: number; max: number; step: number }
+        : never;
     /** The default value */
-    default?: number | string | boolean | object | (() => number | string | boolean | object);
+    default?:
+        | number
+        | string
+        | boolean
+        | object
+        | (() => number | string | boolean | object);
     /** Executes when the value of this Setting changes */
-    onChange?: (choice: TChoices extends object ? keyof TChoices : unknown) => void | Promise<void>;
+    onChange?: (
+        choice: TChoices extends object ? keyof TChoices : unknown,
+    ) => void | Promise<void>;
 }
 
 export interface SettingSubmenuConfig {
@@ -1035,7 +1085,9 @@ export interface SettingSubmenuConfig {
     /** The classname of an Icon to render */
     icon: string;
     /** The FormApplication to render */
-    type: ConstructorOf<foundry.appv1.api.Application> | ConstructorOf<foundry.applications.api.ApplicationV2>;
+    type:
+        | ConstructorOf<foundry.appv1.api.Application>
+        | ConstructorOf<foundry.applications.api.ApplicationV2>;
     /** If true, only a GM can edit this Setting */
     restricted: boolean;
 }

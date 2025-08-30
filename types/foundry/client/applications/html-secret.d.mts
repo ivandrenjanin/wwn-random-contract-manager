@@ -21,7 +21,10 @@ export interface HTMLSecretConfiguration {
     /** The CSS selector used to target content that contains secret blocks. */
     parentSelector?: string;
     /** An object of callback functions for each operation. */
-    callbacks?: { content?: HTMLSecretContentCallback; update?: HTMLSecretUpdateCallback };
+    callbacks?: {
+        content?: HTMLSecretContentCallback;
+        update?: HTMLSecretUpdateCallback;
+    };
 }
 
 /**

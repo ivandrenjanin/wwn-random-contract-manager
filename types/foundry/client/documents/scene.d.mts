@@ -28,7 +28,10 @@ import {
     TokenSource,
     WallDocument,
 } from "./_module.mjs";
-import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
+import {
+    ClientDocument,
+    ClientDocumentStatic,
+} from "./abstract/client-document.mjs";
 import CompendiumCollection from "./collections/compendium-collection.mjs";
 
 type BaseSceneStatic = typeof BaseScene;
@@ -50,7 +53,9 @@ export default class Scene extends ClientBaseScene {
      * Track the viewed position of each scene (while in memory only, not persisted)
      * When switching back to a previously viewed scene, we can automatically pan to the previous position.
      */
-    protected _viewPosition: Record<string, never> | { x: number; y: number; scale: number };
+    protected _viewPosition:
+        | Record<string, never>
+        | { x: number; y: number; scale: number };
 
     /** Track whether the scene is the active view */
     protected _view: boolean;
@@ -74,7 +79,10 @@ export default class Scene extends ClientBaseScene {
      */
     activate(): Promise<this>;
 
-    override clone(data?: Record<string, unknown>, context?: DocumentCloneContext): this;
+    override clone(
+        data?: Record<string, unknown>,
+        context?: DocumentCloneContext,
+    ): this;
 
     /** Set this scene as the current view */
     view(): Promise<this>;
@@ -94,7 +102,11 @@ export default class Scene extends ClientBaseScene {
         user: BaseUser,
     ): Promise<boolean | void>;
 
-    protected override _onCreate(data: this["_source"], options: DatabaseCreateCallbackOptions, userId: string): void;
+    protected override _onCreate(
+        data: this["_source"],
+        options: DatabaseCreateCallbackOptions,
+        userId: string,
+    ): void;
 
     protected override _preUpdate(
         data: Record<string, unknown>,
@@ -102,11 +114,21 @@ export default class Scene extends ClientBaseScene {
         user: BaseUser,
     ): Promise<boolean | void>;
 
-    override _onUpdate(changed: DeepPartial<this["_source"]>, options: SceneUpdateOptions, userId: string): void;
+    override _onUpdate(
+        changed: DeepPartial<this["_source"]>,
+        options: SceneUpdateOptions,
+        userId: string,
+    ): void;
 
-    protected override _preDelete(options: DatabaseDeleteCallbackOptions, user: BaseUser): Promise<boolean | void>;
+    protected override _preDelete(
+        options: DatabaseDeleteCallbackOptions,
+        user: BaseUser,
+    ): Promise<boolean | void>;
 
-    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
+    protected override _onDelete(
+        options: DatabaseDeleteCallbackOptions,
+        userId: string,
+    ): void;
 
     /**
      * Handle Scene activation workflow if the active state is changed to true
@@ -181,7 +203,10 @@ export default interface Scene extends ClientBaseScene {
 
     getEmbeddedCollection(embeddedName: "Token"): this["tokens"];
 
-    update(data: Record<string, unknown>, options?: Partial<SceneUpdateOptions>): Promise<this>;
+    update(
+        data: Record<string, unknown>,
+        options?: Partial<SceneUpdateOptions>,
+    ): Promise<this>;
 
     createEmbeddedDocuments(
         embeddedName: "Note",
@@ -280,15 +305,17 @@ export interface SceneUpdateOptions extends DatabaseUpdateCallbackOptions {
     animateDarkness?: number;
 }
 
-export interface EmbeddedTokenUpdateOperation<TParent extends Scene> extends DatabaseUpdateOperation<TParent> {
+export interface EmbeddedTokenUpdateOperation<TParent extends Scene>
+    extends DatabaseUpdateOperation<TParent> {
     /** Is the operation undoing a previous operation, only used by embedded Documents within a Scene */
     isUndo?: boolean;
     animation?: TokenAnimationOptions;
 }
 
-export type SceneTokenOperation<TParent extends Scene> = SceneEmbeddedOperation<TParent> & {
-    animation?: TokenAnimationOptions;
-};
+export type SceneTokenOperation<TParent extends Scene> =
+    SceneEmbeddedOperation<TParent> & {
+        animation?: TokenAnimationOptions;
+    };
 
 export type SceneEmbeddedName =
     | "AmbientLight"

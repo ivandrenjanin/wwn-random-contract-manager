@@ -110,7 +110,10 @@ export default class TextEditor {
      * @param content Initial HTML or text content to populate the editor with.
      * @returns The TinyMCE editor instance.
      */
-    protected static _createTinyMCE(options?: object, content?: string): Promise<TinyMCE.Editor>;
+    protected static _createTinyMCE(
+        options?: object,
+        content?: string,
+    ): Promise<TinyMCE.Editor>;
 
     /* -------------------------------------------- */
     /*  HTML Manipulation Helpers                   */
@@ -128,14 +131,20 @@ export default class TextEditor {
      * @param options Additional options which configure how HTML is enriched
      * @returns The enriched HTML content
      */
-    static enrichHTML(content: string | null, options?: EnrichmentOptions): Promise<string>;
+    static enrichHTML(
+        content: string | null,
+        options?: EnrichmentOptions,
+    ): Promise<string>;
 
     /**
      * Scan for compendium UUIDs and retrieve Documents in batches so that they are in cache when enrichment proceeds.
      * @param text    The text nodes to scan.
      * @param options Options provided to customize text enrichment
      */
-    protected static _primeCompendiums(text: Text[], options?: EnrichmentOptions): Promise<void>;
+    protected static _primeCompendiums(
+        text: Text[],
+        options?: EnrichmentOptions,
+    ): Promise<void>;
 
     /**
      * Convert text of the form @UUID[uuid]{name} to anchor elements.
@@ -155,7 +164,10 @@ export default class TextEditor {
      * @param options Options provided to customize text enrichment.
      * @returns Whether any embeds were replaced and the text nodes need to be updated.
      */
-    protected static _enrichEmbeds(text: Text[], options?: EnrichmentOptions): Promise<boolean>;
+    protected static _enrichEmbeds(
+        text: Text[],
+        options?: EnrichmentOptions,
+    ): Promise<boolean>;
 
     /**
      * Convert URLs into anchor elements.
@@ -163,7 +175,10 @@ export default class TextEditor {
      * @param options Options provided to customize text enrichment
      * @returns Whether any hyperlinks were replaced and the text nodes need to be updated
      */
-    protected static _enrichHyperlinks(text: Text[], options?: EnrichmentOptions): Promise<boolean>;
+    protected static _enrichHyperlinks(
+        text: Text[],
+        options?: EnrichmentOptions,
+    ): Promise<boolean>;
 
     /**
      * Convert text of the form [[roll]] to anchor elements.
@@ -216,7 +231,11 @@ export default class TextEditor {
      */
     static truncateText(
         text: string,
-        options?: { maxLength?: number; splitWords?: boolean; suffix?: string | null },
+        options?: {
+            maxLength?: number;
+            splitWords?: boolean;
+            suffix?: string | null;
+        },
     ): string;
 
     /* -------------------------------------------- */
@@ -259,7 +278,9 @@ export default class TextEditor {
      * Helper method to create an anchor element.
      * @param options Options to configure the anchor's construction.
      */
-    static createAnchor(options?: Partial<EnrichmentAnchorOptions>): HTMLAnchorElement;
+    static createAnchor(
+        options?: Partial<EnrichmentAnchorOptions>,
+    ): HTMLAnchorElement;
 
     /**
      * Embed content from another Document.
@@ -267,7 +288,10 @@ export default class TextEditor {
      * @param options Options provided to customize text enrichment.
      * @returns A representation of the Document as HTML content, or null if the Document could not be embedded.
      */
-    protected static _embedContent(match: RegExpMatchArray, options?: EnrichmentOptions): Promise<HTMLElement | null>;
+    protected static _embedContent(
+        match: RegExpMatchArray,
+        options?: EnrichmentOptions,
+    ): Promise<HTMLElement | null>;
 
     /**
      * Parse the embed configuration to be passed to ClientDocument#toEmbed.
@@ -286,7 +310,10 @@ export default class TextEditor {
      * // Returns: { uuid: "Actor.xyz", caption: "Example Caption", values: ["inline"] }
      * ```
      */
-    protected static _parseEmbedConfig(raw: string, options?: object): DocumentHTMLEmbedConfig;
+    protected static _parseEmbedConfig(
+        raw: string,
+        options?: object,
+    ): DocumentHTMLEmbedConfig;
 
     /**
      * Replace a hyperlink-like string with an actual HTML &lt;a> tag
@@ -294,7 +321,10 @@ export default class TextEditor {
      * @param options Options provided to customize text enrichment
      * @returns An HTML element for the document link
      */
-    protected static _createHyperlink(match: RegExpMatchArray, options?: EnrichmentOptions): Promise<HTMLAnchorElement>;
+    protected static _createHyperlink(
+        match: RegExpMatchArray,
+        options?: EnrichmentOptions,
+    ): Promise<HTMLAnchorElement>;
 
     /**
      * Replace an inline roll formula with a rollable &lt;a> element or an eagerly evaluated roll result
@@ -320,7 +350,9 @@ export default class TextEditor {
      * Handle left-mouse clicks on an inline roll, dispatching the formula or displaying the tooltip
      * @param event The initiating click event
      */
-    protected static _onClickInlineRoll(event: MouseEvent): Promise<ChatMessage | undefined>;
+    protected static _onClickInlineRoll(
+        event: MouseEvent,
+    ): Promise<ChatMessage | undefined>;
 
     /**
      * Extract JSON data from a drag/drop event.

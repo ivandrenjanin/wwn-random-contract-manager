@@ -8,7 +8,9 @@ import { UserActivity } from "../user.mjs";
  * @see {@link User} The User entity
  * @see {@link UserDirectory} The UserDirectory sidebar directory
  */
-export default class Users<TUser extends User = User> extends WorldCollection<TUser> {
+export default class Users<
+    TUser extends User = User,
+> extends WorldCollection<TUser> {
     constructor(data?: foundry.documents.UserSource[]);
 
     /**
@@ -53,5 +55,8 @@ export default class Users<TUser extends User = User> extends WorldCollection<TU
      * @param userId       The User id who generated the activity data
      * @param activityData The object of activity data
      */
-    protected static _handleUserActivity(userId: string, activityData?: UserActivity): void;
+    protected static _handleUserActivity(
+        userId: string,
+        activityData?: UserActivity,
+    ): void;
 }

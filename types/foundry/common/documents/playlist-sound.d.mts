@@ -1,13 +1,16 @@
-import { AudioFilePath, DocumentOwnershipLevel, DocumentOwnershipString } from "@common/constants.mjs";
+import {
+    AudioFilePath,
+    DocumentOwnershipLevel,
+    DocumentOwnershipString,
+} from "@common/constants.mjs";
 import { Document, DocumentMetadata } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BasePlaylist, BaseUser } from "./_module.mjs";
 
 /** The PlaylistSound document model. */
-export default class BasePlaylistSound<TParent extends BasePlaylist | null = BasePlaylist | null> extends Document<
-    TParent,
-    PlaylistSoundSchema
-> {
+export default class BasePlaylistSound<
+    TParent extends BasePlaylist | null = BasePlaylist | null,
+> extends Document<TParent, PlaylistSoundSchema> {
     static override get metadata(): PlaylistSoundMetadata;
 
     static override defineSchema(): PlaylistSoundSchema;
@@ -19,8 +22,9 @@ export default class BasePlaylistSound<TParent extends BasePlaylist | null = Bas
     ): boolean;
 }
 
-export default interface BasePlaylistSound<TParent extends BasePlaylist | null = BasePlaylist | null>
-    extends Document<TParent, PlaylistSoundSchema>,
+export default interface BasePlaylistSound<
+    TParent extends BasePlaylist | null = BasePlaylist | null,
+> extends Document<TParent, PlaylistSoundSchema>,
         fields.ModelPropsFromSchema<PlaylistSoundSchema> {
     getDocumentName: PlaylistSoundMetadata["name"];
 }

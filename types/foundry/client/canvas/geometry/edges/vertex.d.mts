@@ -76,7 +76,10 @@ export default class PolygonVertex {
      * @param    [options]  Additional options that apply to this vertex
      * @returns             The constructed vertex
      */
-    static fromPoint(point: Point, options: PolygonVertexOptions): PolygonVertex;
+    static fromPoint(
+        point: Point,
+        options: PolygonVertexOptions,
+    ): PolygonVertex;
 }
 
 interface PolygonVertexOptions {

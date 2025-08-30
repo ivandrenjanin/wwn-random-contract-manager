@@ -6,7 +6,9 @@ import Folder from "../folder.mjs";
  * The Collection of Folder documents which exist within the active World.
  * This Collection is accessible within the Game object as game.folders.
  */
-export default class Folders<TFolder extends Folder = Folder> extends WorldCollection<TFolder> {
+export default class Folders<
+    TFolder extends Folder = Folder,
+> extends WorldCollection<TFolder> {
     constructor(data?: foundry.documents.FolderSource[]);
 
     protected _expanded: Record<string, boolean>;

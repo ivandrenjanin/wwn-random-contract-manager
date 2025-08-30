@@ -16,10 +16,9 @@ import { BaseScene, BaseUser } from "./_module.mjs";
  * @param data                   Initial data used to construct the data object
  * @param [document] The embedded document to which this data object belongs
  */
-export default class BaseMeasuredTemplate<TParent extends BaseScene | null> extends Document<
-    TParent,
-    MeasuredTemplateSchema
-> {
+export default class BaseMeasuredTemplate<
+    TParent extends BaseScene | null,
+> extends Document<TParent, MeasuredTemplateSchema> {
     /* -------------------------------------------- */
     /*  Model Configuration                         */
     /* -------------------------------------------- */
@@ -83,4 +82,5 @@ type MeasuredTemplateSchema = {
     flags: fields.DocumentFlagsField;
 };
 
-export type MeasuredTemplateSource = fields.SourceFromSchema<MeasuredTemplateSchema>;
+export type MeasuredTemplateSource =
+    fields.SourceFromSchema<MeasuredTemplateSchema>;

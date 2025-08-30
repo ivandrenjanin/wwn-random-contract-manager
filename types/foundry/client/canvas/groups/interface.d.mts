@@ -3,7 +3,9 @@ import GridLayer from "../layers/grid.mjs";
 import CanvasGroupMixin from "./canvas-group-mixin.mjs";
 
 /** A container group which displays interface elements rendered above other canvas groups. */
-export default class InterfaceCanvasGroup extends CanvasGroupMixin(PIXI.Container) {
+export default class InterfaceCanvasGroup extends CanvasGroupMixin(
+    PIXI.Container,
+) {
     grid: GridLayer;
 
     /**
@@ -12,7 +14,11 @@ export default class InterfaceCanvasGroup extends CanvasGroupMixin(PIXI.Containe
      * @param content The text content to display
      * @param options Options which customize the text animation
      */
-    createScrollingText(origin: Point, content: string, options: CreateScrollingTextOptions): Promise<void | null>;
+    createScrollingText(
+        origin: Point,
+        content: string,
+        options: CreateScrollingTextOptions,
+    ): Promise<void | null>;
 }
 
 interface CreateScrollingTextOptions extends Partial<PIXI.TextStyle> {

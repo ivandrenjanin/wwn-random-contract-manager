@@ -2,7 +2,9 @@ import { Tabs } from "@client/applications/ux/_module.mjs";
 import DragDrop from "@client/applications/ux/drag-drop.mjs";
 import { TabsConfiguration } from "@client/applications/ux/tabs.mjs";
 import { UserAction } from "@common/constants.mjs";
-import SearchFilter, { SearchFilterConfiguration } from "../../applications/ux/search-filter.mjs";
+import SearchFilter, {
+    SearchFilterConfiguration,
+} from "../../applications/ux/search-filter.mjs";
 
 interface ApplicationV1Options {
     /** A named "base application" which generates an additional hook */
@@ -75,7 +77,9 @@ export interface ApplicationV1HeaderButton {
  * The legacy application window that is rendered for some UI elements in Foundry VTT.
  * @deprecated since v13
  */
-export default abstract class Application<TOptions extends ApplicationV1Options = ApplicationV1Options> {
+export default abstract class Application<
+    TOptions extends ApplicationV1Options = ApplicationV1Options,
+> {
     constructor(options?: Partial<TOptions>);
 
     /** The options provided to this application upon initialization */
@@ -213,7 +217,10 @@ export default abstract class Application<TOptions extends ApplicationV1Options 
      * @param options Provided rendering options, see the render function for details
      * @return A Promise that resolves to the Application once rendering is complete
      */
-    protected _render(force?: boolean, options?: AppV1RenderOptions): Promise<void>;
+    protected _render(
+        force?: boolean,
+        options?: AppV1RenderOptions,
+    ): Promise<void>;
 
     /**
      * Persist the scroll positions of containers within the app before re-rendering the content
@@ -236,14 +243,21 @@ export default abstract class Application<TOptions extends ApplicationV1Options 
      * @param data  The data used to render the inner template
      * @return      A promise resolving to the constructed jQuery object
      */
-    protected _renderInner(data: object, options: AppV1RenderOptions): Promise<JQuery>;
+    protected _renderInner(
+        data: object,
+        options: AppV1RenderOptions,
+    ): Promise<JQuery>;
 
     /**
      * Customize how inner HTML is replaced when the application is refreshed
      * @param element   The original HTML element
      * @param html      New updated HTML
      */
-    protected _replaceHTML(element: JQuery, html: JQuery | HTMLElement, options: Record<string, unknown>): void;
+    protected _replaceHTML(
+        element: JQuery,
+        html: JQuery | HTMLElement,
+        options: Record<string, unknown>,
+    ): void;
 
     /**
      * Customize how a new HTML Application is added and first appears in the DOC
@@ -289,7 +303,12 @@ export default abstract class Application<TOptions extends ApplicationV1Options 
      * @param rgx   The regular expression to test against
      * @param html  The HTML element which should be filtered
      */
-    protected _onSearchFilter(event: KeyboardEvent, query: string, rgx: RegExp, html: HTMLElement | null): void;
+    protected _onSearchFilter(
+        event: KeyboardEvent,
+        query: string,
+        rgx: RegExp,
+        html: HTMLElement | null,
+    ): void;
 
     /**
      * Define whether a user is able to begin a dragstart workflow for a given drag selector
@@ -376,4 +395,5 @@ interface ApplicationPosition {
     zIndex?: Maybe<number>;
 }
 
-type ApplicationRenderState = (typeof Application.RENDER_STATES)[keyof typeof Application.RENDER_STATES];
+type ApplicationRenderState =
+    (typeof Application.RENDER_STATES)[keyof typeof Application.RENDER_STATES];

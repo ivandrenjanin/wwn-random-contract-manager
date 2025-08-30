@@ -9,7 +9,10 @@ export default class TextureCompressor extends AsyncWorker {
      * @param name The worker name to be initialized
      * @param config.controlHash Should use control hash?
      */
-    constructor(name?: string, config?: AsyncWorkerOptions & { controlHash?: boolean });
+    constructor(
+        name?: string,
+        config?: AsyncWorkerOptions & { controlHash?: boolean },
+    );
 
     /**
      * Process the non-blocking image compression to a base64 string.
@@ -25,7 +28,12 @@ export default class TextureCompressor extends AsyncWorker {
         buffer: Uint8ClampedArray,
         width: number,
         height: number,
-        options?: { type?: string; quality?: number; hash?: string; debug?: boolean },
+        options?: {
+            type?: string;
+            quality?: number;
+            hash?: string;
+            debug?: boolean;
+        },
     ): Promise<unknown>;
 
     /**

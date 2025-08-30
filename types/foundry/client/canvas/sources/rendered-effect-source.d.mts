@@ -1,7 +1,10 @@
 import Color from "@common/utils/color.mjs";
 import { PointSourceMesh } from "../containers/_module.mjs";
 import { PlaceableObject } from "../placeables/_module.mjs";
-import { AbstractBaseShader, AdaptiveLightingShader } from "../rendering/shaders/_module.mjs";
+import {
+    AbstractBaseShader,
+    AdaptiveLightingShader,
+} from "../rendering/shaders/_module.mjs";
 import type BaseEffectSource from "./base-effect-source.mjs";
 import type { BaseEffectSourceData } from "./base-effect-source.mjs";
 
@@ -83,7 +86,10 @@ export default abstract class RenderedEffectSource<
     data: RenderedEffectSourceData;
 
     /** Track the status of rendering layers */
-    layers: Record<"background" | "coloration" | "illumination", RenderedEffectSourceLayer>;
+    layers: Record<
+        "background" | "coloration" | "illumination",
+        RenderedEffectSourceLayer
+    >;
 
     /** The color of the source as a RGB vector. */
     colorRGB: [number, number, number] | null;
@@ -129,7 +135,10 @@ export default abstract class RenderedEffectSource<
      * Configure which shaders are used for each rendered layer.
      * @returns An object whose keys are layer identifiers and whose values are shader classes.
      */
-    protected _configureShaders(): Record<string, typeof AdaptiveLightingShader>;
+    protected _configureShaders(): Record<
+        string,
+        typeof AdaptiveLightingShader
+    >;
 
     /** Decide whether to render soft edges with a blur. */
     protected _configureSoftEdges(): void;
@@ -142,7 +151,10 @@ export default abstract class RenderedEffectSource<
     protected _configureColorAttributes(color: number | null): void;
 
     /** Specific configuration for a layer. */
-    protected _configureLayer(layer: RenderedEffectSourceLayer, layerId: string): void;
+    protected _configureLayer(
+        layer: RenderedEffectSourceLayer,
+        layerId: string,
+    ): void;
 
     /* -------------------------------------------- */
     /*  Rendered Source Canvas Rendering            */
@@ -155,7 +167,10 @@ export default abstract class RenderedEffectSource<
     protected abstract _updateGeometry(): void;
 
     /** Render the containers used to represent this light source within the LightingLayer */
-    drawMeshes(): Record<"background" | "coloration" | "illumination", PIXI.Mesh>;
+    drawMeshes(): Record<
+        "background" | "coloration" | "illumination",
+        PIXI.Mesh
+    >;
 
     /* -------------------------------------------- */
     /*  Rendered Source Refresh                     */
@@ -199,7 +214,10 @@ export default abstract class RenderedEffectSource<
      * @param [options.intensity=5]   The animation intensity, from 1 to 10
      * @param [options.reverse=false] Reverse the animation direction
      */
-    animateTime(dt: number, options?: { speed?: number; intensity?: number; reverse?: boolean }): void;
+    animateTime(
+        dt: number,
+        options?: { speed?: number; intensity?: number; reverse?: boolean },
+    ): void;
 
     /* -------------------------------------------- */
     /*  Static Helper Methods                       */
@@ -212,5 +230,10 @@ export default abstract class RenderedEffectSource<
     static getCorrectedLevel(level: number): number;
 
     /** Get corrected color according to level, dim color, bright color and background color. */
-    static getCorrectedColor(level: number, colorDim: Color, colorBright: Color, colorBackground?: Color): Color;
+    static getCorrectedColor(
+        level: number,
+        colorDim: Color,
+        colorBright: Color,
+        colorBackground?: Color,
+    ): Color;
 }

@@ -1,4 +1,7 @@
-import { ApplicationConfiguration, ApplicationRenderContext } from "@client/applications/_module.mjs";
+import {
+    ApplicationConfiguration,
+    ApplicationRenderContext,
+} from "@client/applications/_module.mjs";
 import {
     ApplicationV2,
     HandlebarsApplicationMixin,
@@ -40,7 +43,9 @@ interface SupportReportData {
     largestTexture: { width: number; height: number; src?: string };
 }
 
-export default class SupportDetails extends HandlebarsApplicationMixin(ApplicationV2) {
+export default class SupportDetails extends HandlebarsApplicationMixin(
+    ApplicationV2,
+) {
     static DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;

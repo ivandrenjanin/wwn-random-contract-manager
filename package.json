@@ -93,7 +93,7 @@
     "vite-plugin-checker": "^0.9.3",
     "vite-plugin-static-copy": "^3.0.0",
     "vite-tsconfig-paths": "^5.1.4",
-    "yargs": "^17.7.2"
+    "yargs": "^18.0.0"
   },
   "dependencies": {
     "uuid": "^11.1.0"

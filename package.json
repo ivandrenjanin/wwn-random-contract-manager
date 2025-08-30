@@ -1,11 +1,11 @@
 {
   "name": "wwn-random-contract-manager",
-  "version": "0.0.0",
+  "version": "v12.0.0",
   "description": "A FoundryVTT Module for random contract generation",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "npm run version:update && tsc && npm run process-template && vite build",
+    "build": "tsc && vite build",
     "stage": "tsc && npm run clean && vite build --mode stage",
     "dev": "tsc && npm run clean && vite build --mode development",
     "clean": "tsx ./build/clean.ts",
@@ -20,13 +20,7 @@
     "lint:ts": "eslint ./src --ext .ts",
     "prettier:scss": "prettier --check src/styles",
     "lint:json": "eslint ./static --ext .json --no-eslintrc --plugin json --rule \"json/*: error\" --rule \"linebreak-style: error\"",
-    "lint:fix": "eslint ./src --ext .ts --fix && prettier --write src/styles",
-    "version:update": "tsx ./build/version-manager.ts update",
-    "version:bump-major": "tsx ./build/version-manager.ts bump-major",
-    "version:bump-minor": "tsx ./build/version-manager.ts bump-minor",
-    "version:bump-patch": "tsx ./build/version-manager.ts bump-patch",
-    "version:show": "tsx ./build/version-manager.ts show",
-    "process-template": "tsx ./build/template-processor.ts process"
+    "lint:fix": "eslint ./src --ext .ts --fix && prettier --write src/styles"
   },
   "author": "Ivan Drenjanin (https://github.com/ivandrenjanin)",
   "license": "MIT",

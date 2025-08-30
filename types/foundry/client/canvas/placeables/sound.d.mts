@@ -12,8 +12,7 @@ import PointSoundSource from "../sources/point-sound-source.mjs";
 import PlaceableObject from "./placeable-object.mjs";
 
 export default class AmbientSound<
-    TDocument extends
-        AmbientSoundDocument<Scene | null> = AmbientSoundDocument<Scene | null>,
+    TDocument extends AmbientSoundDocument<Scene | null> = AmbientSoundDocument<Scene | null>,
 > extends PlaceableObject<TDocument> {
     /** The Sound which manages playback for this AmbientSound effect */
     sound: Sound | null;
@@ -90,10 +89,7 @@ export default class AmbientSound<
         userId: string,
     ): void;
 
-    protected override _onDelete(
-        options: DatabaseDeleteCallbackOptions,
-        userId: string,
-    ): void;
+    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 
     /* -------------------------------------------- */
     /*  Interaction Event Handlers                  */
@@ -101,10 +97,7 @@ export default class AmbientSound<
 
     protected override _canHUD(user: User, event: PIXI.FederatedEvent): boolean;
 
-    protected override _canConfigure(
-        user: User,
-        event: PIXI.FederatedEvent,
-    ): boolean;
+    protected override _canConfigure(user: User, event: PIXI.FederatedEvent): boolean;
 
     protected override _onClickRight(event: PIXI.FederatedEvent): void;
 

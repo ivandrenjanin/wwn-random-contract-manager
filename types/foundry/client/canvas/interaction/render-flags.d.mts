@@ -12,10 +12,7 @@ export default class RenderFlags extends Set<string> {
      * @param config.object  The object which owns this RenderFlags instance
      * @param config.priority The ticker priority at which these render flags are handled
      */
-    constructor(
-        flags?: Record<string, RenderFlag>,
-        config?: { object?: PlaceableObject; priority?: number },
-    );
+    constructor(flags?: Record<string, RenderFlag>, config?: { object?: PlaceableObject; priority?: number });
 
     /**
      * @returns The flags which were previously set that have been cleared.

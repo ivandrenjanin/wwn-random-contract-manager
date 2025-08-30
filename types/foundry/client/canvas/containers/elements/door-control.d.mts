@@ -55,16 +55,12 @@ export default class DoorControl extends PIXI.Container {
      * This should only toggle between the OPEN and CLOSED states.
      * @param event The originating interaction event
      */
-    protected _onMouseDown(
-        event: PIXI.FederatedPointerEvent,
-    ): Promise<WallDocument | undefined> | boolean | void;
+    protected _onMouseDown(event: PIXI.FederatedPointerEvent): Promise<WallDocument | undefined> | boolean | void;
 
     /**
      * Handle right mouse down events on a door control icon.
      * This should toggle whether the door is LOCKED or CLOSED.
      * @param event The originating interaction event
      */
-    protected _onRightDown(
-        event: PIXI.FederatedPointerEvent,
-    ): Promise<WallDocument | undefined> | void;
+    protected _onRightDown(event: PIXI.FederatedPointerEvent): Promise<WallDocument | undefined> | void;
 }

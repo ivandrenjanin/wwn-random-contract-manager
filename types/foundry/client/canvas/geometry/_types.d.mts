@@ -10,13 +10,7 @@ export interface ClipperPoint {
     Y: number;
 }
 
-export type PointSourcePolygonType =
-    | "light"
-    | "darkness"
-    | "sight"
-    | "sound"
-    | "move"
-    | "universal";
+export type PointSourcePolygonType = "light" | "darkness" | "sight" | "sound" | "move" | "universal";
 
 export interface PointSourcePolygonConfig {
     /** The type of polygon being computed */

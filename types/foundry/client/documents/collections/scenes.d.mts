@@ -1,15 +1,11 @@
-import WorldCollection, {
-    FromCompendiumOptions,
-} from "../abstract/world-collection.mjs";
+import WorldCollection, { FromCompendiumOptions } from "../abstract/world-collection.mjs";
 import Scene from "../scene.mjs";
 
 /**
  * The Collection of Scene documents which exist within the active World.
  * This Collection is accessible within the Game object as game.scenes.
  */
-export default class Scenes<
-    TDocument extends Scene,
-> extends WorldCollection<TDocument> {
+export default class Scenes<TDocument extends Scene> extends WorldCollection<TDocument> {
     /* -------------------------------------------- */
     /*  Properties                                  */
     /* -------------------------------------------- */
@@ -61,9 +57,6 @@ export default class Scenes<
     /** @override */
     fromCompendium(
         document: TDocument,
-        {
-            clearState,
-            clearSort,
-        }?: { clearState?: boolean } & FromCompendiumOptions,
+        { clearState, clearSort }?: { clearState?: boolean } & FromCompendiumOptions,
     ): foundry.documents.SceneSource;
 }

@@ -2,9 +2,7 @@ import { RollTermData } from "./_types.mjs";
 import RollTerm from "./term.mjs";
 
 /** A type of RollTerm used to capture static numbers. */
-export default class NumericTerm<
-    TData extends NumericTermData = NumericTermData,
-> extends RollTerm<TData> {
+export default class NumericTerm<TData extends NumericTermData = NumericTermData> extends RollTerm<TData> {
     constructor({ number, options }: NumericTermData);
 
     number: number;
@@ -32,10 +30,7 @@ export default class NumericTerm<
      * @param match The matched regular expression array
      * @return The constructed term
      */
-    static fromMatch<T extends NumericTerm<NumericTermData>>(
-        this: T,
-        match: RegExpMatchArray,
-    ): T;
+    static fromMatch<T extends NumericTerm<NumericTermData>>(this: T, match: RegExpMatchArray): T;
 }
 
 export interface NumericTermData extends RollTermData {

@@ -18,10 +18,7 @@ export default class Ruler extends BaseRuler {
      * Called in {@link draw}.
      * @returns The thickness in pixels and the color
      */
-    protected _configureOutline(): {
-        thickness: number;
-        color: PIXI.ColorSource;
-    };
+    protected _configureOutline(): { thickness: number; color: PIXI.ColorSource };
 
     override draw(): Promise<void>;
 
@@ -32,31 +29,21 @@ export default class Ruler extends BaseRuler {
     /**
      * Prepare an array of data structures used for ruler waypoint labels.
      */
-    protected _prepareWaypointData(
-        waypoints: RulerWaypoint[],
-    ): RulerWaypointData;
+    protected _prepareWaypointData(waypoints: RulerWaypoint[]): RulerWaypointData;
 
     /**
      * Get the style of the waypoint at the given waypoint.
      * @param {RulerWaypoint} waypoint The waypoint
      * @returns The radius, color, and alpha of the waypoint
      */
-    protected _getWaypointStyle(waypoint: RulerWaypoint): {
-        radius: number;
-        color?: PIXI.ColorSource;
-        alpha?: number;
-    };
+    protected _getWaypointStyle(waypoint: RulerWaypoint): { radius: number; color?: PIXI.ColorSource; alpha?: number };
 
     /**
      * Get the style of the segment from the previous to the given waypoint.
      * @param waypoint The waypoint
      * @returns The line width, color, and alpha of the segment
      */
-    protected _getSegmentStyle(waypoint: RulerWaypoint): {
-        width: number;
-        color?: PIXI.ColorSource;
-        alpha?: number;
-    };
+    protected _getSegmentStyle(waypoint: RulerWaypoint): { width: number; color?: PIXI.ColorSource; alpha?: number };
 }
 
 interface RulerWaypointData {

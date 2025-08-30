@@ -7,9 +7,7 @@ import ChatMessage from "../chat-message.mjs";
  * @see {@link ChatMessage} The ChatMessage entity
  * @see {@link ChatLog} The ChatLog sidebar directory
  */
-export default class Messages<
-    TChatMessage extends ChatMessage = ChatMessage,
-> extends WorldCollection<TChatMessage> {
+export default class Messages<TChatMessage extends ChatMessage = ChatMessage> extends WorldCollection<TChatMessage> {
     static override documentName: "ChatMessage";
 
     override render(force?: boolean): void;

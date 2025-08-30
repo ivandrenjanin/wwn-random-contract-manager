@@ -3,17 +3,13 @@ import { Point } from "@common/_types.mjs";
 import { SceneControl } from "../../applications/ui/scene-controls.mjs";
 import Tile from "../placeables/tile.mjs";
 import { PlaceablesLayerOptions } from "./_types.mjs";
-import PlaceablesLayer, {
-    PlaceablesLayerPointerEvent,
-} from "./base/placeables-layer.mjs";
+import PlaceablesLayer, { PlaceablesLayerPointerEvent } from "./base/placeables-layer.mjs";
 
 /**
  * A PlaceablesLayer designed for rendering the visual Scene for a specific vertical cross-section.
  * @category Canvas
  */
-export default class TilesLayer<
-    TObject extends Tile = Tile,
-> extends PlaceablesLayer<TObject> {
+export default class TilesLayer<TObject extends Tile = Tile> extends PlaceablesLayer<TObject> {
     static override documentName: "Tile";
 
     /* -------------------------------------------- */
@@ -45,21 +41,13 @@ export default class TilesLayer<
     /*  Event Handlers                              */
     /* -------------------------------------------- */
 
-    protected override _onDragLeftStart(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftStart(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftMove(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftMove(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftDrop(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftDrop(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftCancel(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftCancel(event: PlaceablesLayerPointerEvent<TObject>): void;
 
     /**
      * Handle drop events for Tile data on the Tiles Layer

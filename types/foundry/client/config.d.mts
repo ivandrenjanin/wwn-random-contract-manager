@@ -1,28 +1,15 @@
-import {
-    DataSchema,
-    Document,
-    TypeDataModel,
-} from "@common/abstract/_module.mjs";
+import { DataSchema, Document, TypeDataModel } from "@common/abstract/_module.mjs";
 import { AudioFilePath, ImageFilePath, RollMode } from "@common/constants.mjs";
 import { DocumentConstructionContext } from "../common/_types.mjs";
 import { ActiveEffectSource } from "../common/documents/active-effect.mjs";
-import {
-    applications,
-    dice,
-    documents,
-    TokenMovementActionConfig,
-} from "./_module.mjs";
+import { applications, dice, documents, TokenMovementActionConfig } from "./_module.mjs";
 import DocumentSheetV2 from "./applications/api/document-sheet.mjs";
 import CameraViews from "./applications/apps/av/cameras.mjs";
 import HTMLEnrichedContentElement from "./applications/elements/enriched-content.mjs";
 import { PrototypeTokenConfig } from "./applications/sheets/_module.mjs";
 import * as sidebar from "./applications/sidebar/_module.mjs";
 import { CompendiumDirectory } from "./applications/sidebar/tabs/_module.mjs";
-import {
-    MainMenu,
-    Notifications,
-    SceneNavigation,
-} from "./applications/ui/_module.mjs";
+import { MainMenu, Notifications, SceneNavigation } from "./applications/ui/_module.mjs";
 import Hotbar from "./applications/ui/hotbar.mjs";
 import { EnrichmentOptions } from "./applications/ux/text-editor.mjs";
 import ActorSheet from "./appv1/sheets/actor-sheet.mjs";
@@ -39,13 +26,7 @@ import {
     InterfaceCanvasGroup,
     PrimaryCanvasGroup,
 } from "./canvas/groups/_module.mjs";
-import {
-    AlertPing,
-    ArrowPing,
-    ChevronPing,
-    PulsePing,
-    Ruler,
-} from "./canvas/interaction/_module.mjs";
+import { AlertPing, ArrowPing, ChevronPing, PulsePing, Ruler } from "./canvas/interaction/_module.mjs";
 import * as layers from "./canvas/layers/_module.mjs";
 import * as perception from "./canvas/perception/_module.mjs";
 import * as placeables from "./canvas/placeables/_module.mjs";
@@ -69,10 +50,7 @@ import { TokenMovementCostAggregator } from "./documents/_types.mjs";
 import WorldCollection from "./documents/abstract/world-collection.mjs";
 import * as collections from "./documents/collections/_module.mjs";
 
-export type TextEditorEnricher = (
-    match: RegExpMatchArray,
-    options?: EnrichmentOptions,
-) => Promise<HTMLElement | null>;
+export type TextEditorEnricher = (match: RegExpMatchArray, options?: EnrichmentOptions) => Promise<HTMLElement | null>;
 
 export interface TextEditorEnricherConfig {
     /** A unique ID to assign to the enricher type. Required if you want to use the onRender callback. */
@@ -173,17 +151,13 @@ export default interface Config<
     TChatLog extends sidebar.tabs.ChatLog,
     TChatMessage extends documents.ChatMessage,
     TCombat extends documents.Combat,
-    TCombatant extends documents.Combatant<
-        TCombat | null,
-        TTokenDocument | null
-    >,
+    TCombatant extends documents.Combatant<TCombat | null, TTokenDocument | null>,
     TCombatTracker extends sidebar.tabs.CombatTracker<TCombat | null>,
     TCompendiumDirectory extends CompendiumDirectory,
     THotbar extends Hotbar<TMacro>,
     TItem extends documents.Item<TActor | null>,
     TMacro extends documents.Macro,
-    TMeasuredTemplateDocument extends
-        documents.MeasuredTemplateDocument<TScene | null>,
+    TMeasuredTemplateDocument extends documents.MeasuredTemplateDocument<TScene | null>,
     TRegionDocument extends documents.RegionDocument<TScene | null>,
     TRegionBehavior extends documents.RegionBehavior<TRegionDocument | null>,
     TTileDocument extends documents.TileDocument<TScene | null>,
@@ -235,19 +209,13 @@ export default interface Config<
     /** Configuration for the Actor document */
     Actor: {
         documentClass: {
-            new (
-                data: PreCreate<TActor["_source"]>,
-                context?: DocumentConstructionContext<TActor["parent"]>,
-            ): TActor;
+            new (data: PreCreate<TActor["_source"]>, context?: DocumentConstructionContext<TActor["parent"]>): TActor;
         };
         collection: ConstructorOf<collections.Actors<documents.Actor<null>>>;
         compendiumIndexFields: string[];
         compendiumBanner: ImageFilePath;
         sidebarIcon: string;
-        dataModels: Record<
-            string,
-            ConstructorOf<TypeDataModel<documents.Actor, DataSchema>>
-        >;
+        dataModels: Record<string, ConstructorOf<TypeDataModel<documents.Actor, DataSchema>>>;
         typeLabels: Record<string, string | undefined>;
         typeIcons: Record<string, string>;
         trackableAttributes: object;
@@ -272,10 +240,7 @@ export default interface Config<
         collection: WorldCollection<documents.Cards>;
         documentClass: ConstructorOf<documents.Cards>;
         sidebarIcon: string;
-        presets: Record<
-            string,
-            { type: string; label: string; source: string }
-        >;
+        presets: Record<string, { type: string; label: string; source: string }>;
     };
 
     /** Configuration for the FogExploration document */
@@ -295,10 +260,7 @@ export default interface Config<
         batchSize: number;
         collection: typeof collections.Messages;
         documentClass: {
-            new (
-                data: PreCreate<TChatMessage["_source"]>,
-                context?: DocumentConstructionContext<null>,
-            ): TChatMessage;
+            new (data: PreCreate<TChatMessage["_source"]>, context?: DocumentConstructionContext<null>): TChatMessage;
         };
         sidebarIcon: string;
         template: string;
@@ -307,16 +269,10 @@ export default interface Config<
     /** Configuration for Item document */
     Item: {
         documentClass: {
-            new (
-                data: PreCreate<TItem["_source"]>,
-                context?: DocumentConstructionContext<TItem["parent"]>,
-            ): TItem;
+            new (data: PreCreate<TItem["_source"]>, context?: DocumentConstructionContext<TItem["parent"]>): TItem;
         };
         collection: typeof collections.Items;
-        dataModels: Record<
-            string,
-            ConstructorOf<TypeDataModel<documents.Item, DataSchema>>
-        >;
+        dataModels: Record<string, ConstructorOf<TypeDataModel<documents.Item, DataSchema>>>;
         typeIcons: Record<string, string>;
         typeLabels: Record<string, string | undefined>;
         sheetClasses: Record<
@@ -338,10 +294,7 @@ export default interface Config<
     /** Configuration for the Combat document */
     Combat: {
         documentClass: {
-            new (
-                data: PreCreate<TCombat["_source"]>,
-                context?: DocumentConstructionContext<null>,
-            ): TCombat;
+            new (data: PreCreate<TCombat["_source"]>, context?: DocumentConstructionContext<null>): TCombat;
         };
         collection: typeof collections.CombatEncounters;
         defeatedStatusId: string;
@@ -417,9 +370,7 @@ export default interface Config<
     /** Configuration for the AmbientLight embedded document type and its representation on the game Canvas */
     AmbientLight: {
         documentClass: ConstructorOf<TAmbientLightDocument>;
-        objectClass: ConstructorOf<
-            NonNullable<TAmbientLightDocument["object"]>
-        >;
+        objectClass: ConstructorOf<NonNullable<TAmbientLightDocument["object"]>>;
     };
 
     /** Configuration for the ActiveEffect embedded document type */
@@ -450,10 +401,7 @@ export default interface Config<
      */
     JournalEntryPage: {
         documentClass: typeof documents.JournalEntryPage;
-        dataModels: Record<
-            string,
-            ConstructorOf<TypeDataModel<Document, DataSchema>>
-        >;
+        dataModels: Record<string, ConstructorOf<TypeDataModel<Document, DataSchema>>>;
         typeLabels: Record<string, string>;
         typeIcons: Record<string, string>;
         defaultType: string;
@@ -473,9 +421,7 @@ export default interface Config<
             ray: string;
         };
         documentClass: ConstructorOf<TMeasuredTemplateDocument>;
-        objectClass: ConstructorOf<
-            NonNullable<TMeasuredTemplateDocument["object"]>
-        >;
+        objectClass: ConstructorOf<NonNullable<TMeasuredTemplateDocument["object"]>>;
     };
 
     /** Configuration for the Region embedded document type and its representation on the game Canvas  */
@@ -487,10 +433,7 @@ export default interface Config<
     /** Configuration for the RegionBehavior embedded document type */
     RegionBehavior: {
         documentClass: ConstructorOf<TRegionBehavior>;
-        dataModels: Record<
-            string,
-            ConstructorOf<foundry.data.regionBehaviors.RegionBehaviorType>
-        >;
+        dataModels: Record<string, ConstructorOf<foundry.data.regionBehaviors.RegionBehaviorType>>;
         typeIcons: Record<string, string>;
         typeLabels: Record<string, string>;
     };
@@ -555,9 +498,7 @@ export default interface Config<
         lightSourceClass: typeof PointLightSource;
         globalLightSourceClass: typeof GlobalLightSource;
         rulerClass: typeof Ruler;
-        visionSourceClass: ConstructorOf<
-            PointVisionSource<NonNullable<TTokenDocument["object"]>>
-        >;
+        visionSourceClass: ConstructorOf<PointVisionSource<NonNullable<TTokenDocument["object"]>>>;
         soundSourceClass: typeof PointSoundSource;
         groups: {
             hidden: {
@@ -596,15 +537,11 @@ export default interface Config<
             };
             walls: {
                 group: "effects";
-                layerClass: ConstructorOf<
-                    NonNullable<TWallDocument["object"]>["layer"]
-                >;
+                layerClass: ConstructorOf<NonNullable<TWallDocument["object"]>["layer"]>;
             };
             templates: {
                 group: "primary";
-                layerClass: ConstructorOf<
-                    NonNullable<TMeasuredTemplateDocument["object"]>["layer"]
-                >;
+                layerClass: ConstructorOf<NonNullable<TMeasuredTemplateDocument["object"]>["layer"]>;
             };
             notes: {
                 group: "interface";
@@ -612,9 +549,7 @@ export default interface Config<
             };
             tokens: {
                 group: "primary";
-                layerClass: ConstructorOf<
-                    NonNullable<TTokenDocument["object"]>["layer"]
-                >;
+                layerClass: ConstructorOf<NonNullable<TTokenDocument["object"]>["layer"]>;
             };
             tiles: {
                 group: "primary";
@@ -626,9 +561,7 @@ export default interface Config<
             };
             lighting: {
                 group: "effects";
-                layerClass: ConstructorOf<
-                    NonNullable<TAmbientLightDocument["object"]>["layer"]
-                >;
+                layerClass: ConstructorOf<NonNullable<TAmbientLightDocument["object"]>["layer"]>;
             };
             controls: {
                 group: "interface";
@@ -731,12 +664,7 @@ export default interface Config<
         types: (typeof dice.terms.Die | typeof dice.terms.DiceTerm)[];
         rollModes: Record<RollMode, string>;
         rolls: ConstructorOf<dice.Roll>[];
-        termTypes: Record<
-            string,
-            ConstructorOf<dice.terms.RollTerm> & {
-                fromData(data: object): dice.terms.RollTerm;
-            }
-        >;
+        termTypes: Record<string, ConstructorOf<dice.terms.RollTerm> & { fromData(data: object): dice.terms.RollTerm }>;
         terms: {
             c: typeof dice.terms.Coin;
             d: typeof dice.terms.Die;
@@ -790,10 +718,7 @@ export default interface Config<
     TextEditor: {
         enrichers: {
             pattern: RegExp;
-            enricher: (
-                match: RegExpMatchArray,
-                options: EnrichmentOptions,
-            ) => Promise<HTMLElement | null>;
+            enricher: (match: RegExpMatchArray, options: EnrichmentOptions) => Promise<HTMLElement | null>;
         }[];
     };
 
@@ -806,11 +731,7 @@ export default interface Config<
     TinyMCE: TinyMCE.EditorOptions;
 
     ui: {
-        actors: ConstructorOf<
-            foundry.applications.sidebar.tabs.ActorDirectory<
-                documents.Actor<null>
-            >
-        >;
+        actors: ConstructorOf<foundry.applications.sidebar.tabs.ActorDirectory<documents.Actor<null>>>;
         chat: ConstructorOf<TChatLog>;
         combat: ConstructorOf<TCombatTracker>;
         compendium: ConstructorOf<TCompendiumDirectory>;

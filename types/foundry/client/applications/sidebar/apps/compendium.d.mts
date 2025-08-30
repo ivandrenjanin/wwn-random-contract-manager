@@ -1,14 +1,9 @@
 import { ApplicationRenderContext } from "@client/applications/_types.mjs";
-import {
-    HandlebarsRenderOptions,
-    HandlebarsTemplatePart,
-} from "@client/applications/api/handlebars-application.mjs";
+import { HandlebarsRenderOptions, HandlebarsTemplatePart } from "@client/applications/api/handlebars-application.mjs";
 import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
 import { CompendiumDocument } from "@client/documents/_module.mjs";
 import { DropCanvasData } from "@client/helpers/hooks.mjs";
-import DocumentDirectory, {
-    DocumentDirectoryConfiguration,
-} from "../document-directory.mjs";
+import DocumentDirectory, { DocumentDirectoryConfiguration } from "../document-directory.mjs";
 
 /**
  * An Application that displays the indexed contents of a Compendium pack.
@@ -42,13 +37,9 @@ export default class Compendium<
 
     protected override _canCreateFolder(): boolean;
 
-    protected override _canRender(
-        options: HandlebarsRenderOptions,
-    ): false | void;
+    protected override _canRender(options: HandlebarsRenderOptions): false | void;
 
-    protected override _configureRenderOptions(
-        options: HandlebarsRenderOptions,
-    ): void;
+    protected override _configureRenderOptions(options: HandlebarsRenderOptions): void;
 
     protected override _getEntryContextOptions(): ContextMenuEntry[];
 
@@ -59,19 +50,13 @@ export default class Compendium<
         options: HandlebarsRenderOptions,
     ): Promise<void>;
 
-    protected override _onRender(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected override _onRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Event Listeners & Handlers                  */
     /* -------------------------------------------- */
 
-    protected override _onCreateEntry(
-        event: PointerEvent,
-        target: HTMLElement,
-    ): Promise<TDocument | undefined>;
+    protected override _onCreateEntry(event: PointerEvent, target: HTMLElement): Promise<TDocument | undefined>;
 
     /* -------------------------------------------- */
     /*  Drag & Drop                                 */
@@ -79,10 +64,7 @@ export default class Compendium<
 
     protected override _canDragDrop(selector: string): boolean;
 
-    protected override _createDroppedEntry(
-        entry: TDocument,
-        updates?: object,
-    ): Promise<TDocument | undefined>;
+    protected override _createDroppedEntry(entry: TDocument, updates?: object): Promise<TDocument | undefined>;
 
     protected override _entryAlreadyExists(entry: TDocument): boolean;
 

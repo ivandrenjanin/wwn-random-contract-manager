@@ -92,11 +92,7 @@ export default class Edge {
      * @returns              True if the edge has a threshold greater than 0 for the source type,
      *                       and the source type is within that distance.
      */
-    applyThreshold(
-        sourceType: string,
-        sourceOrigin: Point,
-        externalRadius?: number,
-    ): boolean;
+    applyThreshold(sourceType: string, sourceOrigin: Point, externalRadius?: number): boolean;
 
     /**
      * Determine the orientation of this Edge with respect to a reference point.

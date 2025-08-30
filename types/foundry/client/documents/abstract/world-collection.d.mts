@@ -122,10 +122,7 @@ export default abstract class WorldCollection<
      * @param [options.keepId=false]          Retain the Document id from the source Compendium
      * @return The processed data ready for world Document creation
      */
-    fromCompendium(
-        document: TDocument | TDocument["_source"],
-        options?: FromCompendiumOptions,
-    ): TDocument["_source"];
+    fromCompendium(document: TDocument | TDocument["_source"], options?: FromCompendiumOptions): TDocument["_source"];
 
     /* -------------------------------------------- */
     /*  Sheet Registration Methods                  */
@@ -142,11 +139,7 @@ export default abstract class WorldCollection<
      * Actors.registerSheet("dnd5e", ActorSheet5eCharacter, { types: ["character], makeDefault: true });
      * ```
      */
-    static registerSheet(
-        ...args: DropFirst<
-            Parameters<(typeof DocumentSheetConfig)["registerSheet"]>
-        >
-    ): void;
+    static registerSheet(...args: DropFirst<Parameters<(typeof DocumentSheetConfig)["registerSheet"]>>): void;
 
     /**
      * Unregister a Document sheet class, removing it from the list of available sheet Applications to use.
@@ -159,11 +152,7 @@ export default abstract class WorldCollection<
      * Actors.unregisterSheet("core", ActorSheet);
      * ```
      */
-    static unregisterSheet(
-        ...args: DropFirst<
-            Parameters<(typeof DocumentSheetConfig)["unregisterSheet"]>
-        >
-    ): void;
+    static unregisterSheet(...args: DropFirst<Parameters<(typeof DocumentSheetConfig)["unregisterSheet"]>>): void;
 
     static get registeredSheets(): (DocumentSheetV2 | DocumentSheet)[];
 }

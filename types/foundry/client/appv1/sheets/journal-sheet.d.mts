@@ -2,25 +2,17 @@ import { JournalEntryPageHeading } from "@client/_module.mjs";
 import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
 import JournalEntryPage from "@client/documents/journal-entry-page.mjs";
 import JournalEntry from "@client/documents/journal-entry.mjs";
-import {
-    DirectorySearchMode,
-    DocumentOwnershipLevel,
-} from "@common/constants.mjs";
+import { DirectorySearchMode, DocumentOwnershipLevel } from "@common/constants.mjs";
 import { JournalEntryPageSource } from "../../../common/documents/journal-entry-page.mjs";
 import { ApplicationV1HeaderButton } from "../api/application-v1.mjs";
-import DocumentSheet, {
-    DocumentSheetData,
-    DocumentSheetV1Options,
-} from "../api/document-sheet-v1.mjs";
+import DocumentSheet, { DocumentSheetData, DocumentSheetV1Options } from "../api/document-sheet-v1.mjs";
 
 /**
  * The Application responsible for displaying and editing a single JournalEntry document.
  * @param object The JournalEntry instance which is being edited
  * @param [options] Application options
  */
-export default class JournalSheet<
-    TJournalEntry extends JournalEntry,
-> extends DocumentSheet<TJournalEntry> {
+export default class JournalSheet<TJournalEntry extends JournalEntry> extends DocumentSheet<TJournalEntry> {
     static override get defaultOptions(): DocumentSheetV1Options;
 
     /**
@@ -72,19 +64,14 @@ export default class JournalSheet<
 
     override getData(
         options?: Partial<DocumentSheetV1Options>,
-    ):
-        | JournalSheetData<TJournalEntry>
-        | Promise<JournalSheetData<TJournalEntry>>;
+    ): JournalSheetData<TJournalEntry> | Promise<JournalSheetData<TJournalEntry>>;
 
     override get template(): string;
 
     /** Guess the default view mode for the sheet based on the player's permissions to the Entry */
     protected _inferDefaultMode(): string;
 
-    protected override _render(
-        force?: boolean,
-        options?: JournalSheetRenderOptions,
-    ): Promise<void>;
+    protected override _render(force?: boolean, options?: JournalSheetRenderOptions): Promise<void>;
 
     protected override _getHeaderButtons(): ApplicationV1HeaderButton[];
 
@@ -102,10 +89,7 @@ export default class JournalSheet<
      * @param [options.pageId]    The ID of a page to render
      * @returns The currently displayed page index
      */
-    protected _getCurrentPage(options?: {
-        pageIndex?: number;
-        pageId?: string;
-    }): number;
+    protected _getCurrentPage(options?: { pageIndex?: number; pageId?: string }): number;
 
     override activateListeners(html: JQuery): void;
 
@@ -121,10 +105,7 @@ export default class JournalSheet<
      *                                who might otherwise not have permission to view it.
      * @param [options.collapsed] Render the sheet with the TOC sidebar collapsed?
      */
-    protected override _render(
-        force?: boolean,
-        options?: JournalSheetRenderOptions,
-    ): Promise<void>;
+    protected override _render(force?: boolean, options?: JournalSheetRenderOptions): Promise<void>;
 
     /** Update child views inside the main sheet. */
     protected _renderPageViews(): Promise<void>;
@@ -134,10 +115,7 @@ export default class JournalSheet<
      * @param pageNode The HTML node of the page's rendered contents.
      * @param toc      The page's table of contents.
      */
-    protected _renderHeadings(
-        pageNode: HTMLElement,
-        toc: Record<string, JournalEntryPageHeading>,
-    ): void;
+    protected _renderHeadings(pageNode: HTMLElement, toc: Record<string, JournalEntryPageHeading>): void;
 
     /**
      * Create an intersection observer to maintain a list of headings that are in view. This is much more performant than
@@ -192,9 +170,7 @@ export default class JournalSheet<
      * Edit one of this JournalEntry's JournalEntryPages.
      * @param event  The originating page edit event.
      */
-    protected _onEditPage(
-        event: JQuery.TriggeredEvent,
-    ): Promise<this> | undefined;
+    protected _onEditPage(event: JQuery.TriggeredEvent): Promise<this> | undefined;
 
     /**
      * Handle clicking an entry in the sidebar to scroll that heading into view.
@@ -206,17 +182,14 @@ export default class JournalSheet<
      * Handle clicking an image to pop it out for fullscreen view.
      * @param event The click event.
      */
-    protected _onClickImage(event: MouseEvent): void;
+    protected _onClickImage(event: PointerEvent): void;
 
     /**
      * Handle new pages scrolling into view.
      * @param entries  An Array of elements that have scrolled into or out of view.
      * @param observer The IntersectionObserver that invoked this callback.
      */
-    protected _onPageScroll(
-        entries: IntersectionObserverEntry[],
-        observer: IntersectionObserver,
-    ): void;
+    protected _onPageScroll(entries: IntersectionObserverEntry[], observer: IntersectionObserver): void;
 
     /** Highlights the currently viewed page in the sidebar. */
     protected _activatePagesInView(): void;
@@ -248,10 +221,7 @@ export default class JournalSheet<
      */
     protected _getEntryContextOptions(): ContextMenuEntry[];
 
-    protected override _updateObject(
-        event: Event,
-        formData: Record<string, unknown>,
-    ): Promise<void>;
+    protected override _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
 
     /**
      * Handle requests to show the referenced Journal Entry to other Users
@@ -276,16 +246,14 @@ export default class JournalSheet<
     ): void;
 }
 
-type JournalSheetViewMode =
-    (typeof JournalSheet.VIEW_MODES)[keyof typeof JournalSheet.VIEW_MODES];
+type JournalSheetViewMode = (typeof JournalSheet.VIEW_MODES)[keyof typeof JournalSheet.VIEW_MODES];
 
 interface JournalSheetRenderOptions extends DocumentRenderOptions {
     pageId?: string;
     pageIndex?: number;
 }
 
-interface JournalSheetData<TDocument extends JournalEntry>
-    extends DocumentSheetData<TDocument> {
+interface JournalSheetData<TDocument extends JournalEntry> extends DocumentSheetData<TDocument> {
     collapseMode: {
         label: string;
         icon: string;

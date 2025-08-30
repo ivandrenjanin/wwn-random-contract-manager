@@ -7,9 +7,7 @@ import {
     ApplicationRenderContext,
 } from "../_types.mjs";
 import ApplicationV2 from "../api/application.mjs";
-import HandlebarsApplicationMixin, {
-    HandlebarsTemplatePart,
-} from "../api/handlebars-application.mjs";
+import HandlebarsApplicationMixin, { HandlebarsTemplatePart } from "../api/handlebars-application.mjs";
 import FormDataExtended from "../ux/form-data-extended.mjs";
 
 export interface DiceTermFulfillmentDescriptor {
@@ -26,9 +24,7 @@ export interface DiceTermFulfillmentDescriptor {
 /**
  * An application responsible for handling unfulfilled dice terms in a roll.
  */
-export default class RollResolver extends HandlebarsApplicationMixin(
-    ApplicationV2,
-) {
+export default class RollResolver extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(roll: Roll, options?: DeepPartial<ApplicationConfiguration>);
 
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
@@ -58,20 +54,13 @@ export default class RollResolver extends HandlebarsApplicationMixin(
      * @param result The rolled number.
      * @returns Whether the result was consumed.
      */
-    registerResult(
-        method: string,
-        denomination: string,
-        result: number,
-    ): boolean;
+    registerResult(method: string, denomination: string, result: number): boolean;
 
     override close(options?: ApplicationClosingOptions): Promise<this>;
 
     protected override _prepareContext(): Promise<ApplicationRenderContext>;
 
-    protected override _onSubmitForm(
-        formConfig: ApplicationFormConfiguration,
-        event: SubmitEvent,
-    ): Promise<void>;
+    protected override _onSubmitForm(formConfig: ApplicationFormConfiguration, event: SubmitEvent): Promise<void>;
 
     /**
      * Handle prompting for a single extra result from a term.

@@ -1,8 +1,5 @@
 import { Point } from "@common/_types.mjs";
-import {
-    CodeMirrorInputConfig,
-    CodeMirrorLanguage,
-} from "@common/data/_types.mjs";
+import { CodeMirrorInputConfig, CodeMirrorLanguage } from "@common/data/_types.mjs";
 import AbstractFormInputElement from "../form-element.mjs";
 
 interface HTMLCodeMirrorOptions {
@@ -62,11 +59,7 @@ export default class HTMLCodeMirrorElement extends AbstractFormInputElement<stri
 
     protected override _buildElements(): [HTMLElement];
 
-    override attributeChangedCallback(
-        attrName: string,
-        oldValue: string,
-        newValue: string,
-    ): void;
+    override attributeChangedCallback(attrName: string, oldValue: string, newValue: string): void;
 
     /**
      * Call for garbage collection upon this element being removed from the DOM.

@@ -1,6 +1,4 @@
-import CategoryBrowser, {
-    CategoryBrowserConfiguration,
-} from "@client/applications/api/category-browser.mjs";
+import CategoryBrowser, { CategoryBrowserConfiguration } from "@client/applications/api/category-browser.mjs";
 import { SchemaField } from "@common/data/fields.mjs";
 
 export default class DefaultSheetsConfig extends CategoryBrowser {

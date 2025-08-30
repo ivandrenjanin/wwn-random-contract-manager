@@ -1,7 +1,4 @@
-import type {
-    ApplicationConfiguration,
-    ApplicationRenderOptions,
-} from "../_types.mjs";
+import type { ApplicationConfiguration, ApplicationRenderOptions } from "../_types.mjs";
 import type ApplicationV2 from "../api/application.mjs";
 
 /**
@@ -17,8 +14,5 @@ export default class GamePause extends ApplicationV2 {
         options: ApplicationRenderOptions,
     ): Promise<[HTMLImageElement, HTMLElement]>;
 
-    protected override _replaceHTML(
-        result: HTMLElement[],
-        content: HTMLElement,
-    ): void;
+    protected override _replaceHTML(result: HTMLElement[], content: HTMLElement): void;
 }

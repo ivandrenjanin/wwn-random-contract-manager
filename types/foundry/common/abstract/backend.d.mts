@@ -133,9 +133,7 @@ export default abstract class DatabaseBackend {
      * @returns The parent Document, or null
      * @internal
      */
-    protected _getParent(
-        operation: DatabaseOperation<Document | null>,
-    ): Promise<Document | null>;
+    protected _getParent(operation: DatabaseOperation<Document | null>): Promise<Document | null>;
 
     /**
      * Describe the scopes which are suitable as the namespace for a flag key

@@ -23,23 +23,14 @@ export default class ModifyMovementCostRegionBehaviorType extends RegionBehavior
 
     override prepareBaseData(): void;
 
-    protected override _onUpdate(
-        changed: Record<string, unknown>,
-        options: object,
-        userId: string,
-    ): void;
+    protected override _onUpdate(changed: Record<string, unknown>, options: object, userId: string): void;
 
     protected override _getTerrainEffects(
         token: TokenDocument,
-        segment: Pick<
-            TokenMovementWaypoint,
-            "width" | "height" | "shape" | "action"
-        > & { preview: boolean },
+        segment: Pick<TokenMovementWaypoint, "width" | "height" | "shape" | "action"> & { preview: boolean },
     ): { name: "difficulty"; difficulty: number }[];
 }
 
 export type ModifyMovementCostBehaviorSchema = {
-    difficulties: fields.SchemaField<
-        Record<string, fields.NumberField<number, number, true, true, true>>
-    >;
+    difficulties: fields.SchemaField<Record<string, fields.NumberField<number, number, true, true, true>>>;
 };

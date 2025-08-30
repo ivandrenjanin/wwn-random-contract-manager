@@ -1,9 +1,5 @@
 import { ImageFilePath } from "@common/constants.mjs";
-import {
-    Document,
-    DocumentMetadata,
-    EmbeddedCollection,
-} from "../abstract/_module.mjs";
+import { Document, DocumentMetadata, EmbeddedCollection } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseFolder, BaseTableResult } from "./_module.mjs";
 
@@ -37,14 +33,7 @@ interface RollTableMetadata extends DocumentMetadata {
     name: "RollTable";
     collection: "tables";
     indexed: true;
-    compendiumIndexFields: [
-        "_id",
-        "name",
-        "description",
-        "img",
-        "sort",
-        "folder",
-    ];
+    compendiumIndexFields: ["_id", "name", "description", "img", "sort", "folder"];
     embedded: { TableResult: "results" };
     label: "DOCUMENT.RollTable";
     labelPlural: "DOCUMENT.RollTables";

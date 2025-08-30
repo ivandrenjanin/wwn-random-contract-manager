@@ -5,9 +5,7 @@ import { PackageCompatibilityBadge, PackageManifestData } from "./_types.mjs";
 /**
  * A client-side mixin used for all Package types.
  */
-export default function ClientPackageMixin<
-    TBase extends ConstructorOf<BasePackage>,
->(BasePackage: TBase) {
+export default function ClientPackageMixin<TBase extends ConstructorOf<BasePackage>>(BasePackage: TBase) {
     class ClientPackage extends BasePackage {
         /**
          * Is this package marked as a favorite?
@@ -49,10 +47,7 @@ export default function ClientPackageMixin<
         static getVersionBadge(
             availability: number,
             data: Partial<PackageManifestData>,
-            options?: {
-                modules?: Collection<string, Module>;
-                systems?: Collection<string, System>;
-            },
+            options?: { modules?: Collection<string, Module>; systems?: Collection<string, System> },
         ): PackageCompatibilityBadge | null {
             availability;
             data;
@@ -79,10 +74,7 @@ export default function ClientPackageMixin<
             availability: number,
             data: Partial<PackageManifestData>,
             deps: Iterable<RelatedPackage>,
-            options?: {
-                modules?: Collection<string, Module>;
-                systems?: Collection<string, System>;
-            },
+            options?: { modules?: Collection<string, Module>; systems?: Collection<string, System> },
         ): string {
             availability;
             data;

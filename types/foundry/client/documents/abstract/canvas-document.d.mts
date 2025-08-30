@@ -15,19 +15,14 @@ import { ClientDocument, ClientDocumentStatic } from "./client-document.mjs";
  * @category Mixins
  * @param Base The base document class mixed with client and canvas features
  */
-export default function CanvasDocumentMixin<
-    TParent extends Document | null,
-    TDocument extends Document<TParent>,
->(
+export default function CanvasDocumentMixin<TParent extends Document | null, TDocument extends Document<TParent>>(
     Base: ConstructorOf<TDocument>,
 ): ConstructorOf<CanvasDocument<TParent> & TDocument>;
 
 /**
  * A ClientDocument class with additional facilities for utilizing the {@link foundry.canvas.Canvas} API
  */
-export class CanvasDocument<
-    TParent extends Document | null = Document | null,
-> extends ClientDocument<TParent> {
+export class CanvasDocument<TParent extends Document | null = Document | null> extends ClientDocument<TParent> {
     /* -------------------------------------------- */
     /*  Properties                                  */
     /* -------------------------------------------- */
@@ -64,11 +59,7 @@ export class CanvasDocument<
         user: BaseUser,
     ): Promise<boolean | void>;
 
-    protected override _onCreate(
-        data: this["_source"],
-        options: DatabaseCreateCallbackOptions,
-        userId: string,
-    ): void;
+    protected override _onCreate(data: this["_source"], options: DatabaseCreateCallbackOptions, userId: string): void;
 
     protected override _onUpdate(
         changed: DeepPartial<this["_source"]>,
@@ -76,15 +67,10 @@ export class CanvasDocument<
         userId: string,
     ): void;
 
-    protected override _onDelete(
-        options: DatabaseDeleteCallbackOptions,
-        userId: string,
-    ): void;
+    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 }
 
-export interface CanvasDocument<
-    TParent extends Document | null = Document | null,
-> extends ClientDocument<TParent> {
+export interface CanvasDocument<TParent extends Document | null = Document | null> extends ClientDocument<TParent> {
     hidden: boolean;
 }
 

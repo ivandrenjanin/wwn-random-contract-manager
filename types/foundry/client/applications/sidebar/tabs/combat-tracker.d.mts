@@ -1,7 +1,4 @@
-import {
-    ApplicationConfiguration,
-    ApplicationRenderContext,
-} from "@client/applications/_types.mjs";
+import { ApplicationConfiguration, ApplicationRenderContext } from "@client/applications/_types.mjs";
 import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
 import { Token } from "@client/canvas/placeables/_module.mjs";
 import { Combat, Combatant } from "@client/documents/_module.mjs";
@@ -16,9 +13,9 @@ import AbstractSidebarTab from "../sidebar-tab.mjs";
  * @extends {AbstractSidebarTab}
  * @mixes HandlebarsApplication
  */
-export default class CombatTracker<
-    TCombat extends Combat | null = Combat | null,
-> extends HandlebarsApplicationMixin(AbstractSidebarTab) {
+export default class CombatTracker<TCombat extends Combat | null = Combat | null> extends HandlebarsApplicationMixin(
+    AbstractSidebarTab,
+) {
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override tabName: "combat";
@@ -45,17 +42,13 @@ export default class CombatTracker<
     /*  Rendering                                   */
     /* -------------------------------------------- */
 
-    protected override _configureRenderOptions(
-        options: Partial<HandlebarsRenderOptions>,
-    ): void;
+    protected override _configureRenderOptions(options: Partial<HandlebarsRenderOptions>): void;
 
     /**
      * Format a tooltip for displaying overflowing effects.
      * @param effects The effect names and icons.
      */
-    protected _formatEffectsTooltip(
-        effects: { img: string; name: string }[],
-    ): string;
+    protected _formatEffectsTooltip(effects: { img: string; name: string }[]): string;
 
     /**
      * Retrieve a source image for a combatant. If it is a video, use the first frame.
@@ -79,10 +72,7 @@ export default class CombatTracker<
     /**
      * Prepare render context for the footer part.
      */
-    protected _prepareCombatContext(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected _prepareCombatContext(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
     /**
      * Prepare render context for the tracker part.
@@ -98,11 +88,7 @@ export default class CombatTracker<
      * @param combatant The Combatant whose turn is being prepared.
      * @param index The index of this entry in the turn order.
      */
-    protected _prepareTurnContext(
-        combat: NonNullable<TCombat>,
-        combatant: Combatant,
-        index: number,
-    ): Promise<object>;
+    protected _prepareTurnContext(combat: NonNullable<TCombat>, combatant: Combatant, index: number): Promise<object>;
 
     /* -------------------------------------------- */
     /*  Event Listeners & Handlers                  */
@@ -120,40 +106,28 @@ export default class CombatTracker<
      */
     protected _getCombatContextOptions(): ContextMenuEntry[];
 
-    protected override _onClickAction(
-        event: PointerEvent,
-        target: HTMLElement,
-    ): Promise<void>;
+    protected override _onClickAction(event: PointerEvent, target: HTMLElement): Promise<void>;
 
     /**
      * Cycle to a different combat encounter in the tracker.
      * @param event The triggering event.
      * @param target The action target element.
      */
-    protected _onCombatCycle(
-        event: PointerEvent,
-        target: HTMLElement,
-    ): Promise<Combat>;
+    protected _onCombatCycle(event: PointerEvent, target: HTMLElement): Promise<Combat>;
 
     /**
      * Create a new combat.
      * @param event The triggering event.
      * @param target The action target element.
      */
-    protected _onCombatCreate(
-        event: PointerEvent,
-        target: HTMLElement,
-    ): Promise<void>;
+    protected _onCombatCreate(event: PointerEvent, target: HTMLElement): Promise<void>;
 
     /**
      * Handle performing some action for an individual combatant.
      * @param event The triggering event.
      * @param target The action target element.
      */
-    protected _onCombatantControl(
-        event: PointerEvent,
-        target: HTMLElement,
-    ): Promise<void>;
+    protected _onCombatantControl(event: PointerEvent, target: HTMLElement): Promise<void>;
 
     /**
      * Handle hovering over a combatant in the tracker.
@@ -172,10 +146,7 @@ export default class CombatTracker<
      * @param event The triggering event.
      * @param target The action target element.
      */
-    protected _onCombatantMouseDown(
-        event: PointerEvent,
-        target: HTMLElement,
-    ): void;
+    protected _onCombatantMouseDown(event: PointerEvent, target: HTMLElement): void;
 
     /**
      * Handle panning to a combatant's token.
@@ -205,17 +176,13 @@ export default class CombatTracker<
      * Toggle a combatant's hidden state in the tracker.
      * @param combatant The combatant.
      */
-    protected _onToggleHidden(
-        combatant: Combatant,
-    ): Promise<Combatant | undefined>;
+    protected _onToggleHidden(combatant: Combatant): Promise<Combatant | undefined>;
 
     /**
      * Handle updating a combatant's initiative in-sheet.
      * @param event The triggering change event.
      */
-    protected _onUpdateInitiative(
-        event: Event,
-    ): Promise<Combatant<Combat> | undefined> | undefined;
+    protected _onUpdateInitiative(event: Event): Promise<Combatant<Combat> | undefined> | undefined;
 
     /* -------------------------------------------- */
     /*  Public API                                  */

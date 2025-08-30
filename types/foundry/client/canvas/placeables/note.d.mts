@@ -1,9 +1,4 @@
-import {
-    JournalEntry,
-    NoteDocument,
-    Scene,
-    User,
-} from "@client/documents/_module.mjs";
+import { JournalEntry, NoteDocument, Scene, User } from "@client/documents/_module.mjs";
 import { DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
 import { ControlIcon } from "../containers/_module.mjs";
 import NotesLayer from "../layers/notes.mjs";
@@ -67,8 +62,7 @@ export default class Note<
     protected override _canHover(user: User): boolean;
 }
 
-export default interface Note<
-    TDocument extends NoteDocument<Scene | null> = NoteDocument<Scene | null>,
-> extends PlaceableObject<TDocument> {
+export default interface Note<TDocument extends NoteDocument<Scene | null> = NoteDocument<Scene | null>>
+    extends PlaceableObject<TDocument> {
     get layer(): NotesLayer<this>;
 }

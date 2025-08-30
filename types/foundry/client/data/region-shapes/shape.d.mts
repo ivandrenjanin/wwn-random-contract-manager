@@ -11,9 +11,7 @@ import {
 /**
  * A shape of a {@link RegionDocument}.
  */
-export abstract class RegionShape<
-    TShapeData extends BaseShapeData = BaseShapeData,
-> {
+export abstract class RegionShape<TShapeData extends BaseShapeData = BaseShapeData> {
     /**
      * Create a RegionShape.
      */
@@ -22,13 +20,7 @@ export abstract class RegionShape<
     /**
      * Create the RegionShape from the shape data.
      */
-    static create(
-        data:
-            | CircleShapeData
-            | EllipseShapeData
-            | PolygonShapeData
-            | RectangleShapeData,
-    ): RegionShape;
+    static create(data: CircleShapeData | EllipseShapeData | PolygonShapeData | RectangleShapeData): RegionShape;
 
     /**
      * The data of this shape.
@@ -59,9 +51,7 @@ export abstract class RegionShape<
      * which is automatically converted to a Clipper polygon tree.
      * This function is called only once. It is not called if the shape is empty.
      */
-    protected abstract _createClipperPolyTree():
-        | ClipperLib.PolyTree
-        | ClipperLib.IntPoint[];
+    protected abstract _createClipperPolyTree(): ClipperLib.PolyTree | ClipperLib.IntPoint[];
 }
 
 /* -------------------------------------------- */

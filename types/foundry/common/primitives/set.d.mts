@@ -75,9 +75,7 @@ declare global {
          * the index of iteration, and the set being tested.
          * @returns {boolean}  Does every element in the set satisfy the test criterion?
          */
-        every<U extends T = T>(
-            test: (value: T, index: number, set: Set<T>) => value is U,
-        ): this is Set<U>;
+        every<U extends T = T>(test: (value: T, index: number, set: Set<T>) => value is U): this is Set<U>;
         every(test: (value: T, index: number, set: Set<T>) => boolean): boolean;
 
         /**
@@ -87,9 +85,7 @@ declare global {
          * the index of iteration, and the set being filtered.
          * @returns {Set}  A new Set containing only elements which satisfy the test criterion.
          */
-        filter<U extends T = T>(
-            test: (value: T, index: number, set: Set<T>) => value is U,
-        ): Set<U>;
+        filter<U extends T = T>(test: (value: T, index: number, set: Set<T>) => value is U): Set<U>;
         filter(test: (value: T, index: number, set: Set<T>) => boolean): Set<T>;
 
         /**
@@ -98,12 +94,8 @@ declare global {
          * @param test The test criterion to apply. Positional arguments are the value, the index of iteration, and the set being searched.
          * @returns The first element in the set which satisfies the test criterion, or undefined.
          */
-        find<U extends T = T>(
-            test: (value: T, index: number, obj: Set<T>) => value is U,
-        ): U | undefined;
-        find(
-            test: (value: T, index: number, obj: Set<T>) => boolean,
-        ): T | undefined;
+        find<U extends T = T>(test: (value: T, index: number, obj: Set<T>) => value is U): U | undefined;
+        find(test: (value: T, index: number, obj: Set<T>) => boolean): T | undefined;
 
         /**
          * Create a new Set where every element is modified by a provided transformation function.
@@ -123,23 +115,10 @@ declare global {
          * @returns The final value of the accumulator.
          */
         reduce<U>(
-            reducer: (
-                previousValue: U,
-                currentValue: T,
-                currentIndex: number,
-                set: Set<T>,
-            ) => U,
+            reducer: (previousValue: U, currentValue: T, currentIndex: number, set: Set<T>) => U,
             accumulator: U,
         ): U;
-        reduce(
-            reducer: (
-                previousValue: T,
-                currentValue: T,
-                currentIndex: number,
-                set: Set<T>,
-            ) => T,
-            accumulator: T,
-        ): T;
+        reduce(reducer: (previousValue: T, currentValue: T, currentIndex: number, set: Set<T>) => T, accumulator: T): T;
 
         /**
          * Test whether any element in this Set satisfies a certain test criterion.

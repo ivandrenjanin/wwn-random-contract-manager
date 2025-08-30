@@ -55,10 +55,7 @@ export default class AVSettings {
     /**
      * Schemas for world and client settings
      */
-    static get schemaFields(): {
-        world: fields.SchemaField;
-        client: fields.SchemaField;
-    };
+    static get schemaFields(): { world: fields.SchemaField; client: fields.SchemaField };
 
     /**
      * Default client settings for each connected user.

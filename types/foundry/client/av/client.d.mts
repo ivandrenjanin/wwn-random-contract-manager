@@ -103,18 +103,14 @@ export default abstract class AVClient {
      * @param userId The User id
      * @returns The MediaStream for the user, or null if the user does not have one
      */
-    abstract getMediaStreamForUser(
-        userId: string,
-    ): MediaStream | null | undefined;
+    abstract getMediaStreamForUser(userId: string): MediaStream | null | undefined;
 
     /**
      * Provide a MediaStream for monitoring a given user's voice volume levels.
      * @param userId The User ID.
      * @returns The MediaStream for the user, or null if the user does not have one.
      */
-    abstract getLevelsStreamForUser(
-        userId: string,
-    ): MediaStream | null | undefined;
+    abstract getLevelsStreamForUser(userId: string): MediaStream | null | undefined;
 
     /**
      * Is outbound audio enabled for the current user?
@@ -152,10 +148,7 @@ export default abstract class AVClient {
      * @param userId The User ID to set to the element
      * @param videoElement The HTMLVideoElement to which the video should be set
      */
-    abstract setUserVideo(
-        userId: string,
-        videoElement: HTMLVideoElement,
-    ): Promise<void>;
+    abstract setUserVideo(userId: string, videoElement: HTMLVideoElement): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Settings and Configuration                  */

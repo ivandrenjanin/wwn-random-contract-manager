@@ -9,15 +9,7 @@ import {
 } from "../abstract/_module.mjs";
 import * as data from "../data/data.mjs";
 import * as fields from "../data/fields.mjs";
-import {
-    ActorUUID,
-    BaseActiveEffect,
-    BaseFolder,
-    BaseItem,
-    BaseToken,
-    BaseUser,
-    ItemSource,
-} from "./_module.mjs";
+import { ActorUUID, BaseActiveEffect, BaseFolder, BaseItem, BaseToken, BaseUser, ItemSource } from "./_module.mjs";
 
 /**
  * The Document definition for an Actor.
@@ -27,9 +19,10 @@ import {
  * @param data    Initial data from which to construct the Actor
  * @param context Construction context options
  */
-export default class BaseActor<
-    TParent extends BaseToken | null = BaseToken | null,
-> extends Document<TParent, ActorSchema> {
+export default class BaseActor<TParent extends BaseToken | null = BaseToken | null> extends Document<
+    TParent,
+    ActorSchema
+> {
     /* -------------------------------------------- */
     /*  Model Configuration                         */
     /* -------------------------------------------- */
@@ -74,9 +67,8 @@ export default class BaseActor<
     ): Promise<boolean | void>;
 }
 
-export default interface BaseActor<
-    TParent extends BaseToken | null = BaseToken | null,
-> extends Document<TParent, ActorSchema>,
+export default interface BaseActor<TParent extends BaseToken | null = BaseToken | null>
+    extends Document<TParent, ActorSchema>,
         fields.ModelPropsFromSchema<ActorSchema> {
     readonly items: EmbeddedCollection<BaseItem<this>>;
     readonly effects: EmbeddedCollection<BaseActiveEffect<this>>;
@@ -116,14 +108,9 @@ type ActorSchema<
     /** Default Token settings which are used for Tokens created from this Actor */
     prototypeToken: fields.EmbeddedDataField<data.PrototypeToken<BaseActor>>;
     /** A Collection of Item embedded Documents */
-    items: fields.EmbeddedCollectionField<
-        BaseItem<BaseActor<BaseToken | null>>,
-        TItemSource[]
-    >;
+    items: fields.EmbeddedCollectionField<BaseItem<BaseActor<BaseToken | null>>, TItemSource[]>;
     /** A Collection of ActiveEffect embedded Documents */
-    effects: fields.EmbeddedCollectionField<
-        BaseActiveEffect<BaseActor<BaseToken | null>>
-    >;
+    effects: fields.EmbeddedCollectionField<BaseActiveEffect<BaseActor<BaseToken | null>>>;
     /** The _id of a Folder which contains this Actor */
     folder: fields.ForeignDocumentField<BaseFolder>;
     /** The numeric sort value which orders this Actor relative to its siblings */
@@ -139,6 +126,5 @@ type ActorSchema<
 export type ActorSource<
     TType extends string = string,
     TSystemSource extends object = object,
-    TItemSource extends
-        foundry.documents.ItemSource = foundry.documents.ItemSource,
+    TItemSource extends foundry.documents.ItemSource = foundry.documents.ItemSource,
 > = fields.SourceFromSchema<ActorSchema<TType, TSystemSource, TItemSource>>;

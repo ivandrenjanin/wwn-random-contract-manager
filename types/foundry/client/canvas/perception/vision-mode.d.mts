@@ -87,8 +87,7 @@ export default interface VisionMode
     extends DataModel<null, VisionModeSchema>,
         fields.ModelPropsFromSchema<VisionModeSchema> {}
 
-export type LightingVisibility =
-    (typeof VisionMode.LIGHTING_VISIBILITY)[keyof typeof VisionMode.LIGHTING_VISIBILITY];
+export type LightingVisibility = (typeof VisionMode.LIGHTING_VISIBILITY)[keyof typeof VisionMode.LIGHTING_VISIBILITY];
 
 export type ShaderSchema = fields.SchemaField<{
     shader: ShaderField;

@@ -6,9 +6,7 @@ import { RollTermData } from "./terms/_types.mjs";
 export * from "./_types.mjs";
 export * as terms from "./terms/_module.mjs";
 
-export const RollGrammar: {
-    parse(formula: string): RollParseNode | RollTermData;
-};
+export const RollGrammar: { parse(formula: string): RollParseNode | RollTermData };
 
 export { default as RollParser } from "./parser.mjs";
 export * from "./roll.mjs";

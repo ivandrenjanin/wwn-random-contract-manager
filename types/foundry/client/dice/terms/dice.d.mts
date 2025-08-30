@@ -5,9 +5,7 @@ import RollTerm, { Evaluated } from "./term.mjs";
 /**
  * An abstract base class for any type of RollTerm which involves randomized input from dice, coins, or other devices.
  */
-export default abstract class DiceTerm<
-    TData extends DiceTermData = DiceTermData,
-> extends RollTerm<TData> {
+export default abstract class DiceTerm<TData extends DiceTermData = DiceTermData> extends RollTerm<TData> {
     /**
      * @param termData Data used to create the Dice Term, including the following:
      * @param termData.number    The number of dice of this term to roll, before modifiers are applied
@@ -90,13 +88,7 @@ export default abstract class DiceTerm<
      * @param [options.maximize=false] Maximize the result, obtaining the largest possible value.
      * @return The produced result
      */
-    roll({
-        minimize,
-        maximize,
-    }?: {
-        minimize?: boolean;
-        maximize?: boolean;
-    }): DiceTermResult;
+    roll({ minimize, maximize }?: { minimize?: boolean; maximize?: boolean }): DiceTermResult;
 
     /**
      * Return a string used as the label for each rolled result
@@ -143,11 +135,7 @@ export default abstract class DiceTerm<
      * @param target     The target value
      * @return Is the comparison true?
      */
-    static compareResult(
-        result: number,
-        comparison: ComparisonOperator,
-        target?: number,
-    ): boolean;
+    static compareResult(result: number, comparison: ComparisonOperator, target?: number): boolean;
 
     /**
      * A helper method to modify the results array of a dice term by flagging certain results are kept or dropped.
@@ -170,10 +158,7 @@ export default abstract class DiceTerm<
         results: T,
         comparison: ComparisonOperator,
         target: number,
-        {
-            flagSuccess,
-            flagFailure,
-        }?: { flagSuccess?: boolean; flagFailure?: boolean },
+        { flagSuccess, flagFailure }?: { flagSuccess?: boolean; flagFailure?: boolean },
     ): void;
 
     /** A reusable helper function to handle the identification and deduction of failures */
@@ -181,10 +166,7 @@ export default abstract class DiceTerm<
         results: T[],
         comparison: ComparisonOperator,
         target: number,
-        {
-            deductFailure,
-            invertFailure,
-        }?: { deductFailure?: boolean; invertFailure?: boolean },
+        { deductFailure, invertFailure }?: { deductFailure?: boolean; invertFailure?: boolean },
     ): void;
 
     /* -------------------------------------------- */
@@ -197,20 +179,14 @@ export default abstract class DiceTerm<
      * @param [options={}] Additional options which customize the match
      * @param [options.imputeNumber=true] Allow the number of dice to be optional, i.e. "d6"
      */
-    static matchTerm(
-        expression: string,
-        { imputeNumber }?: { imputeNumber: boolean },
-    ): RegExpMatchArray | null;
+    static matchTerm(expression: string, { imputeNumber }?: { imputeNumber: boolean }): RegExpMatchArray | null;
 
     /**
      * Construct a term of this type given a matched regular expression array.
      * @param match The matched regular expression array
      * @return The constructed term
      */
-    static fromMatch<T extends DiceTerm>(
-        this: ConstructorOf<T>,
-        match: RegExpMatchArray,
-    ): T;
+    static fromMatch<T extends DiceTerm>(this: ConstructorOf<T>, match: RegExpMatchArray): T;
 }
 
 interface DiceTermData extends RollTermData {

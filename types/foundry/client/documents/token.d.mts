@@ -1,14 +1,6 @@
-import {
-    TokenAnimationOptions,
-    TokenConstrainMovementPathOptions,
-} from "@client/_module.mjs";
+import { TokenAnimationOptions, TokenConstrainMovementPathOptions } from "@client/_module.mjs";
 import TokenConfig from "@client/applications/sheets/token/token-config.mjs";
-import {
-    DocumentConstructionContext,
-    ElevatedPoint,
-    TokenDimensions,
-    TokenPosition,
-} from "@common/_types.mjs";
+import { DocumentConstructionContext, ElevatedPoint, TokenDimensions, TokenPosition } from "@common/_types.mjs";
 import {
     DatabaseCreateCallbackOptions,
     DatabaseCreateOperation,
@@ -50,27 +42,17 @@ import {
     TrackedAttributesDescription,
     User,
 } from "./_module.mjs";
-import {
-    CanvasDocument,
-    CanvasDocumentStatic,
-} from "./abstract/canvas-document.mjs";
+import { CanvasDocument, CanvasDocumentStatic } from "./abstract/canvas-document.mjs";
 
-interface CanvasBaseTokenStatic
-    extends Omit<typeof BaseToken, "new">,
-        CanvasDocumentStatic {}
+interface CanvasBaseTokenStatic extends Omit<typeof BaseToken, "new">, CanvasDocumentStatic {}
 
 declare const CanvasBaseToken: {
-    new <TParent extends Scene | null>(
-        ...args: any
-    ): BaseToken<TParent> & CanvasDocument<TParent>;
+    new <TParent extends Scene | null>(...args: any): BaseToken<TParent> & CanvasDocument<TParent>;
 } & CanvasBaseTokenStatic;
 
-interface CanvasBaseToken<TParent extends Scene | null>
-    extends InstanceType<typeof CanvasBaseToken<TParent>> {}
+interface CanvasBaseToken<TParent extends Scene | null> extends InstanceType<typeof CanvasBaseToken<TParent>> {}
 
-export default class TokenDocument<
-    TParent extends Scene | null = Scene | null,
-> extends CanvasBaseToken<TParent> {
+export default class TokenDocument<TParent extends Scene | null = Scene | null> extends CanvasBaseToken<TParent> {
     /**
      * The current movement data of this Token document.
      */
@@ -176,10 +158,7 @@ export default class TokenDocument<
      */
     protected _prepareDetectionModes(): void;
 
-    override clone(
-        data?: Record<string, unknown>,
-        context?: DocumentCloneContext,
-    ): this;
+    override clone(data?: Record<string, unknown>, context?: DocumentCloneContext): this;
 
     /**
      * Create a synthetic Actor using a provided Token instance
@@ -194,10 +173,7 @@ export default class TokenDocument<
      * @param options.alternative An alternative attribute path to get instead of the default one
      * @returns The attribute displayed on the Token bar, if any
      */
-    getBarAttribute(
-        barName: string,
-        options?: { alternative?: string },
-    ): TokenResourceData | null;
+    getBarAttribute(barName: string, options?: { alternative?: string }): TokenResourceData | null;
 
     /**
      * Test whether a Token has a specific status effect.
@@ -213,18 +189,13 @@ export default class TokenDocument<
      * @returns A Promise that resolves to true if the Token was moved, otherwise resolves to false
      */
     move(
-        waypoints:
-            | Partial<TokenMovementWaypoint>
-            | Partial<TokenMovementWaypoint>[],
+        waypoints: Partial<TokenMovementWaypoint> | Partial<TokenMovementWaypoint>[],
         options?: Partial<
             Omit<DatabaseUpdateOperation<TParent>, "updates"> & {
                 method: TokenMovementMethod;
                 autoRotate: boolean;
                 showRuler: boolean;
-                constrainOptions: Omit<
-                    TokenConstrainMovementPathOptions,
-                    "preview" | "history"
-                >;
+                constrainOptions: Omit<TokenConstrainMovementPathOptions, "preview" | "history">;
             }
         >,
     ): Promise<boolean>;
@@ -327,9 +298,7 @@ export default class TokenDocument<
      * @param waypoints The waypoints of movement
      * @returns The path of movement with all intermediate steps
      */
-    getCompleteMovementPath(
-        waypoints: TokenGetCompleteMovementPathWaypoint[],
-    ): TokenCompleteMovementWaypoint[];
+    getCompleteMovementPath(waypoints: TokenGetCompleteMovementPathWaypoint[]): TokenCompleteMovementWaypoint[];
 
     /* -------------------------------------------- */
     /*  Combat Operations                           */
@@ -342,9 +311,7 @@ export default class TokenDocument<
      *                       combat state of the Token is toggled.
      * @returns Is this Token now an active Combatant?
      */
-    toggleCombatant(
-        options?: Partial<DatabaseOperation<TParent>> & { active?: boolean },
-    ): Promise<boolean>;
+    toggleCombatant(options?: Partial<DatabaseOperation<TParent>> & { active?: boolean }): Promise<boolean>;
 
     /**
      * Create or remove Combatants for an array of provided Token objects.
@@ -355,10 +322,7 @@ export default class TokenDocument<
      *                       the requesting user is a Gamemaster.
      * @returns An array of created Combatant documents
      */
-    static createCombatants(
-        tokens: TokenDocument[],
-        options?: { combat?: Combat },
-    ): Promise<Combatant[]>;
+    static createCombatants(tokens: TokenDocument[], options?: { combat?: Combat }): Promise<Combatant[]>;
 
     /**
      * Remove Combatants for the array of provided Tokens.
@@ -367,10 +331,7 @@ export default class TokenDocument<
      * @param options.combat A specific Combat instance from which Combatants should be deleted
      * @returns An array of deleted Combatant documents
      */
-    static deleteCombatants(
-        tokens: TokenDocument[],
-        options?: { combat?: Combat },
-    ): Promise<Combatant[]>;
+    static deleteCombatants(tokens: TokenDocument[], options?: { combat?: Combat }): Promise<Combatant[]>;
 
     /* -------------------------------------------- */
     /*  Actor Data Operations                       */
@@ -382,24 +343,15 @@ export default class TokenDocument<
      * @param defaults If the vision mode should be updated with its defaults.
      * @returns The updated Document instance, or undefined not updated.
      */
-    updateVisionMode(
-        visionMode: string,
-        defaults?: boolean,
-    ): Promise<TokenDocument | undefined>;
+    updateVisionMode(visionMode: string, defaults?: boolean): Promise<TokenDocument | undefined>;
 
-    override getEmbeddedCollection(
-        embeddedName: string,
-    ): foundry.abstract.EmbeddedCollection<Document<Document>>;
+    override getEmbeddedCollection(embeddedName: string): foundry.abstract.EmbeddedCollection<Document<Document>>;
 
     /* -------------------------------------------- */
     /*  Event Handlers                              */
     /* -------------------------------------------- */
 
-    protected override _onCreate(
-        data: this["_source"],
-        options: DatabaseCreateCallbackOptions,
-        userId: string,
-    ): void;
+    protected override _onCreate(data: this["_source"], options: DatabaseCreateCallbackOptions, userId: string): void;
 
     protected override _preUpdate(
         data: Record<string, unknown>,
@@ -413,10 +365,7 @@ export default class TokenDocument<
         userId: string,
     ): void;
 
-    protected override _onDelete(
-        options: DatabaseDeleteCallbackOptions,
-        userId: string,
-    ): void;
+    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 
     /**
      * Identify the Regions the Token currently is or is going to be in after the changes are applied.
@@ -447,9 +396,7 @@ export default class TokenDocument<
      * @returns If false, the movement is prevented
      */
     protected _preUpdateMovement(
-        movement: DeepReadonly<
-            Omit<TokenMovementOperation, "autoRotate" | "showRuler">
-        > &
+        movement: DeepReadonly<Omit<TokenMovementOperation, "autoRotate" | "showRuler">> &
             Pick<TokenMovementOperation, "autoRotate" | "showRuler">,
         operation: Partial<DatabaseUpdateOperation<TParent>>,
     ): Promise<boolean | void>;
@@ -554,10 +501,7 @@ export default class TokenDocument<
      * @param data The position and dimensions. Defaults to the values of the document source.
      * @returns Is inside the Region?
      */
-    testInsideRegion(
-        region: RegionDocument,
-        data?: Partial<ElevatedPoint & TokenDimensions>,
-    ): boolean;
+    testInsideRegion(region: RegionDocument, data?: Partial<ElevatedPoint & TokenDimensions>): boolean;
 
     /**
      * Split the Token movement path through the Region into its segments.
@@ -653,10 +597,7 @@ export default class TokenDocument<
      * @param options The database operation that was performed
      * @internal
      */
-    _onUpdateBaseActor(
-        update?: Record<string, unknown>,
-        options?: DatabaseUpdateCallbackOptions,
-    ): void;
+    _onUpdateBaseActor(update?: Record<string, unknown>, options?: DatabaseUpdateCallbackOptions): void;
 
     /**
      * Whenever the token's actor delta changes, or the base actor changes, perform associated refreshes.
@@ -664,26 +605,18 @@ export default class TokenDocument<
      * @param options The options provided to the update.
      */
     protected _onRelatedUpdate(
-        update?:
-            | { _id?: string; [key: string]: unknown }
-            | { _id?: string; [key: string]: unknown }[],
+        update?: { _id?: string; [key: string]: unknown } | { _id?: string; [key: string]: unknown }[],
         options?: Partial<DatabaseOperation<Document | null>>,
     ): void;
 
     /** Get an Array of attribute choices which could be tracked for Actors in the Combat Tracker */
-    static getTrackedAttributes(
-        data?: object,
-        _path?: string[],
-    ): TrackedAttributesDescription;
+    static getTrackedAttributes(data?: object, _path?: string[]): TrackedAttributesDescription;
 
     /**
      * Retrieve an Array of attribute choices from a plain object.
      * @param data The object to explore for attributes.
      */
-    protected static _getTrackedAttributesFromObject(
-        data: object,
-        _path?: string[],
-    ): TrackedAttributesDescription;
+    protected static _getTrackedAttributesFromObject(data: object, _path?: string[]): TrackedAttributesDescription;
 
     /**
      * Retrieve an Array of attribute choices from a SchemaField.
@@ -698,19 +631,13 @@ export default class TokenDocument<
      * Retrieve any configured attributes for a given Actor type.
      * @param type The Actor type.
      */
-    protected static _getConfiguredTrackedAttributes(
-        type: string,
-    ): TrackedAttributesDescription | void;
+    protected static _getConfiguredTrackedAttributes(type: string): TrackedAttributesDescription | void;
 
     /** Inspect the Actor data model and identify the set of attributes which could be used for a Token Bar */
-    static getTrackedAttributeChoices(
-        attributes?: TrackedAttributesDescription,
-    ): TrackedAttributesDescription;
+    static getTrackedAttributeChoices(attributes?: TrackedAttributesDescription): TrackedAttributesDescription;
 }
 
-export default interface TokenDocument<
-    TParent extends Scene | null = Scene | null,
-> extends CanvasBaseToken<TParent> {
+export default interface TokenDocument<TParent extends Scene | null = Scene | null> extends CanvasBaseToken<TParent> {
     get object(): Token<this> | null;
     get sheet(): TokenConfig;
     get uuid(): TokenDocumentUUID;
@@ -728,8 +655,7 @@ export interface TokenDocumentConstructionContext<
     actor?: TActor;
 }
 
-export interface TokenUpdateOperation<TParent extends Scene | null>
-    extends DatabaseUpdateOperation<TParent> {
+export interface TokenUpdateOperation<TParent extends Scene | null> extends DatabaseUpdateOperation<TParent> {
     embedded?: { embeddedName: string; hookData: { _id?: string }[] };
     animate?: boolean;
     pan?: boolean;
@@ -738,9 +664,6 @@ export interface TokenUpdateOperation<TParent extends Scene | null>
 }
 
 export interface TokenUpdateCallbackOptions
-    extends Omit<
-        TokenUpdateOperation<null>,
-        "action" | "pack" | "parent" | "restoreDelta" | "noHook" | "updates"
-    > {}
+    extends Omit<TokenUpdateOperation<null>, "action" | "pack" | "parent" | "restoreDelta" | "noHook" | "updates"> {}
 
 export {};

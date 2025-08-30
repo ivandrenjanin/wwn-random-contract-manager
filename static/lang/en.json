@@ -6,5 +6,43 @@
                 "Hint": "Sample setting hint"
             }
         }
+    },
+    "WWNRCM": {
+        "Settings": {
+            "PollDefaultCount": {
+                "Name": "Default contracts per poll",
+                "Hint": "How many contracts to generate by default (1-5)."
+            },
+            "PollMaxCount": {
+                "Name": "Maximum contracts per poll",
+                "Hint": "Hard cap on contracts that can be generated (1-5)."
+            },
+            "Tables": {
+                "Hook": {
+                    "Name": "Hook table name",
+                    "Hint": "RollTable name for core mission hooks (e.g., 'CE: Hook (d20)')."
+                },
+                "PrimaryDanger": {
+                    "Name": "Primary Danger table name",
+                    "Hint": "RollTable name for chief antagonist/obstacle (e.g., 'CE: Primary Danger (d20)')."
+                },
+                "Complication": {
+                    "Name": "Complication table name",
+                    "Hint": "RollTable name for mid-mission twists (e.g., 'CE: Complication (d20)')."
+                },
+                "BonusObjective": {
+                    "Name": "Bonus Objective table name",
+                    "Hint": "RollTable name for optional side goals (e.g., 'CE: Bonus Objective (d20)')."
+                },
+                "Fallout": {
+                    "Name": "Fallout table name",
+                    "Hint": "RollTable name for failure consequences (e.g., 'CE: Fallout (d20)')."
+                },
+                "World": {
+                    "Name": "World table name",
+                    "Hint": "RollTable name for the mission world or environment (e.g., 'CE: World (d12)')."
+                }
+            }
+        }
     }
 }

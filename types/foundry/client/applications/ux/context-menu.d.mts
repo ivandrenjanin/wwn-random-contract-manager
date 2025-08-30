@@ -19,7 +19,7 @@ export type ContextMenuCallback = (target: HTMLElement) => unknown;
 export interface ContextMenuOptions {
     /**
      * Optionally override the triggering event which can spawn the menu. If the menu is using fixed positioning, this
-     * event must be a MouseEvent.
+     * event must be a PointerEvent.
      */
     eventName?: string;
 
@@ -137,10 +137,7 @@ export default class ContextMenu {
     /**
      * Called before the context menu begins rendering.
      */
-    protected _preRender(
-        target: HTMLElement,
-        options?: ContextMenuRenderOptions,
-    ): Promise<void>;
+    protected _preRender(target: HTMLElement, options?: ContextMenuRenderOptions): Promise<void>;
 
     /**
      * Render the Context Menu by iterating over the menuItems it contains.
@@ -148,10 +145,7 @@ export default class ContextMenu {
      * Attach a click handler to each item which is rendered.
      * @returns A Promise that resolves when the open animation has completed.
      */
-    render(
-        target: HTMLElement,
-        options?: ContextMenuRenderOptions,
-    ): Promise<void>;
+    render(target: HTMLElement, options?: ContextMenuRenderOptions): Promise<void>;
 
     /**
      * Called after the context menu has finished rendering and animating open.
@@ -164,11 +158,7 @@ export default class ContextMenu {
      * @param target        The element that the context menu was spawned on.
      * @param options.event The event that triggered the context menu opening.
      */
-    protected _setPosition(
-        menu: HTMLElement,
-        target: HTMLElement,
-        options?: { event?: Event },
-    ): void;
+    protected _setPosition(menu: HTMLElement, target: HTMLElement, options?: { event?: Event }): void;
 
     /**
      * Inject the menu inside the target.
@@ -183,11 +173,7 @@ export default class ContextMenu {
      * @param target The context target.
      * @param options.event The event that triggered the context menu opening.
      */
-    protected _setFixedPosition(
-        menu: HTMLElement,
-        target: HTMLElement,
-        options?: { event?: Event },
-    ): void;
+    protected _setFixedPosition(menu: HTMLElement, target: HTMLElement, options?: { event?: Event }): void;
 
     /* -------------------------------------------- */
     /*  Event Listeners & Handlers                  */

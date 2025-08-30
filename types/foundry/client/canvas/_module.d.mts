@@ -9,12 +9,7 @@ export * as geometry from "./geometry/_module.mjs";
 export * as groups from "./groups/_module.mjs";
 export * as interaction from "./interaction/_module.mjs";
 export * as layers from "./layers/_module.mjs";
-export {
-    default as TextureLoader,
-    getTexture,
-    loadTexture,
-    srcExists,
-} from "./loader.mjs";
+export { default as TextureLoader, getTexture, loadTexture, srcExists } from "./loader.mjs";
 export * as perception from "./perception/_module.mjs";
 export * as placeables from "./placeables/_module.mjs";
 export * as primary from "./primary/_module.mjs";

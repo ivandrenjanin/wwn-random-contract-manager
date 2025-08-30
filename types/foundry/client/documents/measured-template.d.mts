@@ -1,19 +1,12 @@
 import MeasuredTemplateConfig from "@client/applications/sheets/template-config.mjs";
 import MeasuredTemplate from "../canvas/placeables/template.mjs";
 import { BaseMeasuredTemplate, Scene } from "./_module.mjs";
-import {
-    CanvasDocument,
-    CanvasDocumentStatic,
-} from "./abstract/canvas-document.mjs";
+import { CanvasDocument, CanvasDocumentStatic } from "./abstract/canvas-document.mjs";
 
-interface CanvasBaseMeasuredTemplateStatic
-    extends Omit<typeof BaseMeasuredTemplate, "new">,
-        CanvasDocumentStatic {}
+interface CanvasBaseMeasuredTemplateStatic extends Omit<typeof BaseMeasuredTemplate, "new">, CanvasDocumentStatic {}
 
 declare const CanvasBaseMeasuredTemplate: {
-    new <TParent extends Scene | null>(
-        ...args: any
-    ): BaseMeasuredTemplate<TParent> & CanvasDocument<TParent>;
+    new <TParent extends Scene | null>(...args: any): BaseMeasuredTemplate<TParent> & CanvasDocument<TParent>;
 } & CanvasBaseMeasuredTemplateStatic;
 
 interface CanvasBaseMeasuredTemplate<TParent extends Scene | null>
@@ -43,9 +36,8 @@ export default class MeasuredTemplateDocument<
     get isAuthor(): boolean;
 }
 
-export default interface MeasuredTemplateDocument<
-    TParent extends Scene | null = Scene | null,
-> extends CanvasBaseMeasuredTemplate<TParent> {
+export default interface MeasuredTemplateDocument<TParent extends Scene | null = Scene | null>
+    extends CanvasBaseMeasuredTemplate<TParent> {
     get sheet(): MeasuredTemplateConfig | null;
     get object(): MeasuredTemplate<this> | null;
 }

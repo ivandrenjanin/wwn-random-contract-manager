@@ -15,10 +15,7 @@ export default class ProseMirrorInputRules extends ProseMirrorPlugin {
      *                                resulting heading level for a heading rule is equal to the number of leading
      *                                hashes minus this number.
      */
-    static build(
-        schema: Schema,
-        options?: { minHeadingLevel?: number },
-    ): Plugin;
+    static build(schema: Schema, options?: { minHeadingLevel?: number }): Plugin;
 
     /**
      * Build input rules for node types present in the schema.

@@ -25,11 +25,7 @@ export default class ProseMirrorMenu extends ProseMirrorPlugin {
      * @param view         The editor view.
      * @param [options]    Additional options to configure the plugin's behaviour.
      */
-    constructor(
-        schema: Schema,
-        view: EditorView,
-        options?: ProseMirrorMenuOptions,
-    );
+    constructor(schema: Schema, view: EditorView, options?: ProseMirrorMenuOptions);
 
     /** An enumeration of editor scopes in which a menu item can appear */
     protected static _MENU_ITEM_SCOPES: {
@@ -94,7 +90,7 @@ export default class ProseMirrorMenu extends ProseMirrorPlugin {
      * Handle a button press.
      * @param  event  The click event.
      */
-    protected _onAction(event: MouseEvent): void;
+    protected _onAction(event: PointerEvent): void;
 
     /** Wrap the editor view element and inject our template ready to be rendered into. */
     protected _wrapEditor(): void;
@@ -151,10 +147,7 @@ export default class ProseMirrorMenu extends ProseMirrorPlugin {
      * @param  [options]        Additional options to configure behaviour.
      * @param  [options.attrs]  Attributes for the node.
      */
-    _toggleTextBlock(
-        node: NodeType,
-        options?: { attrs?: Record<string, unknown> | null },
-    ): void;
+    _toggleTextBlock(node: NodeType, options?: { attrs?: Record<string, unknown> | null }): void;
 }
 
 declare global {

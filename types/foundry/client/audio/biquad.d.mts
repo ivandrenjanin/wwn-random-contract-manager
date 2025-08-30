@@ -10,10 +10,7 @@ export default class BiquadFilterEffect extends BiquadFilterNode {
      * @param options.type The filter type to apply
      * @param options.intensity The initial intensity of the effect
      */
-    constructor(
-        context: AudioContext,
-        options?: { type?: BiquadFilterType; intensity?: number },
-    );
+    constructor(context: AudioContext, options?: { type?: BiquadFilterType; intensity?: number });
 
     /**
      * Adjust the intensity of the effect on a scale of 0 to 10.

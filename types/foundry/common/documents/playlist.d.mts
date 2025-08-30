@@ -1,9 +1,5 @@
 import { PlaylistMode, PlaylistSortMode } from "@common/constants.mjs";
-import {
-    Document,
-    DocumentMetadata,
-    EmbeddedCollection,
-} from "../abstract/_module.mjs";
+import { Document, DocumentMetadata, EmbeddedCollection } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseFolder, BasePlaylistSound } from "./_module.mjs";
 
@@ -41,13 +37,7 @@ type PlaylistSchema = {
     playing: fields.BooleanField;
     fade: fields.NumberField;
     folder: fields.ForeignDocumentField<BaseFolder>;
-    sorting: fields.StringField<
-        PlaylistSortMode,
-        PlaylistSortMode,
-        true,
-        false,
-        true
-    >;
+    sorting: fields.StringField<PlaylistSortMode, PlaylistSortMode, true, false, true>;
     seed: fields.NumberField;
     sort: fields.IntegerSortField;
     ownership: fields.DocumentOwnershipField;

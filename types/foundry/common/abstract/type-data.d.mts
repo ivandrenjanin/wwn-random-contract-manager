@@ -1,8 +1,5 @@
 import { HTMLDocumentEmbedElement } from "@client/applications/elements/_module.mjs";
-import {
-    DocumentHTMLEmbedConfig,
-    EnrichmentOptions,
-} from "@client/applications/ux/text-editor.mjs";
+import { DocumentHTMLEmbedConfig, EnrichmentOptions } from "@client/applications/ux/text-editor.mjs";
 import User from "@client/documents/user.mjs";
 import { SourceFromSchema } from "@common/data/fields.mjs";
 import * as packages from "../packages/_module.mjs";
@@ -77,10 +74,7 @@ export default abstract class TypeDataModel<
     /** A set of localization prefix paths which are used by this data model. */
     static LOCALIZATION_PREFIXES: string[];
 
-    constructor(
-        data?: object,
-        options?: abstract.DataModelConstructionContext<abstract.Document | null>,
-    );
+    constructor(data?: object, options?: abstract.DataModelConstructionContext<abstract.Document | null>);
 
     /** Prepare data related to this DataModel itself, before any derived data is computed. */
     prepareBaseData(): void;
@@ -144,11 +138,7 @@ export default abstract class TypeDataModel<
      * @param user The User requesting the document update
      * @returns A return value of false indicates the update operation should be cancelled.
      */
-    protected _preUpdate(
-        changes: Record<string, unknown>,
-        options: object,
-        user: User,
-    ): Promise<boolean | void>;
+    protected _preUpdate(changes: Record<string, unknown>, options: object, user: User): Promise<boolean | void>;
 
     /* -------------------------------------------- */
 
@@ -159,11 +149,7 @@ export default abstract class TypeDataModel<
      * @param options Additional options which modify the update request
      * @param userId The id of the User requesting the document update
      */
-    protected _onUpdate(
-        changed: Record<string, unknown>,
-        options: object,
-        userId: string,
-    ): void;
+    protected _onUpdate(changed: Record<string, unknown>, options: object, userId: string): void;
 
     /* -------------------------------------------- */
 

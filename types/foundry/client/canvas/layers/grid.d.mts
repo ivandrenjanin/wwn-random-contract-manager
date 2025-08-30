@@ -42,12 +42,7 @@ export default class GridLayer extends CanvasLayer {
      * @param options.color     The grid color
      * @param options.alpha     The grid alpha
      */
-    initializeMesh(options?: {
-        style: string;
-        thickness?: number;
-        color?: string;
-        alpha?: number;
-    }): void;
+    initializeMesh(options?: { style: string; thickness?: number; color?: string; alpha?: number }): void;
 
     /* -------------------------------------------- */
     /*  Grid Highlighting Methods                   */

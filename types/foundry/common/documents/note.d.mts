@@ -1,14 +1,5 @@
-import {
-    DocumentOwnershipLevel,
-    DocumentOwnershipString,
-    ImageFilePath,
-    TextAnchorPoint,
-} from "@common/constants.mjs";
-import {
-    Document,
-    DocumentMetadata,
-    MetadataPermission,
-} from "../abstract/_module.mjs";
+import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, TextAnchorPoint } from "@common/constants.mjs";
+import { Document, DocumentMetadata, MetadataPermission } from "../abstract/_module.mjs";
 import * as data from "../data/data.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseScene, BaseUser } from "./_module.mjs";
@@ -21,9 +12,7 @@ import { BaseScene, BaseUser } from "./_module.mjs";
  * @param data    Initial data from which to construct the Note
  * @param context Construction context options
  */
-export default class BaseNote<
-    TParent extends BaseScene | null,
-> extends Document<TParent, NoteSchema> {
+export default class BaseNote<TParent extends BaseScene | null> extends Document<TParent, NoteSchema> {
     /* -------------------------------------------- */
     /*  Model Configuration                         */
     /* -------------------------------------------- */
@@ -87,13 +76,7 @@ type NoteSchema = {
     /** The font size used to display the text label on this note */
     fontSize: fields.NumberField<number, number, true, true, true>;
     /** A value in CONST.TEXT_ANCHOR_POINTS which defines where the text label anchors to the note icon. */
-    textAnchor: fields.NumberField<
-        TextAnchorPoint,
-        TextAnchorPoint,
-        true,
-        false,
-        true
-    >;
+    textAnchor: fields.NumberField<TextAnchorPoint, TextAnchorPoint, true, false, true>;
     /** The string that defines the color with which the note text is rendered */
     textColor: fields.ColorField;
     /** Whether this map pin is globally visible or requires LoS to see. */

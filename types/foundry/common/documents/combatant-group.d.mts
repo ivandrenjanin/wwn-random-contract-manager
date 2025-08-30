@@ -7,9 +7,10 @@ import BaseCombat from "./combat.mjs";
  * A Document that represents a grouping of individual Combatants in a Combat.
  * Defines the DataSchema and common behaviors for a CombatantGroup which are shared between both client and server.
  */
-export default class BaseCombatantGroup<
-    TParent extends BaseCombat | null = BaseCombat | null,
-> extends Document<TParent, CombatantGroupSchema> {
+export default class BaseCombatantGroup<TParent extends BaseCombat | null = BaseCombat | null> extends Document<
+    TParent,
+    CombatantGroupSchema
+> {
     /* -------------------------------------------- */
     /*  Model Configuration                         */
     /* -------------------------------------------- */
@@ -19,9 +20,8 @@ export default class BaseCombatantGroup<
     static override defineSchema(): CombatantGroupSchema;
 }
 
-export default interface BaseCombatantGroup<
-    TParent extends BaseCombat | null = BaseCombat | null,
-> extends Document<TParent, CombatantGroupSchema>,
+export default interface BaseCombatantGroup<TParent extends BaseCombat | null = BaseCombat | null>
+    extends Document<TParent, CombatantGroupSchema>,
         fields.ModelPropsFromSchema<CombatantGroupSchema> {}
 
 declare interface CombatantGroupMetadata extends DocumentMetadata {

@@ -1,9 +1,5 @@
 import { Point } from "../_types.mjs";
-import {
-    GridOffset2D,
-    HexagonalGridCoordinates2D,
-    HexagonalGridCube2D,
-} from "./_types.mjs";
+import { GridOffset2D, HexagonalGridCoordinates2D, HexagonalGridCube2D } from "./_types.mjs";
 import { HexagonalGrid } from "./hexagonal.mjs";
 
 /**

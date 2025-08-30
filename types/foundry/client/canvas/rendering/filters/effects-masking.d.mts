@@ -74,10 +74,7 @@ export default class VisualEffectsMaskingFilter extends AbstractBaseMaskFilter {
      * @param postProcessModes New modes to apply.
      * @param uniforms Uniforms value to update.
      */
-    updatePostprocessModes(
-        postProcessModes?: string[] | undefined,
-        uniforms?: object | undefined,
-    ): void;
+    updatePostprocessModes(postProcessModes?: string[] | undefined, uniforms?: object | undefined): void;
 
     /**
      * Remove all post-processing modes and reset some key uniforms.

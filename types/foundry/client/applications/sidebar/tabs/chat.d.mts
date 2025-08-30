@@ -16,9 +16,7 @@ import AbstractSidebarTab from "../sidebar-tab.mjs";
 /**
  * The sidebar chat tab.
  */
-export default class ChatLog extends HandlebarsApplicationMixin(
-    AbstractSidebarTab,
-) {
+export default class ChatLog extends HandlebarsApplicationMixin(AbstractSidebarTab) {
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override tabName: "chat";
@@ -33,9 +31,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
     /**
      * The set of commands that can be processed over multiple lines.
      */
-    static MULTILINE_COMMANDS: Set<
-        "roll" | "gmroll" | "blindroll" | "selfroll" | "publicroll"
-    >;
+    static MULTILINE_COMMANDS: Set<"roll" | "gmroll" | "blindroll" | "selfroll" | "publicroll">;
 
     /**
      * The maximum number of messages to retain in the history in a given session.
@@ -90,9 +86,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
     /*  Rendering                                   */
     /* -------------------------------------------- */
 
-    protected override _configureRenderOptions(
-        options: DeepPartial<HandlebarsRenderOptions>,
-    ): void;
+    protected override _configureRenderOptions(options: DeepPartial<HandlebarsRenderOptions>): void;
 
     /**
      * Get context menu entries for chat messages in the log.
@@ -104,10 +98,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
         options: HandlebarsRenderOptions,
     ): Promise<void>;
 
-    protected override _onRender(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected override _onRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
     protected override _preparePartContext(
         partId: string,
@@ -118,10 +109,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
     /**
      * Prepare rendering context for the chat panel's message input component.
      */
-    protected _prepareInputContext(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected _prepareInputContext(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
     protected override _renderHTML(
         context: ApplicationRenderContext,
@@ -141,11 +129,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
      * @param priorElement The existing element.
      * @param state A state object which is used to synchronize after replacement.
      */
-    protected _preSyncInputState(
-        newElement: HTMLElement,
-        priorElement: HTMLElement,
-        state: object,
-    ): void;
+    protected _preSyncInputState(newElement: HTMLElement, priorElement: HTMLElement, state: object): void;
 
     protected override _syncPartState(
         partId: string,
@@ -160,11 +144,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
      * @param priorElement The element being replaced.
      * @param state The state object used to synchronize the pre- and post-render states.
      */
-    _syncInputState(
-        newElement: HTMLElement,
-        priorElement: HTMLElement,
-        state: object,
-    ): void;
+    _syncInputState(newElement: HTMLElement, priorElement: HTMLElement, state: object): void;
 
     /* -------------------------------------------- */
     /*  Event Listeners & Handlers                  */
@@ -179,10 +159,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
     /**
      * Attach listeners to the chat log.
      */
-    protected _attachLogListeners(
-        element: HTMLElement,
-        options: HandlebarsRenderOptions,
-    ): void;
+    protected _attachLogListeners(element: HTMLElement, options: HandlebarsRenderOptions): void;
 
     protected _onActivate(): void;
 
@@ -203,9 +180,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
      */
     protected _onKeyDown(event: KeyboardEvent): void;
 
-    protected override _preClose(
-        options: ApplicationClosingOptions,
-    ): Promise<void>;
+    protected override _preClose(options: ApplicationClosingOptions): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Message Input                               */
@@ -226,10 +201,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
      * @returns The created ChatMessage Document, or void if we were executing a macro instead.
      * @throws If an invalid command is found.
      */
-    processMessage(
-        message: string,
-        options?: { speaker?: ChatSpeakerData },
-    ): Promise<ChatMessage | undefined>;
+    processMessage(message: string, options?: { speaker?: ChatSpeakerData }): Promise<ChatMessage | undefined>;
 
     /* -------------------------------------------- */
     /*  Public API                                  */
@@ -240,10 +212,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
      * @param messageId The ID of the ChatMessage Document to remove from the log.
      * @param options.deleteAll Delete all messages from the log.
      */
-    deleteMessage(
-        messageId: string,
-        options?: { deleteAll?: boolean },
-    ): Promise<void>;
+    deleteMessage(messageId: string, options?: { deleteAll?: boolean }): Promise<void>;
 
     /**
      * Trigger a notification that alerts the user visually and audibly of new chat activity.
@@ -251,10 +220,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
      * @param options.existing The existing rendered chat card, if it exists.
      * @param options.newMessage Whether this is a new message.
      */
-    notify(
-        message: ChatMessage,
-        options?: { existing?: HTMLElement; newMessage?: boolean },
-    ): void;
+    notify(message: ChatMessage, options?: { existing?: HTMLElement; newMessage?: boolean }): void;
 
     /**
      * Post a single chat message to the log.
@@ -264,10 +230,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
      * @param options.notify=false Trigger a notification which shows the log as having a new unread message.
      * @returns A Promise which resolves once the message has been posted.
      */
-    postOne(
-        message: ChatMessage,
-        options?: { before?: string; notify?: boolean },
-    ): Promise<void>;
+    postOne(message: ChatMessage, options?: { before?: string; notify?: boolean }): Promise<void>;
 
     /**
      * Render a batch of additional messages, prepending them to the top of the log.
@@ -292,10 +255,7 @@ export default class ChatLog extends HandlebarsApplicationMixin(
      * @param message The ChatMessage instance to update.
      * @param options.notify Trigger a notification which shows the log as having a new unread message.
      */
-    updateMessage(
-        message: ChatMessage,
-        options?: { notify?: boolean },
-    ): Promise<void>;
+    updateMessage(message: ChatMessage, options?: { notify?: boolean }): Promise<void>;
 
     /**
      * Update displayed timestamps for every displayed message in the chat log.
@@ -314,18 +274,13 @@ export default class ChatLog extends HandlebarsApplicationMixin(
      * @param options Options forwarded to the render function.
      * @throws If the message's render methods do not return a usable result.
      */
-    static renderMessage(
-        message: ChatMessage,
-        options?: object,
-    ): Promise<HTMLElement>;
+    static renderMessage(message: ChatMessage, options?: object): Promise<HTMLElement>;
 
     /**
      * Determine whether the notifications pane should be visible.
      * @param options.closing Whether the chat popout is closing.
      */
-    protected _shouldShowNotifications(options?: {
-        closing?: boolean;
-    }): boolean;
+    protected _shouldShowNotifications(options?: { closing?: boolean }): boolean;
 
     /**
      * Update notification display, based on interface state.

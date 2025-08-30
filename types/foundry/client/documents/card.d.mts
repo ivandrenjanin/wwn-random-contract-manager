@@ -13,9 +13,7 @@ declare const ClientBaseCard: new <TParent extends Cards | null>(
  * @see {@link Cards}                    The Cards document type which contains Card embedded documents
  * @see {@link CardConfig}               The Card configuration application
  */
-export default class Card<
-    TParent extends Cards | null,
-> extends ClientBaseCard<TParent> {
+export default class Card<TParent extends Cards | null> extends ClientBaseCard<TParent> {
     /** The current card face */
     get currentFace(): CardFaceData | null;
 
@@ -73,28 +71,19 @@ export default class Card<
      *                                  for example the displayed face
      * @returns {Promise<Card>}         A reference to this card after it has been passed to another parent document
      */
-    pass(
-        to: Cards,
-        options?: { updateData?: Record<string, unknown> },
-    ): Promise<Card<Cards> | undefined>;
+    pass(to: Cards, options?: { updateData?: Record<string, unknown> }): Promise<Card<Cards> | undefined>;
 
     /**
      * @alias Card#pass
      * @see Card#pass
      */
-    play(
-        to: Cards,
-        options?: { updateData?: Record<string, unknown> },
-    ): Promise<Card<Cards> | undefined>;
+    play(to: Cards, options?: { updateData?: Record<string, unknown> }): Promise<Card<Cards> | undefined>;
 
     /**
      * @alias Card#pass
      * @see Card#pass
      */
-    discard(
-        to: Cards,
-        options?: { updateData?: Record<string, unknown> },
-    ): Promise<Card<Cards> | undefined>;
+    discard(to: Cards, options?: { updateData?: Record<string, unknown> }): Promise<Card<Cards> | undefined>;
 
     /**
      * Recall this Card to its original Cards parent.

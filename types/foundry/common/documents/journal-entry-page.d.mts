@@ -1,15 +1,13 @@
-import {
-    DocumentOwnershipLevel,
-    JournalEntryPageFormat,
-} from "@common/constants.mjs";
+import { DocumentOwnershipLevel, JournalEntryPageFormat } from "@common/constants.mjs";
 import { Document, DocumentMetadata } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseJournalEntry, BaseUser } from "./_module.mjs";
 
 /** The JournalEntryPage document model. */
-export default class BaseJournalEntryPage<
-    TParent extends BaseJournalEntry | null,
-> extends Document<TParent, JournalEntryPageSchema> {
+export default class BaseJournalEntryPage<TParent extends BaseJournalEntry | null> extends Document<
+    TParent,
+    JournalEntryPageSchema
+> {
     static override get metadata(): JournalEntryPageMetadata;
 
     static override defineSchema(): JournalEntryPageSchema;
@@ -17,9 +15,8 @@ export default class BaseJournalEntryPage<
     override getUserLevel(user: BaseUser): DocumentOwnershipLevel;
 }
 
-export default interface BaseJournalEntryPage<
-    TParent extends BaseJournalEntry | null,
-> extends Document<TParent, JournalEntryPageSchema>,
+export default interface BaseJournalEntryPage<TParent extends BaseJournalEntry | null>
+    extends Document<TParent, JournalEntryPageSchema>,
         fields.ModelPropsFromSchema<JournalEntryPageSchema> {
     get documentName(): JournalEntryPageMetadata["name"];
 }
@@ -82,7 +79,6 @@ type JournalEntryPageSchema<
     _stats: fields.DocumentStatsField;
 };
 
-export type JournalEntryPageSource =
-    fields.SourceFromSchema<JournalEntryPageSchema>;
+export type JournalEntryPageSource = fields.SourceFromSchema<JournalEntryPageSchema>;
 
 export type CorePageType = "image" | "pdf" | "text" | "video";

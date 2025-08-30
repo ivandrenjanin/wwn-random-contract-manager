@@ -1,10 +1,4 @@
-import {
-    AttributeSpec,
-    Mark,
-    MarkSpec,
-    Node,
-    NodeSpec,
-} from "prosemirror-model";
+import { AttributeSpec, Mark, MarkSpec, Node, NodeSpec } from "prosemirror-model";
 import { EditorView } from "prosemirror-view";
 import SchemaDefinition from "./schema-definition.mjs";
 
@@ -31,10 +25,5 @@ export default class LinkMark extends SchemaDefinition {
      * @returns Returns true to indicate the click was handled here and should not be propagated to
      *          other plugins.
      */
-    static onClick(
-        view: EditorView,
-        pos: number,
-        event: PointerEvent,
-        mark: Mark,
-    ): boolean | void;
+    static onClick(view: EditorView, pos: number, event: PointerEvent, mark: Mark): boolean | void;
 }

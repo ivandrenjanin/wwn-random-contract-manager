@@ -9,16 +9,11 @@ import {
 import Document from "@common/abstract/document.mjs";
 import { PlaylistSource } from "@common/documents/playlist.mjs";
 import { BasePlaylist, BaseUser, PlaylistSound } from "./_module.mjs";
-import {
-    ClientDocument,
-    ClientDocumentStatic,
-} from "./abstract/client-document.mjs";
+import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
 import CompendiumCollection from "./collections/compendium-collection.mjs";
 
 type BasePlaylistStatic = typeof BasePlaylist;
-interface ClientBasePlaylistStatic
-    extends BasePlaylistStatic,
-        ClientDocumentStatic {}
+interface ClientBasePlaylistStatic extends BasePlaylistStatic, ClientDocumentStatic {}
 
 declare const ClientBasePlaylist: {
     new (...args: any): BasePlaylist & ClientDocument<null>;
@@ -57,9 +52,7 @@ export default class Playlist extends ClientBasePlaylist {
      * Find all content links belonging to a given {@link Playlist} or {@link PlaylistSound}.
      * @param doc  The Playlist or PlaylistSound.
      */
-    protected static _getSoundContentLinks(
-        doc: Playlist | PlaylistSound<Playlist | null>,
-    ): NodeListOf<Element>;
+    protected static _getSoundContentLinks(doc: Playlist | PlaylistSound<Playlist | null>): NodeListOf<Element>;
 
     override prepareDerivedData(): void;
 
@@ -76,10 +69,7 @@ export default class Playlist extends ClientBasePlaylist {
      * @param [options.direction=1] Whether to advance forward (if 1) or backwards (if -1)
      * @returns The updated Playlist document
      */
-    playNext(
-        soundId: string,
-        { direction }?: { direction?: number },
-    ): Promise<this>;
+    playNext(soundId: string, { direction }?: { direction?: number }): Promise<this>;
 
     /**
      * Begin playback of a specific Sound within this Playlist.
@@ -115,10 +105,7 @@ export default class Playlist extends ClientBasePlaylist {
     protected _getPreviousSound(soundId: string): PlaylistSound<this>;
 
     /** Define the sorting order for the Sounds within this Playlist. For internal use. */
-    protected _sortSounds(
-        a: PlaylistSound<this>,
-        b: PlaylistSound<this>,
-    ): number;
+    protected _sortSounds(a: PlaylistSound<this>, b: PlaylistSound<this>): number;
 
     protected override _preUpdate(
         data: Record<string, unknown>,
@@ -132,10 +119,7 @@ export default class Playlist extends ClientBasePlaylist {
         userId: string,
     ): void;
 
-    protected override _onDelete(
-        options: DatabaseDeleteCallbackOptions,
-        userId: string,
-    ): void;
+    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 
     protected override _onCreateDescendantDocuments<P extends Document>(
         parent: P,
@@ -165,9 +149,7 @@ export default class Playlist extends ClientBasePlaylist {
     ): void;
 
     /** Handle callback logic when an individual sound within the Playlist concludes playback naturally */
-    protected _onSoundEnd(
-        sound: PlaylistSound<this>,
-    ): Promise<this | undefined>;
+    protected _onSoundEnd(sound: PlaylistSound<this>): Promise<this | undefined>;
 
     /**
      * Handle callback logic when playback for an individual sound within the Playlist is started.

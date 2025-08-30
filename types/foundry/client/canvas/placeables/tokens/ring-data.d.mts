@@ -9,27 +9,17 @@ import * as fields from "@common/data/fields.mjs";
 declare class ClassReferenceField extends fields.DataField {
     constructor(options: DataFieldOptions<object, true, false, boolean>);
 
-    static override get _defaults(): DataFieldOptions<
-        object,
-        true,
-        false,
-        boolean
-    >;
+    static override get _defaults(): DataFieldOptions<object, true, false, boolean>;
 
     protected override _validateType(value: unknown): void;
 
-    getInitialValue(
-        data?: object,
-    ): fields.MaybeSchemaProp<object, true, false, boolean>;
+    getInitialValue(data?: object): fields.MaybeSchemaProp<object, true, false, boolean>;
 }
 
 /**
  * Dynamic Ring configuration data model.
  */
-export default class DynamicRingData extends DataModel<
-    null,
-    DynamicRingSchema
-> {
+export default class DynamicRingData extends DataModel<null, DynamicRingSchema> {
     static override defineSchema(): DynamicRingSchema;
 }
 
@@ -45,24 +35,12 @@ type DynamicRingSchema = {
     /** The spritesheet path which provides token ring frames for various sized creatures. */
     spritesheet: fields.FilePathField<FilePath, FilePath, true, true, false>;
     /** Registered special effects which can be applied to a token ring. */
-    effects: fields.ObjectField<
-        RingEffectData,
-        RingEffectData,
-        true,
-        false,
-        true
-    >;
+    effects: fields.ObjectField<RingEffectData, RingEffectData, true, false, true>;
     /** The manager class responsible for rendering token rings. */
     framework: fields.SchemaField<
         { ringClass: ClassReferenceField; shaderClass: ClassReferenceField },
-        fields.SourceFromSchema<{
-            ringClass: ClassReferenceField;
-            shaderClass: ClassReferenceField;
-        }>,
-        fields.ModelPropsFromSchema<{
-            ringClass: ClassReferenceField;
-            shaderClass: ClassReferenceField;
-        }>,
+        fields.SourceFromSchema<{ ringClass: ClassReferenceField; shaderClass: ClassReferenceField }>,
+        fields.ModelPropsFromSchema<{ ringClass: ClassReferenceField; shaderClass: ClassReferenceField }>,
         true,
         false,
         true

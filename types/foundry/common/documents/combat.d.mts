@@ -1,9 +1,4 @@
-import {
-    DatabaseUpdateCallbackOptions,
-    Document,
-    DocumentMetadata,
-    EmbeddedCollection,
-} from "../abstract/_module.mjs";
+import { DatabaseUpdateCallbackOptions, Document, DocumentMetadata, EmbeddedCollection } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import { BaseCombatant, BaseScene, BaseUser } from "./_module.mjs";
 
@@ -24,9 +19,7 @@ export default class BaseCombat extends Document<null, CombatSchema> {
     ): Promise<boolean | void>;
 }
 
-export default interface BaseCombat
-    extends Document<null, CombatSchema>,
-        fields.ModelPropsFromSchema<CombatSchema> {
+export default interface BaseCombat extends Document<null, CombatSchema>, fields.ModelPropsFromSchema<CombatSchema> {
     readonly combatants: EmbeddedCollection<BaseCombatant<this>>;
 
     get documentName(): CombatMetadata["name"];

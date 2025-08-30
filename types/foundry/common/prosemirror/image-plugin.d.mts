@@ -28,12 +28,7 @@ export default class ProseMirrorImagePlugin extends ProseMirrorPlugin {
      * @param slice A slice of editor content.
      * @param moved Whether the slice has been moved from a different part of the editor.
      */
-    protected _onDrop(
-        view: EditorView,
-        event: DragEvent,
-        slice: Slice,
-        moved: boolean,
-    ): boolean | void;
+    protected _onDrop(view: EditorView, event: DragEvent, slice: Slice, moved: boolean): boolean | void;
 
     /**
      * Handle a paste into the editor.
@@ -49,11 +44,7 @@ export default class ProseMirrorImagePlugin extends ProseMirrorPlugin {
      * @param [pos] The position in the document to insert at. If not provided, the current selection will be
      *              replaced instead.
      */
-    protected _uploadImages(
-        view: EditorView,
-        files: FileList,
-        pos?: number,
-    ): Promise<void>;
+    protected _uploadImages(view: EditorView, files: FileList, pos?: number): Promise<void>;
 
     /**
      * Capture any base64-encoded images embedded in the rich text paste and upload them.
@@ -61,11 +52,7 @@ export default class ProseMirrorImagePlugin extends ProseMirrorPlugin {
      * @param html   The HTML data as a string.
      * @param images An array of extracted base64 image data.
      */
-    protected _replaceBase64Images(
-        view: EditorView,
-        html: string,
-        images: [string, string, string][],
-    ): Promise<void>;
+    protected _replaceBase64Images(view: EditorView, html: string, images: [string, string, string][]): Promise<void>;
 
     /**
      * Detect base64 image data embedded in an HTML string and extract it.

@@ -15,9 +15,7 @@ import HandlebarsApplicationMixin, {
  * This application provides a view of which modules are available to be used and allows for configuration of the
  * set of modules which are active within the World.
  */
-export default class ModuleManagement extends HandlebarsApplicationMixin(
-    ApplicationV2,
-) {
+export default class ModuleManagement extends HandlebarsApplicationMixin(ApplicationV2) {
     /**
      * The named game setting which persists module configuration.
      */
@@ -39,24 +37,15 @@ export default class ModuleManagement extends HandlebarsApplicationMixin(
      * @param module Are sub-types relative to a module?
      * @internal
      */
-    _formatDocumentSummary(
-        counts: object,
-        verbose: boolean,
-        module?: Module,
-    ): string;
+    _formatDocumentSummary(counts: object, verbose: boolean, module?: Module): string;
 
     /* -------------------------------------------- */
     /*  Rendering                                   */
     /* -------------------------------------------- */
 
-    protected override _prepareContext(
-        options: HandlebarsRenderOptions,
-    ): Promise<ApplicationRenderContext>;
+    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<ApplicationRenderContext>;
 
-    protected override _onRender(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected override _onRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
     protected override _tearDown(options: ApplicationClosingOptions): void;
 
@@ -73,10 +62,7 @@ export default class ModuleManagement extends HandlebarsApplicationMixin(
      * @param enabling Whether the user was performing an enabling or disabling workflow.
      * @internal
      */
-    _onSelectDependencies(
-        formData: Record<string, boolean>,
-        enabling: boolean,
-    ): void;
+    _onSelectDependencies(formData: Record<string, boolean>, enabling: boolean): void;
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers                */

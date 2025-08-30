@@ -8,22 +8,17 @@ import {
 } from "@common/constants.mjs";
 import { Document, DocumentMetadata } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
-import {
-    ActorUUID,
-    BaseActor,
-    BaseItem,
-    BaseUser,
-    ItemUUID,
-} from "./_module.mjs";
+import { ActorUUID, BaseActor, BaseItem, BaseUser, ItemUUID } from "./_module.mjs";
 
 /**
  * The ActiveEffect document model.
  * @param data    Initial data from which to construct the document.
  * @param context Construction context options
  */
-export default class BaseActiveEffect<
-    TParent extends BaseActor | BaseItem<BaseActor | null> | null,
-> extends Document<TParent, ActiveEffectSchema> {
+export default class BaseActiveEffect<TParent extends BaseActor | BaseItem<BaseActor | null> | null> extends Document<
+    TParent,
+    ActiveEffectSchema
+> {
     /* -------------------------------------------- */
     /*  Model Configuration                         */
     /* -------------------------------------------- */
@@ -36,11 +31,7 @@ export default class BaseActiveEffect<
     /*  Model Methods                               */
     /* -------------------------------------------- */
 
-    override canUserModify(
-        user: BaseUser,
-        action: UserAction,
-        data?: object,
-    ): boolean;
+    override canUserModify(user: BaseUser, action: UserAction, data?: object): boolean;
 
     override testUserPermission(
         user: BaseUser,
@@ -59,9 +50,8 @@ export default class BaseActiveEffect<
     ): Promise<boolean | void>;
 }
 
-export default interface BaseActiveEffect<
-    TParent extends BaseActor | BaseItem<BaseActor | null> | null,
-> extends Document<TParent, ActiveEffectSchema>,
+export default interface BaseActiveEffect<TParent extends BaseActor | BaseItem<BaseActor | null> | null>
+    extends Document<TParent, ActiveEffectSchema>,
         fields.ModelPropsFromSchema<ActiveEffectSchema> {
     get documentName(): ActiveEffectMetadata["name"];
 }
@@ -83,18 +73,10 @@ type ActiveEffectSchema = {
     duration: fields.SchemaField<EffectDurationSchema>;
     description: fields.HTMLField;
     img: fields.FilePathField<ImageFilePath>;
-    origin: fields.StringField<
-        ActorUUID | ItemUUID,
-        ActorUUID | ItemUUID,
-        false,
-        true,
-        true
-    >;
+    origin: fields.StringField<ActorUUID | ItemUUID, ActorUUID | ItemUUID, false, true, true>;
     tint: fields.ColorField;
     transfer: fields.BooleanField;
-    statuses: fields.SetField<
-        fields.StringField<string, string, true, false, false>
-    >;
+    statuses: fields.SetField<fields.StringField<string, string, true, false, false>>;
     flags: fields.DocumentFlagsField;
     _stats: fields.DocumentStatsField;
 };
@@ -102,13 +84,7 @@ type ActiveEffectSchema = {
 type EffectChangeSchema = {
     key: fields.StringField<string, string, true, false, false>;
     value: fields.StringField<string, string, true, false, false>;
-    mode: fields.NumberField<
-        ActiveEffectChangeMode,
-        ActiveEffectChangeMode,
-        false,
-        false,
-        true
-    >;
+    mode: fields.NumberField<ActiveEffectChangeMode, ActiveEffectChangeMode, false, false, true>;
     priority: fields.NumberField;
 };
 
@@ -125,6 +101,5 @@ type EffectDurationSchema = {
 export type ActiveEffectSource = fields.SourceFromSchema<ActiveEffectSchema>;
 
 export type EffectChangeData = fields.SourceFromSchema<EffectChangeSchema>;
-export type EffectDurationSource =
-    fields.SourceFromSchema<EffectDurationSchema>;
+export type EffectDurationSource = fields.SourceFromSchema<EffectDurationSchema>;
 export type EffectDurationData = BaseActiveEffect<null>["duration"];

@@ -1,32 +1,15 @@
 import CombatantConfig from "@client/applications/sheets/combatant-config.mjs";
-import {
-    DatabaseCreateOperation,
-    DatabaseDeleteOperation,
-    DatabaseUpdateOperation,
-} from "@common/abstract/_types.mjs";
+import { DatabaseCreateOperation, DatabaseDeleteOperation, DatabaseUpdateOperation } from "@common/abstract/_types.mjs";
 import Document from "@common/abstract/document.mjs";
 import { DocumentOwnershipLevel } from "@common/constants.mjs";
 import Roll, { Rolled } from "../dice/roll.mjs";
-import {
-    BaseCombatant,
-    BaseUser,
-    Combat,
-    TokenDocument,
-    User,
-} from "./_module.mjs";
-import {
-    ClientDocument,
-    ClientDocumentStatic,
-} from "./abstract/client-document.mjs";
+import { BaseCombatant, BaseUser, Combat, TokenDocument, User } from "./_module.mjs";
+import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
 
-interface ClientBaseCombatantStatic
-    extends Omit<typeof BaseCombatant, "new">,
-        ClientDocumentStatic {}
+interface ClientBaseCombatantStatic extends Omit<typeof BaseCombatant, "new">, ClientDocumentStatic {}
 
 declare const ClientBaseCombatant: {
-    new <TParent extends Combat | null>(
-        ...args: any
-    ): BaseCombatant<TParent> & ClientDocument<TParent>;
+    new <TParent extends Combat | null>(...args: any): BaseCombatant<TParent> & ClientDocument<TParent>;
 } & ClientBaseCombatantStatic;
 
 declare interface ClientBaseCombatant<TParent extends Combat | null>
@@ -148,8 +131,7 @@ export default class Combatant<
     ): Promise<boolean | void>;
 }
 
-export default interface Combatant<TParent extends Combat | null>
-    extends ClientBaseCombatant<TParent> {
+export default interface Combatant<TParent extends Combat | null> extends ClientBaseCombatant<TParent> {
     get sheet(): CombatantConfig;
 }
 

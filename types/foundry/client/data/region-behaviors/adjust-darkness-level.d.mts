@@ -23,11 +23,7 @@ export default interface AdjustDarknessLevelRegionBehaviorType
         fields.ModelPropsFromSchema<AdjustDarknessLevelRegionBehaviorSchema> {}
 
 export type AdjustDarknessLevelRegionBehaviorSchema = {
-    mode: fields.NumberField<
-        AdjustDarknessLevelRegionBehaviorModes,
-        AdjustDarknessLevelRegionBehaviorModes,
-        true
-    >;
+    mode: fields.NumberField<AdjustDarknessLevelRegionBehaviorModes, AdjustDarknessLevelRegionBehaviorModes, true>;
     modifier: fields.AlphaField;
 };
 

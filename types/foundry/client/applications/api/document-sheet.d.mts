@@ -1,9 +1,5 @@
 import User from "@client/documents/user.mjs";
-import {
-    DatabaseCreateOperation,
-    DatabaseUpdateOperation,
-    DataSchema,
-} from "@common/abstract/_types.mjs";
+import { DatabaseCreateOperation, DatabaseUpdateOperation, DataSchema } from "@common/abstract/_types.mjs";
 import Document from "@common/abstract/document.mjs";
 import {
     ApplicationClosingOptions,
@@ -27,8 +23,7 @@ export interface DocumentSheetRenderContext extends ApplicationRenderContext {
 
 export default abstract class DocumentSheetV2<
     TConfig extends DocumentSheetConfiguration = DocumentSheetConfiguration,
-    TRenderOptions extends
-        DocumentSheetRenderOptions = DocumentSheetRenderOptions,
+    TRenderOptions extends DocumentSheetRenderOptions = DocumentSheetRenderOptions,
 > extends ApplicationV2<TConfig, TRenderOptions> {
     constructor(options?: DeepPartial<TConfig>);
 
@@ -50,23 +45,15 @@ export default abstract class DocumentSheetV2<
      */
     get isEditable(): boolean;
 
-    protected override _initializeApplicationOptions(
-        options: DeepPartial<TConfig>,
-    ): TConfig;
+    protected override _initializeApplicationOptions(options: DeepPartial<TConfig>): TConfig;
 
     protected override _headerControlButtons(): Generator<ApplicationHeaderControlsEntry>;
 
-    protected override _configureRenderOptions(
-        options: DeepPartial<TRenderOptions>,
-    ): TRenderOptions;
+    protected override _configureRenderOptions(options: DeepPartial<TRenderOptions>): TRenderOptions;
 
-    protected override _prepareContext(
-        options: TRenderOptions,
-    ): Promise<DocumentSheetRenderContext>;
+    protected override _prepareContext(options: TRenderOptions): Promise<DocumentSheetRenderContext>;
 
-    protected override _renderFrame(
-        options: TRenderOptions,
-    ): Promise<HTMLElement>;
+    protected override _renderFrame(options: TRenderOptions): Promise<HTMLElement>;
 
     /**
      * Disable or reenable all form fields in this application.
@@ -80,15 +67,9 @@ export default abstract class DocumentSheetV2<
 
     protected override _canRender(): void;
 
-    protected override _onFirstRender(
-        context: object,
-        options: TRenderOptions,
-    ): Promise<void>;
+    protected override _onFirstRender(context: object, options: TRenderOptions): Promise<void>;
 
-    protected override _onRender(
-        context: object,
-        options: TRenderOptions,
-    ): Promise<void>;
+    protected override _onRender(context: object, options: TRenderOptions): Promise<void>;
 
     protected override _onClose(options: ApplicationClosingOptions): void;
 
@@ -100,10 +81,7 @@ export default abstract class DocumentSheetV2<
     /*  Form Submission                             */
     /* -------------------------------------------- */
 
-    protected override _onChangeForm(
-        formConfig: ApplicationFormConfiguration,
-        event: Event,
-    ): void;
+    protected override _onChangeForm(formConfig: ApplicationFormConfiguration, event: Event): void;
 
     /**
      * Handle toggling the revealed state of a secret embedded in some content.
@@ -160,9 +138,7 @@ export default abstract class DocumentSheetV2<
     ): Promise<void>;
 }
 
-export interface DocumentSheetConfiguration<
-    TDocument extends Document = Document,
-> extends ApplicationConfiguration {
+export interface DocumentSheetConfiguration<TDocument extends Document = Document> extends ApplicationConfiguration {
     /** The Document instance associated with this sheet */
     document: TDocument;
     /** A permission level in CONST.DOCUMENT_OWNERSHIP_LEVELS */

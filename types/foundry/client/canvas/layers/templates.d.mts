@@ -1,9 +1,7 @@
 import { SceneControl } from "../../applications/ui/scene-controls.mjs";
 import MeasuredTemplate from "../placeables/template.mjs";
 import { PlaceablesLayerOptions } from "./_types.mjs";
-import PlaceablesLayer, {
-    PlaceablesLayerPointerEvent,
-} from "./base/placeables-layer.mjs";
+import PlaceablesLayer, { PlaceablesLayerPointerEvent } from "./base/placeables-layer.mjs";
 
 /**
  * This Canvas Layer provides a container for MeasuredTemplate objects.
@@ -37,13 +35,9 @@ export default class TemplateLayer<
     /*  Event Listeners and Handlers                */
     /* -------------------------------------------- */
 
-    protected override _onDragLeftStart(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftStart(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftMove(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftMove(event: PlaceablesLayerPointerEvent<TObject>): void;
 
     protected override _onMouseWheel(event: WheelEvent): void;
 }

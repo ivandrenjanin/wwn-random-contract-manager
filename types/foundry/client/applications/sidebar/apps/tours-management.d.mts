@@ -1,6 +1,4 @@
-import CategoryBrowser, {
-    CategoryBrowserConfiguration,
-} from "@client/applications/api/category-browser.mjs";
+import CategoryBrowser, { CategoryBrowserConfiguration } from "@client/applications/api/category-browser.mjs";
 
 /**
  * A management app for configuring which Tours are available or have been completed.
@@ -16,8 +14,5 @@ export default class ToursManagement extends CategoryBrowser {
         Record<string, { id: string; label: string; entries: object[] }>
     >;
 
-    protected override _sortCategories(
-        a: { id: string; label: string },
-        b: { id: string; label: string },
-    ): number;
+    protected override _sortCategories(a: { id: string; label: string }, b: { id: string; label: string }): number;
 }

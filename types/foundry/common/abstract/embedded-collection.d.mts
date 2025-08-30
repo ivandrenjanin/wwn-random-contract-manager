@@ -3,9 +3,7 @@ import Collection, { CollectionGetOptions } from "../utils/collection.mjs";
 import Document from "./document.mjs";
 
 /** Used for the specific task of containing embedded Document instances within a parent Document. */
-export default class EmbeddedCollection<
-    TDocument extends Document<Document>,
-> extends Collection<string, TDocument> {
+export default class EmbeddedCollection<TDocument extends Document<Document>> extends Collection<string, TDocument> {
     constructor(
         /** The name of this collection in the parent Document. */
         name: string,
@@ -56,10 +54,7 @@ export default class EmbeddedCollection<
      * @param options Options to configure Document initialization.
      * @param options.strict Whether to log an error or warning if the Document fails to initialize.
      */
-    protected _initializeDocument(
-        data: PreCreate<TDocument["_source"]>,
-        options?: { strict?: boolean },
-    ): void;
+    protected _initializeDocument(data: PreCreate<TDocument["_source"]>, options?: { strict?: boolean }): void;
 
     /**
      * Log warnings or errors when a Document is found to be invalid.
@@ -68,11 +63,7 @@ export default class EmbeddedCollection<
      * @param options        Options to configure invalid Document handling.
      * @param options.strict Whether to throw an error or only log a warning.
      */
-    protected _handleInvalidDocument(
-        id: string,
-        err: string,
-        options?: { strict?: boolean },
-    ): void;
+    protected _handleInvalidDocument(id: string, err: string, options?: { strict?: boolean }): void;
 
     /**
      * Get an element from the EmbeddedCollection by its ID.
@@ -82,14 +73,8 @@ export default class EmbeddedCollection<
      * @param [options.invalid=false] Allow retrieving an invalid Embedded Document.
      * @throws If strict is true and the Embedded Document cannot be found.
      */
-    override get<T extends TDocument = TDocument>(
-        key: Maybe<string>,
-        options: { strict: true; invalid?: boolean },
-    ): T;
-    override get<T extends TDocument = TDocument>(
-        key: string,
-        options?: EmbeddedCollectionGetOptions,
-    ): T | undefined;
+    override get<T extends TDocument = TDocument>(key: Maybe<string>, options: { strict: true; invalid?: boolean }): T;
+    override get<T extends TDocument = TDocument>(key: string, options?: EmbeddedCollectionGetOptions): T | undefined;
 
     /**
      * Add an item to the collection.
@@ -98,11 +83,7 @@ export default class EmbeddedCollection<
      * @param {object} [options]                     Additional options to the set operation.
      * @param {boolean} [options.modifySource=true]  Whether to modify the collection's source as part of the operation.
      */
-    override set(
-        key: string,
-        value: TDocument,
-        { modifySource }?: { modifySource?: boolean },
-    ): this;
+    override set(key: string, value: TDocument, { modifySource }?: { modifySource?: boolean }): this;
 
     /**
      * Modify the underlying source array to include the Document.
@@ -116,10 +97,7 @@ export default class EmbeddedCollection<
      * @param {object} [options]                     Additional options to the delete operation.
      * @param {boolean} [options.modifySource=true]  Whether to modify the collection's source as part of the operation.
      */
-    override delete(
-        key: string,
-        { modifySource }?: { modifySource?: boolean },
-    ): boolean;
+    override delete(key: string, { modifySource }?: { modifySource?: boolean }): boolean;
 
     /**
      * Remove the value from the underlying source array.
@@ -133,10 +111,7 @@ export default class EmbeddedCollection<
      * @param {DataModel[]} changes         An array of provided Document data
      * @param {object} [options={}]         Additional options which modify how the collection is updated
      */
-    update(
-        changes?: { _id: string; [key: string]: unknown }[],
-        options?: DocumentSourceUpdateContext,
-    ): void;
+    update(changes?: { _id: string; [key: string]: unknown }[], options?: DocumentSourceUpdateContext): void;
 
     /**
      * Create or update an embedded Document in this collection.
@@ -157,10 +132,7 @@ export default class EmbeddedCollection<
      * @returns An in-memory instance for the invalid Document
      * @throws If strict is true and the requested ID is not in the set of invalid IDs for this collection.
      */
-    getInvalid(
-        id: string,
-        options?: { strict?: boolean },
-    ): TDocument | undefined;
+    getInvalid(id: string, options?: { strict?: boolean }): TDocument | undefined;
 
     /**
      * Convert the EmbeddedCollection to an array of simple objects.

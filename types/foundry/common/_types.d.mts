@@ -15,16 +15,7 @@ export interface DocumentConstructionContext<TParent extends Document | null>
     pack?: string | null;
 }
 
-type Builtin =
-    | Date
-    | Function
-    | Uint8Array
-    | string
-    | number
-    | boolean
-    | symbol
-    | null
-    | undefined;
+type Builtin = Date | Function | Uint8Array | string | number | boolean | symbol | null | undefined;
 
 /* ----------------------------------------- */
 /*  Reusable Type Definitions                */
@@ -34,15 +25,7 @@ type Builtin =
  * Make all properties in T recursively readonly.
  */
 type DeepReadonly<T> = {
-    readonly [K in keyof T]: T[K] extends
-        | undefined
-        | null
-        | boolean
-        | number
-        | string
-        | symbol
-        | bigint
-        | Function
+    readonly [K in keyof T]: T[K] extends undefined | null | boolean | number | string | symbol | bigint | Function
         ? T[K]
         : T[K] extends Array<infer V>
           ? ReadonlyArray<DeepReadonly<V>>
@@ -92,11 +75,7 @@ interface Rectangle {
 
 type BuiltinTypes = NumberConstructor | StringConstructor | BooleanConstructor;
 
-type ColorSource =
-    | number
-    | [red: number, green: number, blue: number]
-    | string
-    | Color;
+type ColorSource = number | [red: number, green: number, blue: number] | string | Color;
 
 /* ----------------------------------------- */
 /*  Socket Requests and Responses            */

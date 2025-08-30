@@ -75,9 +75,7 @@ export default class BaseSamplerShader extends AbstractBaseShader {
     /**
      * A prerender function happening just before the batch renderer is flushed.
      */
-    protected static _preRenderBatch: (
-        batchRenderer: BatchRenderer,
-    ) => void | undefined;
+    protected static _preRenderBatch: (batchRenderer: BatchRenderer) => void | undefined;
 
     /**
      * Returns default uniforms associated with the batched version of this sampler.

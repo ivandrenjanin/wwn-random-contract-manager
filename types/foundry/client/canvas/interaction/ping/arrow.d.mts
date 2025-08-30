@@ -10,15 +10,7 @@ export default class ArrowPing extends PulsePing {
      * @param origin The canvas coordinates of the origin of the ping. This becomes the arrow's tip.
      * @param options Additional options to configure the ping animation.
      */
-    constructor(
-        origin: Point,
-        options?: PulsePingOptions & { rotation?: number },
-    );
+    constructor(origin: Point, options?: PulsePingOptions & { rotation?: number });
 
-    protected override _drawShape(
-        g: PIXI.Graphics,
-        color: number,
-        alpha: number,
-        size: number,
-    ): void;
+    protected override _drawShape(g: PIXI.Graphics, color: number, alpha: number, size: number): void;
 }

@@ -9,10 +9,7 @@ export { default as PlaceablesLayer } from "./base/placeables-layer.mjs";
 export { default as CanvasBackgroundAlterationEffects } from "./effects/background-effects.mjs";
 export { default as CanvasColorationEffects } from "./effects/coloration-effects.mjs";
 export { default as CanvasDarknessEffects } from "./effects/darkness-effects.mjs";
-export {
-    default as CanvasIlluminationEffects,
-    DarknessLevelContainer,
-} from "./effects/illumination-effects.mjs";
+export { default as CanvasIlluminationEffects, DarknessLevelContainer } from "./effects/illumination-effects.mjs";
 export { default as WeatherEffects } from "./effects/weather-effects.mjs";
 
 // Masks

@@ -10,13 +10,7 @@ import { PolygonRay } from "../_types.mjs";
 export default class LimitedAnglePolygon extends PIXI.Polygon {
     constructor(
         origin: Point,
-        options?: {
-            radius?: number;
-            angle?: number;
-            rotation?: number;
-            density?: number;
-            externalRadius?: number;
-        },
+        options?: { radius?: number; angle?: number; rotation?: number; density?: number; externalRadius?: number },
     );
 
     /**
@@ -74,10 +68,5 @@ export default class LimitedAnglePolygon extends PIXI.Polygon {
      * @param angle The angle being tested, in degrees
      * @returns Is the vertex between the two rays?
      */
-    static pointBetweenRays(
-        point: Point,
-        rMin: PolygonRay,
-        rMax: PolygonRay,
-        angle: number,
-    ): boolean;
+    static pointBetweenRays(point: Point, rMin: PolygonRay, rMax: PolygonRay, angle: number): boolean;
 }

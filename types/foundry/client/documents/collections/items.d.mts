@@ -8,8 +8,6 @@ import Item from "../item.mjs";
  * @see {@link Item} The Item document
  * @see {@link ItemDirectory} The ItemDirectory sidebar directory
  */
-export default class Items<
-    TItem extends Item<null>,
-> extends WorldCollection<TItem> {
+export default class Items<TItem extends Item<null>> extends WorldCollection<TItem> {
     static override documentName: "Item";
 }

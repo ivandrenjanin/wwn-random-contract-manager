@@ -18,10 +18,7 @@ export default class FormDataExtended extends FormData {
      * @param form    The form being processed
      * @param options Options which configure form processing
      */
-    constructor(
-        form: HTMLFormElement,
-        options?: Partial<FormDataExtendedOptions>,
-    );
+    constructor(form: HTMLFormElement, options?: Partial<FormDataExtendedOptions>);
 
     /**
      * A mapping of data types requested for each form field.

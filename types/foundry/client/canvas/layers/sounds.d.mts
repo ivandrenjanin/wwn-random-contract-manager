@@ -6,13 +6,8 @@ import Sound from "../../audio/sound.mjs";
 import AmbientSound from "../placeables/sound.mjs";
 import { PointEffectSourceData } from "../sources/point-effect-source.mjs";
 import PointSoundSource from "../sources/point-sound-source.mjs";
-import {
-    AmbientSoundPlaybackConfig,
-    PlaceablesLayerOptions,
-} from "./_types.mjs";
-import PlaceablesLayer, {
-    PlaceablesLayerPointerEvent,
-} from "./base/placeables-layer.mjs";
+import { AmbientSoundPlaybackConfig, PlaceablesLayerOptions } from "./_types.mjs";
+import PlaceablesLayer, { PlaceablesLayerPointerEvent } from "./base/placeables-layer.mjs";
 
 export interface AmbientSoundEffect {
     /* The type of effect in CONFIG.soundEffects */
@@ -25,9 +20,7 @@ export interface AmbientSoundEffect {
  * This Canvas Layer provides a container for AmbientSound objects.
  * @category Canvas
  */
-export default class SoundsLayer<
-    TObject extends AmbientSound = AmbientSound,
-> extends PlaceablesLayer<TObject> {
+export default class SoundsLayer<TObject extends AmbientSound = AmbientSound> extends PlaceablesLayer<TObject> {
     /** Track whether to actively preview ambient sounds with mouse cursor movements */
     livePreview: boolean;
 
@@ -78,10 +71,7 @@ export default class SoundsLayer<
      * @param {object} [options={}]          Additional options forwarded to AmbientSound synchronization
      * @protected
      */
-    protected _syncPositions(
-        listeners: ElevatedPoint[],
-        options?: object,
-    ): void;
+    protected _syncPositions(listeners: ElevatedPoint[], options?: object): void;
 
     /**
      * Configure playback by assigning the muffled state and final playback volume for the sound.
@@ -168,9 +158,7 @@ export default class SoundsLayer<
      * @param args  Arguments passed to SoundsLayer#playAtPosition
      * @returns  A Promise which resolves once playback for the initiating client has completed
      */
-    emitAtPosition(
-        args: Parameters<this["playAtPosition"]>,
-    ): Promise<Sound | null>;
+    emitAtPosition(args: Parameters<this["playAtPosition"]>): Promise<Sound | null>;
 
     static override prepareSceneControls(): SceneControl;
 
@@ -185,21 +173,13 @@ export default class SoundsLayer<
      */
     _onMouseMove(currentPos: PIXI.Point): void;
 
-    protected override _onDragLeftStart(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftStart(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftMove(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftMove(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftDrop(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftDrop(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftCancel(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftCancel(event: PlaceablesLayerPointerEvent<TObject>): void;
 
     /**
      * Handle PlaylistSound document drop data.

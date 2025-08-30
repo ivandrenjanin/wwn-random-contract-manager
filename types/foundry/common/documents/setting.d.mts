@@ -1,8 +1,4 @@
-import {
-    Document,
-    DocumentMetadata,
-    MetadataPermission,
-} from "../abstract/_module.mjs";
+import { Document, DocumentMetadata, MetadataPermission } from "../abstract/_module.mjs";
 import * as fields from "../data/fields.mjs";
 import BaseUser from "./user.mjs";
 
@@ -26,9 +22,7 @@ export default class BaseSetting extends Document<null, SettingSchema> {
     static canUserCreate(user: BaseUser): boolean;
 }
 
-export default interface BaseSetting
-    extends Document<null, SettingSchema>,
-        fields.ModelPropsFromSchema<SettingSchema> {
+export default interface BaseSetting extends Document<null, SettingSchema>, fields.ModelPropsFromSchema<SettingSchema> {
     get documentName(): SettingMetadata["name"];
 }
 

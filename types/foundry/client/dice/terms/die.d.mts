@@ -7,9 +7,7 @@ import DiceTerm, { DiceTermData } from "./dice.mjs";
  * // Roll 4 six-sided dice
  * let die = new Die({faces: 6, number: 4}).evaluate();
  */
-export default class Die<
-    TData extends DieData = DieData,
-> extends DiceTerm<TData> {
+export default class Die<TData extends DieData = DieData> extends DiceTerm<TData> {
     constructor(termData?: Partial<DieData>);
 
     static override DENOMINATION: string;
@@ -49,10 +47,7 @@ export default class Die<
      * @param recursive Reroll recursively, continuing to reroll until the condition is no longer met
      * @returns False if the modifier was unmatched
      */
-    reroll(
-        modifier: string,
-        { recursive }?: { recursive?: boolean },
-    ): boolean | void;
+    reroll(modifier: string, { recursive }?: { recursive?: boolean }): boolean | void;
 
     /**
      * @see {@link Die#reroll}

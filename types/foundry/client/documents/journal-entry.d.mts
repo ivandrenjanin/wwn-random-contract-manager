@@ -1,31 +1,18 @@
 import Note from "@client/canvas/placeables/note.mjs";
-import {
-    DatabaseDeleteCallbackOptions,
-    DatabaseUpdateCallbackOptions,
-} from "@common/abstract/_types.mjs";
+import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
 import EmbeddedCollection from "@common/abstract/embedded-collection.mjs";
 import JournalSheet from "../appv1/sheets/journal-sheet.mjs";
-import {
-    BaseJournalEntry,
-    JournalEntryPage,
-    JournalEntrySource,
-} from "./_module.mjs";
-import {
-    ClientDocument,
-    ClientDocumentStatic,
-} from "./abstract/client-document.mjs";
+import { BaseJournalEntry, JournalEntryPage, JournalEntrySource } from "./_module.mjs";
+import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
 
 type BaseJournalEntryStatic = typeof BaseJournalEntry;
-interface ClientBaseJournalEntryStatic
-    extends BaseJournalEntryStatic,
-        ClientDocumentStatic {}
+interface ClientBaseJournalEntryStatic extends BaseJournalEntryStatic, ClientDocumentStatic {}
 
 declare const ClientBaseJournalEntry: {
     new (...args: any): BaseJournalEntry & ClientDocument<null>;
 } & ClientBaseJournalEntryStatic;
 
-interface ClientBaseJournalEntry
-    extends InstanceType<typeof ClientBaseJournalEntry> {}
+interface ClientBaseJournalEntry extends InstanceType<typeof ClientBaseJournalEntry> {}
 
 /**
  * The client-side JournalEntry document which extends the common BaseJournalEntry model.
@@ -70,13 +57,7 @@ export default class JournalEntry extends ClientBaseJournalEntry {
      * @param [duration=250] The speed of the pan animation in milliseconds
      * @return A Promise which resolves once the pan animation has concluded
      */
-    panToNote({
-        scale,
-        duration,
-    }?: {
-        scale?: number;
-        duration?: number;
-    }): Promise<void>;
+    panToNote({ scale, duration }?: { scale?: number; duration?: number }): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Event Handlers                              */
@@ -88,10 +69,7 @@ export default class JournalEntry extends ClientBaseJournalEntry {
         userId: string,
     ): void;
 
-    protected override _onDelete(
-        options: DatabaseDeleteCallbackOptions,
-        userId: string,
-    ): void;
+    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 }
 
 export default interface JournalEntry extends ClientBaseJournalEntry {

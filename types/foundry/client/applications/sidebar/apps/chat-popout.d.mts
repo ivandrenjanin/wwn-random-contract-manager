@@ -52,11 +52,7 @@ export default class ChatPopout extends ApplicationV2<ChatPopoutConfiguration> {
         options: ApplicationRenderOptions,
     ): Promise<HTMLElement>;
 
-    protected override _replaceHTML(
-        result: HTMLElement,
-        content: HTMLElement,
-        options: ApplicationRenderOptions,
-    ): void;
+    protected override _replaceHTML(result: HTMLElement, content: HTMLElement, options: ApplicationRenderOptions): void;
 }
 
 export {};

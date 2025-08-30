@@ -62,16 +62,12 @@ export type GridCoordinates3D = GridOffset3D | ElevatedPoint;
 /**
  * 2D hexagonal cube coordinates, a 2D offset of a grid space, or a 2D point with pixel coordinates.
  */
-export type HexagonalGridCoordinates2D =
-    | GridCoordinates2D
-    | HexagonalGridCube2D;
+export type HexagonalGridCoordinates2D = GridCoordinates2D | HexagonalGridCube2D;
 
 /**
  * 3D hexagonal cube coordinates, a 3D offset of a grid space, or a 3D point with pixel coordinates.
  */
-export type HexagonalGridCoordinates3D =
-    | GridCoordinates3D
-    | HexagonalGridCube3D;
+export type HexagonalGridCoordinates3D = GridCoordinates3D | HexagonalGridCube3D;
 
 /**
  * A snapping behavior is defined by the snapping mode at the given resolution of the grid.
@@ -162,9 +158,7 @@ export interface GridMeasurePathResult {
  * @param segment  The properties of the segment
  * @returns The cost of the move between the grid spaces (nonnegative)
  */
-export type GridMeasurePathCostFunction2D<
-    TSegmentData extends object = object,
-> = (
+export type GridMeasurePathCostFunction2D<TSegmentData extends object = object> = (
     from: Readonly<GridOffset2D>,
     to: Readonly<GridOffset2D>,
     distance: number,
@@ -181,9 +175,7 @@ export type GridMeasurePathCostFunction2D<
  * @param segment  The properties of the segment
  * @returns The cost of the move between the grid spaces (nonnegative)
  */
-export type GridMeasurePathCostFunction3D<
-    TSegmentData extends object = object,
-> = (
+export type GridMeasurePathCostFunction3D<TSegmentData extends object = object> = (
     from: Readonly<GridOffset3D>,
     to: Readonly<GridOffset3D>,
     distance: number,

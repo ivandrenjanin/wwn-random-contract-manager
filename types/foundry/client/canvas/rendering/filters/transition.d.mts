@@ -94,5 +94,4 @@ export default class TextureTransitionFilter extends AbstractBaseFilter {
     ): void;
 }
 
-export type TextureTransitionType =
-    (typeof TextureTransitionFilter.TYPES)[keyof typeof TextureTransitionFilter.TYPES];
+export type TextureTransitionType = (typeof TextureTransitionFilter.TYPES)[keyof typeof TextureTransitionFilter.TYPES];

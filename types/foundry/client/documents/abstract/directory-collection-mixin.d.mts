@@ -63,10 +63,7 @@ export declare abstract class DirectoryCollection<
      * @param b Some other Entry
      * @returns The sort order between entries a and b
      */
-    protected static _sortAlphabetical<T extends { name: string }>(
-        a: T,
-        b: T,
-    ): number;
+    protected static _sortAlphabetical<T extends { name: string }>(a: T, b: T): number;
 
     /**
      * Sort two Entries using their numeric sort fields.
@@ -74,17 +71,13 @@ export declare abstract class DirectoryCollection<
      * @param b Some other Entry
      * @returns The sort order between Entries a and b
      */
-    protected static _sortStandard(
-        a: { sort: number },
-        b: { sort: number },
-    ): number;
+    protected static _sortStandard(a: { sort: number }, b: { sort: number }): number;
 }
 
-export type DirectoryCollectionAndDocumentCollection =
-    DirectoryCollection<DirectoryMixinEntry> & DocumentCollection<Document>;
+export type DirectoryCollectionAndDocumentCollection = DirectoryCollection<DirectoryMixinEntry> &
+    DocumentCollection<Document>;
 
-export interface DirectoryCollectionConstructor
-    extends DirectoryCollectionAndDocumentCollection {
+export interface DirectoryCollectionConstructor extends DirectoryCollectionAndDocumentCollection {
     new <TEntry extends DirectoryMixinEntry>(
         ...args: ConstructorParameters<ConstructorOf<TEntry>>
     ): DirectoryCollection<TEntry> & DocumentCollection<Document>;

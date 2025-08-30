@@ -39,10 +39,7 @@ export default class PolygonMesher {
      * @param dimension
      * @returns The clipper lib path.
      */
-    static getClipperPathFromPoints(
-        poly: number[] | PIXI.Polygon,
-        dimension?: number,
-    ): unknown;
+    static getClipperPathFromPoints(poly: number[] | PIXI.Polygon, dimension?: number): unknown;
 
     /**
      * Execute the triangulation to create indices

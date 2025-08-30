@@ -10,23 +10,11 @@ export default class FateDie extends DiceTerm {
 
     static override DENOMINATION: "f";
 
-    override roll({
-        minimize,
-        maximize,
-    }?: {
-        minimize?: boolean;
-        maximize?: boolean;
-    }): DiceTermResult;
+    override roll({ minimize, maximize }?: { minimize?: boolean; maximize?: boolean }): DiceTermResult;
 
     override getResultLabel<T extends DiceTermResult>(
         result: DiceTermResult,
-    ): T["result"] extends -1
-        ? "-"
-        : T extends 0
-          ? "&nbsp;"
-          : T extends 1
-            ? "+"
-            : never;
+    ): T["result"] extends -1 ? "-" : T extends 0 ? "&nbsp;" : T extends 1 ? "+" : never;
 }
 
 export default interface FateDie extends DiceTerm {

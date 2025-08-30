@@ -38,30 +38,14 @@ export default class KeyboardManager {
      */
     static MODIFIER_CODES: {
         Alt: ["AltLeft", "AltRight"];
-        Control: [
-            "ControlLeft",
-            "ControlRight",
-            "MetaLeft",
-            "MetaRight",
-            "Meta",
-            "OsLeft",
-            "OsRight",
-        ];
+        Control: ["ControlLeft", "ControlRight", "MetaLeft", "MetaRight", "Meta", "OsLeft", "OsRight"];
         Shift: ["ShiftLeft", "ShiftRight"];
     };
 
     /**
      * Key codes which are "protected" and should not be used because they are reserved for browser-level actions.
      */
-    static PROTECTED_KEYS: [
-        "F5",
-        "F11",
-        "F12",
-        "PrintScreen",
-        "ScrollLock",
-        "NumLock",
-        "CapsLock",
-    ];
+    static PROTECTED_KEYS: ["F5", "F11", "F12", "PrintScreen", "ScrollLock", "NumLock", "CapsLock"];
 
     /**
      * The OS-specific string display for what their Command key is
@@ -134,13 +118,7 @@ export default class KeyboardManager {
     static emulateKeypress(
         up: boolean,
         code: string,
-        options?: {
-            altKey?: boolean;
-            ctrlKey?: boolean;
-            shiftKey?: boolean;
-            repeat?: boolean;
-            force?: boolean;
-        },
+        options?: { altKey?: boolean; ctrlKey?: boolean; shiftKey?: boolean; repeat?: boolean; force?: boolean },
     ): KeyboardEventContext;
 
     /**
@@ -159,10 +137,7 @@ export default class KeyboardManager {
      * @param up A flag for whether the key is down or up
      * @returns The standardized context of the event
      */
-    static getKeyboardEventContext(
-        event: KeyboardEvent,
-        up?: boolean,
-    ): KeyboardEventContext;
+    static getKeyboardEventContext(event: KeyboardEvent, up?: boolean): KeyboardEventContext;
 
     /**
      * Report whether a modifier in KeyboardManager.MODIFIER_KEYS is currently actively depressed.
@@ -184,9 +159,7 @@ export default class KeyboardManager {
      * @returns The matched Keybind Actions. May be empty.
      * @internal
      */
-    static _getMatchingActions(
-        context: KeyboardEventContext,
-    ): KeybindingAction[];
+    static _getMatchingActions(context: KeyboardEventContext): KeybindingAction[];
 
     /**
      * Processes a keyboard event context, checking it against registered keybinding actions
@@ -194,10 +167,7 @@ export default class KeyboardManager {
      * @param options Additional options to configure behavior.
      * @param options.force Force the event to be handled.
      */
-    protected _processKeyboardContext(
-        context: KeyboardEventContext,
-        options?: { force?: boolean },
-    ): void;
+    protected _processKeyboardContext(context: KeyboardEventContext, options?: { force?: boolean }): void;
 
     /**
      * Emulate a key-up event for any currently down keys. When emulating, we go backwards such that combinations such as

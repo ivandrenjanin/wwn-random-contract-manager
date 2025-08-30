@@ -1,7 +1,4 @@
-import {
-    ApplicationConfiguration,
-    ApplicationRenderContext,
-} from "@client/applications/_types.mjs";
+import { ApplicationConfiguration, ApplicationRenderContext } from "@client/applications/_types.mjs";
 import AVMaster from "@client/av/master.mjs";
 import { AVSettingsData } from "@client/av/settings.mjs";
 import User from "@client/documents/user.mjs";
@@ -58,9 +55,7 @@ interface CameraViewControlContext {
 /**
  * An application that shows docked camera views.
  */
-export default class CameraViews extends HandlebarsApplicationMixin(
-    ApplicationV2,
-) {
+export default class CameraViews extends HandlebarsApplicationMixin(ApplicationV2) {
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;
@@ -132,14 +127,9 @@ export default class CameraViews extends HandlebarsApplicationMixin(
 
     protected override _canRender(options: HandlebarsRenderOptions): boolean;
 
-    protected override _configureRenderParts(
-        options: HandlebarsRenderOptions,
-    ): Record<string, HandlebarsTemplatePart>;
+    protected override _configureRenderParts(options: HandlebarsRenderOptions): Record<string, HandlebarsTemplatePart>;
 
-    protected override _onRender(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected override _onRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
     protected override _preparePartContext(
         partId: string,
@@ -180,10 +170,7 @@ export default class CameraViews extends HandlebarsApplicationMixin(
      * @param target The action target.
      * @internal
      */
-    _onBlockAudio(
-        event: PointerEvent,
-        target: HTMLElement,
-    ): Promise<this | void>;
+    _onBlockAudio(event: PointerEvent, target: HTMLElement): Promise<this | void>;
 
     /**
      * Handle blocking a user's video stream.
@@ -191,10 +178,7 @@ export default class CameraViews extends HandlebarsApplicationMixin(
      * @param {HTMLElement} target  The action target.
      * @internal
      */
-    _onBlockVideo(
-        event: PointerEvent,
-        target: HTMLElement,
-    ): Promise<this | void>;
+    _onBlockVideo(event: PointerEvent, target: HTMLElement): Promise<this | void>;
 
     /**
      * Handle spawning the AV configuration dialog.
@@ -234,10 +218,7 @@ export default class CameraViews extends HandlebarsApplicationMixin(
      * @param {HTMLElement} target  The action target.
      * @internal
      */
-    _onToggleAudio(
-        event: PointerEvent,
-        target: HTMLElement,
-    ): Promise<this | void>;
+    _onToggleAudio(event: PointerEvent, target: HTMLElement): Promise<this | void>;
 
     /**
      * Handle the user toggling their own video stream.
@@ -260,8 +241,5 @@ export default class CameraViews extends HandlebarsApplicationMixin(
     /**
      * Sort users' cameras in the dock.
      */
-    protected static _sortUsers(
-        a: CameraViewUserContext,
-        b: CameraViewUserContext,
-    ): number;
+    protected static _sortUsers(a: CameraViewUserContext, b: CameraViewUserContext): number;
 }

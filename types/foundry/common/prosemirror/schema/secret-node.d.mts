@@ -21,8 +21,5 @@ export default class SecretNode extends SchemaDefinition {
      * @param state    The ProseMirror editor state.
      * @param dispatch The editor dispatch function.
      */
-    static split(
-        state: EditorState,
-        dispatch: (tr: Transaction) => void,
-    ): boolean;
+    static split(state: EditorState, dispatch: (tr: Transaction) => void): boolean;
 }

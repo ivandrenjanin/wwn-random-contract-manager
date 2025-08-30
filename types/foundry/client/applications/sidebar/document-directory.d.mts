@@ -1,25 +1,15 @@
 import { Folder } from "@client/documents/_module.mjs";
-import {
-    DirectoryCollection,
-    DirectoryMixinEntry,
-} from "@client/documents/abstract/directory-collection-mixin.mjs";
+import { DirectoryCollection, DirectoryMixinEntry } from "@client/documents/abstract/directory-collection-mixin.mjs";
 import { CompendiumIndexData } from "@client/documents/collections/compendium-collection.mjs";
 import { DropCanvasData } from "@client/helpers/hooks.mjs";
 import type Document from "@common/abstract/document.mjs";
-import type {
-    ApplicationConfiguration,
-    ApplicationRenderContext,
-} from "../_types.mjs";
+import type { ApplicationConfiguration, ApplicationRenderContext } from "../_types.mjs";
 import type HandlebarsApplicationMixin from "../api/handlebars-application.mjs";
-import type {
-    HandlebarsRenderOptions,
-    HandlebarsTemplatePart,
-} from "../api/handlebars-application.mjs";
+import type { HandlebarsRenderOptions, HandlebarsTemplatePart } from "../api/handlebars-application.mjs";
 import { ContextMenuEntry } from "../ux/context-menu.mjs";
 import type AbstractSidebarTab from "./sidebar-tab.mjs";
 
-export interface DocumentDirectoryConfiguration
-    extends ApplicationConfiguration {
+export interface DocumentDirectoryConfiguration extends ApplicationConfiguration {
     /** The Document collection that this directory represents. */
     collection: DirectoryCollection;
     /** Updating one of these properties of a displayed Document will trigger a re-render of the tab. */
@@ -29,9 +19,7 @@ export interface DocumentDirectoryConfiguration
 /**
  * An abstract class for rendering a foldered directory of Documents.
  */
-export default class DocumentDirectory<
-    TDocument extends DirectoryMixinEntry,
-> extends HandlebarsApplicationMixin(
+export default class DocumentDirectory<TDocument extends DirectoryMixinEntry> extends HandlebarsApplicationMixin(
     AbstractSidebarTab<DocumentDirectoryConfiguration, HandlebarsRenderOptions>,
 ) {
     constructor(options: DeepPartial<DocumentDirectoryConfiguration>);
@@ -75,13 +63,9 @@ export default class DocumentDirectory<
     /** Determine if the current user has permission to create folders in this directory. */
     protected _canCreateFolder(): boolean;
 
-    protected override _canRender(
-        options: HandlebarsRenderOptions,
-    ): false | void;
+    protected override _canRender(options: HandlebarsRenderOptions): false | void;
 
-    protected override _configureRenderParts(
-        options: HandlebarsRenderOptions,
-    ): Record<string, HandlebarsTemplatePart>;
+    protected override _configureRenderParts(options: HandlebarsRenderOptions): Record<string, HandlebarsTemplatePart>;
 
     /** Register context menu entries and fire hooks. */
     protected _createContextMenus(): void;
@@ -97,9 +81,7 @@ export default class DocumentDirectory<
         options: HandlebarsRenderOptions,
     ): Promise<void>;
 
-    protected override _prepareContext(
-        options: HandlebarsRenderOptions,
-    ): Promise<object>;
+    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<object>;
 
     protected override _preparePartContext(
         partId: string,
@@ -108,16 +90,10 @@ export default class DocumentDirectory<
     ): Promise<object>;
 
     /** Prepare render context for the directory part. */
-    protected _prepareDirectoryContext(
-        context: object,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected _prepareDirectoryContext(context: object, options: HandlebarsRenderOptions): Promise<void>;
 
     /** Prepare render context for the footer part. */
-    protected _prepareFooterContext(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected _prepareFooterContext(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
     /**
      * Prepare render context for the header part.
@@ -126,15 +102,9 @@ export default class DocumentDirectory<
      * @returns {Promise<void>}
      * @protected
      */
-    protected _prepareHeaderContext(
-        context: object,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected _prepareHeaderContext(context: object, options: HandlebarsRenderOptions): Promise<void>;
 
-    protected override _preRender(
-        context: object,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected override _preRender(context: object, options: HandlebarsRenderOptions): Promise<void>;
 
     protected override _preSyncPartState(
         partId: string,
@@ -180,10 +150,7 @@ export default class DocumentDirectory<
      * @param event  The triggering click event.
      * @param target The action target element.
      */
-    protected _onCreateEntry(
-        event: PointerEvent,
-        target: HTMLElement,
-    ): Promise<Document | undefined>;
+    protected _onCreateEntry(event: PointerEvent, target: HTMLElement): Promise<Document | undefined>;
 
     /**
      * Handle creating a new folder in this directory.
@@ -217,12 +184,7 @@ export default class DocumentDirectory<
      * @param element The candidate entry element.
      * @param options Additional options for subclass-specific behavior.
      */
-    protected _onMatchSearchEntry(
-        query: string,
-        entryIds: Set<string>,
-        element: HTMLElement,
-        options?: object,
-    ): void;
+    protected _onMatchSearchEntry(query: string, entryIds: Set<string>, element: HTMLElement, options?: object): void;
 
     /**
      * Handle directory searching and filtering.
@@ -231,12 +193,7 @@ export default class DocumentDirectory<
      * @param rgx   The regular expression query that should be matched against.
      * @param html  The container to filter entries from.
      */
-    protected _onSearchFilter(
-        event: KeyboardEvent,
-        query: string,
-        rgx: RegExp,
-        html: HTMLElement,
-    ): void;
+    protected _onSearchFilter(event: KeyboardEvent, query: string, rgx: RegExp, html: HTMLElement): void;
 
     /**
      * Identify entries in the collection which match a provided search query.
@@ -258,11 +215,7 @@ export default class DocumentDirectory<
      * @param folderIds     The set of matched folder IDs.
      * @param autoExpandIds The set of folder IDs that should be auto-expanded.
      */
-    protected _matchSearchFolders(
-        query: RegExp,
-        folderIds: Set<string>,
-        autoExpandIds: Set<string>,
-    ): void;
+    protected _matchSearchFolders(query: RegExp, folderIds: Set<string>, autoExpandIds: Set<string>): void;
 
     /* -------------------------------------------- */
     /*  Drag & Drop                                 */
@@ -277,20 +230,14 @@ export default class DocumentDirectory<
      * @param entry     The dropped entry.
      * @param [updates] Modifications to the creation data.
      */
-    protected _createDroppedEntry(
-        entry: TDocument,
-        updates?: object,
-    ): Promise<TDocument | undefined>;
+    protected _createDroppedEntry(entry: TDocument, updates?: object): Promise<TDocument | undefined>;
 
     /**
      * Import a dropped folder and its children into this collection if they do not already exist.
      * @param folder         The folder being dropped.
      * @param [targetFolder] A folder to import into if not the directory root.
      */
-    protected _createDroppedFolderContent(
-        folder: Folder,
-        targetFolder?: Folder,
-    ): Promise<Folder[]>;
+    protected _createDroppedFolderContent(folder: Folder, targetFolder?: Folder): Promise<Folder[]>;
 
     /**
      * Create a set of documents in a dropped folder.
@@ -320,9 +267,7 @@ export default class DocumentDirectory<
      * @param data The drag data.
      * @throws If the correct instance type could not be retrieved.
      */
-    protected _getDroppedEntryFromData(
-        data: DropCanvasData,
-    ): Promise<TDocument>;
+    protected _getDroppedEntryFromData(data: DropCanvasData): Promise<TDocument>;
 
     /**
      * Get drag data for an entry in this directory.
@@ -341,20 +286,14 @@ export default class DocumentDirectory<
      * @param target The drop target element.
      * @param data   The drop data.
      */
-    protected _handleDroppedEntry(
-        target: HTMLElement,
-        data: object,
-    ): Promise<void>;
+    protected _handleDroppedEntry(target: HTMLElement, data: object): Promise<void>;
 
     /**
      * Handle dropping a folder onto the directory.
      * @param target The drop target element.
      * @param data   The drop data.
      */
-    protected _handleDroppedFolder(
-        target: HTMLElement,
-        data: DropCanvasData,
-    ): Promise<void>;
+    protected _handleDroppedFolder(target: HTMLElement, data: DropCanvasData): Promise<void>;
 
     /**
      * Handle importing a new folder's into the directory.
@@ -391,10 +330,7 @@ export default class DocumentDirectory<
     protected _organizeDroppedFoldersAndDocuments(
         folder: Folder,
         targetFolder?: Folder,
-    ): Promise<{
-        foldersToCreate: Folder[];
-        documentsToCreate: TDocument[] | object[];
-    }>;
+    ): Promise<{ foldersToCreate: Folder[]; documentsToCreate: TDocument[] | object[] }>;
 
     /* -------------------------------------------- */
     /*  Helpers                                     */
@@ -420,22 +356,10 @@ export default class DocumentDirectory<
     static _handleDroppedFolder(
         target: HTMLElement,
         data: object,
-        config: {
-            folders: Folder[];
-            label: string;
-            maxFolderDepth: number;
-            type: string;
-        },
-    ): Promise<{
-        closestFolderId?: string;
-        folder: Folder;
-        sortData: object;
-        foreign?: boolean;
-    } | void>;
+        config: { folders: Folder[]; label: string; maxFolderDepth: number; type: string },
+    ): Promise<{ closestFolderId?: string; folder: Folder; sortData: object; foreign?: boolean } | void>;
 }
 
-export default interface DocumentDirectory<
-    TDocument extends DirectoryMixinEntry,
-> {
+export default interface DocumentDirectory<TDocument extends DirectoryMixinEntry> {
     render(options?: Partial<HandlebarsRenderOptions>): Promise<this>;
 }

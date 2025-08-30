@@ -15,10 +15,7 @@ export default class PulsePing extends Ping {
 
     override animate(): Promise<boolean>;
 
-    protected override _animateFrame(
-        dt: number,
-        animation: CanvasAnimationData,
-    ): void;
+    protected override _animateFrame(dt: number, animation: CanvasAnimationData): void;
 
     /**
      * Draw the shape for this ping.
@@ -27,10 +24,5 @@ export default class PulsePing extends Ping {
      * @param alpha The alpha of the shape.
      * @param size  The size of the shape to draw.
      */
-    protected _drawShape(
-        g: PIXI.Graphics,
-        color: number,
-        alpha: number,
-        size: number,
-    ): void;
+    protected _drawShape(g: PIXI.Graphics, color: number, alpha: number, size: number): void;
 }

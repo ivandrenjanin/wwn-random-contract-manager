@@ -5,9 +5,7 @@ export const paragraph: {
     managed: { styles: ["text-align"] };
     content: "inline*";
     group: "block";
-    parseDOM: [
-        { tag: "p"; getAttrs: (el: HTMLElement) => { alignment: string } },
-    ];
+    parseDOM: [{ tag: "p"; getAttrs: (el: HTMLElement) => { alignment: string } }];
     toDOM: (node: Node) => ["p", { style: `text-align: ${string};` }, 0];
 };
 

@@ -1,9 +1,5 @@
 import { SocketResponse } from "@common/_types.mjs";
-import {
-    DatabaseAction,
-    DatabaseOperation,
-    DocumentSocketRequest,
-} from "./_types.mjs";
+import { DatabaseAction, DatabaseOperation, DocumentSocketRequest } from "./_types.mjs";
 import Document from "./document.mjs";
 
 /**

@@ -11,9 +11,7 @@ export const details: {
 export const summary: {
     content: "text*";
     defining: true;
-    parseDOM: [
-        { tag: "summary"; getAttrs: (el: HTMLElement) => boolean | void },
-    ];
+    parseDOM: [{ tag: "summary"; getAttrs: (el: HTMLElement) => boolean | void }];
     toDOM: () => ["summary", 0];
 };
 

@@ -5,9 +5,7 @@ import CanvasLayer from "../layers/base/canvas-layer.mjs";
  * @param {typeof PIXI.Container} ContainerClass  The parent Container class being mixed.
  * @returns A ContainerClass subclass mixed with CanvasGroupMixin features.
  */
-export default function CanvasGroupMixin<
-    TBase extends ConstructorOf<PIXI.Container>,
->(ContainerClass: TBase) {
+export default function CanvasGroupMixin<TBase extends ConstructorOf<PIXI.Container>>(ContainerClass: TBase) {
     class CanvasGroup extends ContainerClass {
         constructor(...args: any[]) {
             super(...args);

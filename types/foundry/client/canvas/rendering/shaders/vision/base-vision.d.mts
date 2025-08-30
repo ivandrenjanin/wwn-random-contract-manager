@@ -1,6 +1,4 @@
-import AdaptiveLightingShader, {
-    ShaderTechnique,
-} from "../lighting/base-lighting.mjs";
+import AdaptiveLightingShader, { ShaderTechnique } from "../lighting/base-lighting.mjs";
 
 /**
  * This class defines an interface which all adaptive vision shaders extend.

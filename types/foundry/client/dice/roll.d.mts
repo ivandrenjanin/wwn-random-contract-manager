@@ -2,14 +2,7 @@ import ChatMessage from "@client/documents/chat-message.mjs";
 import { RollMode } from "@common/constants.mjs";
 import { ChatMessageSource } from "@common/documents/chat-message.mjs";
 import { RollOptions, RollParseNode } from "./_types.mjs";
-import {
-    DiceTerm,
-    FunctionTerm,
-    OperatorTerm,
-    PoolTerm,
-    RollTerm,
-    RollTermData,
-} from "./terms/_module.mjs";
+import { DiceTerm, FunctionTerm, OperatorTerm, PoolTerm, RollTerm, RollTermData } from "./terms/_module.mjs";
 
 /**
  * An interface and API for constructing and evaluating dice rolls.
@@ -35,11 +28,7 @@ import {
  * console.log(r.total);    // 22
  */
 export default class Roll {
-    constructor(
-        formula: string,
-        data?: Record<string, unknown>,
-        options?: RollOptions,
-    );
+    constructor(formula: string, data?: Record<string, unknown>, options?: RollOptions);
 
     /** The original provided data object which substitutes into attributes of the roll formula */
     data: Record<string, unknown>;
@@ -77,9 +66,7 @@ export default class Roll {
      * @param data Provided roll data
      * @returns The prepared data object
      */
-    protected _prepareData(
-        data: Record<string, unknown>,
-    ): Record<string, unknown>;
+    protected _prepareData(data: Record<string, unknown>): Record<string, unknown>;
 
     /* -------------------------------------------- */
     /*  Roll Attributes                             */
@@ -111,11 +98,7 @@ export default class Roll {
      * @param [multiplyNumeric]  Apply multiplication factor to numeric scalar terms
      * @return The altered Roll expression
      */
-    alter(
-        multiply: number,
-        add: number,
-        { multiplyNumeric }?: { multiplyNumeric?: boolean },
-    ): this;
+    alter(multiply: number, add: number, { multiplyNumeric }?: { multiplyNumeric?: boolean }): this;
 
     /** Clone the Roll instance, returning a new Roll instance that has not yet been evaluated. */
     clone(): this;
@@ -162,11 +145,7 @@ export default class Roll {
      * @param [options.allowInteractive] If false, force the use of digital rolls and do not prompt the user to make
      *                                   manual rolls.
      */
-    protected _evaluate({
-        minimize,
-        maximize,
-        allowStrings,
-    }?: EvaluateRollParams): Promise<Rolled<this>>;
+    protected _evaluate({ minimize, maximize, allowStrings }?: EvaluateRollParams): Promise<Rolled<this>>;
 
     /**
      * Evaluate an AST asynchronously.
@@ -176,10 +155,7 @@ export default class Roll {
      * @param [options.maximize]     Force the result to be maximized
      * @param [options.allowStrings] If true, string terms will not cause an error to be thrown during evaluation.
      */
-    protected _evaluateASTAsync(
-        node: RollParseNode | RollTerm,
-        options?: EvaluateRollParams,
-    ): Promise<string | number>;
+    protected _evaluateASTAsync(node: RollParseNode | RollTerm, options?: EvaluateRollParams): Promise<string | number>;
 
     /**
      * Evaluate the roll synchronously.
@@ -200,10 +176,7 @@ export default class Roll {
      * @param [options.strict]       Throw an error if encountering a term that cannot be synchronously evaluated.
      * @param [options.allowStrings] If true, string terms will not cause an error to be thrown during evaluation.
      */
-    protected _evaluateASTSync(
-        node: RollParseNode | RollTerm,
-        options?: EvaluateRollSyncParams,
-    ): string | number;
+    protected _evaluateASTSync(node: RollParseNode | RollTerm, options?: EvaluateRollSyncParams): string | number;
 
     /**
      * Safely evaluate the final total result for the Roll using its component terms.
@@ -236,11 +209,7 @@ export default class Roll {
      * @param [options={}] Additional options which modify or describe this Roll
      * @return The constructed Roll instance
      */
-    static create(
-        formula: string,
-        data?: Record<string, unknown>,
-        options?: RollOptions,
-    ): Roll;
+    static create(formula: string, data?: Record<string, unknown>, options?: RollOptions): Roll;
 
     /** Get the default configured Roll class. */
     static get defaultImplementation(): typeof Roll;
@@ -361,9 +330,7 @@ export default class Roll {
      * @param _formula The raw formula to split
      * @returns An array of terms, split on arithmetic operators
      */
-    protected static _splitOperators(
-        _formula: string,
-    ): (string | OperatorTerm)[];
+    protected static _splitOperators(_formula: string): (string | OperatorTerm)[];
 
     /**
      * Temporarily remove flavor text from a string formula allowing it to be accurately parsed.
@@ -381,10 +348,7 @@ export default class Roll {
      * @param flavors The extracted flavors object
      * @returns The restored term containing flavor text
      */
-    protected static _restoreFlavor(
-        term: string,
-        flavors: Record<string, string>,
-    ): RollTerm;
+    protected static _restoreFlavor(term: string, flavors: Record<string, string>): RollTerm;
 
     /**
      * Classify a remaining string term into a recognized RollTerm class
@@ -397,15 +361,7 @@ export default class Roll {
      */
     protected static _classifyStringTerm(
         term: string,
-        {
-            intermediate,
-            prior,
-            next,
-        }?: {
-            intermediate?: boolean;
-            prior?: RollTerm | string;
-            next?: RollTerm | string;
-        },
+        { intermediate, prior, next }?: { intermediate?: boolean; prior?: RollTerm | string; next?: RollTerm | string },
     ): RollTerm;
 
     /* -------------------------------------------- */
@@ -450,10 +406,7 @@ export default class Roll {
     ): Promise<ChatMessage>;
     toMessage(
         messageData?: DeepPartial<ChatMessageSource>,
-        {
-            rollMode,
-            create,
-        }?: { rollMode?: RollMode | "roll"; create?: boolean },
+        { rollMode, create }?: { rollMode?: RollMode | "roll"; create?: boolean },
     ): Promise<ChatMessage | ChatMessageSource>;
 
     /* -------------------------------------------- */
@@ -487,20 +440,14 @@ export default class Roll {
      * @param data   Unpacked data representing the Roll
      * @return A reconstructed Roll instance
      */
-    static fromData<T extends Roll>(
-        this: AbstractConstructorOf<T>,
-        data: RollJSON,
-    ): T;
+    static fromData<T extends Roll>(this: AbstractConstructorOf<T>, data: RollJSON): T;
 
     /**
      * Recreate a Roll instance using a provided JSON string
      * @param json   Serialized JSON data representing the Roll
      * @return A reconstructed Roll instance
      */
-    static fromJSON<T extends Roll>(
-        this: AbstractConstructorOf<T>,
-        json: string,
-    ): T;
+    static fromJSON<T extends Roll>(this: AbstractConstructorOf<T>, json: string): T;
 
     /**
      * Manually construct a Roll object by providing an explicit set of input terms
@@ -515,11 +462,7 @@ export default class Roll {
      * const roll = Roll.fromTerms([t1, plus, t2]);
      * roll.formula; // 4d8 + 8
      */
-    static fromTerms<T extends Roll>(
-        this: ConstructorOf<T>,
-        terms: RollTerm[],
-        options?: RollOptions,
-    ): T;
+    static fromTerms<T extends Roll>(this: ConstructorOf<T>, terms: RollTerm[], options?: RollOptions): T;
 }
 
 export interface RollJSON {

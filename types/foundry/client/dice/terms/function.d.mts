@@ -2,9 +2,9 @@ import Roll from "../roll.mjs";
 import { DiceTerm, RollTerm, RollTermData } from "./_module.mjs";
 import { Evaluated } from "./term.mjs";
 
-export default class FunctionTerm<
-    TFunctionName extends MathFunctionName = MathFunctionName,
-> extends RollTerm<FunctionTermData<TFunctionName>> {
+export default class FunctionTerm<TFunctionName extends MathFunctionName = MathFunctionName> extends RollTerm<
+    FunctionTermData<TFunctionName>
+> {
     constructor({ fn, terms, options }: FunctionTermData<TFunctionName>);
 
     /** The named function in the Math environment which should be applied to the term */
@@ -56,10 +56,7 @@ export default class FunctionTerm<
 }
 
 export type MathFunctionName =
-    | Exclude<
-          MathStringKey,
-          "E" | "LN2" | "LN10" | "LOG2E" | "LOG10E" | "PI" | "SQRT1_2" | "SQRT2"
-      >
+    | Exclude<MathStringKey, "E" | "LN2" | "LN10" | "LOG2E" | "LOG10E" | "PI" | "SQRT1_2" | "SQRT2">
     | "clamped"
     | "normalizeDegrees"
     | "normalizeRadians"
@@ -68,14 +65,10 @@ export type MathFunctionName =
     | "toRadians"
     | "safeEval";
 
-export interface FunctionTermData<
-    TFunctionName extends MathFunctionName = MathFunctionName,
-> extends RollTermData {
+export interface FunctionTermData<TFunctionName extends MathFunctionName = MathFunctionName> extends RollTermData {
     class?: "FunctionTerm";
     fn?: TFunctionName;
     terms?: RollTerm[];
 }
 
-export type MathStringKey<T extends keyof Math = keyof Math> = T extends string
-    ? T
-    : never;
+export type MathStringKey<T extends keyof Math = keyof Math> = T extends string ? T : never;

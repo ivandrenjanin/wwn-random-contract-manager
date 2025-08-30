@@ -1,6 +1,4 @@
-import CategoryBrowser, {
-    CategoryBrowserConfiguration,
-} from "../api/category-browser.mjs";
+import CategoryBrowser, { CategoryBrowserConfiguration } from "../api/category-browser.mjs";
 
 /**
  * @import {ApplicationClickAction, ApplicationFormSubmission} from "../_types.mjs";
@@ -22,18 +20,12 @@ export default class SettingsConfig extends CategoryBrowser {
      * @param namespace The entry to classify
      * @returns The category the entry belongs to
      */
-    protected _categorizeEntry(namespace: string): {
-        id: string;
-        label: string;
-    };
+    protected _categorizeEntry(namespace: string): { id: string; label: string };
 
     /**
      * Sort categories in order of core, system, and finally modules.
      */
-    protected override _sortCategories(
-        a: { id: string; label: string },
-        b: { id: string; label: string },
-    ): number;
+    protected override _sortCategories(a: { id: string; label: string }, b: { id: string; label: string }): number;
 
     /* -------------------------------------------- */
     /*  Event Listeners and Handlers                */

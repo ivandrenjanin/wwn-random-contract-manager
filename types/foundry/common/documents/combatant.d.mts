@@ -4,9 +4,7 @@ import * as fields from "../data/fields.mjs";
 import BaseCombat from "./combat.mjs";
 
 /** The Combat document model. */
-export default class BaseCombatant<
-    TParent extends BaseCombat | null,
-> extends Document<TParent, CombatantSchema> {
+export default class BaseCombatant<TParent extends BaseCombat | null> extends Document<TParent, CombatantSchema> {
     static override get metadata(): CombatantMetadata;
 
     static override defineSchema(): CombatantSchema;

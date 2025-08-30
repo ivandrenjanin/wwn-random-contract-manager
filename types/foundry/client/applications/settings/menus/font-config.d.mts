@@ -19,9 +19,7 @@ interface NewFontDefinition {
     preview?: string;
 }
 
-interface FontConfigConfiguration
-    extends ApplicationConfiguration,
-        NewFontDefinition {
+interface FontConfigConfiguration extends ApplicationConfiguration, NewFontDefinition {
     family: string;
     weight?: number;
     style?: string;
@@ -32,9 +30,7 @@ interface FontConfigConfiguration
 /**
  * A V2 application responsible for configuring custom fonts for the world.
  */
-export default class FontConfig extends HandlebarsApplicationMixin(
-    ApplicationV2,
-) {
+export default class FontConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     constructor(options?: DeepPartial<FontConfigConfiguration>);
 
     /**
@@ -79,10 +75,7 @@ export default class FontConfig extends HandlebarsApplicationMixin(
      * @param definition The font family definition.
      * @returns Returns true if the font was successfully loaded.
      */
-    static loadFont(
-        family: string,
-        definition: FontFamilyDefinition,
-    ): Promise<boolean>;
+    static loadFont(family: string, definition: FontFamilyDefinition): Promise<boolean>;
 
     /**
      * Ensure that fonts have loaded and are ready for use.
@@ -96,10 +89,7 @@ export default class FontConfig extends HandlebarsApplicationMixin(
     /**
      * Collect font definitions from both config and user settings.
      */
-    protected static _collectDefinitions(): Record<
-        string,
-        FontFamilyDefinition
-    >[];
+    protected static _collectDefinitions(): Record<string, FontFamilyDefinition>[];
 
     /**
      * Create a FontFace from a definition.
@@ -107,10 +97,7 @@ export default class FontConfig extends HandlebarsApplicationMixin(
      * @param definition The font definition.
      * @returns The new FontFace.
      */
-    protected static _createFontFace(
-        family: string,
-        definition: FontDefinition,
-    ): FontFace;
+    protected static _createFontFace(family: string, definition: FontDefinition): FontFace;
 
     /**
      * Format a font definition for display.
@@ -118,19 +105,13 @@ export default class FontConfig extends HandlebarsApplicationMixin(
      * @param definition The font definition.
      * @returns The formatted definition.
      */
-    protected static _formatFont(
-        family: string,
-        definition: FontDefinition,
-    ): string;
+    protected static _formatFont(family: string, definition: FontDefinition): string;
 
     /* -------------------------------------------- */
     /*  Application                                 */
     /* -------------------------------------------- */
 
-    protected override _onRender(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected override _onRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
     protected override _prepareContext(): Promise<ApplicationRenderContext>;
 
@@ -145,15 +126,9 @@ export default class FontConfig extends HandlebarsApplicationMixin(
         definition: FontFamilyDefinition,
     ): { family: string; index: number; selected: boolean; font: string }[];
 
-    protected override _onClickAction(
-        event: PointerEvent,
-        htmlElement: HTMLElement,
-    ): void;
+    protected override _onClickAction(event: PointerEvent, htmlElement: HTMLElement): void;
 
-    protected override _onChangeForm(
-        formConfig: ApplicationFormConfiguration,
-        event: Event,
-    ): void;
+    protected override _onChangeForm(formConfig: ApplicationFormConfiguration, event: Event): void;
 
     /**
      * Add a new font definition.

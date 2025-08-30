@@ -11,10 +11,7 @@ export function isValidId(id: string): boolean;
  * @param path
  * @param extensions
  */
-export function hasFileExtension(
-    path: string,
-    extensions: string[],
-): path is `${string}.${string}`;
+export function hasFileExtension(path: string, extensions: string[]): path is `${string}.${string}`;
 
 /**
  * Test whether a string data blob contains base64 data, optionally of a specific type or types

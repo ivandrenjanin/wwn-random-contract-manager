@@ -55,10 +55,7 @@ export default class BaseAdventure extends Document<null, AdventureSchema> {
      * @param [exact] Require the role match to be exact
      * @return Does the user have at this role level (or greater)?
      */
-    hasRole(
-        role: UserRole | UserRoleName,
-        { exact }?: { exact: boolean },
-    ): boolean;
+    hasRole(role: UserRole | UserRoleName, { exact }?: { exact: boolean }): boolean;
 }
 
 export default interface BaseAdventure
@@ -86,17 +83,13 @@ type AdventureSchema = {
     /** An HTML text description for the adventure */
     description: fields.HTMLField;
     /** An array of Actor documents which are included in the adventure */
-    actors: fields.SetField<
-        fields.EmbeddedDataField<documents.BaseActor<null>>
-    >;
+    actors: fields.SetField<fields.EmbeddedDataField<documents.BaseActor<null>>>;
     /** An array of Combat documents which are included in the adventure */
     combats: fields.SetField<fields.EmbeddedDataField<documents.BaseCombat>>;
     /** An array of Item documents which are included in the adventure */
     items: fields.SetField<fields.EmbeddedDataField<documents.BaseItem<null>>>;
     /** An array of JournalEntry documents which are included in the adventure */
-    journal: fields.SetField<
-        fields.EmbeddedDataField<documents.BaseJournalEntry>
-    >;
+    journal: fields.SetField<fields.EmbeddedDataField<documents.BaseJournalEntry>>;
     /** An array of Scene documents which are included in the adventure */
     scenes: fields.SetField<fields.EmbeddedDataField<documents.BaseScene>>;
     /** An array of RollTable documents which are included in the adventure */
@@ -106,9 +99,7 @@ type AdventureSchema = {
     /** An array of Cards documents which are included in the adventure */
     cards: fields.SetField<fields.EmbeddedDataField<documents.BaseCards>>;
     /** An array of Playlist documents which are included in the adventure */
-    playlists: fields.SetField<
-        fields.EmbeddedDataField<documents.BasePlaylist>
-    >;
+    playlists: fields.SetField<fields.EmbeddedDataField<documents.BasePlaylist>>;
     /** An array of Folder documents which are included in the adventure */
     folders: fields.SetField<fields.EmbeddedDataField<documents.BaseFolder>>;
     folder: fields.ForeignDocumentField<documents.BaseFolder>;

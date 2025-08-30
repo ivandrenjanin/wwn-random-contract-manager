@@ -78,18 +78,12 @@ export default class Wall<
      * @param pad    The amount of padding to apply
      * @return A constructed Polygon for the line
      */
-    protected _getWallHitPolygon(
-        coords: [number, number],
-        pad: number,
-    ): PIXI.Polygon;
+    protected _getWallHitPolygon(coords: [number, number], pad: number): PIXI.Polygon;
 
     /** Given the properties of the wall - decide upon a color to render the wall for display on the WallsLayer */
     protected _getWallColor(): number;
 
-    protected _onControl(options?: {
-        releaseOthers?: boolean;
-        chain?: number;
-    }): void;
+    protected _onControl(options?: { releaseOthers?: boolean; chain?: number }): void;
 
     protected _onRelease(options: Record<string, unknown>): void;
 
@@ -136,10 +130,7 @@ export default class Wall<
         userId: string,
     ): void;
 
-    protected override _onDelete(
-        options: DatabaseDeleteCallbackOptions,
-        userId: string,
-    ): void;
+    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 
     /**
      * Callback actions when a wall that contains a door is moved or its state is changed
@@ -151,45 +142,28 @@ export default class Wall<
     /*  Interaction Event Callbacks                 */
     /* -------------------------------------------- */
 
-    protected override _canControl(
-        user: User,
-        event?: PIXI.FederatedEvent,
-    ): boolean;
+    protected override _canControl(user: User, event?: PIXI.FederatedEvent): boolean;
 
-    protected override _onHoverIn(
-        event: PIXI.FederatedPointerEvent,
-        options?: { hoverOutOthers?: boolean },
-    ): boolean;
+    protected override _onHoverIn(event: PIXI.FederatedPointerEvent, options?: { hoverOutOthers?: boolean }): boolean;
 
     protected override _onHoverOut(event: PIXI.FederatedPointerEvent): boolean;
 
     /** Handle mouse-hover events on the line segment itself, pulling the Wall to the front of the container stack */
     protected _onMouseOverLine(event: PIXI.FederatedPointerEvent): void;
 
-    protected override _onClickLeft(
-        event: PIXI.FederatedPointerEvent,
-    ): boolean | void;
+    protected override _onClickLeft(event: PIXI.FederatedPointerEvent): boolean | void;
 
-    protected override _onClickLeft2(
-        event: PIXI.FederatedPointerEvent,
-    ): boolean | void;
+    protected override _onClickLeft2(event: PIXI.FederatedPointerEvent): boolean | void;
 
-    protected override _onClickRight2(
-        event: PIXI.FederatedPointerEvent,
-    ): boolean | void;
+    protected override _onClickRight2(event: PIXI.FederatedPointerEvent): boolean | void;
 
-    protected override _onDragLeftStart(
-        event: PIXI.FederatedPointerEvent,
-    ): boolean | void;
+    protected override _onDragLeftStart(event: PIXI.FederatedPointerEvent): boolean | void;
 
     protected _onDragLeftMove(event: PIXI.FederatedPointerEvent): void;
 
-    protected _onDragLeftDrop(
-        event: PIXI.FederatedPointerEvent,
-    ): Promise<TDocument[]>;
+    protected _onDragLeftDrop(event: PIXI.FederatedPointerEvent): Promise<TDocument[]>;
 }
 
-export default interface Wall<TDocument extends WallDocument<Scene | null>>
-    extends PlaceableObject<TDocument> {
+export default interface Wall<TDocument extends WallDocument<Scene | null>> extends PlaceableObject<TDocument> {
     get layer(): WallsLayer<this>;
 }

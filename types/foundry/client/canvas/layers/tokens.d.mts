@@ -6,21 +6,15 @@ import { ElevatedPoint, Point, Rectangle } from "@common/_types.mjs";
 import { CanvasQuadtree } from "../geometry/_module.mjs";
 import { Token } from "../placeables/_module.mjs";
 import { CanvasHistoryEvent, PlaceablesLayerOptions } from "./_types.mjs";
-import PlaceablesLayer, {
-    MinusOneToOne,
-    PlaceablesLayerPointerEvent,
-} from "./base/placeables-layer.mjs";
+import PlaceablesLayer, { MinusOneToOne, PlaceablesLayerPointerEvent } from "./base/placeables-layer.mjs";
 
-export type TokenOcclusionMode =
-    (typeof CONST.TOKEN_OCCLUSION_MODES)[keyof typeof CONST.TOKEN_OCCLUSION_MODES];
+export type TokenOcclusionMode = (typeof CONST.TOKEN_OCCLUSION_MODES)[keyof typeof CONST.TOKEN_OCCLUSION_MODES];
 
 /**
  * The Tokens Container.
  * @category Canvas
  */
-export default class TokenLayer<
-    TObject extends Token = Token,
-> extends PlaceablesLayer<TObject> {
+export default class TokenLayer<TObject extends Token = Token> extends PlaceablesLayer<TObject> {
     override quadtree: CanvasQuadtree<TObject>;
 
     /**
@@ -99,10 +93,7 @@ export default class TokenLayer<
      * @param [options]              Additional options to configure targeting behaviour.
      * @param options.releaseOthers  Whether or not to release other targeted tokens
      */
-    targetObjects(
-        rectangle: Rectangle,
-        options?: { releaseOthers: boolean },
-    ): boolean;
+    targetObjects(rectangle: Rectangle, options?: { releaseOthers: boolean }): boolean;
 
     /**
      * Assign multiple token targets
@@ -113,10 +104,7 @@ export default class TokenLayer<
      *   - `"acquire"`: Acquire the given Tokens as targets without releasing already targeted Tokens.
      *   - `"release"`: Release the given Tokens as targets.
      */
-    setTargets(
-        targetIds: string[] | Set<string>,
-        options?: { mode: "replace" | "acquire" | "release" },
-    ): void;
+    setTargets(targetIds: string[] | Set<string>, options?: { mode: "replace" | "acquire" | "release" }): void;
 
     /**
      * Cycle the controlled token by rotating through the list of Owned Tokens that are available within the Scene
@@ -142,9 +130,7 @@ export default class TokenLayer<
      */
     _updatePlannedMovements(
         user: User,
-        plannedMovements: {
-            [tokenId: string]: TokenPlannedMovement | null;
-        } | null,
+        plannedMovements: { [tokenId: string]: TokenPlannedMovement | null } | null,
     ): void;
 
     /**
@@ -153,10 +139,7 @@ export default class TokenLayer<
      */
     protected _getOccludableTokens(): TObject[];
 
-    override _getMovableObjects(
-        ids?: string[],
-        includeLocked?: boolean,
-    ): TObject[];
+    override _getMovableObjects(ids?: string[], includeLocked?: boolean): TObject[];
 
     override _getCopyableObjects(options: { cut?: boolean }): TObject[];
 
@@ -168,9 +151,7 @@ export default class TokenLayer<
 
     protected override _onCycleViewKey(event: KeyboardEvent): boolean;
 
-    protected override _confirmDeleteKey(
-        documents: TObject["document"][],
-    ): Promise<boolean>;
+    protected override _confirmDeleteKey(documents: TObject["document"][]): Promise<boolean>;
 
     static override prepareSceneControls(): SceneControl;
 
@@ -188,34 +169,18 @@ export default class TokenLayer<
      */
     _onDropActorData(
         event: DragEvent,
-        data: {
-            type: "Actor";
-            uuid: string;
-            x: number;
-            y: number;
-            elevation?: number;
-        },
+        data: { type: "Actor"; uuid: string; x: number; y: number; elevation?: number },
     ): Promise<TObject>;
 
-    protected override _onClickLeft(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onClickLeft(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onClickLeft2(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onClickLeft2(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onClickRight(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onClickRight(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onClickRight2(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onClickRight2(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftCancel(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftCancel(event: PlaceablesLayerPointerEvent<TObject>): void;
 
     protected override _onMouseWheel(event: WheelEvent): Promise<TObject[]>;
 }

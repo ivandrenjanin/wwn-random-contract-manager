@@ -30,10 +30,5 @@ export default class ProseMirrorContentLinkPlugin extends ProseMirrorPlugin {
      * @param slice A slice of editor content.
      * @param moved Whether the slice has been moved from a different part of the editor.
      */
-    protected _onDrop(
-        view: EditorView,
-        event: DragEvent,
-        slice: Slice,
-        moved: boolean,
-    ): boolean | void;
+    protected _onDrop(view: EditorView, event: DragEvent, slice: Slice, moved: boolean): boolean | void;
 }

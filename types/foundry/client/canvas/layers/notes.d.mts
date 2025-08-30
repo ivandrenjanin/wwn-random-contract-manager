@@ -1,17 +1,13 @@
 import { SceneControl } from "@client/applications/ui/scene-controls.mjs";
 import Note from "../placeables/note.d.mjs";
 import { PlaceablesLayerOptions } from "./_types.mjs";
-import PlaceablesLayer, {
-    PlaceablesLayerPointerEvent,
-} from "./base/placeables-layer.mjs";
+import PlaceablesLayer, { PlaceablesLayerPointerEvent } from "./base/placeables-layer.mjs";
 
 /**
  * The Notes Layer which contains Note canvas objects.
  * @category Canvas
  */
-export default class NotesLayer<
-    TObject extends Note = Note,
-> extends PlaceablesLayer<TObject> {
+export default class NotesLayer<TObject extends Note = Note> extends PlaceablesLayer<TObject> {
     static override get layerOptions(): PlaceablesLayerOptions;
 
     static override documentName: "Note";
@@ -44,10 +40,7 @@ export default class NotesLayer<
      * @param [options.duration=250]  The speed of the pan animation in milliseconds.
      * @returns  A Promise which resolves once the pan animation has concluded.
      */
-    panToNote(
-        note: TObject,
-        options?: { scale?: number; duration?: number },
-    ): Promise<void>;
+    panToNote(note: TObject, options?: { scale?: number; duration?: number }): Promise<void>;
 
     static override prepareSceneControls(): SceneControl;
 
@@ -55,9 +48,7 @@ export default class NotesLayer<
     /*  Event Handlers                              */
     /* -------------------------------------------- */
 
-    protected override _onClickLeft(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): Promise<void>;
+    protected override _onClickLeft(event: PlaceablesLayerPointerEvent<TObject>): Promise<void>;
 
     /**
      * Handle JournalEntry document drop data

@@ -39,36 +39,19 @@ export class HexagonalGrid extends BaseGrid {
     override getOffset(coords: GridCoordinates2D): GridOffset2D;
     override getOffset(coords: GridCoordinates3D): GridOffset3D;
 
-    override getOffsetRange(
-        bounds: Rectangle,
-    ): [number, number, number, number];
+    override getOffsetRange(bounds: Rectangle): [number, number, number, number];
 
     override getAdjacentOffsets(coords: GridCoordinates2D): GridOffset2D[];
     override getAdjacentOffsets(coords: GridCoordinates3D): GridOffset3D[];
 
-    override testAdjacency(
-        coords1: GridCoordinates2D,
-        coords2: GridCoordinates2D,
-    ): boolean;
-    override testAdjacency(
-        coords1: GridCoordinates3D,
-        coords2: GridCoordinates3D,
-    ): boolean;
+    override testAdjacency(coords1: GridCoordinates2D, coords2: GridCoordinates2D): boolean;
+    override testAdjacency(coords1: GridCoordinates3D, coords2: GridCoordinates3D): boolean;
 
-    override getShiftedOffset(
-        coords: GridCoordinates2D,
-        direction: MovementDirection,
-    ): GridOffset2D;
-    override getShiftedOffset(
-        coords: GridCoordinates3D,
-        direction: MovementDirection,
-    ): GridOffset3D;
+    override getShiftedOffset(coords: GridCoordinates2D, direction: MovementDirection): GridOffset2D;
+    override getShiftedOffset(coords: GridCoordinates3D, direction: MovementDirection): GridOffset3D;
 
     override getShiftedPoint(point: Point, direction: MovementDirection): Point;
-    override getShiftedPoint(
-        point: ElevatedPoint,
-        direction: MovementDirection,
-    ): ElevatedPoint;
+    override getShiftedPoint(point: ElevatedPoint, direction: MovementDirection): ElevatedPoint;
 
     /**
      * Returns the cube coordinates of the grid space corresponding to the given coordinates.
@@ -92,14 +75,8 @@ export class HexagonalGrid extends BaseGrid {
      * @param  coords    The coordinates
      * @param  direction The direction (see {@link CONST.MOVEMENT_DIRECTIONS})
      */
-    getShiftedCube(
-        coords: HexagonalGridCoordinates2D,
-        direction: MovementDirection,
-    ): HexagonalGridCube2D;
-    getShiftedCube(
-        coords: HexagonalGridCoordinates3D,
-        direction: MovementDirection,
-    ): HexagonalGridCube3D;
+    getShiftedCube(coords: HexagonalGridCoordinates2D, direction: MovementDirection): HexagonalGridCube2D;
+    getShiftedCube(coords: HexagonalGridCoordinates3D, direction: MovementDirection): HexagonalGridCube3D;
 
     override getTopLeftPoint(coords: GridCoordinates2D): Point;
     override getTopLeftPoint(coords: GridCoordinates3D): ElevatedPoint;
@@ -111,27 +88,14 @@ export class HexagonalGrid extends BaseGrid {
 
     override getVertices(coords: GridCoordinates2D): Point[];
 
-    override getSnappedPoint(
-        point: Point,
-        behavior: GridSnappingBehavior,
-    ): Point;
-    override getSnappedPoint(
-        point: ElevatedPoint,
-        behavior: GridSnappingBehavior,
-    ): ElevatedPoint;
+    override getSnappedPoint(point: Point, behavior: GridSnappingBehavior): Point;
+    override getSnappedPoint(point: ElevatedPoint, behavior: GridSnappingBehavior): ElevatedPoint;
 
     override calculateDimensions(
         sceneWidth: number,
         sceneHeight: number,
         padding: number,
-    ): {
-        width: number;
-        height: number;
-        x: number;
-        y: number;
-        rows: number;
-        columns: number;
-    };
+    ): { width: number; height: number; x: number; y: number; rows: number; columns: number };
 
     protected override _measurePath(
         waypoints: GridMeasurePathWaypointData2D[],
@@ -147,11 +111,7 @@ export class HexagonalGrid extends BaseGrid {
     override getDirectPath(waypoints: GridCoordinates2D[]): GridOffset2D[];
     override getDirectPath(waypoints: GridCoordinates3D[]): GridOffset3D[];
 
-    override getTranslatedPoint(
-        point: Point,
-        direction: number,
-        distance: number,
-    ): Point;
+    override getTranslatedPoint(point: Point, direction: number, distance: number): Point;
 
     override getCircle(center: Point, radius: number): Point[];
 
@@ -215,14 +175,8 @@ export class HexagonalGrid extends BaseGrid {
      * @param   b    The second cube coordinates
      * @returns      The distance between the two cube coordinates in hexagons
      */
-    static cubeDistance(
-        a: HexagonalGridCube2D,
-        b: HexagonalGridCube2D,
-    ): GridOffset2D;
-    static cubeDistance(
-        a: HexagonalGridCube3D,
-        b: HexagonalGridCube3D,
-    ): GridOffset3D;
+    static cubeDistance(a: HexagonalGridCube2D, b: HexagonalGridCube2D): GridOffset2D;
+    static cubeDistance(a: HexagonalGridCube3D, b: HexagonalGridCube3D): GridOffset3D;
 }
 
 export interface HexagonalGrid extends BaseGrid {

@@ -28,9 +28,7 @@ interface PingDrawOptions<TUser extends User> {
  * 2) Ruler measurement
  * 3) Map pings
  */
-export default class ControlsLayer<
-    TUser extends User = User,
-> extends InteractionLayer {
+export default class ControlsLayer<TUser extends User = User> extends InteractionLayer {
     // Always interactive even if disabled for doors controls
     override interactiveChildren: true;
 
@@ -117,10 +115,7 @@ export default class ControlsLayer<
      * @param event   The triggering canvas interaction event.
      * @param origin  The local canvas coordinates of the mousepress.
      */
-    protected _onLongPress(
-        event: PIXI.FederatedEvent,
-        origin: PIXI.Point,
-    ): void;
+    protected _onLongPress(event: PIXI.FederatedEvent, origin: PIXI.Point): void;
 
     /** Handle the canvas panning to a new view. */
     protected _onCanvasPan(): void;
@@ -154,10 +149,7 @@ export default class ControlsLayer<
      * @param user  The User for whom to update the Ruler
      * @param data  The path and hidden state of the Ruler
      */
-    updateRuler(
-        user: TUser,
-        data: { path: ElevatedPoint[]; hidden: boolean } | null,
-    ): Promise<void>;
+    updateRuler(user: TUser, data: { path: ElevatedPoint[]; hidden: boolean } | null): Promise<void>;
 
     /**
      * Handle a broadcast ping.
@@ -176,10 +168,7 @@ export default class ControlsLayer<
      * @param [options]  Additional options to configure how the ping is drawn.
      * @returns  A promise which resolves once the Ping has been drawn and animated.
      */
-    drawOffscreenPing(
-        position: Point,
-        options?: PingOptions & PingOffscreenDrawOptions<TUser>,
-    ): Promise<boolean>;
+    drawOffscreenPing(position: Point, options?: PingOptions & PingOffscreenDrawOptions<TUser>): Promise<boolean>;
 
     /**
      * Draw a ping on the canvas.
@@ -188,8 +177,5 @@ export default class ControlsLayer<
      * @param [options]  Additional options to configure how the ping is drawn.
      * @returns  A promise which resolves once the Ping has been drawn and animated.
      */
-    drawPing(
-        position: Point,
-        options?: PingOptions & PingDrawOptions<TUser>,
-    ): Promise<boolean>;
+    drawPing(position: Point, options?: PingOptions & PingDrawOptions<TUser>): Promise<boolean>;
 }

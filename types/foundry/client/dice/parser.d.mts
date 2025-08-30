@@ -24,10 +24,7 @@ export default class RollParser {
      * @param term   The term.
      * @param flavor Associated flavor text.
      */
-    protected _onStringTerm(
-        term: string,
-        flavor?: string | null,
-    ): StringParseNode;
+    protected _onStringTerm(term: string, flavor?: string | null): StringParseNode;
 
     /**
      * Collapse multiple additive operators into a single one.

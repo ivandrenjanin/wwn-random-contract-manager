@@ -1,13 +1,7 @@
-import {
-    PointSourcePolygon,
-    PointSourcePolygonConfig,
-} from "../geometry/_module.mjs";
+import { PointSourcePolygon, PointSourcePolygonConfig } from "../geometry/_module.mjs";
 import VisionMode from "../perception/vision-mode.mjs";
 import { AmbientLight, Token } from "../placeables/_module.mjs";
-import {
-    AdaptiveLightingShader,
-    AdaptiveVisionShader,
-} from "../rendering/shaders/_module.mjs";
+import { AdaptiveLightingShader, AdaptiveVisionShader } from "../rendering/shaders/_module.mjs";
 import { PointEffectSource } from "./point-effect-source.mjs";
 import RenderedEffectSource, {
     RenderedEffectLayerConfig,
@@ -16,9 +10,7 @@ import RenderedEffectSource, {
 } from "./rendered-effect-source.mjs";
 
 declare const RenderedPointEffectSource: {
-    new <TObject extends AmbientLight | Token>(
-        ...args: any
-    ): RenderedEffectSource<TObject> & PointEffectSource;
+    new <TObject extends AmbientLight | Token>(...args: any): RenderedEffectSource<TObject> & PointEffectSource;
 } & Omit<typeof RenderedEffectSource, "new"> &
     typeof PointEffectSource;
 
@@ -47,10 +39,7 @@ export default class PointVisionSource<
 
     static override defaultData: RenderedEffectSourceData;
 
-    static override get _layers(): Record<
-        "background" | "coloration" | "illumination",
-        RenderedEffectLayerConfig
-    >;
+    static override get _layers(): Record<"background" | "coloration" | "illumination", RenderedEffectLayerConfig>;
 
     /* -------------------------------------------- */
     /*  Vision Source Attributes                    */
@@ -113,10 +102,7 @@ export default class PointVisionSource<
 
     protected override _configure(changes: object): void;
 
-    protected override _configureLayer(
-        layer: RenderedEffectSourceLayer,
-        layerId: string,
-    ): void;
+    protected override _configureLayer(layer: RenderedEffectSourceLayer, layerId: string): void;
 
     protected override _getPolygonConfiguration(): PointSourcePolygonConfig;
 
@@ -138,10 +124,7 @@ export default class PointVisionSource<
     /*  Shader Management                           */
     /* -------------------------------------------- */
 
-    protected override _configureShaders(): Record<
-        string,
-        typeof AdaptiveLightingShader
-    >;
+    protected override _configureShaders(): Record<string, typeof AdaptiveLightingShader>;
 
     protected override _updateColorationUniforms(): void;
 
@@ -149,19 +132,14 @@ export default class PointVisionSource<
 
     protected override _updateBackgroundUniforms(): void;
 
-    protected override _updateCommonUniforms(
-        shader: AdaptiveLightingShader,
-    ): void;
+    protected override _updateCommonUniforms(shader: AdaptiveLightingShader): void;
 
     /**
      * Update layer uniforms according to vision mode uniforms, if any.
      * @param shader The shader being updated.
      * @param vmUniforms The targeted layer.
      */
-    protected _updateVisionModeUniforms(
-        shader: AdaptiveVisionShader,
-        vmUniforms: unknown[],
-    ): void;
+    protected _updateVisionModeUniforms(shader: AdaptiveVisionShader, vmUniforms: unknown[]): void;
 }
 
 export interface VisionSourceData extends RenderedEffectSourceData {

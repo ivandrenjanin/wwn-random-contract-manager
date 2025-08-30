@@ -14,18 +14,14 @@ export default class Adventure extends ClientDocumentMixin(BaseAdventure) {
      * @param [options.dialog=true] Display a warning dialog if existing documents would be overwritten
      * @returns The import result
      */
-    import(
-        options?: { dialog?: boolean } & Record<string, unknown>,
-    ): Promise<AdventureImportResult>;
+    import(options?: { dialog?: boolean } & Record<string, unknown>): Promise<AdventureImportResult>;
 
     /**
      * Prepare Adventure data for import into the World.
      * @param [options] Options passed in from the import dialog to configure the import behavior.
      * @param [options.importFields]  A subset of adventure fields to import.
      */
-    prepareImport(options?: {
-        importFields?: string[];
-    }): Promise<AdventureImportData>;
+    prepareImport(options?: { importFields?: string[] }): Promise<AdventureImportData>;
 
     /**
      * Execute an Adventure import workflow, creating and updating documents in the World.

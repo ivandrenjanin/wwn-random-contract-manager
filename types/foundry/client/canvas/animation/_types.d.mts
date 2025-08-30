@@ -50,13 +50,7 @@ export interface CanvasAnimationOptions {
     easing?: CanvasAnimationEasingFunction | undefined;
 
     /** A callback function which fires after every frame */
-    ontick?:
-        | ((
-              elapsedMS: number,
-              animation: CanvasAnimationData,
-              data: TokenAnimationData,
-          ) => void)
-        | undefined;
+    ontick?: ((elapsedMS: number, animation: CanvasAnimationData, data: TokenAnimationData) => void) | undefined;
 
     /** The animation isn't started until this promise resolves */
     wait?: Promise<any> | undefined;

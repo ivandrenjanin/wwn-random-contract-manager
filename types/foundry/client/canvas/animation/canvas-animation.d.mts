@@ -1,8 +1,4 @@
-import {
-    CanvasAnimationAttribute,
-    CanvasAnimationData,
-    CanvasAnimationOptions,
-} from "./_types.mjs";
+import { CanvasAnimationAttribute, CanvasAnimationData, CanvasAnimationOptions } from "./_types.mjs";
 
 /**
  * A helper class providing utility methods for PIXI Canvas animation
@@ -73,10 +69,7 @@ export default class CanvasAnimation {
      * foundry.canvas.animation.CanvasAnimation.animate(attributes, {duration:500});
      * ```
      */
-    static animate(
-        attributes: CanvasAnimationAttribute[],
-        options?: CanvasAnimationOptions,
-    ): Promise<boolean>;
+    static animate(attributes: CanvasAnimationAttribute[], options?: CanvasAnimationOptions): Promise<boolean>;
 
     /**
      * Retrieve an animation currently in progress by its name

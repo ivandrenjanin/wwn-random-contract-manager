@@ -5,9 +5,7 @@ import { CanvasTransformMixin } from "./primary-canvas-object.mjs";
  * They allow to group PrimarySpriteMesh in a single Container.
  * The container elevation is replacing individual sprite elevation.
  */
-export default class PrimaryCanvasContainer extends CanvasTransformMixin(
-    PIXI.Container,
-) {
+export default class PrimaryCanvasContainer extends CanvasTransformMixin(PIXI.Container) {
     /* -------------------------------------------- */
     /*  Properties                                  */
     /* -------------------------------------------- */

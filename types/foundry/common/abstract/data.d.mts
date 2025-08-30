@@ -72,10 +72,7 @@ export default abstract class DataModel<
      * @param [options] Options provided to the model constructor
      * @returns Migrated and cleaned source data which will be stored to the model instance
      */
-    protected _initializeSource(
-        data: object,
-        options?: DataModelConstructionContext<TParent>,
-    ): this["_source"];
+    protected _initializeSource(data: object, options?: DataModelConstructionContext<TParent>): this["_source"];
 
     /**
      * Clean a data source object to conform to a specific provided schema.
@@ -83,20 +80,14 @@ export default abstract class DataModel<
      * @param [options={}] Additional options which are passed to field cleaning methods
      * @returns The cleaned source data
      */
-    static cleanData(
-        source?: object,
-        options?: Record<string, unknown>,
-    ): fields.SourceFromSchema<DataSchema>;
+    static cleanData(source?: object, options?: Record<string, unknown>): fields.SourceFromSchema<DataSchema>;
 
     /* ---------------------------------------- */
     /*  Data Initialization                     */
     /* ---------------------------------------- */
 
     /** A generator that orders the DataFields in the DataSchema into an expected initialization order. */
-    protected static _initializationOrder(): Generator<
-        [string, fields.DataField],
-        void
-    >;
+    protected static _initializationOrder(): Generator<[string, fields.DataField], void>;
 
     /**
      * Initialize the instance by copying data from the source object to instance attributes.
@@ -114,10 +105,7 @@ export default abstract class DataModel<
      * @param context Context options passed to the data model constructor
      * @returns The cloned Document instance
      */
-    clone(
-        data?: Record<string, unknown>,
-        context?: DataModelConstructionContext<TParent>,
-    ): this;
+    clone(data?: Record<string, unknown>, context?: DataModelConstructionContext<TParent>): this;
 
     /* ---------------------------------------- */
     /*  Data Validation Methods                 */
@@ -179,10 +167,7 @@ export default abstract class DataModel<
      * @returns An object containing differential keys and values that were changed
      * @throws An error if the requested data model changes were invalid
      */
-    updateSource(
-        changes?: Record<string, unknown>,
-        options?: DataModelUpdateOptions,
-    ): DeepPartial<this["_source"]>;
+    updateSource(changes?: Record<string, unknown>, options?: DataModelUpdateOptions): DeepPartial<this["_source"]>;
 
     /* ---------------------------------------- */
     /*  Serialization and Storage               */
@@ -209,10 +194,7 @@ export default abstract class DataModel<
      * @param [context]    Model construction context
      * @param [context.strict=false]  Models created from trusted source data are validated non-strictly
      */
-    static fromSource(
-        source: object,
-        context?: { strict?: boolean; [key: string]: unknown },
-    ): DataModel;
+    static fromSource(source: object, context?: { strict?: boolean; [key: string]: unknown }): DataModel;
 
     /**
      * Create a DataModel instance using a provided serialized JSON string.
@@ -230,10 +212,7 @@ export default abstract class DataModel<
      * @param source The candidate source data from which the model will be constructed
      * @returns Migrated source data, if necessary
      */
-    static migrateData<T extends DataModel>(
-        this: ConstructorOf<T>,
-        source: Record<string, unknown>,
-    ): T["_source"];
+    static migrateData<T extends DataModel>(this: ConstructorOf<T>, source: Record<string, unknown>): T["_source"];
 
     /**
      * Wrap data migration in a try/catch which attempts it safely

@@ -62,10 +62,7 @@ export default abstract class BaseLightSource<
      */
     static get ANIMATIONS(): LightSourceAnimationConfig;
 
-    static override get _layers(): Record<
-        "background" | "coloration" | "illumination",
-        RenderedEffectLayerConfig
-    >;
+    static override get _layers(): Record<"background" | "coloration" | "illumination", RenderedEffectLayerConfig>;
 
     static override defaultData: LightSourceData;
 
@@ -108,10 +105,7 @@ export default abstract class BaseLightSource<
      * @param options.intensity The animation intensity, from 1 to 10
      * @param options.reverse Reverse the animation direction
      */
-    animateTorch(
-        dt: number,
-        options?: { speed?: number; intensity?: number; reverse?: boolean },
-    ): void;
+    animateTorch(dt: number, options?: { speed?: number; intensity?: number; reverse?: boolean }): void;
 
     /**
      * An animation with flickering ratio and light intensity
@@ -124,12 +118,7 @@ export default abstract class BaseLightSource<
      */
     animateFlickering(
         dt: number,
-        options?: {
-            speed?: number;
-            intensity?: number;
-            amplification?: number;
-            reverse?: boolean;
-        },
+        options?: { speed?: number; intensity?: number; amplification?: number; reverse?: boolean },
     ): void;
 
     /**
@@ -140,10 +129,7 @@ export default abstract class BaseLightSource<
      * @param options.intensity The animation intensity, from 1 to 10
      * @param options.reverse Reverse the animation direction
      */
-    animatePulse(
-        dt: number,
-        options?: { speed?: number; intensity?: number; reverse?: boolean },
-    ): void;
+    animatePulse(dt: number, options?: { speed?: number; intensity?: number; reverse?: boolean }): void;
 
     /**
      * A sound-reactive animation that uses bass/mid/treble blending to control certain shader uniforms.
@@ -157,10 +143,7 @@ export default abstract class BaseLightSource<
      *                          frequencies dominate around intensity=5.
      * @param options.reverse Whether to invert the final amplitude as 1 - amplitude.
      */
-    animateSoundPulse(
-        dt: number,
-        options?: { speed?: number; intensity?: number; reverse?: boolean },
-    ): void;
+    animateSoundPulse(dt: number, options?: { speed?: number; intensity?: number; reverse?: boolean }): void;
 }
 
 export {};

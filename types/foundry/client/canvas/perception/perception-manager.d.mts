@@ -16,39 +16,21 @@ export default class PerceptionManager {
         refreshEdges: RenderFlag;
 
         // Light and Darkness Sources
-        initializeLighting: {
-            propagate: ["initializeDarknessSources", "initializeLightSources"];
-        };
-        initializeDarknessSources: {
-            propagate: ["refreshLighting", "refreshVision", "refreshEdges"];
-        };
-        initializeLightSources: {
-            propagate: ["refreshLighting", "refreshVision"];
-        };
+        initializeLighting: { propagate: ["initializeDarknessSources", "initializeLightSources"] };
+        initializeDarknessSources: { propagate: ["refreshLighting", "refreshVision", "refreshEdges"] };
+        initializeLightSources: { propagate: ["refreshLighting", "refreshVision"] };
         refreshLighting: { propagate: ["refreshLightSources"] };
         refreshLightSources: RenderFlag;
 
         // Vision
-        initializeVisionModes: {
-            propagate: [
-                "refreshVisionSources",
-                "refreshLighting",
-                "refreshPrimary",
-            ];
-        };
-        initializeVision: {
-            propagate: ["initializeVisionModes", "refreshVision"];
-        };
-        refreshVision: {
-            propagate: ["refreshVisionSources", "refreshOcclusionMask"];
-        };
+        initializeVisionModes: { propagate: ["refreshVisionSources", "refreshLighting", "refreshPrimary"] };
+        initializeVision: { propagate: ["initializeVisionModes", "refreshVision"] };
+        refreshVision: { propagate: ["refreshVisionSources", "refreshOcclusionMask"] };
         refreshVisionSources: RenderFlag;
 
         // Primary Canvas Group
         refreshPrimary: RenderFlag;
-        refreshOcclusion: {
-            propagate: ["refreshOcclusionStates", "refreshOcclusionMask"];
-        };
+        refreshOcclusion: { propagate: ["refreshOcclusionStates", "refreshOcclusionMask"] };
         refreshOcclusionStates: RenderFlag;
         refreshOcclusionMask: RenderFlag;
 

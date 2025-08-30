@@ -3,9 +3,7 @@
  * @category Mixins
  * @param Shader The parent ShaderClass class being mixed.
  */
-export default function BaseShaderMixin<
-    TShader extends typeof PIXI.Filter | typeof PIXI.Shader,
->(
+export default function BaseShaderMixin<TShader extends typeof PIXI.Filter | typeof PIXI.Shader>(
     Shader: TShader,
 ): {
     new (
@@ -116,9 +114,5 @@ export default function BaseShaderMixin<
      */
     GLSL1_COMPATIBILITY_FRAGMENT: string;
 
-    from(
-        vertexSrc?: string,
-        fragmentSrc?: string,
-        uniforms?: PIXI.utils.Dict<any>,
-    ): TShader;
+    from(vertexSrc?: string, fragmentSrc?: string, uniforms?: PIXI.utils.Dict<any>): TShader;
 };

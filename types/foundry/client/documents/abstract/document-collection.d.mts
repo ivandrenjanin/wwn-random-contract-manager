@@ -1,8 +1,6 @@
 import { ApplicationRenderOptions } from "@client/applications/_types.mjs";
 import ApplicationV2 from "@client/applications/api/application.mjs";
-import Application, {
-    AppV1RenderOptions,
-} from "@client/appv1/api/application-v1.mjs";
+import Application, { AppV1RenderOptions } from "@client/appv1/api/application-v1.mjs";
 import {
     DatabaseAction,
     DatabaseCreateOperation,
@@ -16,9 +14,7 @@ import User from "../user.mjs";
 /**
  * A Collection of Document objects within the Foundry Virtual Tabletop framework.
  */
-export default abstract class DocumentCollection<
-    TDocument extends Document,
-> extends Collection<string, TDocument> {
+export default abstract class DocumentCollection<TDocument extends Document> extends Collection<string, TDocument> {
     /**
      * @param data An array of data objects from which to create document instances
      */
@@ -50,10 +46,7 @@ export default abstract class DocumentCollection<
     override set(id: string, document: TDocument): this;
 
     /** Render any Applications associated with this DocumentCollection. */
-    render(
-        force: boolean,
-        options?: AppV1RenderOptions | ApplicationRenderOptions,
-    ): void;
+    render(force: boolean, options?: AppV1RenderOptions | ApplicationRenderOptions): void;
 
     /* -------------------------------------------- */
     /*  Database Operations                         */
@@ -68,9 +61,7 @@ export default abstract class DocumentCollection<
      * @return An array of updated data once the operation is complete
      */
     updateAll(
-        transformation:
-            | Record<string, unknown>
-            | ((document: TDocument) => Record<string, unknown>),
+        transformation: Record<string, unknown> | ((document: TDocument) => Record<string, unknown>),
         condition?: ((document: TDocument) => boolean) | null,
         options?: DatabaseCreateOperation<null>,
     ): Promise<TDocument[]>;

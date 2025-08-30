@@ -14,9 +14,8 @@ export default class BaseRegionBehavior<
     static override defineSchema(): RegionBehaviorSchema;
 }
 
-export default interface BaseRegionBehavior<
-    TParent extends BaseRegion | null = BaseRegion | null,
-> extends abstract.Document<TParent, RegionBehaviorSchema>,
+export default interface BaseRegionBehavior<TParent extends BaseRegion | null = BaseRegion | null>
+    extends abstract.Document<TParent, RegionBehaviorSchema>,
         fields.ModelPropsFromSchema<RegionBehaviorSchema> {
     get documentName(): RegionBehaviorMetadata["name"];
 }
@@ -39,10 +38,7 @@ interface RegionBehaviorMetadata extends abstract.DocumentMetadata {
     isEmbedded: true;
 }
 
-type RegionBehaviorSchema<
-    TType extends string = string,
-    TSystemData extends object = object,
-> = {
+type RegionBehaviorSchema<TType extends string = string, TSystemData extends object = object> = {
     /** The _id which uniquely identifies this RegionBehavior document */
     _id: fields.DocumentIdField;
     /** The name used to describe the RegionBehavior */

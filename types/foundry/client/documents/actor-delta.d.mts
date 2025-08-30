@@ -1,15 +1,6 @@
-import {
-    DatabaseDeleteCallbackOptions,
-    DatabaseUpdateCallbackOptions,
-} from "@common/abstract/_types.mjs";
+import { DatabaseDeleteCallbackOptions, DatabaseUpdateCallbackOptions } from "@common/abstract/_types.mjs";
 import Document from "@common/abstract/document.mjs";
-import {
-    Actor,
-    BaseActorDelta,
-    BaseToken,
-    BaseUser,
-    TokenDocument,
-} from "./_module.mjs";
+import { Actor, BaseActorDelta, BaseToken, BaseUser, TokenDocument } from "./_module.mjs";
 import { ClientDocument } from "./abstract/client-document.mjs";
 
 declare const ClientBaseActorDelta: new <TParent extends BaseToken | null>(
@@ -23,15 +14,10 @@ interface ClientBaseActorDelta<TParent extends BaseToken | null>
  * The client-side ActorDelta embedded document which extends the common BaseActorDelta document model.
  * @see {@link TokenDocument}  The TokenDocument document type which contains ActorDelta embedded documents.
  */
-export default class ActorDelta<
-    TParent extends TokenDocument | null,
-> extends ClientBaseActorDelta<TParent> {
+export default class ActorDelta<TParent extends TokenDocument | null> extends ClientBaseActorDelta<TParent> {
     syntheticActor?: NonNullable<NonNullable<TParent>["actor"]> | undefined;
 
-    protected override _configure(options?: {
-        pack?: string | null;
-        parentCollection?: string | null;
-    }): void;
+    protected override _configure(options?: { pack?: string | null; parentCollection?: string | null }): void;
 
     protected override _initialize({
         sceneReset,
@@ -68,9 +54,7 @@ export default class ActorDelta<
      *                                           order to re-retrieve embedded Documents from the synthetic Actor.
      * @internal
      */
-    protected _createSyntheticActor(options?: {
-        reinitializeCollections?: boolean;
-    }): void;
+    protected _createSyntheticActor(options?: { reinitializeCollections?: boolean }): void;
 
     /** Update the synthetic Actor instance with changes from the delta or the base Actor. */
     updateSyntheticActor(): void;
@@ -86,18 +70,13 @@ export default class ActorDelta<
      * @param doc  The parent whose immediate children have been modified.
      * @internal
      */
-    protected _handleDeltaCollectionUpdates(
-        doc: foundry.abstract.Document,
-    ): void;
+    protected _handleDeltaCollectionUpdates(doc: foundry.abstract.Document): void;
 
     /* -------------------------------------------- */
     /*  Database Operations                         */
     /* -------------------------------------------- */
 
-    protected override _preDelete(
-        options: DatabaseDeleteCallbackOptions,
-        user: BaseUser,
-    ): Promise<boolean | void>;
+    protected override _preDelete(options: DatabaseDeleteCallbackOptions, user: BaseUser): Promise<boolean | void>;
 
     protected override _onUpdate(
         data: DeepPartial<this["_source"]>,
@@ -105,10 +84,7 @@ export default class ActorDelta<
         userId: string,
     ): void;
 
-    protected _onDelete(
-        options: DatabaseDeleteCallbackOptions,
-        userId: string,
-    ): void;
+    protected _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 
     override _dispatchDescendantDocumentEvents(
         event: string,

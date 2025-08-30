@@ -1,7 +1,4 @@
-import {
-    CanvasVisibilityTest,
-    CanvasVisibilityTestConfiguration,
-} from "@client/_module.mjs";
+import { CanvasVisibilityTest, CanvasVisibilityTestConfiguration } from "@client/_module.mjs";
 import * as fields from "../../../common/data/fields.mjs";
 import { PlaceableObject, Token } from "../placeables/_module.mjs";
 import PointVisionSource from "../sources/point-vision-source.mjs";
@@ -10,10 +7,7 @@ import PointVisionSource from "../sources/point-vision-source.mjs";
  * A Detection Mode which can be associated with any kind of sense/vision/perception.
  * A token could have multiple detection modes.
  */
-export default class DetectionMode extends foundry.abstract.DataModel<
-    null,
-    DetectionModeSchema
-> {
+export default class DetectionMode extends foundry.abstract.DataModel<null, DetectionModeSchema> {
     id: string;
     label: string;
     tokenConfig: boolean;
@@ -67,10 +61,7 @@ export default class DetectionMode extends foundry.abstract.DataModel<
      * @param target       The target object being tested
      * @returns Can the target object theoretically be detected by this vision source?
      */
-    protected _canDetect(
-        visionSource: PointVisionSource<Token>,
-        target: PlaceableObject,
-    ): boolean;
+    protected _canDetect(visionSource: PointVisionSource<Token>, target: PlaceableObject): boolean;
 
     /**
      * Evaluate a single test point to confirm whether it is visible.
@@ -146,8 +137,7 @@ export interface TokenDetectionMode {
     range: number | null;
 }
 
-export type DetectionType =
-    (typeof DetectionMode.DETECTION_TYPES)[keyof typeof DetectionMode.DETECTION_TYPES];
+export type DetectionType = (typeof DetectionMode.DETECTION_TYPES)[keyof typeof DetectionMode.DETECTION_TYPES];
 
 export type DetectionModeSchema = {
     id: fields.StringField;

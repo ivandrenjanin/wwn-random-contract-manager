@@ -1,8 +1,4 @@
-import {
-    KeybindingAction,
-    KeybindingActionBinding,
-    KeybindingActionConfig,
-} from "@client/_types.mjs";
+import { KeybindingAction, KeybindingActionBinding, KeybindingActionConfig } from "@client/_types.mjs";
 
 /**
  * A class responsible for managing defined game keybinding.
@@ -87,11 +83,7 @@ export default class ClientKeybindings {
      * });
      * ```
      */
-    register(
-        namespace: string,
-        action: string,
-        data: KeybindingActionConfig,
-    ): void;
+    register(namespace: string, action: string, data: KeybindingActionConfig): void;
 
     /**
      * Get the current Bindings of a given namespace's Keybinding Action
@@ -123,11 +115,7 @@ export default class ClientKeybindings {
      * ]);
      * ```
      */
-    set(
-        namespace: string,
-        action: string,
-        bindings: KeybindingActionBinding[],
-    ): Promise<void>;
+    set(namespace: string, action: string, bindings: KeybindingActionBinding[]): Promise<void>;
 
     /**
      * Reset all client keybindings back to their default configuration.

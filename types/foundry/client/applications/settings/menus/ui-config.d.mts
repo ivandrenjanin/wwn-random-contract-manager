@@ -27,9 +27,7 @@ export interface GameUIConfiguration {
 /**
  * A submenu that provides UI configuration settings.
  */
-export default class UIConfig extends HandlebarsApplicationMixin(
-    ApplicationV2,
-) {
+export default class UIConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;
@@ -41,9 +39,7 @@ export default class UIConfig extends HandlebarsApplicationMixin(
 
     protected override _preFirstRender(): Promise<void>;
 
-    protected override _prepareContext(
-        options: HandlebarsRenderOptions,
-    ): Promise<ApplicationRenderContext>;
+    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<ApplicationRenderContext>;
 
     protected override _onClose(options: ApplicationClosingOptions): void;
 

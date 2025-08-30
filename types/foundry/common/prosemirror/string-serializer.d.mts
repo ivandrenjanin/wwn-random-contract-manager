@@ -9,10 +9,7 @@ export default class StringSerializer {
      * @param nodes The node output specs.
      * @param marks The mark output specs.
      */
-    constructor(
-        nodes: Record<string, ProseMirrorNodeOutput>,
-        marks: Record<string, ProseMirrorNodeOutput>,
-    );
+    constructor(nodes: Record<string, ProseMirrorNodeOutput>, marks: Record<string, ProseMirrorNodeOutput>);
 
     /**
      * Build a serializer for the given schema.
@@ -27,10 +24,7 @@ export default class StringSerializer {
      * @returns An object describing the outer node, and a reference to the child node where content should be
      *          appended, if applicable.
      */
-    protected _specToStringNode(
-        spec: DOMOutputSpec,
-        inline: boolean,
-    ): { outer: StringNode; content?: StringNode };
+    protected _specToStringNode(spec: DOMOutputSpec, inline: boolean): { outer: StringNode; content?: StringNode };
 
     /**
      * Serialize a ProseMirror fragment into an HTML string.
@@ -51,10 +45,7 @@ export default class StringSerializer {
      * @param mark   The ProseMirror mark.
      * @param inline Does the mark appear in an inline context?
      */
-    protected _serializeMark(
-        mark: Mark,
-        inline: boolean,
-    ): { outer: StringNode; content?: StringNode };
+    protected _serializeMark(mark: Mark, inline: boolean): { outer: StringNode; content?: StringNode };
 }
 
 /**
@@ -72,11 +63,7 @@ export class StringNode {
      * @param [attrs]        The tag attributes.
      * @param [inline=false] Whether the node appears inline or as a block.
      */
-    constructor(
-        tag?: keyof HTMLElementTagNameMap,
-        attrs?: Record<string, string>,
-        inline?: boolean,
-    );
+    constructor(tag?: keyof HTMLElementTagNameMap, attrs?: Record<string, string>, inline?: boolean);
 
     /** Whether the node appears inline or as a block. */
     get inline(): boolean;

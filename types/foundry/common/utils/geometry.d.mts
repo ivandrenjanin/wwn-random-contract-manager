@@ -28,12 +28,7 @@ export function orient2dFast(a: Point, b: Point, c: Point): number;
  *
  * @returns Do the line segments intersect?
  */
-export function lineSegmentIntersects(
-    a: Point,
-    b: Point,
-    c: Point,
-    d: Point,
-): boolean;
+export function lineSegmentIntersects(a: Point, b: Point, c: Point, d: Point): boolean;
 
 /**
  * An internal helper method for computing the intersection between two infinite-length lines.
@@ -46,12 +41,7 @@ export function lineSegmentIntersects(
  *
  * @returns An intersection point, or null if no intersection occurred
  */
-export function lineLineIntersection(
-    a: Point,
-    b: Point,
-    c: Point,
-    d: Point,
-): LineIntersection | null;
+export function lineLineIntersection(a: Point, b: Point, c: Point, d: Point): LineIntersection | null;
 
 /**
  * An internal helper method for computing the intersection between two finite line segments.
@@ -112,13 +102,7 @@ export function closestPointToSegment(c: Point, a: Point, b: Point): Point;
  * @param radius      The radius of the circle
  * @param [epsilon=0] A small tolerance for floating point precision
  */
-export function quadraticIntersection(
-    p0: Point,
-    p1: Point,
-    center: Point,
-    radius: number,
-    epsilon?: number,
-): Point[];
+export function quadraticIntersection(p0: Point, p1: Point, center: Point, radius: number, epsilon?: number): Point[];
 
 declare global {
     /**

@@ -1,7 +1,4 @@
-import {
-    ApplicationConfiguration,
-    ApplicationRenderContext,
-} from "@client/applications/_types.mjs";
+import { ApplicationConfiguration, ApplicationRenderContext } from "@client/applications/_types.mjs";
 import ApplicationV2 from "@client/applications/api/application.mjs";
 import HandlebarsApplicationMixin, {
     HandlebarsTemplatePart,
@@ -10,9 +7,7 @@ import HandlebarsApplicationMixin, {
 /**
  * The application responsible for configuring methods of DiceTerm resolution.
  */
-export default class DiceConfig extends HandlebarsApplicationMixin(
-    ApplicationV2,
-) {
+export default class DiceConfig extends HandlebarsApplicationMixin(ApplicationV2) {
     static DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;

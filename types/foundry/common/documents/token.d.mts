@@ -1,15 +1,6 @@
-import {
-    ElevatedPoint,
-    TokenDimensions,
-    TokenPosition,
-} from "@common/_types.mjs";
+import { ElevatedPoint, TokenDimensions, TokenPosition } from "@common/_types.mjs";
 import Document, { DocumentMetadata } from "@common/abstract/document.mjs";
-import {
-    ImageFilePath,
-    TokenDisplayMode,
-    TokenDisposition,
-    VideoFilePath,
-} from "@common/constants.mjs";
+import { ImageFilePath, TokenDisplayMode, TokenDisposition, VideoFilePath } from "@common/constants.mjs";
 import { GridOffset3D } from "@common/grid/_types.mjs";
 import * as data from "../data/data.mjs";
 import * as fields from "../data/fields.mjs";
@@ -20,9 +11,10 @@ import { BaseActorDelta, BaseScene } from "./_module.mjs";
  * @param data Initial data from which to construct the document.
  * @property data The constructed data object for the document.
  */
-export default class BaseToken<
-    TParent extends BaseScene | null = BaseScene | null,
-> extends Document<TParent, TokenSchema> {
+export default class BaseToken<TParent extends BaseScene | null = BaseScene | null> extends Document<
+    TParent,
+    TokenSchema
+> {
     static override get metadata(): TokenMetadata;
 
     static override defineSchema(): TokenSchema;
@@ -32,22 +24,12 @@ export default class BaseToken<
     /**
      * The fields of the data model for which changes count as a movement action.
      */
-    static readonly MOVEMENT_FIELDS: [
-        "x",
-        "y",
-        "elevation",
-        "width",
-        "height",
-        "shape",
-    ];
+    static readonly MOVEMENT_FIELDS: ["x", "y", "elevation", "width", "height", "shape"];
 
     /**
      * Are the given positions equal?
      */
-    static arePositionsEqual(
-        position1: TokenPosition,
-        position2: TokenPosition,
-    ): boolean;
+    static arePositionsEqual(position1: TokenPosition, position2: TokenPosition): boolean;
 
     /** The default icon used for newly created Token documents */
     static DEFAULT_ICON: ImageFilePath | VideoFilePath;
@@ -78,25 +60,18 @@ export default class BaseToken<
      * @returns The snapped position
      * @internal
      */
-    _gridOffsetToPosition(
-        offset: GridOffset3D,
-        data?: Partial<TokenDimensions>,
-    ): ElevatedPoint;
+    _gridOffsetToPosition(offset: GridOffset3D, data?: Partial<TokenDimensions>): ElevatedPoint;
 
     /**
      * Get the width and height of the Token in pixels.
      * @param data The width and/or height in grid units (must be positive)
      * @returns The width and height in pixels
      */
-    getSize(data?: { width?: number; height?: number }): {
-        width: number;
-        height: number;
-    };
+    getSize(data?: { width?: number; height?: number }): { width: number; height: number };
 }
 
-export default interface BaseToken<
-    TParent extends BaseScene | null = BaseScene | null,
-> extends Document<TParent, TokenSchema>,
+export default interface BaseToken<TParent extends BaseScene | null = BaseScene | null>
+    extends Document<TParent, TokenSchema>,
         fields.ModelPropsFromSchema<TokenSchema> {
     delta: BaseActorDelta<this> | null;
     light: data.LightData<this>;
@@ -119,13 +94,7 @@ type TokenSchema = {
     /** The name used to describe the Token */
     name: fields.StringField<string, string, true>;
     /** The display mode of the Token nameplate, from CONST.TOKEN_DISPLAY_MODES */
-    displayName: fields.NumberField<
-        TokenDisplayMode,
-        TokenDisplayMode,
-        true,
-        false,
-        true
-    >;
+    displayName: fields.NumberField<TokenDisplayMode, TokenDisplayMode, true, false, true>;
     /** The _id of an Actor document which this Token represents */
     actorId: fields.ForeignDocumentField<string>;
     /** Does this Token uniquely represent a singular Actor, or is it one of many? */
@@ -158,12 +127,7 @@ type TokenSchema = {
     rotation: fields.AngleField;
     /** An array of effect icon paths which are displayed on the Token */
     effects: fields.ArrayField<
-        fields.FilePathField<
-            ImageFilePath | VideoFilePath,
-            ImageFilePath | VideoFilePath,
-            true,
-            false
-        >
+        fields.FilePathField<ImageFilePath | VideoFilePath, ImageFilePath | VideoFilePath, true, false>
     >;
     /** The opacity of the token image */
     alpha: fields.AlphaField;

@@ -6,19 +6,14 @@ import StringTree, { StringTreeEntryFilter } from "./string-tree.mjs";
  * Note that this works well for languages with alphabets (latin, cyrillic, korean, etc.), but may need more nuanced
  * handling for languages that compose characters and letters.
  */
-export default class WordTree<
-    TEntry extends object = WordTreeEntry,
-> extends StringTree<TEntry> {
+export default class WordTree<TEntry extends object = WordTreeEntry> extends StringTree<TEntry> {
     /**
      * Insert an entry into the tree.
      * @param string The string key for the entry.
      * @param entry  The entry to store.
      * @returns The node the entry was added to.
      */
-    override addLeaf(
-        string: Iterable<string>,
-        entry: TEntry,
-    ): StringTreeNode<TEntry>;
+    override addLeaf(string: Iterable<string>, entry: TEntry): StringTreeNode<TEntry>;
 
     /**
      * Return entries that match the given string prefix.
@@ -31,10 +26,7 @@ export default class WordTree<
      */
     override lookup(
         prefix: string,
-        options?: {
-            limit?: number;
-            filterEntries?: StringTreeEntryFilter<TEntry>;
-        },
+        options?: { limit?: number; filterEntries?: StringTreeEntryFilter<TEntry> },
     ): TEntry[];
 
     /**

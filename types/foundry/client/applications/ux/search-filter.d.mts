@@ -1,10 +1,5 @@
 export interface SearchFilterCallback {
-    (
-        event: KeyboardEvent,
-        query: string,
-        rgx?: RegExp,
-        content?: HTMLElement | null,
-    ): void;
+    (event: KeyboardEvent, query: string, rgx?: RegExp, content?: HTMLElement | null): void;
 }
 
 /** Options which customize the behavior of the filter */

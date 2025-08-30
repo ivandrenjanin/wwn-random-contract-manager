@@ -50,21 +50,13 @@ export default abstract class AbstractSidebarTab<
     /*  Rendering                                   */
     /* -------------------------------------------- */
 
-    protected override _initializeApplicationOptions(
-        options: DeepPartial<TConfig>,
-    ): TConfig;
+    protected override _initializeApplicationOptions(options: DeepPartial<TConfig>): TConfig;
 
-    protected override _prepareContext(
-        options: TRenderOptions,
-    ): Promise<object>;
+    protected override _prepareContext(options: TRenderOptions): Promise<object>;
 
-    protected override _renderFrame(
-        options: TRenderOptions,
-    ): Promise<HTMLElement>;
+    protected override _renderFrame(options: TRenderOptions): Promise<HTMLElement>;
 
-    override render(
-        options?: boolean | DeepPartial<TRenderOptions>,
-    ): Promise<this>;
+    override render(options?: boolean | DeepPartial<TRenderOptions>): Promise<this>;
 
     /* -------------------------------------------- */
     /*  Public API                                  */
@@ -96,13 +88,7 @@ export default abstract class AbstractSidebarTab<
      */
     protected _onDeactivate(): void;
 
-    protected override _onFirstRender(
-        context: ApplicationRenderContext,
-        options: TRenderOptions,
-    ): Promise<void>;
+    protected override _onFirstRender(context: ApplicationRenderContext, options: TRenderOptions): Promise<void>;
 
-    protected override _onRender(
-        context: ApplicationRenderContext,
-        options: TRenderOptions,
-    ): Promise<void>;
+    protected override _onRender(context: ApplicationRenderContext, options: TRenderOptions): Promise<void>;
 }

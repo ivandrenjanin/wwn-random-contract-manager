@@ -21,8 +21,5 @@ export default class ChevronPing extends Ping {
 
     override animate(): Promise<boolean>;
 
-    protected override _animateFrame(
-        dt: number,
-        animation: CanvasAnimationData,
-    ): void;
+    protected override _animateFrame(dt: number, animation: CanvasAnimationData): void;
 }

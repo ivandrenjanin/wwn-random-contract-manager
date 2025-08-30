@@ -17,17 +17,13 @@ import RegionGeometry from "./regions/geometry.mjs";
  * @see {RegionLayer}
  */
 export default class Region<
-    TDocument extends
-        RegionDocument<Scene | null> = RegionDocument<Scene | null>,
+    TDocument extends RegionDocument<Scene | null> = RegionDocument<Scene | null>,
 > extends PlaceableObject<TDocument> {
     static override embeddedName: "Region";
 
     static override RENDER_FLAGS: {
         redraw: { propagate: ["refresh"] };
-        refresh: {
-            propagate: ["refreshState", "refreshBorder"];
-            alias: boolean;
-        };
+        refresh: { propagate: ["refreshState", "refreshBorder"]; alias: boolean };
         refreshState: object;
         refreshBorder: object;
     };
@@ -66,10 +62,7 @@ export default class Region<
     get clipperPaths(): readonly (readonly ClipperLib.IntPoint[])[];
 
     /** The triangulation of this Region. */
-    get triangulation(): {
-        vertices: Float32Array;
-        indices: Uint16Array | Uint32Array;
-    };
+    get triangulation(): { vertices: Float32Array; indices: Uint16Array | Uint32Array };
 
     /** The geometry of this Region. */
     get geometry(): RegionGeometry;
@@ -96,15 +89,9 @@ export default class Region<
     protected _refreshBorder(): void;
 
     /** @override */
-    protected override _canDrag(
-        user: User,
-        event: PIXI.FederatedPointerEvent,
-    ): boolean;
+    protected override _canDrag(user: User, event: PIXI.FederatedPointerEvent): boolean;
 
-    protected override _canHUD(
-        user: User,
-        event: PIXI.FederatedPointerEvent,
-    ): boolean;
+    protected override _canHUD(user: User, event: PIXI.FederatedPointerEvent): boolean;
 
     protected override _onControl(options: Record<string, unknown>): void;
 
@@ -115,10 +102,7 @@ export default class Region<
         options?: { updateLegend?: boolean; hoverOutOthers?: boolean },
     ): void;
 
-    protected override _onHoverOut(
-        event: PIXI.FederatedPointerEvent,
-        options?: { updateLegend?: boolean },
-    ): void;
+    protected override _onHoverOut(event: PIXI.FederatedPointerEvent, options?: { updateLegend?: boolean }): void;
 
     protected override _overlapsSelection(rectangle: PIXI.Rectangle): boolean;
 

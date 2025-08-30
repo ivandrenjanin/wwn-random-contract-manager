@@ -5,22 +5,15 @@ import { CalendarConfig, TimeComponents, TimeFormatter } from "./_types.mjs";
 /**
  * Game Time Calendar configuration data model.
  */
-export default class CalendarData<
-    TComponents extends TimeComponents = TimeComponents,
-> extends DataModel<null, CalendarDataSchema> {
+export default class CalendarData<TComponents extends TimeComponents = TimeComponents> extends DataModel<
+    null,
+    CalendarDataSchema
+> {
     static override defineSchema(): CalendarDataSchema;
 
-    static formatTimestamp<T extends TimeComponents>(
-        calendar: CalendarData<T>,
-        components: T,
-        options: object,
-    ): string;
+    static formatTimestamp<T extends TimeComponents>(calendar: CalendarData<T>, components: T, options: object): string;
 
-    static formatAgo<T extends TimeComponents>(
-        calendar: CalendarData<T>,
-        components: T,
-        options: object,
-    ): string;
+    static formatAgo<T extends TimeComponents>(calendar: CalendarData<T>, components: T, options: object): string;
 
     /**
      * Expand a world time integer into an object containing the relevant time components.
@@ -35,10 +28,7 @@ export default class CalendarData<
      * @param startTime The starting time. If not provided the current world time is used.
      * @returns The time difference expressed as components
      */
-    difference(
-        endTime: number | TComponents,
-        startTime?: number | TComponents,
-    ): TComponents;
+    difference(endTime: number | TComponents, startTime?: number | TComponents): TComponents;
 
     /**
      * Format a time using one of several supported display formats.
@@ -47,11 +37,7 @@ export default class CalendarData<
      *                  configured in CONFIG.time.formatters. Options passed to the formatter function
      * @returns The formatted date and time string
      */
-    format(
-        time?: number | TComponents,
-        formatter?: string | TimeFormatter,
-        options?: object,
-    ): string;
+    format(time?: number | TComponents, formatter?: string | TimeFormatter, options?: object): string;
 
     /**
      * Test whether a year is a leap year.
@@ -68,9 +54,8 @@ export default class CalendarData<
     timeToComponents(time?: number): TComponents;
 }
 
-export default interface CalendarData<
-    TComponents extends TimeComponents = TimeComponents,
-> extends DataModel<null, CalendarDataSchema>,
+export default interface CalendarData<TComponents extends TimeComponents = TimeComponents>
+    extends DataModel<null, CalendarDataSchema>,
         fields.ModelPropsFromSchema<CalendarDataSchema> {}
 
 export type CalendarDataSchema = {
@@ -125,13 +110,7 @@ export type CalendarDataSchema = {
         /** The number of minutes in an hour. */
         minutesPerHour: fields.NumberField<number, number, true, false, false>;
         /** The number of seconds in a minute. */
-        secondsPerMinute: fields.NumberField<
-            number,
-            number,
-            true,
-            false,
-            false
-        >;
+        secondsPerMinute: fields.NumberField<number, number, true, false, false>;
     }>;
 
     /** Configuration of seasons. */
@@ -141,13 +120,7 @@ export type CalendarDataSchema = {
             values: fields.ArrayField<
                 fields.SchemaField<{
                     /** The full name of the season. */
-                    name: fields.StringField<
-                        string,
-                        string,
-                        true,
-                        false,
-                        false
-                    >;
+                    name: fields.StringField<string, string, true, false, false>;
                     /** The abbreviated name of the season. */
                     abbreviation: fields.StringField;
                     /** The ordinal month in which the season starts. */

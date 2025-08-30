@@ -1,9 +1,6 @@
 import { PointVisionSource } from "@client/canvas/sources/_module.mjs";
 import { Point } from "@common/_types.mjs";
-import {
-    CanvasVisibilityTestConfiguration,
-    CanvasVisibilityTextureConfiguration,
-} from "../../_types.mjs";
+import { CanvasVisibilityTestConfiguration, CanvasVisibilityTextureConfiguration } from "../../_types.mjs";
 import { CanvasVisionContainer } from "../layers/_types.mjs";
 import { AmbientLight, Token } from "../placeables/_module.mjs";
 import CanvasGroupMixin from "./canvas-group-mixin.mjs";
@@ -40,10 +37,7 @@ export default class CanvasVisibility extends CanvasGroupMixin(PIXI.Container) {
     /**
      * The active vision source data object
      */
-    visionModeData: {
-        source: PointVisionSource<AmbientLight | Token> | null;
-        activeLightingOptions: object;
-    };
+    visionModeData: { source: PointVisionSource<AmbientLight | Token> | null; activeLightingOptions: object };
 
     /**
      * Define whether each lighting layer is enabled, required, or disabled by this vision mode.
@@ -145,10 +139,7 @@ export default class CanvasVisibility extends CanvasGroupMixin(PIXI.Container) {
      * @param options.object An optional reference to the object whose visibility is being tested
      * @returns Whether the point is currently visible.
      */
-    testVisibility(
-        point: Point,
-        options: { tolerance?: number; object?: object | null },
-    ): boolean;
+    testVisibility(point: Point, options: { tolerance?: number; object?: object | null }): boolean;
 
     /**
      * Create the visibility test config.

@@ -2,17 +2,13 @@ import { Point, PointArray } from "@common/_types.mjs";
 import { SceneControl } from "../../applications/ui/scene-controls.mjs";
 import Wall from "../placeables/wall.mjs";
 import { PlaceablesLayerOptions } from "./_types.mjs";
-import PlaceablesLayer, {
-    PlaceablesLayerPointerEvent,
-} from "./base/placeables-layer.mjs";
+import PlaceablesLayer, { PlaceablesLayerPointerEvent } from "./base/placeables-layer.mjs";
 
 /**
  * The Walls canvas layer which provides a container for Wall objects within the rendered Scene.
  * @category Canvas
  */
-export default class WallsLayer<
-    TObject extends Wall = Wall,
-> extends PlaceablesLayer<TObject> {
+export default class WallsLayer<TObject extends Wall = Wall> extends PlaceablesLayer<TObject> {
     /** A graphics layer used to display chained Wall selection */
     chain: PIXI.Graphics | null;
 
@@ -75,10 +71,7 @@ export default class WallsLayer<
      * @returns  The wall endpoint coordinates.
      * @internal
      */
-    _getWallEndpointCoordinates(
-        point: Point,
-        options?: { snap?: boolean },
-    ): PointArray;
+    _getWallEndpointCoordinates(point: Point, options?: { snap?: boolean }): PointArray;
 
     /**
      * Identify the interior enclosed by the given walls.
@@ -94,23 +87,13 @@ export default class WallsLayer<
     /*  Event Listeners and Handlers                */
     /* -------------------------------------------- */
 
-    protected override _onDragLeftStart(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftStart(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftMove(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftMove(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftDrop(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftDrop(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftCancel(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftCancel(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onClickRight(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onClickRight(event: PlaceablesLayerPointerEvent<TObject>): void;
 }

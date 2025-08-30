@@ -1,7 +1,4 @@
-import {
-    ClientDocument,
-    DocumentCollection,
-} from "@client/documents/abstract/_module.mjs";
+import { ClientDocument, DocumentCollection } from "@client/documents/abstract/_module.mjs";
 import Document from "@common/abstract/document.mjs";
 import { CompatibilityMode } from "@common/constants.mjs";
 
@@ -12,10 +9,7 @@ import { CompatibilityMode } from "@common/constants.mjs";
  * @param delay An amount of time in milliseconds to delay
  * @return A wrapped function which can be called to debounce execution
  */
-export function debounce<T extends unknown[]>(
-    callback: (...args: T) => unknown,
-    delay: number,
-): (...args: T) => void;
+export function debounce<T extends unknown[]>(callback: (...args: T) => unknown, delay: number): (...args: T) => void;
 
 /**
  * Quickly clone a simple piece of data, returning a copy which can be mutated safely.
@@ -110,12 +104,7 @@ export function invertObject(obj: object): object;
  * filterObject(source, template); // {foo: {number: 1, name: "Tim"}};
  * filterObject(source, template, {templateValues: true}); // {foo: {number: 0, name: "Mit"}};
  */
-export function filterObject(
-    source: object,
-    template: object,
-    keepSpecial?: boolean,
-    templateValues?: boolean,
-): object;
+export function filterObject(source: object, template: object, keepSpecial?: boolean, templateValues?: boolean): object;
 
 /**
  * Flatten a possibly multi-dimensional object to a one-dimensional one by converting all nested keys to dot notation
@@ -123,10 +112,7 @@ export function filterObject(
  * @param _d   Recursion depth, to prevent overflow
  * @return     A flattened object
  */
-export function flattenObject(
-    obj: object,
-    _d?: number,
-): Record<string, unknown>;
+export function flattenObject(obj: object, _d?: number): Record<string, unknown>;
 
 /**
  * Expand a flattened object to be a standard multi-dimensional nested Object by converting all dot-notation keys to
@@ -136,10 +122,7 @@ export function flattenObject(
  * @param _d   Recursion depth, to prevent overflow
  * @return     An expanded object
  */
-export function expandObject<T extends object = Record<string, unknown>>(
-    obj: object,
-    _d?: number,
-): T;
+export function expandObject<T extends object = Record<string, unknown>>(obj: object, _d?: number): T;
 
 /**
  * A simple function to test whether or not an Object is empty
@@ -154,9 +137,10 @@ export function isObjectEmpty(obj: object): boolean;
  * @param other
  * @return
  */
-export function diffObject<
-    T extends Record<string, unknown> = Record<string, unknown>,
->(original: object, other: object): T;
+export function diffObject<T extends Record<string, unknown> = Record<string, unknown>>(
+    original: object,
+    other: object,
+): T;
 
 /**
  * Test if two objects contain the same enumerable keys and values.
@@ -195,11 +179,7 @@ export function getProperty(object: object, key: string): unknown;
  *
  * @return A flag for whether or not the object was updated
  */
-export function setProperty(
-    object: object,
-    key: string,
-    value: unknown,
-): boolean;
+export function setProperty(object: object, key: string, value: unknown): boolean;
 
 /**
  * Encode a url-like string by replacing any characters which need encoding
@@ -232,11 +212,7 @@ export function rgbToHsv(r: number, g: number, b: number): number[];
  * @param  v       The value
  * @return         The RGB representation
  */
-export function hsvToRgb(
-    h: number,
-    s: number,
-    v: number,
-): [number, number, number];
+export function hsvToRgb(h: number, s: number, v: number): [number, number, number];
 
 /**
  * Converts a color as an [R, G, B] array of normalized floats to a hexadecimal number.
@@ -274,10 +250,7 @@ export function colorStringToHex(color: string): number;
  * @param v1
  * @return
  */
-export function isNewerVersion(
-    v1: number | string | null,
-    v0: number | string,
-): boolean;
+export function isNewerVersion(v1: number | string | null, v0: number | string): boolean;
 
 /**
  * Generate a random ID
@@ -298,10 +271,7 @@ export function randomID(length?: number): string;
  * @returns Returns the Collection, Document Type, and Document ID to resolve the parent
  *          document, as well as the remaining Embedded Document parts, if any.
  */
-export function parseUuid(
-    uuid: Maybe<string>,
-    options?: { relative?: Maybe<Document> },
-): ResolvedUUID | null;
+export function parseUuid(uuid: Maybe<string>, options?: { relative?: Maybe<Document> }): ResolvedUUID | null;
 
 export interface ResolvedUUID {
     uuid?: string;

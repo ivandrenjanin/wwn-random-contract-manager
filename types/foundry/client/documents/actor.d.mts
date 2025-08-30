@@ -10,30 +10,14 @@ import Document from "@common/abstract/document.mjs";
 import { ImageFilePath, VideoFilePath } from "@common/constants.mjs";
 import { IterableWeakMap, IterableWeakSet } from "@common/utils/_module.mjs";
 import ActorSheet from "../appv1/sheets/actor-sheet.mjs";
-import {
-    ActiveEffect,
-    ActorSource,
-    ActorUUID,
-    BaseActor,
-    Combat,
-    Item,
-    Scene,
-    TokenDocument,
-} from "./_module.mjs";
-import {
-    ClientDocument,
-    ClientDocumentStatic,
-} from "./abstract/client-document.mjs";
+import { ActiveEffect, ActorSource, ActorUUID, BaseActor, Combat, Item, Scene, TokenDocument } from "./_module.mjs";
+import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
 import Actors from "./collections/actors.mjs";
 
-interface ClientBaseActorStatic
-    extends Omit<typeof BaseActor, "new">,
-        ClientDocumentStatic {}
+interface ClientBaseActorStatic extends Omit<typeof BaseActor, "new">, ClientDocumentStatic {}
 
 declare const ClientBaseActor: {
-    new <TParent extends TokenDocument | null>(
-        ...args: any
-    ): BaseActor<TParent> & ClientDocument<TParent>;
+    new <TParent extends TokenDocument | null>(...args: any): BaseActor<TParent> & ClientDocument<TParent>;
 } & ClientBaseActorStatic;
 
 declare interface ClientBaseActor<TParent extends TokenDocument | null>
@@ -61,15 +45,10 @@ declare interface ClientBaseActor<TParent extends TokenDocument | null>
  * let actor = game.actors.get(actorId);
  * ```
  */
-declare class Actor<
-    TParent extends TokenDocument | null = TokenDocument | null,
-> extends ClientBaseActor<TParent> {
+declare class Actor<TParent extends TokenDocument | null = TokenDocument | null> extends ClientBaseActor<TParent> {
     protected override _configure(options?: object): void;
 
-    protected override _initializeSource(
-        source: Record<string, unknown>,
-        options?: object,
-    ): this["_source"];
+    protected override _initializeSource(source: Record<string, unknown>, options?: object): this["_source"];
 
     /** An object that tracks which tracks the changes to the data model which were applied by active effects */
     overrides: Omit<DeepPartial<this["_source"]>, "prototypeToken">;
@@ -106,10 +85,7 @@ declare class Actor<
      * Maintain a list of Token Documents that represent this Actor, stored by Scene.
      * @internal
      */
-    readonly _dependentTokens: IterableWeakMap<
-        Scene,
-        IterableWeakSet<TokenDocument>
-    >;
+    readonly _dependentTokens: IterableWeakMap<Scene, IterableWeakSet<TokenDocument>>;
 
     /* -------------------------------------------- */
     /*  Methods                                     */
@@ -128,18 +104,9 @@ declare class Actor<
          * @param [document=false] Return the Document instance rather than the PlaceableObject
          * @return An array of Token instances in the current Scene which reference this Actor.
          */
-    getActiveTokens(
-        linked: boolean | undefined,
-        document: true,
-    ): TokenDocument<Scene>[];
-    getActiveTokens(
-        linked?: boolean | undefined,
-        document?: false,
-    ): Token<TokenDocument<Scene>>[];
-    getActiveTokens(
-        linked?: boolean,
-        document?: boolean,
-    ): TokenDocument<Scene>[] | Token<TokenDocument<Scene>>[];
+    getActiveTokens(linked: boolean | undefined, document: true): TokenDocument<Scene>[];
+    getActiveTokens(linked?: boolean | undefined, document?: false): Token<TokenDocument<Scene>>[];
+    getActiveTokens(linked?: boolean, document?: boolean): TokenDocument<Scene>[] | Token<TokenDocument<Scene>>[];
 
     /**
      * Get all ActiveEffects that may apply to this Actor.
@@ -175,12 +142,7 @@ declare class Actor<
      * @param isBar     Whether the new value is part of an attribute bar, or just a direct value
      * @return The updated Actor document
      */
-    modifyTokenAttribute(
-        attribute: string,
-        value: number,
-        isDelta?: boolean,
-        isBar?: boolean,
-    ): Promise<this>;
+    modifyTokenAttribute(attribute: string, value: number, isDelta?: boolean, isBar?: boolean): Promise<this>;
 
     override prepareEmbeddedDocuments(): void;
 
@@ -241,9 +203,7 @@ declare class Actor<
      * @param [options.linked] Limit the results to tokens that are linked to the actor.
      */
     getDependentTokens(options?: {
-        scenes?:
-            | NonNullable<NonNullable<TParent>["parent"]>
-            | NonNullable<NonNullable<TParent>["parent"]>[];
+        scenes?: NonNullable<NonNullable<TParent>["parent"]> | NonNullable<NonNullable<TParent>["parent"]>[];
         linked?: boolean;
     }): NonNullable<TParent>[];
 
@@ -266,9 +226,7 @@ declare class Actor<
      * @param scene The scene.
      * @internal
      */
-    _unregisterDependentScene(
-        scene: NonNullable<NonNullable<TParent>["parent"]>,
-    ): void;
+    _unregisterDependentScene(scene: NonNullable<NonNullable<TParent>["parent"]>): void;
 
     /* -------------------------------------------- */
     /*  Event Handlers                              */
@@ -321,9 +279,7 @@ declare class Actor<
     ): void;
 }
 
-declare interface Actor<
-    TParent extends TokenDocument | null = TokenDocument | null,
-> extends ClientBaseActor<TParent> {
+declare interface Actor<TParent extends TokenDocument | null = TokenDocument | null> extends ClientBaseActor<TParent> {
     readonly _source: ActorSource;
 
     // readonly effects: EmbeddedCollection<ActiveEffect<this>>;

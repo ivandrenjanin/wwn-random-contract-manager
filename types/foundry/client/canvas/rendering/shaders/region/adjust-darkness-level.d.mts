@@ -54,5 +54,6 @@ export class AdjustDarknessLevelRegionShader extends AbstractDarknessLevelRegion
  * @internal
  * @ignore
  */
-export class IlluminationDarknessLevelRegionShader extends AbstractDarknessLevelRegionShader {}
+export class IlluminationDarknessLevelRegionShader extends AbstractDarknessLevelRegionShader {
+}
 import RegionShader from "./base.mjs";

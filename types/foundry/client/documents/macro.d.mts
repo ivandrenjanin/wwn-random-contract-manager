@@ -2,10 +2,7 @@ import DocumentSheetV2 from "@client/applications/api/document-sheet.mjs";
 import { ImageFilePath } from "@common/constants.mjs";
 import Token from "../canvas/placeables/token.mjs";
 import { BaseMacro, MacroSource } from "./_module.mjs";
-import {
-    ClientDocument,
-    ClientDocumentStatic,
-} from "./abstract/client-document.mjs";
+import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
 import Actor from "./actor.mjs";
 
 type BaseMacroStatic = typeof BaseMacro;
@@ -48,11 +45,7 @@ export default class Macro extends ClientBaseMacro {
      * @param [scope.token] A Token which is the protagonist of the executed action
      * @returns A created ChatMessage from chat macros or returned value from script macros
      */
-    execute(scope?: {
-        actor?: Actor;
-        token?: Token;
-        [k: string]: unknown;
-    }): unknown;
+    execute(scope?: { actor?: Actor; token?: Token; [k: string]: unknown }): unknown;
 }
 
 export default interface Macro extends ClientBaseMacro {

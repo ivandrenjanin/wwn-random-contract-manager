@@ -1,7 +1,8 @@
 /**
  * Allow coloring of illumination
  */
-export class TorchIlluminationShader extends AdaptiveIlluminationShader {}
+export class TorchIlluminationShader extends AdaptiveIlluminationShader {
+}
 /**
  * Torch animation coloration shader
  */

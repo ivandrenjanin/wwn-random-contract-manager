@@ -1,7 +1,4 @@
-import {
-    ApplicationConfiguration,
-    ApplicationRenderContext,
-} from "../_types.mjs";
+import { ApplicationConfiguration, ApplicationRenderContext } from "../_types.mjs";
 import ApplicationV2 from "../api/application.mjs";
 import HandlebarsApplicationMixin, {
     HandlebarsRenderOptions,
@@ -51,10 +48,7 @@ export default class Sidebar extends HandlebarsApplicationMixin(ApplicationV2) {
 
     _configureRenderOptions(options: HandlebarsRenderOptions): void;
 
-    _onFirstRender(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    _onFirstRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
     protected override _preparePartContext(
         partId: string,
@@ -67,10 +61,7 @@ export default class Sidebar extends HandlebarsApplicationMixin(ApplicationV2) {
      * @param context Shared context provided by _prepareContext.
      * @param options Options for configuring rendering behavior.
      */
-    protected _prepareTabContext(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected _prepareTabContext(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
     protected override _renderHTML(
         context: ApplicationRenderContext,
@@ -90,12 +81,7 @@ export default class Sidebar extends HandlebarsApplicationMixin(ApplicationV2) {
     override changeTab(
         tab: string,
         group: string,
-        options?: {
-            event?: Event;
-            navElement?: HTMLElement;
-            force?: boolean;
-            updatePosition?: boolean;
-        },
+        options?: { event?: Event; navElement?: HTMLElement; force?: boolean; updatePosition?: boolean },
     ): void;
 
     /**

@@ -6,8 +6,5 @@ export { default as PointEffectSourceMixin } from "./point-effect-source.mjs";
 export { default as PointLightSource } from "./point-light-source.mjs";
 export { default as PointMovementSource } from "./point-movement-source.mjs";
 export { default as PointSoundSource } from "./point-sound-source.mjs";
-export {
-    default as PointVisionSource,
-    VisionSourceData,
-} from "./point-vision-source.mjs";
+export { default as PointVisionSource, VisionSourceData } from "./point-vision-source.mjs";
 export { default as RenderedEffectSource } from "./rendered-effect-source.mjs";

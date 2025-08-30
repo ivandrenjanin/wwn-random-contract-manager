@@ -116,11 +116,7 @@ export default class ProseMirrorEditor {
      * @param options.relativeLinks Whether to generate relative UUID links to Documents that are dropped on the editor.
      * @param options.collaborate Whether to enable collaborative editing for this editor.
      */
-    static create(
-        target: HTMLElement,
-        content?: string,
-        options?: EditorCreateOptions,
-    ): Promise<ProseMirrorEditor>;
+    static create(target: HTMLElement, content?: string, options?: EditorCreateOptions): Promise<ProseMirrorEditor>;
 
     /**
      * Create an EditorView with collaborative editing enabled.
@@ -145,11 +141,7 @@ export default class ProseMirrorEditor {
      * @param plugins The editor plugins to load.
      * @protected
      */
-    protected static _createLocalEditorView(
-        target: HTMLElement,
-        state: EditorState,
-        plugins: Plugin[],
-    ): EditorView;
+    protected static _createLocalEditorView(target: HTMLElement, state: EditorState, plugins: Plugin[]): EditorView;
 
     /* -------------------------------------------- */
     /*  Socket Handlers                             */
@@ -161,11 +153,7 @@ export default class ProseMirrorEditor {
      * @param offset The offset into the history, representing the point at which it was last truncated.
      * @param history The entire edit history.
      */
-    protected static _onNewSteps(
-        uuid: string,
-        offset: number,
-        history: ProseMirrorHistory[],
-    ): void;
+    protected static _onNewSteps(uuid: string, offset: number, history: ProseMirrorHistory[]): void;
 
     /**
      * Our client is too far behind the central authority's state and must be re-synced.

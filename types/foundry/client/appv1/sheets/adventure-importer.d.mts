@@ -1,16 +1,11 @@
 import { Adventure } from "@client/documents/_module.mjs";
 import { ApplicationV1HeaderButton } from "../api/application-v1.mjs";
-import DocumentSheet, {
-    DocumentSheetData,
-    DocumentSheetV1Options,
-} from "../api/document-sheet-v1.mjs";
+import DocumentSheet, { DocumentSheetData, DocumentSheetV1Options } from "../api/document-sheet-v1.mjs";
 
 /**
  * An interface for importing an adventure from a compendium pack.
  */
-export default class AdventureImporter<
-    TDocument extends Adventure,
-> extends DocumentSheet<TDocument> {
+export default class AdventureImporter<TDocument extends Adventure> extends DocumentSheet<TDocument> {
     /**
      * An alias for the Adventure document
      */
@@ -22,13 +17,7 @@ export default class AdventureImporter<
 
     override getData(
         options?: Partial<DocumentSheetV1Options>,
-    ): Promise<
-        DocumentSheetData<TDocument> & {
-            adventure: TDocument;
-            contents: object[];
-            imported: boolean;
-        }
-    >;
+    ): Promise<DocumentSheetData<TDocument> & { adventure: TDocument; contents: object[]; imported: boolean }>;
 
     activateListeners(html: JQuery): void;
 
@@ -41,18 +30,11 @@ export default class AdventureImporter<
     /**
      * Prepare a list of content types provided by this adventure.
      */
-    protected _getContentList(): {
-        icon: string;
-        label: string;
-        count: number;
-    }[];
+    protected _getContentList(): { icon: string; label: string; count: number }[];
 
     protected override _getHeaderButtons(): ApplicationV1HeaderButton[];
 
-    override _updateObject(
-        event: Event,
-        formData: Record<string, unknown>,
-    ): Promise<void>;
+    override _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
 
     /**
      * Mirror Adventure#import but call AdventureImporter#_importContent and AdventureImport#_prepareImportData

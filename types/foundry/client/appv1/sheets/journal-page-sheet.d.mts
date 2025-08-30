@@ -4,10 +4,7 @@ import JournalEntryPage from "@client/documents/journal-entry-page.mjs";
 import JournalEntry from "@client/documents/journal-entry.mjs";
 import { EditorView } from "prosemirror-view";
 import { AppV1RenderOptions } from "../api/application-v1.mjs";
-import DocumentSheet, {
-    DocumentSheetData,
-    DocumentSheetV1Options,
-} from "../api/document-sheet-v1.mjs";
+import DocumentSheet, { DocumentSheetData, DocumentSheetV1Options } from "../api/document-sheet-v1.mjs";
 
 /**
  * The Application responsible for displaying and editing a single JournalEntryPage document.
@@ -34,10 +31,7 @@ export class JournalPageSheet<
         options?: Partial<DocumentSheetV1Options>,
     ): DocumentSheetData<TDocument> | Promise<DocumentSheetData<TDocument>>;
 
-    protected override _renderInner(
-        data: DocumentSheetData<TDocument>,
-        options: AppV1RenderOptions,
-    ): Promise<JQuery>;
+    protected override _renderInner(data: DocumentSheetData<TDocument>, options: AppV1RenderOptions): Promise<JQuery>;
 
     /* -------------------------------------------- */
     /*  Text Secrets Management                     */
@@ -45,10 +39,7 @@ export class JournalPageSheet<
 
     protected override _getSecretContent(secret: HTMLElement): string;
 
-    protected override _updateSecret(
-        secret: HTMLElement,
-        content: string,
-    ): Promise<TDocument>;
+    protected override _updateSecret(secret: HTMLElement, content: string): Promise<TDocument>;
 
     /* -------------------------------------------- */
     /*  Text Editor Integration                     */
@@ -90,24 +81,16 @@ export class JournalTextPageSheet<
 
     static override get defaultOptions(): DocumentSheetV1Options;
 
-    override getData(
-        options?: Partial<DocumentSheetV1Options>,
-    ): Promise<DocumentSheetData<TDocument>>;
+    override getData(options?: Partial<DocumentSheetV1Options>): Promise<DocumentSheetData<TDocument>>;
 
     override close(options?: { force?: boolean }): Promise<void>;
 
-    protected override _render(
-        force: boolean,
-        options: AppV1RenderOptions,
-    ): Promise<void>;
+    protected override _render(force: boolean, options: AppV1RenderOptions): Promise<void>;
 
     /** Determine if any editors are dirty. */
     isEditorDirty(): boolean;
 
-    protected _updateObject(
-        event: Event,
-        formData: Record<string, unknown>,
-    ): Promise<void>;
+    protected _updateObject(event: Event, formData: Record<string, unknown>): Promise<void>;
 
     /**
      * Lazily convert text formats if we detect the document being saved in a different format.
@@ -119,24 +102,14 @@ export class JournalTextPageSheet<
 export class JournalTextTinyMCESheet<
     TDocument extends JournalEntryPage<JournalEntry | null>,
 > extends JournalTextPageSheet<TDocument> {
-    override getData(
-        options?: DocumentSheetV1Options,
-    ): Promise<DocumentSheetData<TDocument>>;
+    override getData(options?: DocumentSheetV1Options): Promise<DocumentSheetData<TDocument>>;
 
     override close(options?: { force?: boolean }): Promise<void>;
 
-    protected override _render(
-        force?: boolean,
-        options?: AppV1RenderOptions,
-    ): Promise<void>;
+    protected override _render(force?: boolean, options?: AppV1RenderOptions): Promise<void>;
 }
 
-export interface JournalTextTinyMCESheet<
-    TDocument extends JournalEntryPage<JournalEntry | null>,
-> extends JournalTextPageSheet<TDocument> {
-    activateEditor(
-        name: string,
-        options?: EditorCreateOptions,
-        initialContent?: string,
-    ): Promise<TinyMCE.Editor>;
+export interface JournalTextTinyMCESheet<TDocument extends JournalEntryPage<JournalEntry | null>>
+    extends JournalTextPageSheet<TDocument> {
+    activateEditor(name: string, options?: EditorCreateOptions, initialContent?: string): Promise<TinyMCE.Editor>;
 }

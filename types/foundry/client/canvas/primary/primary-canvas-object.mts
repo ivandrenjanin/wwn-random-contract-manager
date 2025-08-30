@@ -35,16 +35,14 @@ export interface PrimaryCanvasObjectData {
  */
 /* eslint-disable @typescript-eslint/no-unused-expressions, no-unused-expressions */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export default function PrimaryCanvasObjectMixin<
-    TBase extends ConstructorOf<PIXI.DisplayObject>,
->(DisplayObject: TBase) {
+export default function PrimaryCanvasObjectMixin<TBase extends ConstructorOf<PIXI.DisplayObject>>(
+    DisplayObject: TBase,
+) {
     /**
      * A display object rendered in the PrimaryCanvasGroup.
      * @param args The arguments passed to the base class constructor
      */
-    abstract class PrimaryCanvasObject extends CanvasTransformMixin(
-        DisplayObject,
-    ) {
+    abstract class PrimaryCanvasObject extends CanvasTransformMixin(DisplayObject) {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         constructor(...args: any[]) {
             super();
@@ -154,9 +152,7 @@ export default function PrimaryCanvasObjectMixin<
  * @param DisplayObject The parent DisplayObject class being mixed
  * @mixin
  */
-export function CanvasTransformMixin<
-    TBase extends ConstructorOf<PIXI.DisplayObject>,
->(DisplayObject: TBase) {
+export function CanvasTransformMixin<TBase extends ConstructorOf<PIXI.DisplayObject>>(DisplayObject: TBase) {
     abstract class CanvasTransformObject extends DisplayObject {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         constructor(...args: any[]) {

@@ -1,39 +1,18 @@
-import {
-    DataSchema,
-    DatabaseUpdateOperation,
-    Document,
-} from "@common/abstract/_module.mjs";
+import { DataSchema, DatabaseUpdateOperation, Document } from "@common/abstract/_module.mjs";
 import Collection from "@common/utils/collection.mjs";
 import type DataModel from "./common/abstract/data.mjs";
 
 declare global {
     type Maybe<T> = T | null | undefined;
 
-    type DeepPartial<T> = T extends
-        | Date
-        | FileList
-        | File
-        | NestedValue
-        | Document
+    type DeepPartial<T> = T extends Date | FileList | File | NestedValue | Document
         ? T
         : T extends (infer U)[]
           ? DeepPartial<U>[]
-          : {
-                [K in keyof T]?: ExtractObjects<T[K]> extends never
-                    ? T[K]
-                    : DeepPartial<T[K]>;
-            };
+          : { [K in keyof T]?: ExtractObjects<T[K]> extends never ? T[K] : DeepPartial<T[K]> };
 
     type DeepReadonly<T> = {
-        readonly [K in keyof T]: T[K] extends
-            | undefined
-            | null
-            | boolean
-            | number
-            | string
-            | symbol
-            | bigint
-            | Function
+        readonly [K in keyof T]: T[K] extends undefined | null | boolean | number | string | symbol | bigint | Function
             ? T[K]
             : T[K] extends Array<infer V>
               ? ReadonlyArray<DeepReadonly<V>>
@@ -55,28 +34,16 @@ declare global {
     type DocumentConstructorOf<T extends foundry.abstract.Document> = {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         new (...args: any[]): T;
-        updateDocuments(
-            updates?: object[],
-            operation?: Partial<DatabaseUpdateOperation<T["parent"]>>,
-        ): Promise<T[]>;
+        updateDocuments(updates?: object[], operation?: Partial<DatabaseUpdateOperation<T["parent"]>>): Promise<T[]>;
     };
 
-    type ParentOf<TDataModel> =
-        TDataModel extends DataModel<infer P extends DataModel | null>
-            ? P
-            : never;
+    type ParentOf<TDataModel> = TDataModel extends DataModel<infer P extends DataModel | null> ? P : never;
 
-    type SchemaOf<TDataModel> =
-        TDataModel extends DataModel<infer _P, infer S extends DataSchema>
-            ? S
-            : never;
+    type SchemaOf<TDataModel> = TDataModel extends DataModel<infer _P, infer S extends DataSchema> ? S : never;
 
-    type SetElement<TSet extends Set<unknown>> =
-        TSet extends Set<infer TElement> ? TElement : never;
+    type SetElement<TSet extends Set<unknown>> = TSet extends Set<infer TElement> ? TElement : never;
 
-    type DropFirst<T extends unknown[]> = T extends [unknown, ...infer U]
-        ? U
-        : never;
+    type DropFirst<T extends unknown[]> = T extends [unknown, ...infer U] ? U : never;
 
     type ValueOf<T extends object> = T[keyof T];
 
@@ -84,16 +51,10 @@ declare global {
     type JSONValue = string | number | boolean | object | null | undefined;
 }
 
-type ExtractObjects<T> = T extends infer U
-    ? U extends object
-        ? U
-        : never
-    : never;
+type ExtractObjects<T> = T extends infer U ? (U extends object ? U : never) : never;
 
 declare const $NestedValue: unique symbol;
 
-type NestedValue<TValue extends object = object> = {
-    [$NestedValue]: never;
-} & TValue;
+type NestedValue<TValue extends object = object> = { [$NestedValue]: never } & TValue;
 
 export {};

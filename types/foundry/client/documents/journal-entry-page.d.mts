@@ -6,9 +6,7 @@ import { BaseJournalEntryPage } from "./_module.mjs";
 import { ClientDocument } from "./abstract/client-document.mjs";
 import JournalEntry from "./journal-entry.mjs";
 
-declare const ClientBaseJournalEntryPage: new <
-    TParent extends JournalEntry | null,
->(
+declare const ClientBaseJournalEntryPage: new <TParent extends JournalEntry | null>(
     ...args: any
 ) => BaseJournalEntryPage<TParent> & ClientDocument<TParent>;
 
@@ -50,18 +48,13 @@ export default class JournalEntryPage<
      * @param [options] Additional options to configure ToC generation.
      * @param [options.includeElement=true] Include references to the heading DOM elements in the returned ToC.
      */
-    static buildTOC(
-        html: HTMLElement,
-        options?: { includeElement?: boolean },
-    ): JournalEntryPageHeading;
+    static buildTOC(html: HTMLElement, options?: { includeElement?: boolean }): JournalEntryPageHeading;
 
     /**
      * Flatten the tree structure into a single object with each node's slug as the key.
      * @param nodes  The root ToC nodes.
      */
-    protected static _flattenTOC(
-        nodes: JournalEntryPageHeading[],
-    ): JournalEntryPageHeading;
+    protected static _flattenTOC(nodes: JournalEntryPageHeading[]): JournalEntryPageHeading;
 
     /**
      * Construct a table of contents node from a heading element.
@@ -78,9 +71,7 @@ export default class JournalEntryPage<
     /*  Methods                                     */
     /* -------------------------------------------- */
 
-    protected override _onClickDocumentLink(
-        event: PointerEvent,
-    ): this["sheet"] | Promise<this["sheet"]>;
+    protected override _onClickDocumentLink(event: PointerEvent): this["sheet"] | Promise<this["sheet"]>;
 
     protected override _onUpdate(
         data: DeepPartial<this["_source"]>,
@@ -89,9 +80,8 @@ export default class JournalEntryPage<
     ): void;
 }
 
-export default interface JournalEntryPage<
-    TParent extends JournalEntry | null = JournalEntry | null,
-> extends ClientBaseJournalEntryPage<TParent> {
+export default interface JournalEntryPage<TParent extends JournalEntry | null = JournalEntry | null>
+    extends ClientBaseJournalEntryPage<TParent> {
     get documentName(): "JournalEntryPage";
     get sheet(): JournalPageSheet<this>;
 }

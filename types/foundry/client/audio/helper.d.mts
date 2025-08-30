@@ -176,13 +176,7 @@ export default class AudioHelper {
      * ```
      */
     static play(
-        data: {
-            src: string;
-            channel?: string;
-            volume?: number;
-            autoplay?: boolean;
-            loop?: boolean;
-        },
+        data: { src: string; channel?: string; volume?: number; autoplay?: boolean; loop?: boolean },
         socketOptions: boolean | { recipients: string[] },
     ): Sound | void;
 
@@ -217,10 +211,7 @@ export default class AudioHelper {
      *                      attribute.
      * @param options.decimalPlaces The number of decimal places to round the percentage to.
      */
-    static volumeToPercentage(
-        volume: number,
-        options?: { label?: boolean; decimalPlaces?: number },
-    ): string;
+    static volumeToPercentage(volume: number, options?: { label?: boolean; decimalPlaces?: number }): string;
 
     /* -------------------------------------------- */
     /*  Audio Stream Analysis                       */
@@ -290,10 +281,7 @@ export default class AudioHelper {
      * attaching an AnalyserNode to its gain node if not already active.
      * @param options.keepAlive If true, this analyzer will not auto-disable after inactivity.
      */
-    enableAnalyzer(
-        contextName: ContextName,
-        options?: { keepAlive?: boolean },
-    ): void;
+    enableAnalyzer(contextName: ContextName, options?: { keepAlive?: boolean }): void;
 
     /**
      * Disable the analyzer for a given context, disconnecting the AnalyserNode.
@@ -310,11 +298,7 @@ export default class AudioHelper {
      * @param options.ignoreVolume If true, remove the real-time channel volume from the measurement.
      * @returns The normalized band value in [0,1].
      */
-    getBandLevel(
-        contextName: ContextName,
-        bandName: BandName,
-        options?: { ignoreVolume?: boolean },
-    ): number;
+    getBandLevel(contextName: ContextName, bandName: BandName, options?: { ignoreVolume?: boolean }): number;
 
     /**
      * Retrieve a single "peak" analyzer value across the three main audio contexts (music, environment, interface).
@@ -324,8 +308,5 @@ export default class AudioHelper {
      * @param options.ignoreVolume If true, remove the real-time channel volume from the measurement.
      * @returns A number in the [0,1] range representing the loudest band value among the three contexts.
      */
-    getMaxBandLevel(
-        band?: BandName,
-        options?: { ignoreVolume?: boolean },
-    ): number;
+    getMaxBandLevel(band?: BandName, options?: { ignoreVolume?: boolean }): number;
 }

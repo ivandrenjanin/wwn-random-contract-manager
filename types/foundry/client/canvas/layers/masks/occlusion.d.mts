@@ -1,7 +1,4 @@
-import {
-    CachedContainer,
-    SpriteMesh,
-} from "@client/canvas/containers/_module.mjs";
+import { CachedContainer, SpriteMesh } from "@client/canvas/containers/_module.mjs";
 import { Token } from "@client/canvas/placeables/_module.mjs";
 import { PrimaryCanvasObject } from "@client/canvas/primary/primary-canvas-object.mjs";
 
@@ -83,7 +80,5 @@ export default class CanvasOcclusionMask extends CachedContainer {
      * @param tokens The set of currently controlled Token objects
      * @returns The PCOs which should be currently occluded
      */
-    protected _identifyOccludedObjects(
-        tokens: Token[],
-    ): Set<PrimaryCanvasObject>;
+    protected _identifyOccludedObjects(tokens: Token[]): Set<PrimaryCanvasObject>;
 }

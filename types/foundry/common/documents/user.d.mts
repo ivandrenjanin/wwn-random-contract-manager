@@ -18,9 +18,10 @@ import { BaseActor } from "./_module.mjs";
  * @param data Initial data from which to construct the document.
  * @property   data The constructed data object for the document.
  */
-export default class BaseUser<
-    TCharacter extends BaseActor<null> = BaseActor<null>,
-> extends Document<null, UserSchema<TCharacter>> {
+export default class BaseUser<TCharacter extends BaseActor<null> = BaseActor<null>> extends Document<
+    null,
+    UserSchema<TCharacter>
+> {
     static override get metadata(): UserMetadata;
 
     static override defineSchema(): UserSchema<BaseActor<null>>;
@@ -57,15 +58,11 @@ export default class BaseUser<
      * @param [exact] Require the role match to be exact
      * @return Does the user have at this role level (or greater)?
      */
-    hasRole(
-        role: UserRole | UserRoleName,
-        { exact }?: { exact: boolean },
-    ): boolean;
+    hasRole(role: UserRole | UserRoleName, { exact }?: { exact: boolean }): boolean;
 }
 
-export default interface BaseUser<
-    TCharacter extends BaseActor<null> = BaseActor<null>,
-> extends Document<null, UserSchema<TCharacter>>,
+export default interface BaseUser<TCharacter extends BaseActor<null> = BaseActor<null>>
+    extends Document<null, UserSchema<TCharacter>>,
         fields.ModelPropsFromSchema<UserSchema<TCharacter>> {
     get documentName(): UserMetadata["name"];
 }

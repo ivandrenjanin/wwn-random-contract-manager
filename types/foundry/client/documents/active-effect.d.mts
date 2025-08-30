@@ -14,9 +14,7 @@ import BaseActiveEffect, {
 import { Actor, BaseActor, BaseItem, BaseUser, Item } from "./_module.mjs";
 import { ClientDocument } from "./abstract/client-document.mjs";
 
-declare const ClientBaseActiveEffect: new <
-    TParent extends BaseActor | BaseItem | null,
->(
+declare const ClientBaseActiveEffect: new <TParent extends BaseActor | BaseItem | null>(
     ...args: any
 ) => BaseActiveEffect<TParent> & ClientDocument<TParent>;
 
@@ -118,11 +116,7 @@ export default class ActiveEffect<
      * @param [nTurns] The maximum number of turns in the encounter
      * @returns The decimal representation
      */
-    protected _getCombatTime(
-        round: number,
-        turn: number,
-        nTurns?: number,
-    ): number;
+    protected _getCombatTime(round: number, turn: number, nTurns?: number): number;
 
     /**
      * Format a number of rounds and turns into a human-readable duration label
@@ -153,11 +147,7 @@ export default class ActiveEffect<
      * @param field  The field. If not supplied, it will be retrieved from the supplied model.
      * @returns The updated value.
      */
-    static applyField(
-        model: Document,
-        change: EffectChangeData,
-        field?: DataField,
-    ): unknown;
+    static applyField(model: Document, change: EffectChangeData, field?: DataField): unknown;
 
     /**
      * Apply this ActiveEffect to a provided Actor.
@@ -176,20 +166,12 @@ export default class ActiveEffect<
      * @param change   The change data being applied.
      * @param changes  The aggregate update paths and their updated values.
      */
-    protected _applyLegacy(
-        actor: Actor,
-        change: EffectChangeData,
-        changes: Record<string, unknown>,
-    ): void;
+    protected _applyLegacy(actor: Actor, change: EffectChangeData, changes: Record<string, unknown>): void;
 
     /**
      * Retrieve the initial duration configuration.
      */
-    static getInitialDuration(): {
-        startTime: number;
-        startRound?: number;
-        startTurn?: number;
-    };
+    static getInitialDuration(): { startTime: number; startRound?: number; startTurn?: number };
 
     /* -------------------------------------------- */
     /*  Flag Operations                             */
@@ -207,11 +189,7 @@ export default class ActiveEffect<
         user: BaseUser,
     ): Promise<boolean | void>;
 
-    protected override _onCreate(
-        data: this["_source"],
-        options: DatabaseCreateCallbackOptions,
-        userId: string,
-    ): void;
+    protected override _onCreate(data: this["_source"], options: DatabaseCreateCallbackOptions, userId: string): void;
 
     protected override _preUpdate(
         changed: Record<string, unknown>,
@@ -225,10 +203,7 @@ export default class ActiveEffect<
         userId: string,
     ): void;
 
-    protected override _onDelete(
-        options: DatabaseDeleteCallbackOptions,
-        userId: string,
-    ): void;
+    protected override _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 
     /**
      * Display changes to active effects as scrolling Token status text.
@@ -237,9 +212,7 @@ export default class ActiveEffect<
     protected _displayScrollingStatus(enabled: boolean): void;
 }
 
-export default interface ActiveEffect<
-    TParent extends Actor | Item | null = Actor | Item | null,
-> {
+export default interface ActiveEffect<TParent extends Actor | Item | null = Actor | Item | null> {
     readonly _source: ActiveEffectSource;
     duration: PreparedEffectDurationData;
 }

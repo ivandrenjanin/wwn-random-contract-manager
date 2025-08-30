@@ -11,9 +11,7 @@ export default class BaseWorld extends packages.BasePackage<WorldSchema> {
     /** The default icon used for this type of Package. */
     static icon: string;
 
-    static override migrateData(
-        data: Record<string, unknown>,
-    ): fields.SourceFromSchema<WorldSchema>;
+    static override migrateData(data: Record<string, unknown>): fields.SourceFromSchema<WorldSchema>;
 
     static override testAvailability(
         data?: Partial<PackageManifestData>,
@@ -49,9 +47,7 @@ type WorldSchema = Omit<packages.BasePackageSchema, "version"> & {
     /** Should the world launch in safe mode? */
     safeMode: fields.BooleanField<boolean, boolean, false, false, false>;
     version: fields.StringField<string, string, true, true, true>;
-    demo: fields.SchemaField<{
-        sourceZip: fields.StringField<string, string, true, true, true>;
-    }>;
+    demo: fields.SchemaField<{ sourceZip: fields.StringField<string, string, true, true, true> }>;
 };
 
 export interface WorldSource extends fields.SourceFromSchema<WorldSchema> {}

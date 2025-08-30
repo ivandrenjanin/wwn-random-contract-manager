@@ -1,15 +1,9 @@
 import { Token } from "@client/canvas/placeables/_module.mjs";
 import Actor from "@client/documents/actor.mjs";
 import { ImageFilePath } from "@common/constants.mjs";
-import type {
-    ApplicationConfiguration,
-    ApplicationPosition,
-} from "../_types.mjs";
+import type { ApplicationConfiguration, ApplicationPosition } from "../_types.mjs";
 import type HandlebarsApplicationMixin from "../api/handlebars-application.mjs";
-import type {
-    HandlebarsRenderOptions,
-    HandlebarsTemplatePart,
-} from "../api/handlebars-application.mjs";
+import type { HandlebarsRenderOptions, HandlebarsTemplatePart } from "../api/handlebars-application.mjs";
 import FormDataExtended from "../ux/form-data-extended.mjs";
 import type BasePlaceableHUD from "./placeable-hud.mjs";
 import type { PlaceableHUDContext } from "./placeable-hud.mjs";
@@ -19,9 +13,7 @@ import type { PlaceableHUDContext } from "./placeable-hud.mjs";
  * This interface provides controls for visibility, attribute bars, elevation, status effects, and more.
  * The TokenHUD implementation can be configured and replaced via {@link CONFIG.Token.hudClass}.
  */
-export default class TokenHUD extends HandlebarsApplicationMixin(
-    BasePlaceableHUD,
-) {
+export default class TokenHUD extends HandlebarsApplicationMixin(BasePlaceableHUD) {
     static override DEFAULT_OPTIONS: DeepPartial<ApplicationConfiguration>;
 
     static override PARTS: Record<string, HandlebarsTemplatePart>;
@@ -33,16 +25,12 @@ export default class TokenHUD extends HandlebarsApplicationMixin(
     /*  Rendering                                   */
     /* -------------------------------------------- */
 
-    protected override _prepareContext(
-        options: HandlebarsRenderOptions,
-    ): Promise<PlaceableHUDContext>;
+    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<PlaceableHUDContext>;
 
     /** Get an array of icon paths which represent valid status effect choices. */
     protected _getStatusEffectChoices(): Record<string, TokenHUDStatusEffect>;
 
-    protected override _updatePosition(
-        position: ApplicationPosition,
-    ): ApplicationPosition;
+    protected override _updatePosition(position: ApplicationPosition): ApplicationPosition;
 
     protected override _onPosition(position: ApplicationPosition): void;
 
@@ -68,11 +56,7 @@ export default class TokenHUD extends HandlebarsApplicationMixin(
         input: string,
     ): { value: number; delta?: number; isDelta: boolean; isBar: boolean };
 
-    protected override _onSubmit(
-        event: SubmitEvent,
-        form: HTMLFormElement,
-        formData: FormDataExtended,
-    ): Promise<void>;
+    protected override _onSubmit(event: SubmitEvent, form: HTMLFormElement, formData: FormDataExtended): Promise<void>;
 }
 
 export interface TokenHUDStatusEffect {

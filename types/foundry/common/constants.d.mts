@@ -70,8 +70,7 @@ export const ACTIVE_EFFECT_MODES: Readonly<{
     OVERRIDE: 5;
 }>;
 
-export type ActiveEffectChangeMode =
-    (typeof ACTIVE_EFFECT_MODES)[keyof typeof ACTIVE_EFFECT_MODES];
+export type ActiveEffectChangeMode = (typeof ACTIVE_EFFECT_MODES)[keyof typeof ACTIVE_EFFECT_MODES];
 
 /**
  * Define the string name used for the base document type when specific sub-types are not defined by the system
@@ -118,8 +117,7 @@ export const CANVAS_PERFORMANCE_MODES: Readonly<{
     MAX: 3;
 }>;
 
-export type CanvasPerformanceMode =
-    (typeof CANVAS_PERFORMANCE_MODES)[keyof typeof CANVAS_PERFORMANCE_MODES];
+export type CanvasPerformanceMode = (typeof CANVAS_PERFORMANCE_MODES)[keyof typeof CANVAS_PERFORMANCE_MODES];
 
 /**
  * Valid Chat Message styles which affect how the message is presented in the chat log.
@@ -145,8 +143,7 @@ export const CHAT_MESSAGE_STYLES: Readonly<{
     EMOTE: 3;
 }>;
 
-export type ChatMessageStyle =
-    (typeof CHAT_MESSAGE_STYLES)[keyof typeof CHAT_MESSAGE_STYLES];
+export type ChatMessageStyle = (typeof CHAT_MESSAGE_STYLES)[keyof typeof CHAT_MESSAGE_STYLES];
 
 /**
  * Define the set of languages which have built-in support in the core software
@@ -175,8 +172,7 @@ export const COMPATIBILITY_MODES: Readonly<{
     FAILURE: 3;
 }>;
 
-export type CompatibilityMode =
-    (typeof COMPATIBILITY_MODES)[keyof typeof COMPATIBILITY_MODES];
+export type CompatibilityMode = (typeof COMPATIBILITY_MODES)[keyof typeof COMPATIBILITY_MODES];
 
 /**
  * Configure custom cursor images to use when interacting with the application.
@@ -204,8 +200,7 @@ export const LIGHTING_LEVELS: Readonly<{
     BRIGHTEST: 3;
 }>;
 
-export type LightingLevel =
-    (typeof LIGHTING_LEVELS)[keyof typeof LIGHTING_LEVELS];
+export type LightingLevel = (typeof LIGHTING_LEVELS)[keyof typeof LIGHTING_LEVELS];
 
 /**
  * The CSS themes which are currently supported for the V11 Setup menu.
@@ -378,8 +373,7 @@ export const DOCUMENT_OWNERSHIP_LEVELS: Readonly<{
 }>;
 
 export type DocumentOwnershipString = keyof typeof DOCUMENT_OWNERSHIP_LEVELS;
-export type DocumentOwnershipLevel =
-    (typeof DOCUMENT_OWNERSHIP_LEVELS)[DocumentOwnershipString];
+export type DocumentOwnershipLevel = (typeof DOCUMENT_OWNERSHIP_LEVELS)[DocumentOwnershipString];
 
 /**
  * Meta ownership levels that are used in the UI but never stored.
@@ -447,8 +441,7 @@ export const DRAWING_FILL_TYPES: Readonly<{
     PATTERN: 2;
 }>;
 
-export type DrawingFillType =
-    (typeof DRAWING_FILL_TYPES)[keyof typeof DRAWING_FILL_TYPES];
+export type DrawingFillType = (typeof DRAWING_FILL_TYPES)[keyof typeof DRAWING_FILL_TYPES];
 
 /**
  * Define the allowed Document types which Folders may contain
@@ -493,8 +486,7 @@ export const MOVEMENT_DIRECTIONS: Readonly<{
     ASCEND: 32;
 }>;
 
-export type MovementDirection =
-    (typeof MOVEMENT_DIRECTIONS)[keyof typeof MOVEMENT_DIRECTIONS];
+export type MovementDirection = (typeof MOVEMENT_DIRECTIONS)[keyof typeof MOVEMENT_DIRECTIONS];
 
 /**
  * The minimum allowed grid size which is supported by the software
@@ -654,20 +646,12 @@ export const GRID_SNAPPING_MODES: Readonly<{
     SIDE_MIDPOINT: 61440;
 }>;
 
-export type GridSnappingMode =
-    (typeof GRID_SNAPPING_MODES)[keyof typeof GRID_SNAPPING_MODES];
+export type GridSnappingMode = (typeof GRID_SNAPPING_MODES)[keyof typeof GRID_SNAPPING_MODES];
 
 /**
  * A list of supported setup URL names
  */
-export const SETUP_VIEWS: readonly [
-    "auth",
-    "license",
-    "setup",
-    "players",
-    "join",
-    "update",
-];
+export const SETUP_VIEWS: readonly ["auth", "license", "setup", "players", "join", "update"];
 
 /**
  * An Array of valid MacroAction scope values
@@ -812,8 +796,7 @@ export const PACKAGE_AVAILABILITY_CODES: Readonly<{
     REQUIRES_DEPENDENCY_UPDATE: 10;
 }>;
 
-export type PackageAvailabilityCode =
-    (typeof PACKAGE_AVAILABILITY_CODES)[keyof typeof PACKAGE_AVAILABILITY_CODES];
+export type PackageAvailabilityCode = (typeof PACKAGE_AVAILABILITY_CODES)[keyof typeof PACKAGE_AVAILABILITY_CODES];
 
 /**
  * A safe password string which can be displayed
@@ -863,8 +846,7 @@ export const TABLE_RESULT_TYPES: Readonly<{
     DOCUMENT: "document";
 }>;
 
-export type TableResultType =
-    (typeof TABLE_RESULT_TYPES)[keyof typeof TABLE_RESULT_TYPES];
+export type TableResultType = (typeof TABLE_RESULT_TYPES)[keyof typeof TABLE_RESULT_TYPES];
 
 /**
  * The allowed formats of a Journal Entry Page.
@@ -881,8 +863,7 @@ export const JOURNAL_ENTRY_PAGE_FORMATS: Readonly<{
     MARKDOWN: 2;
 }>;
 
-export type JournalEntryPageFormat =
-    (typeof JOURNAL_ENTRY_PAGE_FORMATS)[keyof typeof JOURNAL_ENTRY_PAGE_FORMATS];
+export type JournalEntryPageFormat = (typeof JOURNAL_ENTRY_PAGE_FORMATS)[keyof typeof JOURNAL_ENTRY_PAGE_FORMATS];
 
 /**
  * Define the valid anchor locations for a Tooltip displayed on a Placeable Object
@@ -911,8 +892,7 @@ export const TEXT_ANCHOR_POINTS: Readonly<{
     RIGHT: 4;
 }>;
 
-export type TextAnchorPoint =
-    (typeof TEXT_ANCHOR_POINTS)[keyof typeof TEXT_ANCHOR_POINTS];
+export type TextAnchorPoint = (typeof TEXT_ANCHOR_POINTS)[keyof typeof TEXT_ANCHOR_POINTS];
 
 /**
  * Define the valid occlusion modes which a tile can use
@@ -967,8 +947,7 @@ export const TILE_OCCLUSION_MODES: Readonly<{
     VISION: 4;
 }>;
 
-export type TileOcclusionMode =
-    (typeof TILE_OCCLUSION_MODES)[keyof typeof TILE_OCCLUSION_MODES];
+export type TileOcclusionMode = (typeof TILE_OCCLUSION_MODES)[keyof typeof TILE_OCCLUSION_MODES];
 
 /**
  * The occlusion modes that define the set of tokens that trigger occlusion.
@@ -1027,8 +1006,7 @@ export const TOKEN_DISPLAY_MODES: Readonly<{
     ALWAYS: 50;
 }>;
 
-export type TokenDisplayMode =
-    (typeof TOKEN_DISPLAY_MODES)[keyof typeof TOKEN_DISPLAY_MODES];
+export type TokenDisplayMode = (typeof TOKEN_DISPLAY_MODES)[keyof typeof TOKEN_DISPLAY_MODES];
 
 /**
  * The allowed Token disposition types
@@ -1053,8 +1031,7 @@ export const TOKEN_DISPOSITIONS: Readonly<{
     FRIENDLY: 1;
 }>;
 
-export type TokenDisposition =
-    (typeof TOKEN_DISPOSITIONS)[keyof typeof TOKEN_DISPOSITIONS];
+export type TokenDisposition = (typeof TOKEN_DISPOSITIONS)[keyof typeof TOKEN_DISPOSITIONS];
 
 /**
  * The allowed token turn markers modes.
@@ -1177,8 +1154,7 @@ export const MEASURED_TEMPLATE_TYPES: Readonly<{
     RAY: "ray";
 }>;
 
-export type MeasuredTemplateType =
-    (typeof MEASURED_TEMPLATE_TYPES)[keyof typeof MEASURED_TEMPLATE_TYPES];
+export type MeasuredTemplateType = (typeof MEASURED_TEMPLATE_TYPES)[keyof typeof MEASURED_TEMPLATE_TYPES];
 
 /**
  * Define the recognized User capabilities which individual Users or role levels may be permitted to perform
@@ -1351,8 +1327,7 @@ export const WALL_DIRECTIONS: Readonly<{
     RIGHT: 2;
 }>;
 
-export type WallDirection =
-    (typeof WALL_DIRECTIONS)[keyof typeof WALL_DIRECTIONS];
+export type WallDirection = (typeof WALL_DIRECTIONS)[keyof typeof WALL_DIRECTIONS];
 
 /**
  * The allowed door types which a Wall may contain
@@ -1373,8 +1348,7 @@ export const WALL_DOOR_TYPES: Readonly<{
     SECRET: 2;
 }>;
 
-export type WallDoorType =
-    (typeof WALL_DOOR_TYPES)[keyof typeof WALL_DOOR_TYPES];
+export type WallDoorType = (typeof WALL_DOOR_TYPES)[keyof typeof WALL_DOOR_TYPES];
 
 /**
  * The allowed door states which may describe a Wall that contains a door
@@ -1395,29 +1369,17 @@ export const WALL_DOOR_STATES: Readonly<{
     LOCKED: 2;
 }>;
 
-export type WallDoorState =
-    (typeof WALL_DOOR_STATES)[keyof typeof WALL_DOOR_STATES];
+export type WallDoorState = (typeof WALL_DOOR_STATES)[keyof typeof WALL_DOOR_STATES];
 
 /**
  * The possible ways to interact with a door
  */
-export const WALL_DOOR_INTERACTIONS: readonly [
-    "open",
-    "close",
-    "lock",
-    "unlock",
-    "test",
-];
+export const WALL_DOOR_INTERACTIONS: readonly ["open", "close", "lock", "unlock", "test"];
 
 /**
  * The wall properties which restrict the way interaction occurs with a specific wall
  */
-export const WALL_RESTRICTION_TYPES: readonly [
-    "light",
-    "sight",
-    "sound",
-    "move",
-];
+export const WALL_RESTRICTION_TYPES: readonly ["light", "sight", "sound", "move"];
 
 export type WallRestrictionType = (typeof WALL_RESTRICTION_TYPES)[number];
 
@@ -1448,8 +1410,7 @@ export const WALL_SENSE_TYPES: Readonly<{
     DISTANCE: 40;
 }>;
 
-export type WallSenseType =
-    (typeof WALL_SENSE_TYPES)[keyof typeof WALL_SENSE_TYPES];
+export type WallSenseType = (typeof WALL_SENSE_TYPES)[keyof typeof WALL_SENSE_TYPES];
 
 /**
  * The types of movement collision which a Wall may impose
@@ -1466,8 +1427,7 @@ export const WALL_MOVEMENT_TYPES: Readonly<{
     NORMAL: 20;
 }>;
 
-export type WallMovementType =
-    (typeof WALL_MOVEMENT_TYPES)[keyof typeof WALL_MOVEMENT_TYPES];
+export type WallMovementType = (typeof WALL_MOVEMENT_TYPES)[keyof typeof WALL_MOVEMENT_TYPES];
 
 /**
  * The possible precedence values a Keybinding might run in
@@ -1703,14 +1663,7 @@ export type FileCategory = keyof typeof FILE_CATEGORIES;
 /**
  * The list of file categories that are "media".
  */
-export const MEDIA_FILE_CATEGORIES: readonly [
-    "IMAGE",
-    "VIDEO",
-    "AUDIO",
-    "TEXT",
-    "FONT",
-    "GRAPHICS",
-];
+export const MEDIA_FILE_CATEGORIES: readonly ["IMAGE", "VIDEO", "AUDIO", "TEXT", "FONT", "GRAPHICS"];
 
 /**
  * A list of MIME types which are treated as uploaded "media", which are allowed to overwrite existing files.
@@ -1961,14 +1914,7 @@ export const ALLOWED_HTML_ATTRIBUTES: Readonly<{
         "indent",
         "nowrap",
     ];
-    "color-picker": readonly [
-        "disabled",
-        "name",
-        "value",
-        "placeholder",
-        "readonly",
-        "required",
-    ];
+    "color-picker": readonly ["disabled", "name", "value", "placeholder", "readonly", "required"];
     details: readonly ["open"];
     "document-embed": readonly ["uuid"];
     "document-tags": readonly [
@@ -1984,42 +1930,11 @@ export const ALLOWED_HTML_ATTRIBUTES: Readonly<{
     ];
     "enriched-content": readonly ["enricher"];
     fieldset: readonly ["disabled"];
-    "file-picker": readonly [
-        "disabled",
-        "name",
-        "value",
-        "placeholder",
-        "readonly",
-        "required",
-        "type",
-        "noupload",
-    ];
+    "file-picker": readonly ["disabled", "name", "value", "placeholder", "readonly", "required", "type", "noupload"];
     form: readonly ["name"];
-    "hue-slider": readonly [
-        "disabled",
-        "name",
-        "value",
-        "readonly",
-        "required",
-    ];
-    iframe: readonly [
-        "src",
-        "srcdoc",
-        "name",
-        "height",
-        "width",
-        "loading",
-        "sandbox",
-    ];
-    img: readonly [
-        "height",
-        "src",
-        "width",
-        "usemap",
-        "sizes",
-        "srcset",
-        "alt",
-    ];
+    "hue-slider": readonly ["disabled", "name", "value", "readonly", "required"];
+    iframe: readonly ["src", "srcdoc", "name", "height", "width", "loading", "sandbox"];
+    img: readonly ["height", "src", "width", "usemap", "sizes", "srcset", "alt"];
     input: readonly [
         "checked",
         "disabled",
@@ -2050,82 +1965,29 @@ export const ALLOWED_HTML_ATTRIBUTES: Readonly<{
     option: readonly ["disabled", "selected", "label", "value"];
     output: readonly ["for", "form", "name"];
     progress: readonly ["max", "value"];
-    "prose-mirror": readonly [
-        "disabled",
-        "name",
-        "value",
-        "placeholder",
-        "readonly",
-        "required",
-        "toggled",
-        "open",
-    ];
-    "range-picker": readonly [
-        "disabled",
-        "name",
-        "value",
-        "placeholder",
-        "readonly",
-        "min",
-        "max",
-        "step",
-    ];
+    "prose-mirror": readonly ["disabled", "name", "value", "placeholder", "readonly", "required", "toggled", "open"];
+    "range-picker": readonly ["disabled", "name", "value", "placeholder", "readonly", "min", "max", "step"];
     select: readonly ["name", "disabled", "multiple", "size", "required"];
     source: readonly ["media", "sizes", "src", "srcset", "type"];
-    "string-tags": readonly [
-        "disabled",
-        "name",
-        "value",
-        "placeholder",
-        "readonly",
-        "required",
-    ];
+    "string-tags": readonly ["disabled", "name", "value", "placeholder", "readonly", "required"];
     table: readonly ["border"];
     td: readonly ["colspan", "headers", "rowspan"];
-    textarea: readonly [
-        "rows",
-        "cols",
-        "disabled",
-        "name",
-        "readonly",
-        "wrap",
-        "required",
-    ];
+    textarea: readonly ["rows", "cols", "disabled", "name", "readonly", "wrap", "required"];
     time: readonly ["datetime"];
     th: readonly ["abbr", "colspan", "headers", "rowspan", "scope", "sorted"];
     track: readonly ["default", "kind", "label", "src", "srclang"];
-    video: readonly [
-        "controls",
-        "height",
-        "width",
-        "loop",
-        "muted",
-        "poster",
-        "src",
-        "autoplay",
-    ];
+    video: readonly ["controls", "height", "width", "loop", "muted", "poster", "src", "autoplay"];
 }>;
 
 /**
  * The list of allowed URL schemes.
  */
-export const ALLOWED_URL_SCHEMES: readonly [
-    "http",
-    "https",
-    "data",
-    "mailto",
-    "obsidian",
-    "syrinscape-online",
-];
+export const ALLOWED_URL_SCHEMES: readonly ["http", "https", "data", "mailto", "obsidian", "syrinscape-online"];
 
 /**
  * The list of attributes validated as URLs.
  */
-export const ALLOWED_URL_SCHEMES_APPLIED_TO_ATTRIBUTES: readonly [
-    "href",
-    "src",
-    "cite",
-];
+export const ALLOWED_URL_SCHEMES_APPLIED_TO_ATTRIBUTES: readonly ["href", "src", "cite"];
 
 /**
  * The list of trusted iframe domains.
@@ -2184,22 +2046,12 @@ export const SETUP_PACKAGE_PROGRESS: Readonly<{
 /**
  * The combat announcements.
  */
-export const COMBAT_ANNOUNCEMENTS: readonly [
-    "startEncounter",
-    "nextUp",
-    "yourTurn",
-];
+export const COMBAT_ANNOUNCEMENTS: readonly ["startEncounter", "nextUp", "yourTurn"];
 
 /**
  * The fit modes of {@link foundry.data.TextureData}.
  */
-export const TEXTURE_DATA_FIT_MODES: readonly [
-    "fill",
-    "contain",
-    "cover",
-    "width",
-    "height",
-];
+export const TEXTURE_DATA_FIT_MODES: readonly ["fill", "contain", "cover", "width", "height"];
 
 /**
  * The maximum depth to recurse to when embedding enriched text.
@@ -2345,8 +2197,7 @@ export const REGION_MOVEMENT_SEGMENTS: Readonly<{
     ENTER: 1;
 }>;
 
-export type RegionMovementSegmentType =
-    (typeof REGION_MOVEMENT_SEGMENTS)[keyof typeof REGION_MOVEMENT_SEGMENTS];
+export type RegionMovementSegmentType = (typeof REGION_MOVEMENT_SEGMENTS)[keyof typeof REGION_MOVEMENT_SEGMENTS];
 
 /**
  * Available setting scopes.

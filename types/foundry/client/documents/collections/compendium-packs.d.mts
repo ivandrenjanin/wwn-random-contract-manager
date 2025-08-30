@@ -12,9 +12,7 @@ declare const MixedCompendiumPacks: ReturnType<
 /**
  * A mapping of CompendiumCollection instances, one per Compendium pack
  */
-export default class CompendiumPacks extends DirectoryCollectionMixin(
-    Collection,
-) {
+export default class CompendiumPacks extends DirectoryCollectionMixin(Collection) {
     /**
      * Get a Collection of Folders which contain Compendium Packs
      */
@@ -22,12 +20,6 @@ export default class CompendiumPacks extends DirectoryCollectionMixin(
 
     protected override _getVisibleTreeContents(): CompendiumCollection[];
 
-    protected static override _sortAlphabetical(
-        a: CompendiumCollection,
-        b: CompendiumCollection,
-    ): number;
-    protected static override _sortAlphabetical<T extends { name: string }>(
-        a: T,
-        b: T,
-    ): number;
+    protected static override _sortAlphabetical(a: CompendiumCollection, b: CompendiumCollection): number;
+    protected static override _sortAlphabetical<T extends { name: string }>(a: T, b: T): number;
 }

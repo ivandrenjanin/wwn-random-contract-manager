@@ -7,23 +7,15 @@ import Document from "@common/abstract/document.mjs";
 import { DocumentSheetV1Options } from "../appv1/api/document-sheet-v1.mjs";
 import ItemSheet from "../appv1/sheets/item-sheet.mjs";
 import { Actor, BaseItem, BaseUser, ItemSource, ItemUUID } from "./_module.mjs";
-import {
-    ClientDocument,
-    ClientDocumentStatic,
-} from "./abstract/client-document.mjs";
+import { ClientDocument, ClientDocumentStatic } from "./abstract/client-document.mjs";
 
-interface ClientBaseItemStatic
-    extends Omit<typeof BaseItem, "new">,
-        ClientDocumentStatic {}
+interface ClientBaseItemStatic extends Omit<typeof BaseItem, "new">, ClientDocumentStatic {}
 
 declare const ClientBaseItem: {
-    new <TParent extends Actor | null>(
-        ...args: any
-    ): BaseItem<TParent> & ClientDocument<TParent>;
+    new <TParent extends Actor | null>(...args: any): BaseItem<TParent> & ClientDocument<TParent>;
 } & ClientBaseItemStatic;
 
-declare interface ClientBaseItem<TParent extends Actor | null>
-    extends InstanceType<typeof ClientBaseItem<TParent>> {}
+declare interface ClientBaseItem<TParent extends Actor | null> extends InstanceType<typeof ClientBaseItem<TParent>> {}
 
 /**
  * The client-side Item document which extends the common BaseItem model.
@@ -31,9 +23,7 @@ declare interface ClientBaseItem<TParent extends Actor | null>
  * @see {@link foundry.documents.collections.Items} The world-level collection of Item documents
  * @see {@link foundry.applications.sheets.ItemSheetV2} The Item configuration application
  */
-declare class Item<
-    TParent extends Actor | null = Actor | null,
-> extends ClientBaseItem<TParent> {
+declare class Item<TParent extends Actor | null = Actor | null> extends ClientBaseItem<TParent> {
     /** A convenience alias of Item#parent which is more semantically intuitive */
     get actor(): TParent;
 
@@ -79,8 +69,7 @@ declare class Item<
     ): Promise<void>;
 }
 
-declare interface Item<TParent extends Actor | null = Actor | null>
-    extends ClientBaseItem<TParent> {
+declare interface Item<TParent extends Actor | null = Actor | null> extends ClientBaseItem<TParent> {
     readonly _source: ItemSource;
 
     get uuid(): ItemUUID;

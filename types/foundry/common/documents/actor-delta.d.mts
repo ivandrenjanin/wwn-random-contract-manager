@@ -1,21 +1,10 @@
-import {
-    DocumentOwnershipLevel,
-    DocumentOwnershipString,
-    ImageFilePath,
-    UserAction,
-} from "@common/constants.mjs";
+import { DocumentOwnershipLevel, DocumentOwnershipString, ImageFilePath, UserAction } from "@common/constants.mjs";
 import { DocumentConstructionContext } from "../_types.mjs";
 import * as abstract from "../abstract/_module.mjs";
 import { TombstoneDataSchema } from "../data/data.mjs";
 import * as fields from "../data/fields.mjs";
 import Collection from "../utils/collection.mjs";
-import {
-    BaseActiveEffect,
-    BaseActor,
-    BaseItem,
-    BaseToken,
-    BaseUser,
-} from "./_module.mjs";
+import { BaseActiveEffect, BaseActor, BaseItem, BaseToken, BaseUser } from "./_module.mjs";
 import { ItemSchema } from "./item.mjs";
 
 /**
@@ -26,9 +15,10 @@ import { ItemSchema } from "./item.mjs";
  * @param data    Initial data used to construct the ActorDelta.
  * @param context Construction context options.
  */
-export default class BaseActorDelta<
-    TParent extends BaseToken | null,
-> extends abstract.Document<TParent, ActorDeltaSchema> {
+export default class BaseActorDelta<TParent extends BaseToken | null> extends abstract.Document<
+    TParent,
+    ActorDeltaSchema
+> {
     /* -------------------------------------------- */
     /*  Model Configuration                         */
     /* -------------------------------------------- */
@@ -37,11 +27,7 @@ export default class BaseActorDelta<
 
     static override defineSchema(): ActorDeltaSchema;
 
-    override canUserModify(
-        user: BaseUser,
-        action: UserAction,
-        data?: Record<string, unknown>,
-    ): boolean;
+    override canUserModify(user: BaseUser, action: UserAction, data?: Record<string, unknown>): boolean;
 
     override testUserPermission(
         user: BaseUser,
@@ -57,9 +43,7 @@ export default class BaseActorDelta<
      * Retrieve the base actor's collection, if it exists.
      * @param collectionName  The collection name.
      */
-    getBaseCollection(
-        collectionName: string,
-    ): Collection<string, BaseActor> | undefined;
+    getBaseCollection(collectionName: string): Collection<string, BaseActor> | undefined;
 
     /**
      * Apply an ActorDelta to an Actor and return the resultant synthetic Actor.
@@ -99,10 +83,7 @@ type ActorDeltaSchema = {
     system: fields.ObjectField<object, object, true, true, true>;
     items: fields.EmbeddedCollectionDeltaField<
         BaseItem<BaseActor>,
-        (
-            | fields.DocumentSourceFromSchema<ItemSchema, true>
-            | fields.SourceFromSchema<TombstoneDataSchema>
-        )[]
+        (fields.DocumentSourceFromSchema<ItemSchema, true> | fields.SourceFromSchema<TombstoneDataSchema>)[]
     >;
     effects: fields.EmbeddedCollectionDeltaField<BaseActiveEffect<BaseActor>>;
     ownership: fields.DocumentOwnershipField;

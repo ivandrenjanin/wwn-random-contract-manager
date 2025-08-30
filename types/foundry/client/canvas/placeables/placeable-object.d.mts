@@ -8,11 +8,7 @@ import {
 } from "@common/abstract/_types.mjs";
 import { UserAction } from "@common/constants.mjs";
 import { ControlIcon } from "../containers/_module.mjs";
-import {
-    MouseInteractionManager,
-    RenderFlag,
-    RenderFlags,
-} from "../interaction/_module.mjs";
+import { MouseInteractionManager, RenderFlag, RenderFlags } from "../interaction/_module.mjs";
 import { PlaceablesLayer } from "../layers/_module.mjs";
 import { PlaceablesLayerPointerEvent } from "../layers/base/placeables-layer.mjs";
 
@@ -25,10 +21,7 @@ export default abstract class PlaceableObject<
 > extends RenderFlagsContainer<TDocument> {
     constructor(document: TDocument);
 
-    static override RENDER_FLAGS: Record<
-        string,
-        { propagate?: string[]; alias?: boolean }
-    >;
+    static override RENDER_FLAGS: Record<string, { propagate?: string[]; alias?: boolean }>;
 
     /** The object that this object is a preview of if this object is a preview. */
     get _original(): this | undefined;
@@ -187,11 +180,7 @@ export default abstract class PlaceableObject<
     protected _getTargetAlpha(): number;
 
     /** Register pending canvas operations which should occur after a new PlaceableObject of this type is created */
-    protected _onCreate(
-        data: TDocument["_source"],
-        options: DatabaseCreateCallbackOptions,
-        userId: string,
-    ): void;
+    protected _onCreate(data: TDocument["_source"], options: DatabaseCreateCallbackOptions, userId: string): void;
 
     /**
      * Define additional steps taken when an existing placeable object of this type is updated with new data
@@ -204,10 +193,7 @@ export default abstract class PlaceableObject<
 
     /** Define additional steps taken when an existing placeable object of this type is deleted */
 
-    protected _onDelete(
-        options: DatabaseDeleteCallbackOptions,
-        userId: string,
-    ): void;
+    protected _onDelete(options: DatabaseDeleteCallbackOptions, userId: string): void;
 
     /* -------------------------------------------- */
     /*  Methods                                     */
@@ -263,15 +249,7 @@ export default abstract class PlaceableObject<
      * @param snap  A precision (in degrees) to which the resulting angle should snap. Default is 0.
      * @return      The new rotation angle for the object
      */
-    protected _updateRotation({
-        angle,
-        delta,
-        snap,
-    }?: {
-        angle?: number;
-        delta?: number;
-        snap?: number;
-    }): number;
+    protected _updateRotation({ angle, delta, snap }?: { angle?: number; delta?: number; snap?: number }): number;
 
     /**
      * Obtain the shifted position for the Object
@@ -279,10 +257,7 @@ export default abstract class PlaceableObject<
      * @param dy    The number of grid units to shift along the Y-axis
      * @return      The target movement coordinates subject to some offset
      */
-    protected _getShiftedPosition(
-        dx: number,
-        dy: number,
-    ): { x: number; y: number };
+    protected _getShiftedPosition(dx: number, dy: number): { x: number; y: number };
 
     /* -------------------------------------------- */
     /*  Interactivity                               */
@@ -326,10 +301,7 @@ export default abstract class PlaceableObject<
      * @param event     The event object.
      * @returns         The returned status.
      */
-    protected _canDragLeftStart(
-        user: User,
-        event: PIXI.FederatedEvent,
-    ): boolean;
+    protected _canDragLeftStart(user: User, event: PIXI.FederatedEvent): boolean;
 
     /** Does the User have permission to hover on this Placeable Object? */
     protected _canHover(user: User, event?: PIXI.FederatedEvent): boolean;
@@ -392,18 +364,14 @@ export default abstract class PlaceableObject<
     protected _onDragLeftMove(event: PlaceablesLayerPointerEvent<this>): void;
 
     /** Callback actions which occur on a mouse-move operation. */
-    protected _onDragLeftDrop(
-        event: PlaceablesLayerPointerEvent<this>,
-    ): Promise<TDocument[] | void>;
+    protected _onDragLeftDrop(event: PlaceablesLayerPointerEvent<this>): Promise<TDocument[] | void>;
 
     /**
      * Perform the database updates that should occur as the result of a drag-left-drop operation.
      * @param event The triggering canvas interaction event
      * @returns    An array of database updates to perform for documents in this collection
      */
-    protected _prepareDragLeftDropUpdates(
-        event: PlaceablesLayerPointerEvent<this>,
-    ): Record<string, unknown>[] | null;
+    protected _prepareDragLeftDropUpdates(event: PlaceablesLayerPointerEvent<this>): Record<string, unknown>[] | null;
 
     /** Callback actions which occur on a mouse-move operation. */
     protected _onDragLeftCancel(event: PlaceablesLayerPointerEvent<this>): void;
@@ -415,42 +383,27 @@ export default abstract class PlaceableObject<
     protected _onDragRightMove(event: PlaceablesLayerPointerEvent<this>): void;
 
     /** Callback actions which occur on a right mouse-drag operation. */
-    protected _onDragRightDrop(
-        event: PlaceablesLayerPointerEvent<this>,
-    ): Promise<TDocument[] | void>;
+    protected _onDragRightDrop(event: PlaceablesLayerPointerEvent<this>): Promise<TDocument[] | void>;
 
     /** Callback actions which occur on a right mouse-drag operation. */
-    protected _onDragRightCancel(
-        event: PlaceablesLayerPointerEvent<this>,
-    ): void;
+    protected _onDragRightCancel(event: PlaceablesLayerPointerEvent<this>): void;
 
     /**
      * Callback action which occurs on a long press.
      * @param    event   The triggering canvas interaction event
      * @param    origin  The local canvas coordinates of the mousepress.
      */
-    protected _onLongPress(
-        event: PIXI.FederatedPointerEvent,
-        origin: PIXI.Point,
-    ): void;
+    protected _onLongPress(event: PIXI.FederatedPointerEvent, origin: PIXI.Point): void;
 }
 
-export default interface PlaceableObject<
-    TDocument extends CanvasDocument = CanvasDocument,
-> extends RenderFlagsContainer<TDocument> {
+export default interface PlaceableObject<TDocument extends CanvasDocument = CanvasDocument>
+    extends RenderFlagsContainer<TDocument> {
     hitArea: PIXI.Rectangle;
 }
 
-export type PlaceableShape =
-    | PIXI.Circle
-    | PIXI.Ellipse
-    | PIXI.Polygon
-    | PIXI.Rectangle
-    | PIXI.RoundedRectangle;
+export type PlaceableShape = PIXI.Circle | PIXI.Ellipse | PIXI.Polygon | PIXI.Rectangle | PIXI.RoundedRectangle;
 
-export class RenderFlagsContainer<
-    TDocument extends CanvasDocument,
-> extends PIXI.Container {
+export class RenderFlagsContainer<TDocument extends CanvasDocument> extends PIXI.Container {
     constructor(document: TDocument);
 
     /** Configure the render flags used for this class. */

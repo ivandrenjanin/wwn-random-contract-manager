@@ -14,10 +14,7 @@ export default class ConvolverEffect extends ConvolverNode {
      * @param {string} [options.impulseResponsePath]  The file path to the impulse response buffer to use
      * @param {number} [options.intensity]            The initial intensity of the effect
      */
-    constructor(
-        context: AudioContext,
-        options?: { impulseResponsePath?: string; intensity?: number },
-    );
+    constructor(context: AudioContext, options?: { impulseResponsePath?: string; intensity?: number });
 
     /**
      * Adjust the intensity of the effect on a scale of 0 to 10.
@@ -37,19 +34,11 @@ export default class ConvolverEffect extends ConvolverNode {
     override disconnect(output: number): void;
     override disconnect(destinationNode: AudioNode): void;
     override disconnect(destinationNode: AudioNode, output: number): void;
-    override disconnect(
-        destinationNode: AudioNode,
-        output: number,
-        input: number,
-    ): void;
+    override disconnect(destinationNode: AudioNode, output: number, input: number): void;
     override disconnect(destinationParam: AudioParam): void;
     override disconnect(destinationParam: AudioParam, output: number): void;
 
-    override connect(
-        destinationNode: AudioNode,
-        output?: number,
-        input?: number,
-    ): AudioNode;
+    override connect(destinationNode: AudioNode, output?: number, input?: number): AudioNode;
     override connect(destinationParam: AudioParam, output?: number): void;
 
     /**

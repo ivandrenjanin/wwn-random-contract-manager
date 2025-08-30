@@ -32,11 +32,7 @@ export default class HTMLDocumentTagsElement extends AbstractFormInputElement<
      * @param name     The document name
      * @param [editable=true] Is the tag editable?
      */
-    static renderTag(
-        uuid: DocumentUUID,
-        name: string,
-        editable?: boolean,
-    ): string;
+    static renderTag(uuid: DocumentUUID, name: string, editable?: boolean): string;
 
     /** Create a HTMLDocumentTagsElement using provided configuration data. */
     static create(config: DocumentTagsInputConfig): HTMLDocumentTagsElement;

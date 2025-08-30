@@ -4,18 +4,14 @@ import Collection from "@common/utils/collection.mjs";
 import { SceneControl } from "../../applications/ui/scene-controls.mjs";
 import Drawing from "../placeables/drawing.mjs";
 import { PlaceablesLayerOptions } from "./_types.mjs";
-import PlaceablesLayer, {
-    PlaceablesLayerPointerEvent,
-} from "./base/placeables-layer.mjs";
+import PlaceablesLayer, { PlaceablesLayerPointerEvent } from "./base/placeables-layer.mjs";
 
 /**
  * The DrawingsLayer subclass of PlaceablesLayer.
  * This layer implements a container for drawings.
  * @category Canvas
  */
-export default class DrawingsLayer<
-    TObject extends Drawing = Drawing,
-> extends PlaceablesLayer<TObject> {
+export default class DrawingsLayer<TObject extends Drawing = Drawing> extends PlaceablesLayer<TObject> {
     static get layerOptions(): PlaceablesLayerOptions;
 
     static override documentName: "Drawing";
@@ -63,31 +59,17 @@ export default class DrawingsLayer<
     /*  Event Listeners and Handlers                */
     /* -------------------------------------------- */
 
-    protected override _onClickLeft(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onClickLeft(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onClickLeft2(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onClickLeft2(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftStart(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftStart(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftMove(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftMove(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftDrop(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftDrop(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftCancel(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftCancel(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onClickRight(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onClickRight(event: PlaceablesLayerPointerEvent<TObject>): void;
 }

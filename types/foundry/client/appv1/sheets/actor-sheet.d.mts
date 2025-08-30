@@ -1,11 +1,4 @@
-import {
-    ActiveEffect,
-    ActiveEffectSource,
-    Actor,
-    Folder,
-    Item,
-    TokenDocument,
-} from "@client/documents/_module.mjs";
+import { ActiveEffect, ActiveEffectSource, Actor, Folder, Item, TokenDocument } from "@client/documents/_module.mjs";
 import { DropCanvasData } from "@client/helpers/hooks.mjs";
 import {
     ApplicationV1HeaderButton,
@@ -18,8 +11,7 @@ export interface ActorSheetOptions extends DocumentSheetV1Options {
     token: TokenDocument | null;
 }
 
-export interface ActorSheetData<TActor extends Actor>
-    extends DocumentSheetData<TActor> {
+export interface ActorSheetData<TActor extends Actor> extends DocumentSheetData<TActor> {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     actor: any;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -39,10 +31,10 @@ export interface ActorSheetData<TActor extends Actor>
  * @param actor     The Actor instance being displayed within the sheet.
  * @param [options] Additional application configuration options.
  */
-export default class ActorSheet<
-    TActor extends Actor,
-    TItem extends Item = Item,
-> extends DocumentSheet<TActor, ActorSheetOptions> {
+export default class ActorSheet<TActor extends Actor, TItem extends Item = Item> extends DocumentSheet<
+    TActor,
+    ActorSheetOptions
+> {
     static override get defaultOptions(): ActorSheetOptions;
 
     override get id(): string;
@@ -61,15 +53,11 @@ export default class ActorSheet<
 
     override close(options?: { force?: boolean }): Promise<void>;
 
-    override getData(
-        options?: ActorSheetOptions,
-    ): ActorSheetData<TActor> | Promise<ActorSheetData<TActor>>;
+    override getData(options?: ActorSheetOptions): ActorSheetData<TActor> | Promise<ActorSheetData<TActor>>;
 
     protected override _getHeaderButtons(): ApplicationV1HeaderButton[];
 
-    protected override _getSubmitData(
-        updateData?: Record<string, unknown>,
-    ): Record<string, unknown>;
+    protected override _getSubmitData(updateData?: Record<string, unknown>): Record<string, unknown>;
 
     /* -------------------------------------------- */
     /*  Event Listeners                             */
@@ -119,10 +107,7 @@ export default class ActorSheet<
      * @param data  The data transfer extracted from the event
      * @return A data object which describes the result of the drop
      */
-    protected _onDropActor(
-        event: DragEvent,
-        data: DropCanvasData<"Actor", TActor>,
-    ): Promise<false | void>;
+    protected _onDropActor(event: DragEvent, data: DropCanvasData<"Actor", TActor>): Promise<false | void>;
 
     /**
      * Handle dropping of an item reference or item data onto an Actor Sheet
@@ -130,10 +115,7 @@ export default class ActorSheet<
      * @param data  The data transfer extracted from the event
      * @return A data object which describes the result of the drop
      */
-    protected _onDropItem(
-        event: DragEvent,
-        data: DropCanvasData<"Item", TItem>,
-    ): Promise<TItem[]>;
+    protected _onDropItem(event: DragEvent, data: DropCanvasData<"Item", TItem>): Promise<TItem[]>;
 
     /**
      * Handle dropping of a Folder on an Actor Sheet.
@@ -142,10 +124,7 @@ export default class ActorSheet<
      * @param data  The data transfer extracted from the event
      * @return A data object which describes the result of the drop
      */
-    protected _onDropFolder(
-        event: DragEvent,
-        data: DropCanvasData<"Folder", Folder>,
-    ): Promise<TItem[]>;
+    protected _onDropFolder(event: DragEvent, data: DropCanvasData<"Folder", Folder>): Promise<TItem[]>;
 
     /**
      * Handle the final creation of dropped Item data on the Actor.
@@ -157,8 +136,5 @@ export default class ActorSheet<
     ): Promise<Item<TActor>[]>;
 
     /** Handle a drop event for an existing embedded Item to sort that Item relative to its siblings */
-    protected _onSortItem(
-        event: DragEvent,
-        itemData: TItem["_source"],
-    ): Promise<TItem[]>;
+    protected _onSortItem(event: DragEvent, itemData: TItem["_source"]): Promise<TItem[]>;
 }

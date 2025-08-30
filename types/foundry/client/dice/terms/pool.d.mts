@@ -16,9 +16,7 @@ import { Evaluated } from "./term.mjs";
  * });
  * pool.evaluate();
  */
-export default class PoolTerm<
-    TData extends PoolTermData = PoolTermData,
-> extends RollTerm<TData> {
+export default class PoolTerm<TData extends PoolTermData = PoolTermData> extends RollTerm<TData> {
     constructor({
         terms,
         modifiers,
@@ -57,12 +55,7 @@ export default class PoolTerm<
     /** A regular expression pattern used to identify the closing of a dice pool expression. */
     static CLOSE_REGEXP: RegExp;
 
-    static override SERIALIZE_ATTRIBUTES: [
-        "terms",
-        "modifiers",
-        "rolls",
-        "results",
-    ];
+    static override SERIALIZE_ATTRIBUTES: ["terms", "modifiers", "rolls", "results"];
 
     /* -------------------------------------------- */
     /*  Dice Pool Attributes                        */
@@ -87,15 +80,9 @@ export default class PoolTerm<
      */
     alter(...args: unknown[]): this[];
 
-    protected override _evaluateSync({
-        minimize,
-        maximize,
-    }?: Omit<EvaluateRollParams, "async">): Evaluated<this>;
+    protected override _evaluateSync({ minimize, maximize }?: Omit<EvaluateRollParams, "async">): Evaluated<this>;
 
-    protected override _evaluate({
-        minimize,
-        maximize,
-    }?: Omit<EvaluateRollParams, "async">): Promise<Evaluated<this>>;
+    protected override _evaluate({ minimize, maximize }?: Omit<EvaluateRollParams, "async">): Promise<Evaluated<this>>;
 
     /**
      * Use the same logic as for the DiceTerm to avoid duplication
@@ -113,10 +100,10 @@ export default class PoolTerm<
     /*  Saving and Loading                          */
     /* -------------------------------------------- */
 
-    protected static override _fromData<
-        D extends RollTermData,
-        T extends RollTerm<D>,
-    >(this: ConstructorOf<T>, data: D): T;
+    protected static override _fromData<D extends RollTermData, T extends RollTerm<D>>(
+        this: ConstructorOf<T>,
+        data: D,
+    ): T;
 
     /**
      * Given a string formula, create and return an evaluated PoolTerm object
@@ -135,10 +122,7 @@ export default class PoolTerm<
      * @param rolls An array of Roll objects from which to create the pool
      * @returns The constructed PoolTerm comprised of the provided rolls
      */
-    static fromRolls<TTerm extends PoolTerm>(
-        this: ConstructorOf<TTerm>,
-        rolls?: Roll[],
-    ): TTerm;
+    static fromRolls<TTerm extends PoolTerm>(this: ConstructorOf<TTerm>, rolls?: Roll[]): TTerm;
 
     /* -------------------------------------------- */
     /*  Modifiers                                   */

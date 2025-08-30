@@ -150,15 +150,7 @@ export default class Game<
     actors: TActors;
     collections: Collection<
         string,
-        WorldCollection<
-            | TActor
-            | TItem
-            | JournalEntry
-            | TMacro
-            | Playlist
-            | RollTable
-            | TScene
-        >
+        WorldCollection<TActor | TItem | JournalEntry | TMacro | Playlist | RollTable | TScene>
     >;
 
     combats: collections.CombatEncounters<TCombat>;
@@ -169,27 +161,14 @@ export default class Game<
     messages: collections.Messages<TChatMessage>;
     packs: Collection<
         string,
-        collections.CompendiumCollection<
-            | TActor
-            | TItem
-            | JournalEntry
-            | TMacro
-            | Playlist
-            | RollTable
-            | TScene
-        >
+        collections.CompendiumCollection<TActor | TItem | JournalEntry | TMacro | Playlist | RollTable | TScene>
     >;
     playlists: collections.Playlists;
     scenes: collections.Scenes<TScene>;
     tables: collections.RollTables;
     users: collections.Users<TUser>;
 
-    constructor(
-        view: string,
-        worldData: object,
-        sessionId: string,
-        socket: io.Socket,
-    );
+    constructor(view: string, worldData: object, sessionId: string, socket: io.Socket);
 
     /** Returns the current version of the Release, usable for comparisons using isNewerVersion */
     get version(): string;
@@ -199,16 +178,7 @@ export default class Game<
      * @return A Promise which resolves to the created Game instance
      */
     static create(): Promise<
-        Game<
-            Actor<null>,
-            collections.Actors<Actor<null>>,
-            ChatMessage,
-            Combat,
-            Item<null>,
-            Macro,
-            Scene,
-            User
-        >
+        Game<Actor<null>, collections.Actors<Actor<null>>, ChatMessage, Combat, Item<null>, Macro, Scene, User>
     >;
 
     /** Request World data from server and return it */
@@ -263,10 +233,7 @@ export default class Game<
     get activeTool(): string;
 
     /** An alias for the structured data model organized by document class and type. */
-    get model(): Record<
-        "Actor" | "Card" | "Cards" | "Item" | "JournalEntryPage",
-        object
-    >;
+    get model(): Record<"Actor" | "Card" | "Cards" | "Item" | "JournalEntryPage", object>;
 
     /**
      * Toggle the pause state of the game

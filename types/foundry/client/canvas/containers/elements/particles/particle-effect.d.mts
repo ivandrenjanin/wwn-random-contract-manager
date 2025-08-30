@@ -3,9 +3,7 @@ import FullCanvasObjectMixin from "../../advanced/full-canvas-mixin.mjs";
 /**
  * An interface for defining particle-based weather effects
  */
-export default class ParticleEffect extends FullCanvasObjectMixin(
-    PIXI.Container,
-) {
+export default class ParticleEffect extends FullCanvasObjectMixin(PIXI.Container) {
     /**
      * @param options Options passed to the getParticleEmitters method which can be used to customize values of the
      *                emitter configuration.
@@ -22,9 +20,7 @@ export default class ParticleEffect extends FullCanvasObjectMixin(
      * @param config The emitter configuration
      * @returns The created Emitter instance
      */
-    createEmitter(
-        config: PIXI.particles.EmitterConfigV3,
-    ): PIXI.particles.Emitter;
+    createEmitter(config: PIXI.particles.EmitterConfigV3): PIXI.particles.Emitter;
 
     /**
      * Get the particle emitters which should be active for this particle effect.

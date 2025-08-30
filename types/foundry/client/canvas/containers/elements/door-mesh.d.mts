@@ -1,8 +1,6 @@
 import { CanvasAnimationAttribute } from "@client/canvas/animation/_types.mjs";
 import { WallDoorAnimationConfig } from "@client/config.mjs";
-import PrimarySpriteMesh, {
-    PrimarySpriteMeshConstructorOptions,
-} from "../../primary/primary-sprite-mesh.mjs";
+import PrimarySpriteMesh, { PrimarySpriteMeshConstructorOptions } from "../../primary/primary-sprite-mesh.mjs";
 
 interface DoorAnimationConfiguration {
     direction?: number;
@@ -26,12 +24,9 @@ interface DoorStateSnapshot {
     tint: number;
 }
 
-type DoorStyle =
-    (typeof DoorMesh.DOOR_STYLES)[keyof typeof DoorMesh.DOOR_STYLES];
+type DoorStyle = (typeof DoorMesh.DOOR_STYLES)[keyof typeof DoorMesh.DOOR_STYLES];
 
-interface DoorMeshConstructorOptions
-    extends PrimarySpriteMeshConstructorOptions,
-        DoorAnimationConfiguration {
+interface DoorMeshConstructorOptions extends PrimarySpriteMeshConstructorOptions, DoorAnimationConfiguration {
     style: DoorStyle;
 }
 

@@ -1,15 +1,11 @@
 import { ContextMenuEntry } from "@client/applications/ux/context-menu.mjs";
 import Actor from "@client/documents/actor.mjs";
-import DocumentDirectory, {
-    DocumentDirectoryConfiguration,
-} from "../document-directory.mjs";
+import DocumentDirectory, { DocumentDirectoryConfiguration } from "../document-directory.mjs";
 
 /**
  * The World Actor directory listing.
  */
-export default class ActorDirectory<
-    TDocument extends Actor<null> = Actor<null>,
-> extends DocumentDirectory<TDocument> {
+export default class ActorDirectory<TDocument extends Actor<null> = Actor<null>> extends DocumentDirectory<TDocument> {
     static override DEFAULT_OPTIONS: DeepPartial<DocumentDirectoryConfiguration>;
 
     static override tabName: "actors";

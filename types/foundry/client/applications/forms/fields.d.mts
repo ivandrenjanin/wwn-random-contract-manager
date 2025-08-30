@@ -5,17 +5,13 @@ import { HTMLMultiSelectElement } from "../elements/multi-select.mjs";
 export function createFormGroup(config: FormGroupConfig): HTMLDivElement;
 
 /** Create an `<input type="checkbox">` element for a BooleanField. */
-export function createCheckboxInput(
-    config: FormInputConfig<boolean>,
-): HTMLInputElement;
+export function createCheckboxInput(config: FormInputConfig<boolean>): HTMLInputElement;
 
 /** Create a `<div class="editor">` element for a StringField. */
 export function createEditorInput(config: EditorInputConfig): HTMLDivElement;
 
 /** Create a `<multi-select>` element for a StringField. */
-export function createMultiSelectInput(
-    config: MultiSelectInputConfig,
-): HTMLMultiSelectElement;
+export function createMultiSelectInput(config: MultiSelectInputConfig): HTMLMultiSelectElement;
 
 /** Create an `<input type="number">` element foFormInputConfig<number> & NumberInputConfigr a NumberField. */
 export function createNumberInput(config: NumberInputConfig): HTMLInputElement;
@@ -24,14 +20,10 @@ export function createNumberInput(config: NumberInputConfig): HTMLInputElement;
 export function createSelectInput(config: SelectInputConfig): HTMLSelectElement;
 
 /** Create a `<textarea>` element for a StringField. */
-export function createTextareaInput(
-    config: TextAreaInputConfig,
-): HTMLTextAreaElement;
+export function createTextareaInput(config: TextAreaInputConfig): HTMLTextAreaElement;
 
 /** Create an `<input type="text">` element for a StringField. */
-export function createTextInput(
-    config: FormInputConfig<string>,
-): HTMLInputElement;
+export function createTextInput(config: FormInputConfig<string>): HTMLInputElement;
 
 /* ---------------------------------------- */
 /*  Helper Methods                          */
@@ -58,9 +50,10 @@ export function prepareSelectOptionGroups(
  * @param input The element being configured
  * @param config Configuration for the element
  */
-export function setInputAttributes<
-    TValue extends string | boolean = string | boolean,
->(input: HTMLElement, config: FormInputConfig<TValue>): void;
+export function setInputAttributes<TValue extends string | boolean = string | boolean>(
+    input: HTMLElement,
+    config: FormInputConfig<TValue>,
+): void;
 
 /**
  * Create an HTML element for a FontAwesome icon
@@ -74,17 +67,10 @@ export function setInputAttributes<
  */
 export function createFontAwesomeIcon(
     glyph: string,
-    options?: {
-        style?: "solid" | "regular" | "duotone";
-        fixedWidth?: boolean;
-        classes?: string[];
-    },
+    options?: { style?: "solid" | "regular" | "duotone"; fixedWidth?: boolean; classes?: string[] },
 ): HTMLElement;
 
-export type CustomFormGroup = (
-    field: foundry.data.fields.DataField,
-    groupConfig: FormGroupConfig,
-) => HTMLDivElement;
+export type CustomFormGroup = (field: foundry.data.fields.DataField, groupConfig: FormGroupConfig) => HTMLDivElement;
 
 export type CustomFormInput = (
     field: foundry.data.fields.DataField,

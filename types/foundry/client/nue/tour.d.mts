@@ -87,10 +87,7 @@ export default abstract class Tour {
      * @param options.id A tour ID that supercedes TourConfig#id
      * @param options.namespace A tour namespace that supercedes TourConfig#namespace
      */
-    constructor(
-        config: TourConfig,
-        options?: { id?: string; namespace?: string },
-    );
+    constructor(config: TourConfig, options?: { id?: string; namespace?: string });
 
     static STATUS: Readonly<{
         UNSTARTED: "unstarted";

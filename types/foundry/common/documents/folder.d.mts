@@ -23,15 +23,10 @@ export default class BaseFolder extends Document<null, FolderSchema> {
     /** Allow folder sorting modes */
     static SORTING_MODES: ["a", "m"];
 
-    static override get(
-        documentId: string,
-        options?: object,
-    ): BaseFolder | null | undefined;
+    static override get(documentId: string, options?: object): BaseFolder | null | undefined;
 }
 
-export default interface BaseFolder
-    extends Document<null, FolderSchema>,
-        fields.ModelPropsFromSchema<FolderSchema> {
+export default interface BaseFolder extends Document<null, FolderSchema>, fields.ModelPropsFromSchema<FolderSchema> {
     get documentName(): FolderMetadata["name"];
 }
 
@@ -51,24 +46,12 @@ type FolderSchema = {
     /** The name of this Folder */
     name: fields.StringField<string, string, true, false, false>;
     /** The document type which this Folder contains, from CONST.FOLDER_DOCUMENT_TYPES */
-    type: fields.StringField<
-        FolderDocumentType,
-        FolderDocumentType,
-        true,
-        false,
-        false
-    >;
+    type: fields.StringField<FolderDocumentType, FolderDocumentType, true, false, false>;
     /** An HTML description of the contents of this folder */
     description: fields.StringField<string, string, false, false, true>;
     folder: fields.ForeignDocumentField<BaseFolder>;
     /** The sorting mode used to organize documents within this Folder, in ["a", "m"] */
-    sorting: fields.StringField<
-        FolderSortingMode,
-        FolderSortingMode,
-        true,
-        false,
-        true
-    >;
+    sorting: fields.StringField<FolderSortingMode, FolderSortingMode, true, false, true>;
     /** The numeric sort value which orders this Folder relative to its siblings */
     sort: fields.IntegerSortField;
     /** A color string used for the background color of this Folder */

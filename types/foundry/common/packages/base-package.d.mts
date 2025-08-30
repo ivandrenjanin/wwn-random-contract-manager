@@ -1,14 +1,6 @@
 import { CompendiumDocumentType } from "@client/utils/helpers.mjs";
-import {
-    DataModelConstructionContext,
-    DataSchema,
-} from "@common/abstract/_types.mjs";
-import {
-    DocumentOwnershipLevel,
-    PackageAvailabilityCode,
-    PackageType,
-    UserRole,
-} from "@common/constants.mjs";
+import { DataModelConstructionContext, DataSchema } from "@common/abstract/_types.mjs";
+import { DocumentOwnershipLevel, PackageAvailabilityCode, PackageType, UserRole } from "@common/constants.mjs";
 import { DataFieldOptions, ObjectFieldOptions } from "@common/data/_module.mjs";
 import type DataModel from "../abstract/data.mjs";
 import type * as fields from "../data/fields.mjs";
@@ -16,14 +8,7 @@ import { PackageManifestData } from "./_types.mjs";
 
 /** A custom SchemaField for defining package compatibility versions. */
 export class PackageCompatibility extends fields.SchemaField<PackageCompatibilitySchema> {
-    constructor(
-        options: DataFieldOptions<
-            fields.SourceFromSchema<PackageCompatibilitySchema>,
-            true,
-            false,
-            true
-        >,
-    );
+    constructor(options: DataFieldOptions<fields.SourceFromSchema<PackageCompatibilitySchema>, true, false, true>);
 }
 
 type PackageCompatibilitySchema = {
@@ -37,14 +22,7 @@ type PackageCompatibilitySchema = {
 
 /** A custom SchemaField for defining package relationships. */
 export class PackageRelationships extends fields.SchemaField<PackageRelationshipsSchema> {
-    constructor(
-        options?: DataFieldOptions<
-            fields.SourceFromSchema<PackageRelationshipsSchema>,
-            true,
-            false,
-            true
-        >,
-    );
+    constructor(options?: DataFieldOptions<fields.SourceFromSchema<PackageRelationshipsSchema>, true, false, true>);
 }
 
 type PackageRelationshipsSchema = {
@@ -55,10 +33,7 @@ type PackageRelationshipsSchema = {
     /** Packages that are recommended for optimal functionality */
     recommends: fields.SetField<RelatedPackage>;
     conflicts: fields.SetField<RelatedPackage>;
-    flags: fields.ObjectField<
-        Record<string, JSONValue | undefined>,
-        Record<string, unknown>
-    >;
+    flags: fields.ObjectField<Record<string, JSONValue | undefined>, Record<string, unknown>>;
 };
 
 /**
@@ -66,14 +41,7 @@ type PackageRelationshipsSchema = {
  * It may be required to be a specific type of package, by passing the packageType option to the constructor.
  */
 export class RelatedPackage extends fields.SchemaField<RelatedPackageSchema> {
-    constructor(
-        options?: DataFieldOptions<
-            fields.SourceFromSchema<RelatedPackageSchema>,
-            true,
-            false,
-            true
-        >,
-    );
+    constructor(options?: DataFieldOptions<fields.SourceFromSchema<RelatedPackageSchema>, true, false, true>);
 }
 
 type RelatedPackageSchema = {
@@ -86,29 +54,18 @@ type RelatedPackageSchema = {
 
 /** A custom SchemaField for defining the folder structure of the included compendium packs. */
 export class PackageCompendiumFolder extends fields.SchemaField<PackageCompendiumFolderSchema> {
-    constructor(
-        options?: DataFieldOptions<
-            PackageCompendiumFolderSchema,
-            true,
-            false,
-            true
-        >,
-    );
+    constructor(options?: DataFieldOptions<PackageCompendiumFolderSchema, true, false, true>);
 }
 
 type PackageCompendiumFolderSchema = {
     name: fields.StringField<string, string, true, false, false>;
     sorting: fields.StringField<"a" | "m">;
     color: fields.ColorField;
-    packs: fields.SetField<
-        fields.StringField<string, string, true, false, false>
-    >;
+    packs: fields.SetField<fields.StringField<string, string, true, false, false>>;
 };
 
 /** A special ObjectField which captures a mapping of USER_ROLES to DOCUMENT_OWNERSHIP_LEVELS. */
-export class CompendiumOwnershipField extends fields.ObjectField<
-    Record<UserRole, DocumentOwnershipLevel>
-> {
+export class CompendiumOwnershipField extends fields.ObjectField<Record<UserRole, DocumentOwnershipLevel>> {
     static override get _defaults(): ObjectFieldOptions<
         Record<UserRole, DocumentOwnershipLevel>,
         boolean,
@@ -116,20 +73,14 @@ export class CompendiumOwnershipField extends fields.ObjectField<
         boolean
     >;
 
-    protected override _validateType(
-        value: unknown,
-        options?: Record<string, unknown>,
-    ): void;
+    protected override _validateType(value: unknown, options?: Record<string, unknown>): void;
 }
 
 /** A special SetField which provides additional validation and initialization behavior specific to compendium packs. */
-export class PackageCompendiumPacks<
-    TSchema extends PackageCompendiumSchema,
-> extends fields.SetField<fields.SchemaField<TSchema>> {
-    protected override _cleanType(
-        value: Record<string, unknown>[],
-        options?: Record<string, unknown>,
-    ): void;
+export class PackageCompendiumPacks<TSchema extends PackageCompendiumSchema> extends fields.SetField<
+    fields.SchemaField<TSchema>
+> {
+    protected override _cleanType(value: Record<string, unknown>[], options?: Record<string, unknown>): void;
 
     override initialize(
         value: fields.SourceFromSchema<TSchema>[],
@@ -138,25 +89,20 @@ export class PackageCompendiumPacks<
     ): Set<fields.ModelPropsFromSchema<TSchema>>;
 
     /** Extend the logic for validating the complete set of packs to ensure uniqueness. */
-    protected override _validateElements(
-        value: unknown[],
-        options?: Record<string, unknown>,
-    ): void;
+    protected override _validateElements(value: unknown[], options?: Record<string, unknown>): void;
 
     /** Validate each individual compendium pack, ensuring its name and path are unique. */
-    protected _validateElement(
-        value: unknown,
-        options?: Record<string, unknown>,
-    ): void;
+    protected _validateElement(value: unknown, options?: Record<string, unknown>): void;
 }
 
 /**
  * The data schema used to define a Package manifest.
  * Specific types of packages extend this schema with additional fields.
  */
-export default abstract class BasePackage<
-    TDataSchema extends BasePackageSchema = BasePackageSchema,
-> extends DataModel<null, TDataSchema> {
+export default abstract class BasePackage<TDataSchema extends BasePackageSchema = BasePackageSchema> extends DataModel<
+    null,
+    TDataSchema
+> {
     /** An availability code in PACKAGE_AVAILABILITY_CODES which defines whether this package can be used. */
     availability: PackageAvailabilityCode;
 
@@ -179,10 +125,7 @@ export default abstract class BasePackage<
      * @param data         Source data for the package
      * @param [options={}] Options which affect DataModel construction
      */
-    constructor(
-        data: PackageManifestData,
-        options?: DataModelConstructionContext<null>,
-    );
+    constructor(data: PackageManifestData, options?: DataModelConstructionContext<null>);
 
     /**
      * Define the package type in CONST.PACKAGE_TYPES that this class represents.
@@ -203,9 +146,7 @@ export default abstract class BasePackage<
      * Test if a given availability is incompatible with the core version.
      * @param availability The availability value to test.
      */
-    static isIncompatibleWithCoreVersion(
-        availability: PackageAvailabilityCode,
-    ): boolean;
+    static isIncompatibleWithCoreVersion(availability: PackageAvailabilityCode): boolean;
 
     /** The named collection to which this package type belongs */
     static get collection(): string;
@@ -218,10 +159,7 @@ export default abstract class BasePackage<
      * @param [release] A specific software release for which to test availability.
      *                  Tests against the current release by default.
      */
-    static testAvailability(
-        data?: Partial<PackageManifestData>,
-        release?: ReleaseData,
-    ): PackageAvailabilityCode;
+    static testAvailability(data?: Partial<PackageManifestData>, release?: ReleaseData): PackageAvailabilityCode;
 
     /**
      *
@@ -246,9 +184,7 @@ export default abstract class BasePackage<
      */
     static validateId(id: string): void;
 
-    static override migrateData(
-        source: Record<string, unknown>,
-    ): fields.SourceFromSchema<DataSchema>;
+    static override migrateData(source: Record<string, unknown>): fields.SourceFromSchema<DataSchema>;
 
     /**
      * Retrieve the latest Package manifest from a provided remote location.
@@ -292,10 +228,7 @@ type BasePackageSchema = {
     bugs: fields.StringField<string, string, false, false, false>;
     /** A web url where notes detailing package updates are available */
     changelog: fields.StringField<string, string, false, false, false>;
-    flags: fields.ObjectField<
-        Record<string, JSONValue | undefined>,
-        Record<string, unknown>
-    >;
+    flags: fields.ObjectField<Record<string, JSONValue | undefined>, Record<string, unknown>>;
     media: fields.SetField<
         fields.SchemaField<{
             type: fields.StringField<string, string, false, false, false>;
@@ -303,10 +236,7 @@ type BasePackageSchema = {
             caption: fields.StringField<string, string, false, false, false>;
             loop: fields.BooleanField;
             thumbnail: fields.StringField<string, string, false, false, false>;
-            flags: fields.ObjectField<
-                Record<string, JSONValue | undefined>,
-                Record<string, unknown>
-            >;
+            flags: fields.ObjectField<Record<string, JSONValue | undefined>, Record<string, unknown>>;
         }>
     >;
 
@@ -315,17 +245,11 @@ type BasePackageSchema = {
     /** The compatibility of this version with the core Foundry software */
     compatibility: PackageCompatibility;
     /** An array of urls or relative file paths for JavaScript files which should be included */
-    scripts: fields.SetField<
-        fields.StringField<string, string, true, false, false>
-    >;
+    scripts: fields.SetField<fields.StringField<string, string, true, false, false>>;
     /** An array of urls or relative file paths for ESModule files which should be included */
-    esmodules: fields.SetField<
-        fields.StringField<string, string, true, false, false>
-    >;
+    esmodules: fields.SetField<fields.StringField<string, string, true, false, false>>;
     /** An array of urls or relative file paths for CSS stylesheet files which should be included */
-    styles: fields.SetField<
-        fields.StringField<string, string, true, false, false>
-    >;
+    styles: fields.SetField<fields.StringField<string, string, true, false, false>>;
     /** An array of language data objects which are included by this package */
     languages: fields.SetField<fields.SchemaField<PackageLanguageSchema>>;
     /** An array of compendium packs which are included by this package */
@@ -354,10 +278,7 @@ type PackageAuthorSchema = {
     url: fields.StringField<string, string, false, false, false>;
     /** A Discord username for the author */
     discord: fields.StringField<string, string, false, false, false>;
-    flags: fields.ObjectField<
-        Record<string, JSONValue | undefined>,
-        Record<string, unknown>
-    >;
+    flags: fields.ObjectField<Record<string, JSONValue | undefined>, Record<string, unknown>>;
 };
 
 type PackageCompendiumSchema = {
@@ -369,23 +290,13 @@ type PackageCompendiumSchema = {
     /** The local relative path to the compendium source directory. The filename should match the name attribute */
     path: fields.StringField<string, string, false, false, true>;
     /** The specific document type that is contained within this compendium pack */
-    type: fields.StringField<
-        CompendiumDocumentType,
-        CompendiumDocumentType,
-        true,
-        false,
-        false
-    >;
+    type: fields.StringField<CompendiumDocumentType, CompendiumDocumentType, true, false, false>;
     /** Denote that this compendium pack requires a specific game system to function properly */
     system: fields.StringField<string, string, false, false, false>;
     ownership: CompendiumOwnershipField;
-    flags: fields.ObjectField<
-        Record<string, JSONValue | undefined>,
-        Record<string, unknown>
-    >;
+    flags: fields.ObjectField<Record<string, JSONValue | undefined>, Record<string, unknown>>;
 };
-export type PackageCompendiumData =
-    fields.ModelPropsFromSchema<PackageCompendiumSchema>;
+export type PackageCompendiumData = fields.ModelPropsFromSchema<PackageCompendiumSchema>;
 
 type PackageLanguageSchema = {
     /** A string language code which is validated by Intl.getCanonicalLocales */
@@ -398,9 +309,6 @@ type PackageLanguageSchema = {
     system: fields.StringField<string, string, false, false, false>;
     /** Only apply this set of translations when a specific module is active */
     module: fields.StringField<string, string, false, false, false>;
-    flags: fields.ObjectField<
-        Record<string, JSONValue | undefined>,
-        Record<string, unknown>
-    >;
+    flags: fields.ObjectField<Record<string, JSONValue | undefined>, Record<string, unknown>>;
 };
 export type ReleaseData = object;

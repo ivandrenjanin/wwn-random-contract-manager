@@ -1,27 +1,16 @@
 import FormDataExtended from "@client/applications/ux/form-data-extended.mjs";
 import { Actor, Scene, TokenDocument } from "@client/documents/_module.mjs";
-import {
-    DatabaseCreateOperation,
-    DatabaseUpdateOperation,
-} from "@common/abstract/_types.mjs";
+import { DatabaseCreateOperation, DatabaseUpdateOperation } from "@common/abstract/_types.mjs";
 import { TokenSchema } from "@common/documents/token.mjs";
-import {
-    ApplicationClosingOptions,
-    ApplicationFormConfiguration,
-    ApplicationRenderContext,
-} from "../../_types.mjs";
-import DocumentSheetV2, {
-    DocumentSheetRenderContext,
-} from "../../api/document-sheet.mjs";
+import { ApplicationClosingOptions, ApplicationFormConfiguration, ApplicationRenderContext } from "../../_types.mjs";
+import DocumentSheetV2, { DocumentSheetRenderContext } from "../../api/document-sheet.mjs";
 import { HandlebarsRenderOptions } from "../../api/handlebars-application.mts";
 import TokenApplicationMixin from "./mixin.mts";
 
 /**
  * The Application responsible for configuring a single token document within a parent Scene
  */
-export default class TokenConfig extends TokenApplicationMixin(
-    DocumentSheetV2,
-) {
+export default class TokenConfig extends TokenApplicationMixin(DocumentSheetV2) {
     override isPrototype: boolean;
 
     override get token(): TokenDocument;
@@ -34,9 +23,7 @@ export default class TokenConfig extends TokenApplicationMixin(
 
     protected override _initializeTokenPreview(): Promise<void>;
 
-    protected override _prepareContext(
-        options: HandlebarsRenderOptions,
-    ): Promise<DocumentSheetRenderContext>;
+    protected override _prepareContext(options: HandlebarsRenderOptions): Promise<DocumentSheetRenderContext>;
 
     protected override _prepareAppearanceTab(): Promise<ApplicationRenderContext>;
 
@@ -48,15 +35,9 @@ export default class TokenConfig extends TokenApplicationMixin(
     /*  Event Listeners and Handlers                */
     /* -------------------------------------------- */
 
-    protected override _onRender(
-        context: ApplicationRenderContext,
-        options: HandlebarsRenderOptions,
-    ): Promise<void>;
+    protected override _onRender(context: ApplicationRenderContext, options: HandlebarsRenderOptions): Promise<void>;
 
-    protected override _onChangeForm(
-        formConfig: ApplicationFormConfiguration,
-        event: Event,
-    ): void;
+    protected override _onChangeForm(formConfig: ApplicationFormConfiguration, event: Event): void;
 
     /**
      * Handle changing the attribute bar in the drop-down selector to update the default current and max value
@@ -80,8 +61,6 @@ export default class TokenConfig extends TokenApplicationMixin(
         event: SubmitEvent,
         form: HTMLFormElement,
         submitData: Record<string, unknown>,
-        options?:
-            | Partial<DatabaseCreateOperation<Scene | null>>
-            | Partial<DatabaseUpdateOperation<Scene | null>>,
+        options?: Partial<DatabaseCreateOperation<Scene | null>> | Partial<DatabaseUpdateOperation<Scene | null>>,
     ): Promise<void>;
 }

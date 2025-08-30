@@ -14,9 +14,7 @@ export type MinusOneToOne = -1 | 0 | 1;
  * each corresponding to an embedded Document.
  * @category Canvas
  */
-export default class PlaceablesLayer<
-    TObject extends PlaceableObject = PlaceableObject,
-> extends InteractionLayer {
+export default class PlaceablesLayer<TObject extends PlaceableObject = PlaceableObject> extends InteractionLayer {
     /** Sort order for placeables belonging to this layer. */
     static SORT_ORDER: number;
 
@@ -275,11 +273,7 @@ export default class PlaceablesLayer<
      * @param data       The create/update/delete data
      * @param [options]  The create/update/delete options
      */
-    storeHistory(
-        type: CanvasHistoryEvent["type"],
-        data: object,
-        options?: object,
-    ): void;
+    storeHistory(type: CanvasHistoryEvent["type"], data: object, options?: object): void;
 
     /**
      * Record a new CRUD event in the history log so that it can be undone later.
@@ -290,11 +284,7 @@ export default class PlaceablesLayer<
      * @param [options]  The options of the undo operation
      * @protected
      */
-    protected _storeHistory(
-        type: CanvasHistoryEvent["type"],
-        data: object,
-        options?: object,
-    ): void;
+    protected _storeHistory(type: CanvasHistoryEvent["type"], data: object, options?: object): void;
 
     /**
      * Copy (or cut) currently controlled PlaceableObjects, ready to paste back into the Scene later.
@@ -312,10 +302,7 @@ export default class PlaceablesLayer<
      * @param [options.snap=true]     Snap the resulting objects to the grid. Default is true.
      * @returns  An Array of created Document instances
      */
-    pasteObjects(
-        position: Point,
-        options?: { hidden?: boolean; snap?: boolean },
-    ): Promise<TObject["document"]>;
+    pasteObjects(position: Point, options?: { hidden?: boolean; snap?: boolean }): Promise<TObject["document"]>;
 
     /**
      * Select all PlaceableObject instances which fall within a coordinate rectangle.
@@ -351,9 +338,7 @@ export default class PlaceablesLayer<
      * @returns  An array of updated data once the operation is complete
      */
     updateAll(
-        transformation:
-            | Record<string, unknown>
-            | ((obj: TObject) => Record<string, unknown>),
+        transformation: Record<string, unknown> | ((obj: TObject) => Record<string, unknown>),
         condition: ((obj: TObject) => boolean) | null,
         options?: object,
     ): Promise<TObject["document"]>;
@@ -365,10 +350,7 @@ export default class PlaceablesLayer<
      * @param [options.center=true]  Return the coordinates of the center of the nearest grid element.
      * @returns  Returns the transformed x, y coordinates, or false if the drag event was outside the canvas.
      */
-    protected _canvasCoordinatesFromDrop(
-        event: DragEvent,
-        options?: { center?: boolean },
-    ): number[] | false;
+    protected _canvasCoordinatesFromDrop(event: DragEvent, options?: { center?: boolean }): number[] | false;
 
     /**
      * Create a preview of this layer's object type from a world document and show its sheet to be finalized.
@@ -389,34 +371,19 @@ export default class PlaceablesLayer<
     /*  Event Listeners and Handlers                */
     /* -------------------------------------------- */
 
-    protected override _onClickLeft(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onClickLeft(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _canDragLeftStart(
-        user: User,
-        event: PlaceablesLayerPointerEvent<PIXI.Container>,
-    ): boolean;
+    protected override _canDragLeftStart(user: User, event: PlaceablesLayerPointerEvent<PIXI.Container>): boolean;
 
-    protected override _onDragLeftStart(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftStart(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftMove(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftMove(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftDrop(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftDrop(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onDragLeftCancel(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onDragLeftCancel(event: PlaceablesLayerPointerEvent<TObject>): void;
 
-    protected override _onClickRight(
-        event: PlaceablesLayerPointerEvent<TObject>,
-    ): void;
+    protected override _onClickRight(event: PlaceablesLayerPointerEvent<TObject>): void;
 
     protected override _onMouseWheel(event: WheelEvent): void;
 
@@ -428,9 +395,7 @@ export default class PlaceablesLayer<
      * @param documents  The documents that will be deleted on confirmation.
      * @returns  True if the deletion is confirmed to proceed.
      */
-    protected _confirmDeleteKey(
-        documents: TObject["document"][],
-    ): Promise<boolean>;
+    protected _confirmDeleteKey(documents: TObject["document"][]): Promise<boolean>;
 
     protected override _onSelectAllKey(event: KeyboardEvent): boolean;
 
@@ -445,13 +410,11 @@ export default class PlaceablesLayer<
     protected override _onPasteKey(event: KeyboardEvent): boolean;
 }
 
-export interface PlaceablesLayerEvent<TObject extends PIXI.Container>
-    extends PIXI.FederatedEvent {
+export interface PlaceablesLayerEvent<TObject extends PIXI.Container> extends PIXI.FederatedEvent {
     interactionData: PlaceableInteractionData<TObject>;
 }
 
-export interface PlaceablesLayerPointerEvent<TObject extends PIXI.Container>
-    extends PIXI.FederatedPointerEvent {
+export interface PlaceablesLayerPointerEvent<TObject extends PIXI.Container> extends PIXI.FederatedPointerEvent {
     interactionData: PlaceableInteractionData<TObject>;
 }
 

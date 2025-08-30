@@ -3,9 +3,7 @@ import BaseShaderMixin from "../mixins/base-shader-mixin.mjs";
 /**
  * This class defines an interface which all shaders utilize.
  */
-export default abstract class AbstractBaseShader extends BaseShaderMixin(
-    PIXI.Shader,
-) {
+export default abstract class AbstractBaseShader extends BaseShaderMixin(PIXI.Shader) {
     /**
      * The raw vertex shader used by this class.
      * A subclass of AbstractBaseShader must implement the vertexShader static field.
@@ -51,10 +49,7 @@ export default abstract class AbstractBaseShader extends BaseShaderMixin(
      * @param {PIXI.Renderer} renderer       The renderer
      * @protected
      */
-    protected _preRender(
-        mesh: PIXI.DisplayObject,
-        renderer: PIXI.Renderer,
-    ): void;
+    protected _preRender(mesh: PIXI.DisplayObject, renderer: PIXI.Renderer): void;
     /**
      * @deprecated since v12
      * @ignore

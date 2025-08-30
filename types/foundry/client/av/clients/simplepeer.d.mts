@@ -44,13 +44,9 @@ export default class SimplePeerAVClient extends AVClient {
 
     override getConnectedUsers(): string[];
 
-    override getMediaStreamForUser(
-        userId: string,
-    ): MediaStream | null | undefined;
+    override getMediaStreamForUser(userId: string): MediaStream | null | undefined;
 
-    override getLevelsStreamForUser(
-        userId: string,
-    ): MediaStream | null | undefined;
+    override getLevelsStreamForUser(userId: string): MediaStream | null | undefined;
 
     override isAudioEnabled(): boolean;
 
@@ -62,10 +58,7 @@ export default class SimplePeerAVClient extends AVClient {
 
     override toggleVideo(enabled: boolean): void;
 
-    override setUserVideo(
-        userId: string,
-        videoElement: HTMLVideoElement,
-    ): Promise<void>;
+    override setUserVideo(userId: string, videoElement: HTMLVideoElement): Promise<void>;
 
     /* -------------------------------------------- */
     /*  Local Stream Management                     */

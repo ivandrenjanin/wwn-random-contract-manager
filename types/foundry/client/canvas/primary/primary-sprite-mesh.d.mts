@@ -20,13 +20,8 @@ export interface PrimarySpriteMeshConstructorOptions {
  * @param [options.name]        The name of this sprite.
  * @param [options.object]      Any object that owns this sprite.
  */
-export default class PrimarySpriteMesh extends PrimaryOccludableObjectMixin(
-    SpriteMesh,
-) {
-    constructor(
-        options: PrimarySpriteMeshConstructorOptions,
-        shaderClass: typeof PrimaryBaseSamplerShader,
-    );
+export default class PrimarySpriteMesh extends PrimaryOccludableObjectMixin(SpriteMesh) {
+    constructor(options: PrimarySpriteMeshConstructorOptions, shaderClass: typeof PrimaryBaseSamplerShader);
 
     object: object | null;
 
@@ -105,20 +100,14 @@ export default class PrimarySpriteMesh extends PrimaryOccludableObjectMixin(
      * @param point                   The point in canvas space
      * @param [textureAlphaThreshold] The minimum texture alpha required for containment
      */
-    override containsCanvasPoint(
-        point: PIXI.IPointData,
-        textureAlphaThreshold?: number,
-    ): boolean;
+    override containsCanvasPoint(point: PIXI.IPointData, textureAlphaThreshold?: number): boolean;
 
     /**
      * Is the given point in world space contained in this object?
      * @param point                   The point in world space
      * @param [textureAlphaThreshold] The minimum texture alpha required for containment
      */
-    override containsPoint(
-        point: PIXI.IPointData,
-        textureAlphaThreshold?: number,
-    ): boolean;
+    override containsPoint(point: PIXI.IPointData, textureAlphaThreshold?: number): boolean;
 
     /* -------------------------------------------- */
     /*  Rendering Methods                           */

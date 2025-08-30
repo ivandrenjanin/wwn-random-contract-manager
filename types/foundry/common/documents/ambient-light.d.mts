@@ -4,9 +4,7 @@ import * as fields from "../data/fields.mjs";
 import BaseScene from "./scene.mjs";
 
 /** The AmbientLight embedded document model. */
-export default class BaseAmbientLight<
-    TParent extends BaseScene | null,
-> extends Document<TParent, AmbientLightSchema> {
+export default class BaseAmbientLight<TParent extends BaseScene | null> extends Document<TParent, AmbientLightSchema> {
     static override get metadata(): AmbientLightMetadata;
 
     static override defineSchema(): AmbientLightSchema;
@@ -40,9 +38,7 @@ export type AmbientLightSchema = {
     /** Whether or not this light source provides a source of vision */
     vision: fields.BooleanField;
     /** Light configuration data */
-    config: fields.EmbeddedDataField<
-        data.LightData<BaseAmbientLight<BaseScene | null>>
-    >;
+    config: fields.EmbeddedDataField<data.LightData<BaseAmbientLight<BaseScene | null>>>;
     /** Is the light source currently hidden? */
     hidden: fields.BooleanField;
     /** An object of optional key/value flags */

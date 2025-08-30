@@ -42,14 +42,14 @@ jobs:
 
       - name: Zip files
         working-directory: ./dist
-        run: zip -r ./wwn-random-contract-manager.zip ./*
+        run: zip -r ./wwn-random-contract-manager.zip ./*
 
       - name: Create versioned release
         id: create_version_release
         uses: ncipollo/release-action@v1
         with:
           allowUpdates: true # Set this to false if you want to prevent updating existing releases
-          artifacts: "./dist/module.json, ./dist/wwn-random-contract-manager.zip"
+          artifacts: "./dist/module.json, ./dist/wwn-random-contract-manager.zip"
           body: "${{ github.event.release.body }}"
           draft: true
           generateReleaseNotes: true

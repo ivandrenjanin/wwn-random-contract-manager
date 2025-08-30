@@ -116,6 +116,7 @@ class VersionManager {
     public bumpVersion(type: "major" | "minor" | "patch"): void {
         console.log(`🔄 Bumping ${type} version...`);
 
+        // eslint-disable-next-line no-plusplus
         this.versionConfig.module[type]++;
 
         // Reset lower versions when bumping higher ones

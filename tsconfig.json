@@ -38,8 +38,7 @@
         "./types/libWrapper/index.d.ts",
         "./types/socketlib/index.d.ts",
         "./types/vtt-color-settings/index.d.ts",
-        "./vite.config.ts",
-        "./build/**/*"
+        "./vite.config.ts"
     ],
     "watchOptions": {
         "fallbackPolling": "dynamicpriority",

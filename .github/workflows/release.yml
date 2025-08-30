@@ -56,4 +56,3 @@ jobs:
           name: ${{ steps.get_version.outputs.version }}
           tag: ${{ steps.get_version.outputs.version }}
           token: ${{ secrets.GITHUB_TOKEN }}
-

@@ -47,7 +47,7 @@ class TemplateProcessor {
 
     public processModuleJson(): void {
         const templatePath = path.join(this.projectRoot, "module.json");
-        const outputPath = path.join(this.projectRoot, "temp/module.json");
+        const outputPath = path.join(this.projectRoot, "dist/module.json");
 
         if (!fs.existsSync(templatePath)) {
             console.error(`❌ Template file not found: ${templatePath}`);

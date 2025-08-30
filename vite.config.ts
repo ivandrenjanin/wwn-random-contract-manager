@@ -26,20 +26,14 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
             minifyPlugin(),
             deleteLockFilePlugin(),
             ...viteStaticCopy({
-                targets: [
-                    { src: "README.md", dest: "." },
-                    { src: "temp/module.json", dest: "." },
-                ],
+                targets: [{ src: "README.md", dest: "." }],
             }),
         );
     } else if (buildMode === "stage") {
         plugins.push(
             minifyPlugin(),
             ...viteStaticCopy({
-                targets: [
-                    { src: "README.md", dest: "." },
-                    { src: "temp/module.json", dest: "." },
-                ],
+                targets: [{ src: "README.md", dest: "." }],
             }),
         );
     } else {

@@ -1,0 +1,11 @@
+{
+    "name": "vtt-color-settings",
+    "private": true,
+    "type": "module",
+    "types": "./index.d.ts",
+    "devDependencies": {
+        "typescript": "^5.3.3"
+    },
+    "license": "MIT",
+    "homepage": "https://github.com/ardittristan/VTTColorSettings#readme"
+}

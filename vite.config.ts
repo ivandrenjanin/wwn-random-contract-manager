@@ -26,14 +26,20 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
             minifyPlugin(),
             deleteLockFilePlugin(),
             ...viteStaticCopy({
-                targets: [{ src: "README.md", dest: "." }],
+                targets: [
+                    { src: "README.md", dest: "." },
+                    { src: "temp/module.json", dest: "." },
+                ],
             }),
         );
     } else if (buildMode === "stage") {
         plugins.push(
             minifyPlugin(),
             ...viteStaticCopy({
-                targets: [{ src: "README.md", dest: "." }],
+                targets: [
+                    { src: "README.md", dest: "." },
+                    { src: "temp/module.json", dest: "." },
+                ],
             }),
         );
     } else {
@@ -65,7 +71,7 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
             command === "build"
                 ? "./"
                 : `/modules/wwn-random-contract-manager/`,
-        publicDir: "static",
+        publicDir: false,
         define: {
             BUILD_MODE: JSON.stringify(buildMode),
         },
@@ -162,7 +168,9 @@ function deleteLockFilePlugin(): Vite.Plugin {
                 outDir,
                 "wwn-random-contract-manager.lock",
             );
-            fs.rmSync(lockFile);
+            if (fs.existsSync(lockFile)) {
+                fs.rmSync(lockFile);
+            }
         },
     };
 }

@@ -1,0 +1,18 @@
+{
+  "foundry": {
+    "major": 12,
+    "minimum": 12,
+    "verified": 12,
+    "maximum": 12
+  },
+  "module": {
+    "major": 1,
+    "minor": 2,
+    "patch": 1
+  },
+  "metadata": {
+    "description": "A FoundryVTT Module for random contract generation",
+    "author": "Ivan Drenjanin",
+    "url": "https://github.com/ivandrenjanin/wwn-random-contract-manager"
+  }
+}

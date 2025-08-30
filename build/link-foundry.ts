@@ -3,7 +3,7 @@ import path from "path";
 import process from "process";
 import prompts from "prompts";
 import foundryConfig from "../foundryconfig.json" with { type: "json" };
-import moduleJSON from "../dist/module.json" with { type: "json" };
+import moduleJSON from "../module.json" with { type: "json" };
 
 if (!foundryConfig.dataPath || !/\bData$/.test(foundryConfig.dataPath)) {
     console.error(

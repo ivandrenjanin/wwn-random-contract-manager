@@ -12,12 +12,12 @@
     "scripts": [],
     "styles": ["styles/wwn-random-contract-manager.css"],
     "packs": [
-        {
-            "name": "module-roll-tables",
-            "label": "Module Roll Tables",
-            "path": "./packs/roll-tables.db",
-            "type": "RollTable"
-        }
+            {
+                "name": "wwn-rcm-tables",
+                "label": "WWN Random Contract Manager Tables",
+                "path": "./packs/wwn-rcm-tables",
+                "type": "RollTable"
+            }
     ],
     "packFolders": [],
     "relationships": {

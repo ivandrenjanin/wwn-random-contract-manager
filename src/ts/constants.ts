@@ -3,7 +3,7 @@ import moduleData from "../../module.json" with { type: "json" };
 // Module identifiers
 export const MODULE_ID = moduleData.id;
 export const SOCKET_NAMESPACE = `world.${MODULE_ID}` as const;
-export const FLAGS_NAMESPACE = MODULE_ID as const;
+export const FLAGS_NAMESPACE = MODULE_ID;
 
 // Journal constants
 export const JOURNAL_NAME = "Mission Log" as const;
@@ -34,3 +34,13 @@ export const TABLE_SETTING_KEYS = [
 ] as const;
 
 export type TableSettingKey = (typeof TABLE_SETTING_KEYS)[number];
+
+// Default RollTable names (as they should appear in Foundry)
+export const DEFAULT_TABLE_NAMES: Record<TableSettingKey, string> = {
+    [SETTING_KEYS.TABLE_HOOK]: "CE: Hook (d20)",
+    [SETTING_KEYS.TABLE_PRIMARY_DANGER]: "CE: Primary Danger (d20)",
+    [SETTING_KEYS.TABLE_COMPLICATION]: "CE: Complication (d20)",
+    [SETTING_KEYS.TABLE_BONUS_OBJECTIVE]: "CE: Bonus Objective (d20)",
+    [SETTING_KEYS.TABLE_FALLOUT]: "CE: Fallout (d20)",
+    [SETTING_KEYS.TABLE_WORLD]: "CE: World (d12)",
+};

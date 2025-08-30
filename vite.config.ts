@@ -71,7 +71,7 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
             command === "build"
                 ? "./"
                 : `/modules/wwn-random-contract-manager/`,
-        publicDir: false,
+        publicDir: "static",
         define: {
             BUILD_MODE: JSON.stringify(buildMode),
         },

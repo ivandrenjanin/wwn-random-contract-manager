@@ -1,4 +1,4 @@
-import { MODULE_ID, SETTING_KEYS } from "./constants.ts";
+import { MODULE_ID, SETTING_KEYS, DEFAULT_TABLE_NAMES } from "./constants.ts";
 import { logger } from "./utils/logger.ts";
 
 class Settings {
@@ -6,18 +6,9 @@ class Settings {
     #SAMPLE = "sample";
 
     register(): void {
-        game.settings.register(MODULE_ID, this.#SAMPLE, {
-            name: "ModuleTemplate.Settings.SampleSetting.Name",
-            hint: "ModuleTemplate.Settings.SampleSetting.Hint",
-            scope: "world",
-            config: true,
-            default: true,
-            type: Boolean,
-        });
-        // Poll configuration
         game.settings.register(MODULE_ID, SETTING_KEYS.POLL_DEFAULT_COUNT, {
-            name: "WWNRCM.Settings.PollDefaultCount.Name",
-            hint: "WWNRCM.Settings.PollDefaultCount.Hint",
+            name: game.i18n.localize("WWNRCM.Settings.PollDefaultCount.Name"),
+            hint: game.i18n.localize("WWNRCM.Settings.PollDefaultCount.Hint"),
             scope: "world",
             config: true,
             default: 3,
@@ -57,8 +48,8 @@ class Settings {
         });
 
         game.settings.register(MODULE_ID, SETTING_KEYS.POLL_MAX_COUNT, {
-            name: "WWNRCM.Settings.PollMaxCount.Name",
-            hint: "WWNRCM.Settings.PollMaxCount.Hint",
+            name: game.i18n.localize("WWNRCM.Settings.PollMaxCount.Name"),
+            hint: game.i18n.localize("WWNRCM.Settings.PollMaxCount.Hint"),
             scope: "world",
             config: true,
             default: 5,
@@ -99,56 +90,68 @@ class Settings {
 
         // Rolltable names (defaults match docs)
         game.settings.register(MODULE_ID, SETTING_KEYS.TABLE_HOOK, {
-            name: "WWNRCM.Settings.Tables.Hook.Name",
-            hint: "WWNRCM.Settings.Tables.Hook.Hint",
+            name: game.i18n.localize("WWNRCM.Settings.Tables.Hook.Name"),
+            hint: game.i18n.localize("WWNRCM.Settings.Tables.Hook.Hint"),
             scope: "world",
             config: true,
-            default: "CE: Hook (d20)",
+            default: DEFAULT_TABLE_NAMES[SETTING_KEYS.TABLE_HOOK],
             type: String,
         });
 
         game.settings.register(MODULE_ID, SETTING_KEYS.TABLE_PRIMARY_DANGER, {
-            name: "WWNRCM.Settings.Tables.PrimaryDanger.Name",
-            hint: "WWNRCM.Settings.Tables.PrimaryDanger.Hint",
+            name: game.i18n.localize(
+                "WWNRCM.Settings.Tables.PrimaryDanger.Name",
+            ),
+            hint: game.i18n.localize(
+                "WWNRCM.Settings.Tables.PrimaryDanger.Hint",
+            ),
             scope: "world",
             config: true,
-            default: "CE: Primary Danger (d20)",
+            default: DEFAULT_TABLE_NAMES[SETTING_KEYS.TABLE_PRIMARY_DANGER],
             type: String,
         });
 
         game.settings.register(MODULE_ID, SETTING_KEYS.TABLE_COMPLICATION, {
-            name: "WWNRCM.Settings.Tables.Complication.Name",
-            hint: "WWNRCM.Settings.Tables.Complication.Hint",
+            name: game.i18n.localize(
+                "WWNRCM.Settings.Tables.Complication.Name",
+            ),
+            hint: game.i18n.localize(
+                "WWNRCM.Settings.Tables.Complication.Hint",
+            ),
             scope: "world",
             config: true,
-            default: "CE: Complication (d20)",
+            default: DEFAULT_TABLE_NAMES[SETTING_KEYS.TABLE_COMPLICATION],
             type: String,
         });
 
         game.settings.register(MODULE_ID, SETTING_KEYS.TABLE_BONUS_OBJECTIVE, {
-            name: "WWNRCM.Settings.Tables.BonusObjective.Name",
-            hint: "WWNRCM.Settings.Tables.BonusObjective.Hint",
+            name: game.i18n.localize(
+                "WWNRCM.Settings.Tables.BonusObjective.Name",
+            ),
+            hint: game.i18n.localize(
+                "WWNRCM.Settings.Tables.BonusObjective.Hint",
+            ),
             scope: "world",
             config: true,
-            default: "CE: Bonus Objective (d20)",
+            default: DEFAULT_TABLE_NAMES[SETTING_KEYS.TABLE_BONUS_OBJECTIVE],
             type: String,
         });
 
         game.settings.register(MODULE_ID, SETTING_KEYS.TABLE_FALLOUT, {
-            name: "WWNRCM.Settings.Tables.Fallout.Name",
-            hint: "WWNRCM.Settings.Tables.Fallout.Hint",
+            name: game.i18n.localize("WWNRCM.Settings.Tables.Fallout.Name"),
+            hint: game.i18n.localize("WWNRCM.Settings.Tables.Fallout.Hint"),
             scope: "world",
             config: true,
-            default: "CE: Fallout (d20)",
+            default: DEFAULT_TABLE_NAMES[SETTING_KEYS.TABLE_FALLOUT],
             type: String,
         });
 
         game.settings.register(MODULE_ID, SETTING_KEYS.TABLE_WORLD, {
-            name: "WWNRCM.Settings.Tables.World.Name",
-            hint: "WWNRCM.Settings.Tables.World.Hint",
+            name: game.i18n.localize("WWNRCM.Settings.Tables.World.Name"),
+            hint: game.i18n.localize("WWNRCM.Settings.Tables.World.Hint"),
             scope: "world",
             config: true,
-            default: "CE: World (d12)",
+            default: DEFAULT_TABLE_NAMES[SETTING_KEYS.TABLE_WORLD],
             type: String,
         });
     }

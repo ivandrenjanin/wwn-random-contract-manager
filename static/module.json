@@ -1,21 +1,49 @@
 {
-    "id": "dfreds-module-template-ts",
-    "title": "DFreds Module Template TS",
-    "description": "A FoundryVTT module template using Typescript",
-    "version": "1.0.0",
+    "id": "wwn-random-contract-manager",
+    "title": "WWN Random Contract Manager",
+    "description": "A FoundryVTT Module for random contract generation",
+    "version": "v12.0.0",
     "compatibility": {
-        "minimum": 13,
-        "verified": 13,
-        "maximum": 13
+        "minimum": 12,
+        "verified": 12,
+        "maximum": 12
     },
-    "esmodules": ["vendor.mjs", "dfreds-module-template-ts.mjs"],
+    "esmodules": [
+        "vendor.mjs",
+        "wwn-random-contract-manager.mjs"
+    ],
     "scripts": [],
-    "styles": ["styles/dfreds-module-template-ts.css"],
-    "packs": [],
+    "styles": [
+        "styles/wwn-random-contract-manager.css"
+    ],
+    "packs": [
+    ],
     "packFolders": [],
     "relationships": {
-        "systems": [],
-        "requires": []
+        "systems": [
+            {
+                "id": "wwn",
+                "compatibility": {
+                    "minimum": "1.4.5",
+                    "verified": "1.4.5",
+                    "maximum": "1.4.x"
+                }
+            }
+        ],
+        "requires": [
+            {
+                "id": "socketlib",
+                "type": "module"
+              },
+              {
+                "id": "lib-wrapper",
+                "type": "module"
+              },
+              {
+                "id":"colorsettings",
+                "type":"module"
+              }
+        ]
     },
     "languages": [
         {
@@ -26,19 +54,19 @@
     ],
     "authors": [
         {
-            "name": "DFreds",
-            "url": "https://github.com/DFreds",
-            "discord": "DFreds#1238"
+            "name": "Ivan Drenjanin",
+            "url": "https://github.com/ivandrenjanin",
+            "discord": "zaramao"
         }
     ],
-    "socket": false,
-    "url": "https://github.com/DFreds/dfreds-module-template-ts",
-    "manifest": "https://github.com/DFreds/dfreds-module-template-ts/releases/latest/download/module.json",
-    "download": "https://github.com/DFreds/dfreds-module-template-ts/releases/download/v1.0.0/dfreds-module-template-ts.zip",
-    "license": "https://github.com/DFreds/dfreds-module-template-ts/blob/main/LICENSE",
-    "readme": "https://github.com/DFreds/dfreds-module-template-ts/blob/main/README.md",
-    "bugs": "https://github.com/DFreds/dfreds-module-template-ts/issues",
-    "changelog": "https://github.com/DFreds/dfreds-module-template-ts/releases",
+    "socket": true,
+    "url": "https://github.com/ivandrenjanin/wwn-random-contract-manager",
+    "manifest": "https://github.com/ivandrenjanin/wwn-random-contract-manager/releases/latest/download/module.json",
+    "download": "https://github.com/ivandrenjanin/wwn-random-contract-manager/releases/download/v1.0.0/wwn-random-contract-manager.zip",
+    "license": "https://github.com/ivandrenjanin/wwn-random-contract-manager/blob/main/LICENSE",
+    "readme": "https://github.com/ivandrenjanin/wwn-random-contract-manager/blob/main/README.md",
+    "bugs": "https://github.com/ivandrenjanin/wwn-random-contract-manager/issues",
+    "changelog": "https://github.com/ivandrenjanin/wwn-random-contract-manager/releases",
     "library": false,
     "media": []
 }

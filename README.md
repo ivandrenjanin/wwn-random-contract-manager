@@ -1,47 +1,86 @@
-<div align="center">
-  <img src="https://i.imgur.com/gOZy3Jf.png" width="200" height="200"/>
-</div>
-<h1 align="center">DFreds Module Template TS</h1>
+# WWN Contract Builder
 
-<h4 align="center">
-  <a href="https://github.com/new?template_name=dfreds-module-template-ts&template_owner=DFreds">Use Template</a>
-  ·
-  <a href="https://discord.gg/Wq8AEV9bWb">Discord</a>
-  ·
-  <a href="https://dfreds-modules.com">Other Modules</a>
-</h4>
+A FoundryVTT module for generating and voting on mission contracts using RollTables and Fate currency.
 
-<p align="center">
-    <a href="https://github.com/DFreds/dfreds-module-template-ts/pulse"><img src="https://img.shields.io/github/last-commit/DFreds/dfreds-module-template-ts?style=for-the-badge&logo=github&color=7dc4e4&logoColor=D9E0EE&labelColor=302D41"/></a>
-    <a href="https://github.com/DFreds/dfreds-module-template-ts/releases/latest"><img src="https://img.shields.io/github/v/release/DFreds/dfreds-module-template-ts?style=for-the-badge&logo=gitbook&color=8bd5ca&logoColor=D9E0EE&labelColor=302D41"/></a>
-    <a href="https://github.com/DFreds/dfreds-module-template-ts/stargazers"><img src="https://img.shields.io/github/stars/DFreds/dfreds-module-template-ts?style=for-the-badge&logo=apachespark&color=eed49f&logoColor=D9E0EE&labelColor=302D41"/></a>
-    <br/>
-    <br/>
-    <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2FDFreds%2Fdfreds-module-template-ts%2Freleases%2Flatest%2Fdownload%2Fmodule.json&query=%24.compatibility.verified&style=for-the-badge&logo=foundryvirtualtabletop&label=Foundry%20Version&color=%23fe6a1f"/>
-    <br/>
-    <br/>
-    <a href="https://www.patreon.com/dfreds"><img src="https://img.shields.io/badge/-Patreon-%23f96854?style=for-the-badge&logo=patreon"/></a>
-    <a href="https://www.buymeacoffee.com/dfreds"><img src="https://img.shields.io/badge/-Buy%20Me%20A%20Coffee-%23ff813f?style=for-the-badge&logo=buymeacoffee"/></a>
-    <br/>
-    <br/>
-    <a href="https://discord.gg/Wq8AEV9bWb"><img src="https://img.shields.io/discord/1200171647022403664?style=for-the-badge&logo=discord&label=Discord&labelColor=%231c1e1f&color=%235865f2&link=https%3A%2F%2Fdiscord.gg%2FWq8AEV9bWb"/></a>
-</p>
+## Overview
 
-<p align="center">
-    <b>DFreds Module Template TS</b> is a FoundryVTT module template that uses Typescript and Vite for development.
-</p>
+This module allows GMs to generate polls of mission contracts assembled from six RollTables. Players can vote on contracts and spend Fate currency to boost votes or reroll contract fields. The winning contract is automatically logged to a journal.
 
-## Features
+### Core Features
 
-- Full use of well-defined types provided by [pf2e](https://foundryvtt.com/packages/pf2e)
-- Symlink integration, so you aren't directly messing with the foundry data folder
-- Use of [nvm](https://github.com/nvm-sh/nvm) and npm for node and package management
-- Use of [vite](https://vite.dev/) for building
-- Commands to build for production, staging, or development
-- Commands to configure and run different versions of FoundryVTT
-- Tools to automatically rename the name of the module, update the types, and enforce code linting
-- Powerful GitHub actions that handle releases and (optionally) posting updates to a Discord channel
+- **Contract Generation**: Assembles missions from six required RollTables
+- **Interactive Voting**: Chat-based voting interface with real-time updates
+- **Fate Currency**: Meta-currency for boosting votes and rerolling fields
+- **Journal Logging**: Automatic logging of winning contracts
+- **GM Tools**: Fate management and poll control
 
-## Getting Started
+### Required RollTables
 
-### See the [documentation](https://www.dfreds-modules.com/developers/module-template-ts/) page for details.
+- `CE: World (d12)`
+- `CE: Hook (d20)`
+- `CE: Primary Danger (d20)`
+- `CE: Complication (d20)`
+- `CE: Bonus Objective (d20)`
+- `CE: Fallout (d20)`
+
+## Development Status
+
+**🚧 IN DEVELOPMENT** - This module is currently being built following the incremental plan in [DEVELOPMENT_PLAN.md](./DEVELOPMENT_PLAN.md).
+
+### Current Phase: Foundation Setup
+
+- [ ] Project configuration and dependencies
+- [ ] TypeScript definitions for dependencies
+- [ ] Core module structure and settings
+
+## Quick Start
+
+1. **Create Required RollTables**: Set up the six required RollTables with appropriate content
+2. **Install Module**: Install and activate the WWN Contract Builder module
+3. **Generate Poll**: Use the GM macro or API to start a contract poll
+4. **Vote**: Players vote and spend Fate currency as desired
+5. **Close Poll**: GM closes the poll to determine the winner and log to journal
+
+## Development
+
+This project uses:
+
+- **TypeScript** with strict typing and FoundryVTT v12 types
+- **Vite** for building and hot reloading
+- **SCSS** for styling
+- **socketlib** for multiplayer communication
+- **libWrapper** for safe function hooking
+
+### Building
+
+```bash
+npm install
+npm run build        # Production build
+npm run dev          # Development build
+npm run watch        # Development build with file watching
+```
+
+### Development Plan
+
+See [DEVELOPMENT_PLAN.md](./DEVELOPMENT_PLAN.md) for the complete incremental development roadmap.
+
+## Dependencies
+
+### Required
+
+- **FoundryVTT v12+**
+- **socketlib**: For multiplayer socket communication
+
+### Optional
+
+- **libWrapper**: For enhanced compatibility
+- **ui-extender**: For enhanced UI components
+- **VTTColorSettings**: For color customization
+
+## Attribution
+
+This project is built upon the FoundryVTT module template by [DFreds](https://github.com/DFreds).
+
+## License
+
+MIT License - see [LICENSE](./LICENSE) for details.

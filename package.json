@@ -1,7 +1,7 @@
 {
-    "name": "dfreds-module-template-ts",
+    "name": "wwn-random-contract-manager",
     "version": "1.0.0",
-    "description": "A FoundryVTT module template using Typescript",
+    "description": "A FoundryVTT Module for random contract generation",
     "private": true,
     "type": "module",
     "scripts": {

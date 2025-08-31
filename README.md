@@ -16,6 +16,7 @@ This module allows GMs to generate polls of mission contracts assembled from six
 
 ### Required RollTables
 
+- `CE: Boon and Bane (d10)`
 - `CE: World (d12)`
 - `CE: Hook (d20)`
 - `CE: Primary Danger (d20)`
@@ -27,38 +28,12 @@ This module allows GMs to generate polls of mission contracts assembled from six
 
 **🚧 IN DEVELOPMENT** - This module is currently being built following the incremental plan in [DEVELOPMENT_PLAN.md](./DEVELOPMENT_PLAN.md).
 
-### Current Phase: Foundation Setup
-
-- [ ] Project configuration and dependencies
-- [ ] TypeScript definitions for dependencies
-- [ ] Core module structure and settings
-
 ## Quick Start
 
-1. **Create Required RollTables**: Set up the six required RollTables with appropriate content
 2. **Install Module**: Install and activate the WWN Contract Builder module
 3. **Generate Poll**: Use the GM macro or API to start a contract poll
 4. **Vote**: Players vote and spend Fate currency as desired
 5. **Close Poll**: GM closes the poll to determine the winner and log to journal
-
-## Development
-
-This project uses:
-
-- **TypeScript** with strict typing and FoundryVTT v12 types
-- **Vite** for building and hot reloading
-- **SCSS** for styling
-- **socketlib** for multiplayer communication
-- **libWrapper** for safe function hooking
-
-### Building
-
-```bash
-npm install
-npm run build        # Production build
-npm run dev          # Development build
-npm run watch        # Development build with file watching
-```
 
 ## Dependencies
 

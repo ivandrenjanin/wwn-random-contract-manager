@@ -24,10 +24,6 @@ This module allows GMs to generate polls of mission contracts assembled from six
 - `CE: Bonus Objective (d20)`
 - `CE: Fallout (d20)`
 
-## Development Status
-
-**🚧 IN DEVELOPMENT** - This module is currently being built following the incremental plan in [DEVELOPMENT_PLAN.md](./DEVELOPMENT_PLAN.md).
-
 ## Quick Start
 
 2. **Install Module**: Install and activate the WWN Contract Builder module

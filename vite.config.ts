@@ -6,6 +6,8 @@ import path from "path";
 import tsconfigPaths from "vite-tsconfig-paths";
 import { viteStaticCopy } from "vite-plugin-static-copy";
 import packageJSON from "./package.json" with { type: "json" };
+import prefixer from "postcss-prefixer";
+import autoprefixer from "autoprefixer";
 
 const PACKAGE_ID = "modules/wwn-random-contract-manager";
 
@@ -127,6 +129,15 @@ const config = Vite.defineConfig(({ command, mode }): Vite.UserConfig => {
         plugins,
         css: {
             devSourcemap: buildMode === "development",
+            postcss: {
+                plugins: [
+                    prefixer({
+                        prefix: "wwn-rcm-",
+                        ignore: [/^wwn-rcm-/],
+                    }),
+                    autoprefixer({}),
+                ],
+            },
         },
     };
 });

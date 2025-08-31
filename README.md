@@ -60,19 +60,12 @@ npm run dev          # Development build
 npm run watch        # Development build with file watching
 ```
 
-### Development Plan
-
-See [DEVELOPMENT_PLAN.md](./DEVELOPMENT_PLAN.md) for the complete incremental development roadmap.
-
 ## Dependencies
 
 ### Required
 
 - **FoundryVTT v12+**
 - **socketlib**: For multiplayer socket communication
-
-### Optional
-
 - **libWrapper**: For enhanced compatibility
 - **ui-extender**: For enhanced UI components
 - **VTTColorSettings**: For color customization

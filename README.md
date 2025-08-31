@@ -4,11 +4,11 @@ A FoundryVTT module for generating and voting on mission contracts using RollTab
 
 ## Overview
 
-This module allows GMs to generate polls of mission contracts assembled from six RollTables. Players can vote on contracts and spend Fate currency to boost votes or reroll contract fields. The winning contract is automatically logged to a journal.
+This module allows GMs to generate polls of mission contracts assembled from seven RollTables. Players can vote on contracts and spend Fate currency to boost votes or reroll contract fields. The winning contract is automatically logged to a journal.
 
 ### Core Features
 
-- **Contract Generation**: Assembles missions from six required RollTables
+- **Contract Generation**: Assembles missions from seven required RollTables
 - **Interactive Voting**: Chat-based voting interface with real-time updates
 - **Fate Currency**: Meta-currency for boosting votes and rerolling fields
 - **Journal Logging**: Automatic logging of winning contracts

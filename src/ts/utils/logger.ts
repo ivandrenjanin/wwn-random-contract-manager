@@ -16,7 +16,9 @@ class Logger {
     }
 
     debug(...args: unknown[]): void {
-        if (this.#level === "debug") console.debug(`[${this.#prefix}]`, ...args);
+        if (this.#level === "debug") {
+            console.debug(`[${this.#prefix}]`, ...args);
+        }
     }
 
     info(...args: unknown[]): void {
@@ -35,4 +37,3 @@ class Logger {
 const logger = new Logger();
 
 export { Logger, logger };
-
